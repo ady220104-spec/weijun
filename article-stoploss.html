@@ -1,40 +1,4 @@
-﻿﻿<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8" /><meta name="apple-itunes-app" content="app-id=6789065192" /><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%230066cc%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2752%27 text-anchor=%27middle%27 fill=%27%23ffffff%27 font-family=%27sans-serif%27 font-weight=%27bold%27%3E%E6%BD%98%3C/text%3E%3C/svg%3E" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>止损与仓位管理 让亏损可承受 让利润拿得住 | 潘伟君</title><meta name="description" content="止损不是认输 是把亏损控制在可承受范围内 仓位不是胆量 是用风险预算反推出来的数字 这篇文章用亏损回本的不对称性和仓位公式 把风险控制讲成可执行的纪律" /><!-- Tailwind (本地, 中国用户可秒开) --><link rel="stylesheet" href="tailwind.css"><script>
- tailwind.config = {
- theme: {
- extend: {
- colors: {
- background: 'hsl(var(--background) / <alpha-value>)',
- foreground: 'hsl(var(--foreground) / <alpha-value>)',
- card: 'hsl(var(--card) / <alpha-value>)',
- 'card-foreground': 'hsl(var(--card-foreground) / <alpha-value>)',
- primary: 'hsl(var(--primary) / <alpha-value>)',
- 'primary-foreground': 'hsl(var(--primary-foreground) / <alpha-value>)',
- secondary: 'hsl(var(--secondary) / <alpha-value>)',
- 'secondary-foreground': 'hsl(var(--secondary-foreground) / <alpha-value>)',
- muted: 'hsl(var(--muted) / <alpha-value>)',
- 'muted-foreground': 'hsl(var(--muted-foreground) / <alpha-value>)',
- accent: 'hsl(var(--accent) / <alpha-value>)',
- 'accent-foreground': 'hsl(var(--accent-foreground) / <alpha-value>)',
- destructive: 'hsl(var(--destructive) / <alpha-value>)',
- 'destructive-foreground': 'hsl(var(--destructive-foreground) / <alpha-value>)',
- border: 'hsl(var(--border) / <alpha-value>)',
- input: 'hsl(var(--input) / <alpha-value>)',
- ring: 'hsl(var(--ring) / <alpha-value>)',
- success: 'hsl(var(--success) / <alpha-value>)',
- },
- fontFamily: {
- sans: ['system-ui', '-apple-system', '"PingFang SC"', '"Hiragino Sans GB"', '"Microsoft YaHei"', '"Noto Sans CJK SC"', 'sans-serif'],
- serif: ['"Songti SC"', '"Noto Serif CJK SC"', '"Source Han Serif SC"', '"STSong"', 'SimSun', 'serif'],
- mono: ['ui-monospace', 'SFMono-Regular', 'Consolas', 'Menlo', 'monospace'],
- },
- borderRadius: {
- lg: 'var(--radius)',
- md: 'var(--radius-sm)',
- },
- },
- },
- };
-</script><style>
+﻿﻿<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8" /><meta name="apple-itunes-app" content="app-id=6789065192" /><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%230066cc%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2752%27 text-anchor=%27middle%27 fill=%27%23ffffff%27 font-family=%27sans-serif%27 font-weight=%27bold%27%3E%E6%BD%98%3C/text%3E%3C/svg%3E" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>止损与仓位管理 让亏损可承受 让利润拿得住 | 潘伟君</title><meta name="description" content="止损不是认输 是把亏损控制在可承受范围内 仓位不是胆量 是用风险预算反推出来的数字 这篇文章用亏损回本的不对称性和仓位公式 把风险控制讲成可执行的纪律" /><!-- Tailwind (本地, 中国用户可秒开) --><link rel="stylesheet" href="tailwind.css"><style>
  /* ===================== Design Tokens ===================== */
  :root {
  color-scheme: light;
