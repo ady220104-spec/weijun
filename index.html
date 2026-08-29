@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>知远财经 · 林知远 - 顶级 A 股短线操盘手 · 作品集</title>
 <meta name="description" content="林知远, 顶级 A 股短线操盘手, 12 年实战. 400+ 篇公开复盘留痕, 体系化决策 纪律化执行 风控化生存. 免费下载知远财经 App, 看一周复盘再决定.">
-<script src="tailwind.js"></script>
+<link rel="stylesheet" href="tailwind.css">
 <style>
   :root {
     --background: 40 25% 98%;
@@ -101,7 +101,22 @@
     .word-char { opacity: 1 !important; transform: none !important; }
     .glow, .cta-sheen::after, .scroll-hint { display: none; }
   }
-</style>
+
+/* 移动端触控目标优化: 核心交互 ≥44px (WCAG 2.5.5) */
+@media (max-width: 767px) {
+  header a:not(.btn):not(.hidden):not([class*="hidden"]),
+  footer nav a:not(.hidden):not([class*="hidden"]),
+  nav[aria-label="本页目录"] a,
+  #menu-btn, .tab {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  footer nav a:not(.hidden):not([class*="hidden"]) { padding: 0 .5rem; }
+  #menu-btn { width: 44px; height: 44px; }
+  .tab { height: 44px; }
+  #search-clear { width: 44px !important; height: 44px !important; }
+}</style>
 </head>
 <body class="bg-[hsl(var(--background))] text-[hsl(var(--foreground))] antialiased selection:bg-[hsl(var(--primary))] selection:text-white">
 

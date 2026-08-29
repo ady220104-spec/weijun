@@ -10,7 +10,7 @@
 
 <!-- Tailwind (本地, 中国用户可秒开) -->
 
-<script src="tailwind.js"></script>
+<link rel="stylesheet" href="tailwind.css">
 <script>
  tailwind.config = {
  theme: {
@@ -276,7 +276,22 @@
  .spinner, .skeleton { animation: none; } .btn-loading::after, .grid-fade { animation: none !important; }
  * { transition-duration: .01ms !important; }
  }
-</style>
+
+/* 移动端触控目标优化: 核心交互 ≥44px (WCAG 2.5.5) */
+@media (max-width: 767px) {
+  header a:not(.btn):not(.hidden):not([class*="hidden"]),
+  footer nav a:not(.hidden):not([class*="hidden"]),
+  nav[aria-label="本页目录"] a,
+  #menu-btn, .tab {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  footer nav a:not(.hidden):not([class*="hidden"]) { padding: 0 .5rem; }
+  #menu-btn { width: 44px; height: 44px; }
+  .tab { height: 44px; }
+  #search-clear { width: 44px !important; height: 44px !important; }
+}</style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
 
