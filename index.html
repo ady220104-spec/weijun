@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>知远财经 · 林知远 - 把 A 股的波动变成你的复利</title>
-<meta name="description" content="林知远, 知远财经主理人, 10 年 A 股实战体系. 每日复盘, 体系化决策, 纪律化执行, 风控化生存. 免费订阅, 看得懂跟得上用得上.">
+<title>知远财经 · 林知远 - 顶级 A 股短线操盘手 · 作品集</title>
+<meta name="description" content="林知远, 顶级 A 股短线操盘手, 12 年实战. 400+ 篇公开复盘留痕, 体系化决策 纪律化执行 风控化生存. 免费下载知远财经 App, 看一周复盘再决定.">
 <script src="tailwind.js"></script>
 <style>
   :root {
@@ -17,7 +17,6 @@
   }
   html { scrollbar-gutter: stable; }
   body { font-family: "PingFang SC","Microsoft YaHei","Source Han Sans SC",system-ui,-apple-system,sans-serif; }
-  /* 暗色 hero 基底 */
   .hero-bg {
     background:
       radial-gradient(1100px 500px at 78% -10%, rgba(212,97,68,.22), transparent 60%),
@@ -35,28 +34,22 @@
     content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5; mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
   }
-  /* 玻璃卡(暗色) */
   .glass { background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.09); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
-  /* 首屏入场(非滚动触发) */
+  /* 首屏入场 */
   .reveal-inline { opacity: 0; animation: fade-up .7s cubic-bezier(.22,.61,.36,1) forwards; }
   @keyframes fade-up { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
-  /* 标题逐字显现 */
   .word-char { display: inline-block; opacity: 0; transform: translateY(18px); animation: word-in .5s cubic-bezier(.22,.61,.36,1) forwards; }
   @keyframes word-in { to { opacity: 1; transform: none; } }
-  /* K 线背景漂移 */
   .kline { animation: kline-drift 24s ease-in-out infinite alternate; }
   @keyframes kline-drift { from { transform: translateY(-14px); } to { transform: translateY(16px); } }
-  /* 滚动指示器 */
   .animate-bounce-down { animation: bounce-down 1.8s ease-in-out infinite; }
   @keyframes bounce-down { 0%, 100% { transform: translateY(0); opacity: .65; } 50% { transform: translateY(6px); opacity: 1; } }
-  /* CTA 光带扫过 */
   .cta-sheen::after {
     content: ""; position: absolute; top: 0; left: -60%; width: 42%; height: 100%;
     background: linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent);
     transform: skewX(-20deg); animation: sheen 3.4s ease-in-out infinite;
   }
   @keyframes sheen { 0%, 55% { left: -60%; } 100% { left: 135%; } }
-  /* 主按钮 */
   .btn-primary {
     background: linear-gradient(135deg, hsl(15 72% 52%), hsl(15 63% 40%));
     box-shadow: 0 10px 32px -8px rgba(200,75,45,.55), inset 0 1px 0 rgba(255,255,255,.22);
@@ -72,24 +65,25 @@
   .btn-primary:focus-visible, .btn-ghost:focus-visible, a:focus-visible, button:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 3px; }
   .btn-ghost { border: 1px solid rgba(255,255,255,.18); transition: border-color .2s ease, background .2s ease, transform .2s ease; }
   .btn-ghost:hover { border-color: rgba(255,255,255,.38); background: rgba(255,255,255,.06); transform: translateY(-2px); }
-  /* 滚动显现 */
   .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); }
   .reveal.in { opacity: 1; transform: none; }
-  /* 卡片 hover */
   .lift { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
   .lift:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -20px rgba(20,15,10,.18); border-color: hsl(15 55% 78%); }
   .card-line::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; border-radius: 9999px; background: linear-gradient(90deg, hsl(15 63% 45%), hsl(15 70% 60%)); opacity: 0; transition: opacity .3s ease; }
   .lift:hover .card-line::before { opacity: 1; }
-  /* hero 辉光跟随 */
   .glow { position: absolute; width: 520px; height: 520px; border-radius: 9999px; background: radial-gradient(circle, rgba(212,97,68,.14), transparent 62%); pointer-events: none; transform: translate(-50%,-50%); transition: opacity .4s ease; }
-  /* 数字下划线强调 */
   .underline-accent { background-image: linear-gradient(120deg, hsl(15 63% 45%) 0%, hsl(15 70% 55%) 100%); background-repeat: no-repeat; background-size: 100% .18em; background-position: 0 88%; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-  /* 移动菜单 */
   .mobile-menu { transform: translateY(-8px); opacity: 0; pointer-events: none; transition: transform .22s ease, opacity .22s ease; }
   .mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; }
-  /* 进度条 */
   #progress { transform-origin: left; transform: scaleX(0); }
-  /* Toast 提示 */
+  /* 作品卡曲线 */
+  .project-chart { display: block; width: 100%; height: auto; }
+  /* 时间线 */
+  .timeline { position: relative; }
+  .timeline::before { content: ""; position: absolute; left: 11px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, hsl(15 63% 45% / .5), hsl(15 63% 45% / .08)); }
+  .timeline-item { position: relative; padding-left: 40px; }
+  .timeline-dot { position: absolute; left: 4px; top: 5px; width: 16px; height: 16px; border-radius: 9999px; background: #fff; border: 3px solid hsl(var(--primary)); }
+  /* Toast */
   #toast {
     position: fixed; left: 50%; bottom: 32px; z-index: 100;
     transform: translateX(-50%) translateY(16px); opacity: 0; pointer-events: none;
@@ -123,27 +117,26 @@
         <span class="text-[15px] font-semibold tracking-wide">知远财经 <span class="text-[hsl(var(--primary))] font-bold">·</span> 林知远</span>
       </a>
       <nav class="hidden md:flex items-center gap-8 text-[14px] font-medium text-black/70" aria-label="主导航">
-        <a href="#pain" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">为什么亏</a>
-        <a href="#method" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">解决方案</a>
+        <a href="#work" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">代表作品</a>
         <a href="#results" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">实战战绩</a>
-        <a href="#about" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">关于</a>
+        <a href="#about" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">关于我</a>
+        <a href="#contact" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">联系</a>
       </nav>
       <div class="flex items-center gap-3">
-        <a href="#download" class="hidden sm:inline-flex btn-primary text-white text-[14px] font-semibold px-5 py-2.5 rounded-full cursor-pointer">免费下载</a>
+        <a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" class="js-download hidden sm:inline-flex btn-primary text-white text-[14px] font-semibold px-5 py-2.5 rounded-full cursor-pointer">免费下载 App</a>
         <button id="menu-btn" class="md:hidden grid h-10 w-10 place-items-center rounded-lg border border-black/10 cursor-pointer hover:bg-black/5 transition-colors duration-200" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开菜单">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
       </div>
     </div>
   </div>
-  <!-- 移动菜单 -->
   <div id="mobile-menu" class="mobile-menu md:hidden mx-4 mt-1 rounded-2xl border border-black/10 bg-white/95 backdrop-blur-xl shadow-2xl shadow-black/10 overflow-hidden" role="region" aria-label="移动菜单">
     <nav class="flex flex-col p-3 text-[15px] font-medium" aria-label="移动导航">
-      <a href="#pain" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">为什么亏</a>
-      <a href="#method" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">解决方案</a>
+      <a href="#work" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">代表作品</a>
       <a href="#results" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">实战战绩</a>
-      <a href="#about" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">关于</a>
-      <a href="#download" class="mt-1 btn-primary text-white text-center font-semibold px-4 py-3 rounded-xl cursor-pointer">免费下载 App</a>
+      <a href="#about" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">关于我</a>
+      <a href="#contact" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">联系</a>
+      <a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" class="js-download mt-1 btn-primary text-white text-center font-semibold px-4 py-3 rounded-xl cursor-pointer">免费下载 App</a>
     </nav>
   </div>
 </header>
@@ -153,7 +146,6 @@
 <section class="hero-bg noise relative overflow-hidden text-white">
   <div id="hero-glow" class="glow opacity-0" aria-hidden="true"></div>
   <div class="hero-grid absolute inset-0" aria-hidden="true"></div>
-  <!-- K 线漂移动态背景 -->
   <svg class="kline absolute inset-x-0 top-[30%] h-[420px] w-full" viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true">
     <defs>
       <linearGradient id="kl" x1="0" y1="0" x2="1" y2="0">
@@ -168,235 +160,195 @@
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-[100svh] flex flex-col justify-center pt-28 pb-40 md:pt-32 md:pb-44 text-center">
     <p class="reveal-inline inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[12.5px] tracking-widest text-white/80 backdrop-blur" style="animation-delay:.05s">
       <span class="h-1.5 w-1.5 rounded-full bg-[hsl(15_72%_58%)] animate-pulse" aria-hidden="true"></span>
-      知远财经 App · 专为散户打造 · 免费下载
+      顶级 A 股短线操盘手 · 12 年实战 · 作品集
     </p>
-    <h1 id="hero-title" class="mt-8 text-4xl sm:text-5xl md:text-[60px] lg:text-[72px] font-bold leading-[1.14] tracking-tight text-balance" aria-label="如果你在 A 股总是亏, 问题从来不在行情. 而是你还在用散户的方式交易">
-      <span class="word-line block"><span class="text-white">如果你在 A 股总是亏,</span></span>
-      <span class="word-line block mt-2"><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#f6b497] via-[#e8754f] to-[#c24a2b]">问题从来不在行情</span></span>
+    <h1 id="hero-title" class="mt-8 text-4xl sm:text-5xl md:text-[60px] lg:text-[72px] font-bold leading-[1.14] tracking-tight text-balance" aria-label="把每一笔交易, 做成一件作品">
+      <span class="word-line block"><span class="text-white">把每一笔交易,</span></span>
+      <span class="word-line block mt-2"><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#f6b497] via-[#e8754f] to-[#c24a2b]">做成一件作品</span></span>
     </h1>
     <p class="reveal-inline mt-7 mx-auto max-w-2xl text-[16px] md:text-[17px] leading-relaxed text-white/70" style="animation-delay:.45s">
-      而是你还在用散户的方式交易. 2015 年, 我凭运气亏掉 7 位数, 才明白这个道理
-      <span class="block mt-2 text-white/90 font-medium">现在, 我把 10 年验证的体系装进一款 App, 免费下载</span>
+      12 年短线实战, 400+ 篇公开复盘, 每一笔进出场都在 App 里留痕可查
+      <span class="block mt-2 text-white/90 font-medium">我的作品不是预测, 是一套可验证的体系</span>
+      免费下载, 看一周复盘, 再决定要不要合作
     </p>
     <div class="reveal-inline mt-10 flex flex-col sm:flex-row items-center justify-center gap-4" style="animation-delay:.95s">
-      <a href="#download" class="js-download btn-primary cta-sheen inline-flex items-center gap-2.5 rounded-full px-9 py-4 text-[15.5px] font-semibold text-white cursor-pointer relative overflow-hidden">
+      <a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" class="js-download btn-primary cta-sheen inline-flex items-center gap-2.5 rounded-full px-9 py-4 text-[15.5px] font-semibold text-white cursor-pointer relative overflow-hidden">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
-        安卓免费下载
+        免费下载 App
       </a>
-      <a href="#download" class="js-download btn-ghost inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-medium text-white/90 cursor-pointer">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
-        iPhone 前往 App Store
+      <a href="#work" class="btn-ghost inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-medium text-white/90 cursor-pointer">
+        查看代表作品
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
-    <p class="reveal-inline mt-6 text-[12.5px] text-white/60" style="animation-delay:1.2s">免费安装 · 安卓包约 172MB · 微信内点击右上角「在浏览器打开」即可下载</p>
+    <p class="reveal-inline mt-6 text-[12.5px] text-white/60" style="animation-delay:1.2s">免费安装 · 安卓包约 172MB · 微信内请用浏览器打开</p>
 
     <!-- 数据条 -->
     <dl class="reveal mt-14 grid grid-cols-2 md:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 backdrop-blur">
       <div class="bg-black/30 px-6 py-7">
         <dt class="text-[12.5px] tracking-widest text-white/55">实战年限</dt>
-        <dd class="mt-2 text-3xl md:text-4xl font-bold"><span class="count-up" data-target="10" data-suffix="年">0</span></dd>
+        <dd class="mt-2 text-3xl md:text-4xl font-bold"><span class="count-up" data-target="12" data-suffix="年">0</span></dd>
       </div>
       <div class="bg-black/30 px-6 py-7">
-        <dt class="text-[12.5px] tracking-widest text-white/55">深度复盘</dt>
+        <dt class="text-[12.5px] tracking-widest text-white/55">公开复盘</dt>
         <dd class="mt-2 text-3xl md:text-4xl font-bold"><span class="count-up" data-target="420" data-suffix="+">0</span></dd>
       </div>
       <div class="bg-black/30 px-6 py-7">
-        <dt class="text-[12.5px] tracking-widest text-white/55">策略年化<sup class="text-[10px] text-white/60">*</sup></dt>
-        <dd class="mt-2 text-3xl md:text-4xl font-bold text-[#f0a184]"><span class="count-up" data-target="18" data-suffix="%">0</span></dd>
+        <dt class="text-[12.5px] tracking-widest text-white/55">盈亏比</dt>
+        <dd class="mt-2 text-3xl md:text-4xl font-bold text-[#f0a184]"><span class="count-up" data-target="3.0" data-decimals="1">0</span><span class="text-lg text-white/60"> : 1</span></dd>
       </div>
       <div class="bg-black/30 px-6 py-7">
-        <dt class="text-[12.5px] tracking-widest text-white/55">读者留存</dt>
-        <dd class="mt-2 text-3xl md:text-4xl font-bold"><span class="count-up" data-target="97" data-suffix="%">0</span></dd>
+        <dt class="text-[12.5px] tracking-widest text-white/55">策略年化<sup class="text-[10px] text-white/60">*</sup></dt>
+        <dd class="mt-2 text-3xl md:text-4xl font-bold"><span class="count-up" data-target="18" data-suffix="%">0</span></dd>
       </div>
     </dl>
     <p class="mt-3 text-[11.5px] text-white/55">* 2018-2025 策略回测演示数据, 历史业绩不代表未来收益</p>
   </div>
-  <!-- 滚动指示器 -->
-  <a href="#proof" class="scroll-hint absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-white/60 hover:text-white/90 transition-colors duration-200 cursor-pointer" aria-label="向下滚动查看读者评价">
-    <span class="text-[11.5px] tracking-[0.25em]">向下滚动</span>
+  <a href="#work" class="scroll-hint absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-white/60 hover:text-white/90 transition-colors duration-200 cursor-pointer" aria-label="向下滚动查看代表作品">
+    <span class="text-[11.5px] tracking-[0.25em]">向下滚动看作品</span>
     <svg class="h-5 w-5 animate-bounce-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
   </a>
 </section>
 
-<!-- ============ 问题展示区 ============ -->
-<section id="pain" class="bg-[hsl(var(--background))]">
+<!-- ============ 豪华作品 ============ -->
+<section id="work" class="bg-[hsl(var(--background))]">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
     <div class="reveal mx-auto max-w-3xl text-center">
-      <p class="text-[12.5px] tracking-[0.3em] text-[hsl(var(--primary))] font-semibold">先别下载</p>
-      <h2 class="mt-4 text-3xl md:text-[44px] font-bold leading-tight">先确认一件事<br>你是不是也这样亏钱的</h2>
-      <p class="mt-5 text-[15.5px] leading-relaxed text-black/65">下面 4 种散户式亏损, 你中了哪几条? 诚实点, 这决定你要不要继续往下读</p>
+      <p class="text-[12.5px] tracking-[0.3em] text-[hsl(var(--primary))] font-semibold">代表作品</p>
+      <h2 class="mt-4 text-3xl md:text-[44px] font-bold leading-tight">四件作品, 四次穿越<br>每一件都公开可查</h2>
+      <p class="mt-5 text-[15.5px] leading-relaxed text-black/65">这些不是收益截图, 是四年一组的体系验证. 所有进出场点, 在知远财经 App 的复盘中都有留痕</p>
     </div>
-    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      <article class="reveal lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-7 cursor-pointer">
-        <div class="flex items-center justify-between">
-          <span class="grid h-12 w-12 place-items-center rounded-xl bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>
-          </span>
-          <span class="text-[13px] font-bold text-[hsl(var(--primary))]/70">症状 1</span>
-        </div>
-        <h3 class="mt-5 text-lg font-bold">追涨杀跌</h3>
-        <p class="mt-2.5 flex-1 text-[13.5px] leading-relaxed text-black/60">涨了才敢买, 买完就站岗. 跌了才恐慌, 割完就反弹. 主力最喜欢你这种节奏</p>
-        <p class="mt-4 border-t border-[hsl(var(--border))] pt-3.5 text-[13px] font-semibold text-[hsl(var(--primary))]">后果: 反复被收割, 本金越割越薄</p>
-      </article>
-      <article class="reveal lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-7 cursor-pointer">
-        <div class="flex items-center justify-between">
-          <span class="grid h-12 w-12 place-items-center rounded-xl bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 8v8M8 12h8"/></svg>
-          </span>
-          <span class="text-[13px] font-bold text-[hsl(var(--primary))]/70">症状 2</span>
-        </div>
-        <h3 class="mt-5 text-lg font-bold">套牢死扛</h3>
-        <p class="mt-2.5 flex-1 text-[13.5px] leading-relaxed text-black/60">亏 10% 舍不得走, 想着回本就卖. 补仓越补越深, 最后深套 50%</p>
-        <p class="mt-4 border-t border-[hsl(var(--border))] pt-3.5 text-[13px] font-semibold text-[hsl(var(--primary))]">后果: 资金锁死三五年, 机会来了也没钱</p>
-      </article>
-      <article class="reveal lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-7 cursor-pointer">
-        <div class="flex items-center justify-between">
-          <span class="grid h-12 w-12 place-items-center rounded-xl bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 01-9 9 9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9z"/><path d="M9 9l3 3-3 3M15 9l-3 3 3 3"/></svg>
-          </span>
-          <span class="text-[13px] font-bold text-[hsl(var(--primary))]/70">症状 3</span>
-        </div>
-        <h3 class="mt-5 text-lg font-bold">消息跟风</h3>
-        <p class="mt-2.5 flex-1 text-[13.5px] leading-relaxed text-black/60">听大 V 荐股, 看小作文买入. 当你都敢冲进去的时候, 往往正是派发的时候</p>
-        <p class="mt-4 border-t border-[hsl(var(--border))] pt-3.5 text-[13px] font-semibold text-[hsl(var(--primary))]">后果: 免费的消息, 往往最贵</p>
-      </article>
-      <article class="reveal lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-7 cursor-pointer">
-        <div class="flex items-center justify-between">
-          <span class="grid h-12 w-12 place-items-center rounded-xl bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          </span>
-          <span class="text-[13px] font-bold text-[hsl(var(--primary))]/70">症状 4</span>
-        </div>
-        <h3 class="mt-5 text-lg font-bold">从不复盘</h3>
-        <p class="mt-2.5 flex-1 text-[13.5px] leading-relaxed text-black/60">同样的错犯三年, 赚了不知道为什么, 亏了更不知道. 凭运气赚的, 全凭实力还回去</p>
-        <p class="mt-4 border-t border-[hsl(var(--border))] pt-3.5 text-[13px] font-semibold text-[hsl(var(--primary))]">后果: 十年老股民, 和第一天没区别</p>
-      </article>
-    </div>
-
-    <!-- 对照表: 对号入座 -->
-    <div class="reveal mt-16 overflow-hidden rounded-3xl border border-[hsl(var(--border))] bg-white shadow-xl shadow-black/5">
-      <div class="grid md:grid-cols-2">
-        <div class="p-8 md:p-10 bg-[#f6f1ea]">
-          <h3 class="flex items-center gap-2 text-lg font-bold text-black/75">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-            散户式交易
-          </h3>
-          <ul class="mt-5 space-y-3.5 text-[14px] text-black/60">
-            <li class="flex justify-between border-b border-dashed border-black/10 pb-3"><span>买什么</span><span class="text-black/65">听消息 看热闹</span></li>
-            <li class="flex justify-between border-b border-dashed border-black/10 pb-3"><span>何时买</span><span class="text-black/65">涨了追 跌了慌</span></li>
-            <li class="flex justify-between border-b border-dashed border-black/10 pb-3"><span>亏了怎么办</span><span class="text-black/65">死扛 补仓 装死</span></li>
-            <li class="flex justify-between border-b border-dashed border-black/10 pb-3"><span>何时卖</span><span class="text-black/65">恐慌割肉</span></li>
-            <li class="flex justify-between"><span>复盘</span><span class="text-black/65">从不</span></li>
-          </ul>
-        </div>
-        <div class="p-8 md:p-10 bg-[#161210] text-white">
-          <h3 class="flex items-center gap-2 text-lg font-bold text-[#f0a184]">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-            体系式交易
-          </h3>
-          <ul class="mt-5 space-y-3.5 text-[14px] text-white/80">
-            <li class="flex justify-between border-b border-white/10 pb-3"><span>买什么</span><span class="text-white/95 font-medium">看结构 看位置</span></li>
-            <li class="flex justify-between border-b border-white/10 pb-3"><span>何时买</span><span class="text-white/95 font-medium">按信号 分批进</span></li>
-            <li class="flex justify-between border-b border-white/10 pb-3"><span>亏了怎么办</span><span class="text-white/95 font-medium">计划内止损</span></li>
-            <li class="flex justify-between border-b border-white/10 pb-3"><span>何时卖</span><span class="text-white/95 font-medium">按计划离场</span></li>
-            <li class="flex justify-between"><span>复盘</span><span class="text-white/95 font-medium">每天记录</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <p class="reveal mt-8 text-center text-[14.5px] font-medium text-black/70">你中了几条? 记住它们. 接下来, 就是它们的解药</p>
-  </div>
-</section>
-
-<!-- ============ 交易体系 ============ -->
-<section id="method" class="relative overflow-hidden bg-[#161210] text-white">
-  <div class="absolute inset-0 opacity-60" style="background: radial-gradient(800px 400px at 85% 0%, rgba(212,97,68,.16), transparent 60%), radial-gradient(700px 380px at 10% 100%, rgba(212,97,68,.10), transparent 55%);" aria-hidden="true"></div>
-  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-    <div class="reveal max-w-3xl">
-      <p class="text-[12.5px] tracking-[0.3em] text-[#e8967c] font-semibold">解决方案</p>
-      <h2 class="mt-4 text-3xl md:text-[44px] font-bold leading-tight">答案不是更努力<br>是<span class="underline-accent">换一套系统</span></h2>
-      <p class="mt-5 text-[15.5px] leading-relaxed text-white/60">这三件事我做了 10 年, 每一件都对应一个你能立刻执行的动作. 现在, 它们被装进知远财经 App, 下载就能用</p>
-    </div>
-    <div class="mt-14 grid gap-6 md:grid-cols-3">
-      <article class="reveal glass lift relative overflow-hidden rounded-2xl p-8 cursor-pointer" tabindex="0">
+    <div class="mt-14 grid gap-6 md:grid-cols-2">
+      <!-- 作品 1 -->
+      <article class="reveal lift relative overflow-hidden rounded-3xl border border-[hsl(var(--border))] bg-white cursor-pointer">
         <span class="card-line"></span>
-        <div class="flex items-center justify-between">
-          <span class="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-[#e8754f] to-[#c24a2b] shadow-lg shadow-[#c24a2b/30]">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-6"/></svg>
-          </span>
-          <span class="text-[40px] font-black text-white/8 leading-none">01</span>
+        <div class="relative h-40 overflow-hidden bg-[#141110]">
+          <svg class="project-chart absolute inset-0" viewBox="0 0 600 160" preserveAspectRatio="none" role="img" aria-label="趋势跟随体系净值曲线, 从 1.0 增长到 1.8">
+            <defs><linearGradient id="p1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8754f" stop-opacity=".3"/><stop offset="100%" stop-color="#e8754f" stop-opacity="0"/></linearGradient></defs>
+            <path d="M0,130 C50,122 80,128 120,108 C160,90 200,100 240,76 C280,54 320,66 360,44 C400,26 440,34 500,16 C540,8 570,10 600,4 L600,160 L0,160 Z" fill="url(#p1)"/>
+            <path d="M0,130 C50,122 80,128 120,108 C160,90 200,100 240,76 C280,54 320,66 360,44 C400,26 440,34 500,16 C540,8 570,10 600,4" fill="none" stroke="#e8754f" stroke-width="3"/>
+          </svg>
+          <span class="absolute left-5 top-5 inline-flex rounded-full bg-white/10 backdrop-blur px-3 py-1 text-[11.5px] font-semibold text-white/90 border border-white/15">作品 01 · 2016-2019</span>
         </div>
-        <h3 class="mt-6 text-xl font-bold">体系化决策</h3>
-        <p class="mt-3 text-[14px] leading-relaxed text-white/60">先胜后战. 用趋势判断方向, 用位置决定赔率, 用结构确认信号. 每一个进场点都能说出理由</p>
-        <p class="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#f0a184]">App 里: 每日复盘 22:00 推送 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
+        <div class="p-7">
+          <h3 class="text-xl font-bold">趋势跟随体系 <span class="ml-1 align-middle text-[11.5px] font-semibold text-[hsl(var(--primary))] bg-[hsl(var(--primary))]/10 rounded-full px-2.5 py-0.5">穿越牛熊</span></h3>
+          <p class="mt-3 text-[14px] leading-relaxed text-black/60">完整经历 2018 单边下跌与 2019 修复行情, 只做趋势确认后的机会, 空仓也是仓位</p>
+          <dl class="mt-5 grid grid-cols-3 gap-3 border-t border-[hsl(var(--border))] pt-5 text-center">
+            <div><dt class="text-[11.5px] text-black/55">净值</dt><dd class="mt-0.5 text-lg font-bold">1.0 → 1.8</dd></div>
+            <div><dt class="text-[11.5px] text-black/55">最大回撤</dt><dd class="mt-0.5 text-lg font-bold">11%</dd></div>
+            <div><dt class="text-[11.5px] text-black/55">年化</dt><dd class="mt-0.5 text-lg font-bold">16.2%</dd></div>
+          </dl>
+        </div>
       </article>
-      <article class="reveal glass lift relative overflow-hidden rounded-2xl p-8 cursor-pointer" tabindex="0">
+      <!-- 作品 2 -->
+      <article class="reveal lift relative overflow-hidden rounded-3xl border border-[hsl(var(--border))] bg-white cursor-pointer">
         <span class="card-line"></span>
-        <div class="flex items-center justify-between">
-          <span class="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-[#e8754f] to-[#c24a2b] shadow-lg shadow-[#c24a2b/30]">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
-          </span>
-          <span class="text-[40px] font-black text-white/8 leading-none">02</span>
+        <div class="relative h-40 overflow-hidden bg-[#141110]">
+          <svg class="project-chart absolute inset-0" viewBox="0 0 600 160" preserveAspectRatio="none" role="img" aria-label="背离捕捉策略逃顶示意">
+            <path d="M0,20 C80,28 140,60 180,90 C220,120 260,128 300,118 C340,108 380,80 420,60 C460,40 520,26 600,22" fill="none" stroke="#8a8378" stroke-width="2.5" stroke-dasharray="6 6"/>
+            <path d="M0,80 C90,86 160,104 220,100 C280,96 340,84 400,66 C460,48 530,36 600,32" fill="none" stroke="#e8754f" stroke-width="3"/>
+            <circle cx="420" cy="60" r="7" fill="#e8754f" stroke="white" stroke-width="2.5"/>
+            <circle cx="400" cy="66" r="7" fill="#161210" stroke="#f0a184" stroke-width="2.5"/>
+          </svg>
+          <span class="absolute left-5 top-5 inline-flex rounded-full bg-white/10 backdrop-blur px-3 py-1 text-[11.5px] font-semibold text-white/90 border border-white/15">作品 02 · 2020</span>
         </div>
-        <h3 class="mt-6 text-xl font-bold">纪律化执行</h3>
-        <p class="mt-3 text-[14px] leading-relaxed text-white/60">计划你的交易, 交易你的计划. 进场前写好仓位与离场条件, 盘中只做执行, 不临时改主意</p>
-        <p class="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#f0a184]">App 里: 计划清单 + 买卖点留痕 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
+        <div class="p-7">
+          <h3 class="text-xl font-bold">背离捕捉策略 <span class="ml-1 align-middle text-[11.5px] font-semibold text-[hsl(var(--primary))] bg-[hsl(var(--primary))]/10 rounded-full px-2.5 py-0.5">三次逃顶</span></h3>
+          <p class="mt-3 text-[14px] leading-relaxed text-black/60">顶背离识别 + 二次确认, 全年三次关键高点全部提前离场, 躲过三次急跌</p>
+          <dl class="mt-5 grid grid-cols-3 gap-3 border-t border-[hsl(var(--border))] pt-5 text-center">
+            <div><dt class="text-[11.5px] text-black/55">逃顶</dt><dd class="mt-0.5 text-lg font-bold">3 / 3</dd></div>
+            <div><dt class="text-[11.5px] text-black/55">最大回撤</dt><dd class="mt-0.5 text-lg font-bold">8%</dd></div>
+            <div><dt class="text-[11.5px] text-black/55">胜率</dt><dd class="mt-0.5 text-lg font-bold">58%</dd></div>
+          </dl>
+        </div>
       </article>
-      <article class="reveal glass lift relative overflow-hidden rounded-2xl p-8 cursor-pointer" tabindex="0">
+      <!-- 作品 3 -->
+      <article class="reveal lift relative overflow-hidden rounded-3xl border border-[hsl(var(--border))] bg-white cursor-pointer">
         <span class="card-line"></span>
-        <div class="flex items-center justify-between">
-          <span class="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-[#e8754f] to-[#c24a2b] shadow-lg shadow-[#c24a2b/30]">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z"/><path d="M9.5 12l2 2 3.5-4"/></svg>
-          </span>
-          <span class="text-[40px] font-black text-white/8 leading-none">03</span>
+        <div class="relative h-40 overflow-hidden bg-[#141110]">
+          <svg class="project-chart absolute inset-0" viewBox="0 0 600 160" preserveAspectRatio="none" role="img" aria-label="分时博弈模型日内交易示意图">
+            <path d="M0,100 L120,70 L180,88 L260,50 L340,72 L420,38 L500,58 L600,30" fill="none" stroke="#e8754f" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="260" cy="50" r="6" fill="#f0a184" stroke="#161210" stroke-width="2"/>
+            <circle cx="420" cy="38" r="6" fill="#f0a184" stroke="#161210" stroke-width="2"/>
+            <path d="M0,115 L600,115" stroke="rgba(255,255,255,.18)" stroke-width="1.5" stroke-dasharray="4 6"/>
+          </svg>
+          <span class="absolute left-5 top-5 inline-flex rounded-full bg-white/10 backdrop-blur px-3 py-1 text-[11.5px] font-semibold text-white/90 border border-white/15">作品 03 · 2021-2022</span>
         </div>
-        <h3 class="mt-6 text-xl font-bold">风控化生存</h3>
-        <p class="mt-3 text-[14px] leading-relaxed text-white/60">活下来才有一切. 单笔风险固定, 止损是交易计划的一部分, 从来不是事后补救</p>
-        <p class="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#f0a184]">App 里: 行情转折风险提醒 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
+        <div class="p-7">
+          <h3 class="text-xl font-bold">分时博弈模型 <span class="ml-1 align-middle text-[11.5px] font-semibold text-[hsl(var(--primary))] bg-[hsl(var(--primary))]/10 rounded-full px-2.5 py-0.5">日内短线</span></h3>
+          <p class="mt-3 text-[14px] leading-relaxed text-black/60">把分时图读成多空博弈现场, 只在均线结构确认时出手, 单日持仓不超过 3 小时</p>
+          <dl class="mt-5 grid grid-cols-3 gap-3 border-t border-[hsl(var(--border))] pt-5 text-center">
+            <div><dt class="text-[11.5px] text-black/55">胜率</dt><dd class="mt-0.5 text-lg font-bold">62%</dd></div>
+            <div><dt class="text-[11.5px] text-black/55">盈亏比</dt><dd class="mt-0.5 text-lg font-bold">2.6 : 1</dd></div>
+            <div><dt class="text-[11.5px] text-black/55">交易次数</dt><dd class="mt-0.5 text-lg font-bold">186 笔</dd></div>
+          </dl>
+        </div>
+      </article>
+      <!-- 作品 4 -->
+      <article class="reveal lift relative overflow-hidden rounded-3xl border border-[hsl(var(--border))] bg-white cursor-pointer">
+        <span class="card-line"></span>
+        <div class="relative h-40 overflow-hidden bg-[#141110]">
+          <svg class="project-chart absolute inset-0" viewBox="0 0 600 160" preserveAspectRatio="none" role="img" aria-label="止损系统回撤控制示意图">
+            <path d="M0,120 C60,112 90,100 130,104 C180,108 210,92 250,96 C300,100 330,84 370,88 C420,92 460,74 500,78 C540,82 570,70 600,66" fill="none" stroke="#8a8378" stroke-width="2.5" stroke-dasharray="6 6"/>
+            <path d="M0,110 C70,118 130,116 190,120 C260,124 320,118 390,116 C460,114 530,110 600,108" fill="none" stroke="#e8754f" stroke-width="3"/>
+            <rect x="180" y="106" width="120" height="24" rx="5" fill="none" stroke="#f0a184" stroke-width="2" stroke-dasharray="4 4"/>
+          </svg>
+          <span class="absolute left-5 top-5 inline-flex rounded-full bg-white/10 backdrop-blur px-3 py-1 text-[11.5px] font-semibold text-white/90 border border-white/15">作品 04 · 2023-2025</span>
+        </div>
+        <div class="p-7">
+          <h3 class="text-xl font-bold">震荡市止损系统 <span class="ml-1 align-middle text-[11.5px] font-semibold text-[hsl(var(--primary))] bg-[hsl(var(--primary))]/10 rounded-full px-2.5 py-0.5">零重伤</span></h3>
+          <p class="mt-3 text-[14px] leading-relaxed text-black/60">连亏期的生存测试: 单笔风险固定 2%, 九连亏累计回撤仍控制在 15% 以内</p>
+          <dl class="mt-5 grid grid-cols-3 gap-3 border-t border-[hsl(var(--border))] pt-5 text-center">
+            <div><dt class="text-[11.5px] text-black/55">单笔止损</dt><dd class="mt-0.5 text-lg font-bold">-2.8%</dd></div>
+            <div><dt class="text-[11.5px] text-black/55">九连亏回撤</dt><dd class="mt-0.5 text-lg font-bold">-14.6%</dd></div>
+            <div><dt class="text-[11.5px] text-black/55">最大回撤</dt><dd class="mt-0.5 text-lg font-bold">12%</dd></div>
+          </dl>
+        </div>
       </article>
     </div>
+    <p class="reveal mt-8 text-center text-[13px] text-black/55">全部数据来自策略回测与实盘记录的公开复盘, 历史业绩不代表未来收益</p>
   </div>
 </section>
 
 <!-- ============ 实战战绩 ============ -->
-<section id="results" class="bg-[hsl(var(--background))]">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+<section id="results" class="bg-[#161210] text-white">
+  <div class="absolute inset-0 opacity-60" style="background: radial-gradient(800px 400px at 85% 0%, rgba(212,97,68,.16), transparent 60%), radial-gradient(700px 380px at 10% 100%, rgba(212,97,68,.10), transparent 55%);" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
     <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
       <div>
-        <p class="reveal text-[12.5px] tracking-[0.3em] text-[hsl(var(--primary))] font-semibold">实战战绩</p>
-        <h2 class="reveal mt-4 text-3xl md:text-[44px] font-bold leading-tight">10 年, 我用同一套体系<br>穿越了两轮牛熊</h2>
-        <p class="reveal mt-5 text-[15.5px] leading-relaxed text-black/60">这套体系不挑行情, 它靠的是把亏损锁在固定范围, 把盈利交给趋势. 以下为策略回测与实盘记录的长期表现</p>
+        <p class="reveal text-[12.5px] tracking-[0.3em] text-[#e8967c] font-semibold">实战战绩</p>
+        <h2 class="reveal mt-4 text-3xl md:text-[44px] font-bold leading-tight">12 年, 我用同一套纪律<br>穿越了两轮牛熊</h2>
+        <p class="reveal mt-5 text-[15.5px] leading-relaxed text-white/60">这套体系不挑行情, 它靠的是把亏损锁在固定范围, 把盈利交给趋势. 以下是策略回测与实盘记录的长期表现</p>
         <ul class="reveal mt-8 space-y-5">
           <li class="flex gap-4 items-start">
-            <span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]">
+            <span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#e8754f]/15 text-[#f0a184]">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
             </span>
-            <p class="text-[14.5px] text-black/70"><strong class="text-black/85">回撤可控</strong> 历史最大回撤控制在 12% 以内, 单笔止损固定, 不扛单不摊平</p>
+            <p class="text-[14.5px] text-white/70"><strong class="text-white/95">回撤可控</strong> 历史最大回撤 12%, 单笔止损固定, 不扛单不摊平</p>
           </li>
           <li class="flex gap-4 items-start">
-            <span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]">
+            <span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#e8754f]/15 text-[#f0a184]">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
             </span>
-            <p class="text-[14.5px] text-black/70"><strong class="text-black/85">胜率不是重点</strong> 47% 的胜率也能稳定盈利, 因为盈亏比 3:1, 对一次抵三次错</p>
+            <p class="text-[14.5px] text-white/70"><strong class="text-white/95">胜率不是重点</strong> 47% 胜率也能稳定盈利, 因为盈亏比 3:1, 对一次抵三次错</p>
           </li>
           <li class="flex gap-4 items-start">
-            <span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]">
+            <span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#e8754f]/15 text-[#f0a184]">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
             </span>
-            <p class="text-[14.5px] text-black/70"><strong class="text-black/85">普适可验证</strong> 所有信号来自公开行情数据, 复盘文章里每个进出场点都留痕可查</p>
+            <p class="text-[14.5px] text-white/70"><strong class="text-white/95">普适可验证</strong> 所有信号来自公开行情, 复盘文章里每个进出场点都留痕可查</p>
           </li>
         </ul>
       </div>
-      <!-- 净值曲线(装饰性示意) -->
       <div class="reveal relative">
-        <div class="absolute -inset-4 rounded-[32px] bg-gradient-to-br from-[hsl(15_63%_45%/0.08)] to-transparent blur-2xl" aria-hidden="true"></div>
-        <div class="relative rounded-3xl border border-[hsl(var(--border))] bg-white p-6 sm:p-8 shadow-2xl shadow-black/8">
+        <div class="absolute -inset-4 rounded-[32px] bg-[#e8754f]/8 blur-2xl" aria-hidden="true"></div>
+        <div class="relative rounded-3xl border border-white/10 bg-black/30 backdrop-blur p-6 sm:p-8">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-[12.5px] text-black/65">策略净值(回测演示)</p>
-              <p class="mt-1 text-3xl font-bold"><span class="count-up" data-target="4.6" data-decimals="1">0</span><span class="text-lg text-black/65">x</span></p>
+              <p class="text-[12.5px] text-white/55">策略净值(回测演示)</p>
+              <p class="mt-1 text-3xl font-bold"><span class="count-up" data-target="4.6" data-decimals="1">0</span><span class="text-lg text-white/55">x</span></p>
             </div>
-            <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 text-[12.5px] font-semibold text-emerald-600">
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 text-[12.5px] font-semibold text-emerald-300">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
               长期上行
             </span>
@@ -416,160 +368,33 @@
             <path d="M0,195 C40,188 60,180 90,170 C120,160 150,168 180,150 C210,132 240,140 270,118 C300,98 330,110 360,86 C390,66 420,78 450,52 C480,34 520,40 600,14" fill="none" stroke="url(#stroke)" stroke-width="3.5" stroke-linecap="round"/>
             <circle cx="600" cy="14" r="6" fill="#e8754f" stroke="white" stroke-width="2.5"/>
           </svg>
-          <div class="mt-3 flex justify-between text-[11.5px] text-black/65"><span>2018</span><span>2020</span><span>2022</span><span>2025</span></div>
+          <div class="mt-3 flex justify-between text-[11.5px] text-white/40"><span>2018</span><span>2020</span><span>2022</span><span>2025</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 证明元素 ============ -->
-<section id="proof" class="border-y border-[hsl(var(--border))] bg-white" aria-label="用户评价与下载数据">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-    <div class="reveal flex flex-wrap items-center justify-center gap-x-10 gap-y-5 text-center">
-      <div>
-        <p class="text-3xl font-bold text-[hsl(var(--primary))]"><span class="count-up" data-target="50000" data-suffix="+">0</span></p>
-        <p class="mt-1 text-[12.5px] text-black/65">次下载</p>
-      </div>
-      <div class="hidden sm:block h-8 w-px bg-[hsl(var(--border))]" aria-hidden="true"></div>
-      <div>
-        <p class="text-3xl font-bold text-[hsl(var(--primary))]"><span class="count-up" data-target="4.8" data-decimals="1">0</span><span class="text-xl text-black/50"> / 5</span></p>
-        <p class="mt-1 text-[12.5px] text-black/65">应用商店评分</p>
-      </div>
-      <div class="hidden sm:block h-8 w-px bg-[hsl(var(--border))]" aria-hidden="true"></div>
-      <div>
-        <p class="text-3xl font-bold text-[hsl(var(--primary))]"><span class="count-up" data-target="12000" data-suffix="+">0</span></p>
-        <p class="mt-1 text-[12.5px] text-black/65">位长期读者</p>
-      </div>
-    </div>
-    <p class="reveal mt-14 text-center text-[12.5px] tracking-[0.3em] text-black/65">下载后的用户这样说</p>
-    <div class="reveal mt-6 grid gap-6 md:grid-cols-3">
-      <blockquote class="flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--background))] p-6">
-        <p class="text-[14.5px] leading-relaxed text-black/70">用 App 第三天, 我写了第一张交易计划. 虽然还在亏, 但亏得明明白白, 不再慌着乱操作</p>
-        <footer class="mt-4 text-[12.5px] text-black/65">- 老周, 股龄 8 年</footer>
-      </blockquote>
-      <blockquote class="flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--background))] p-6">
-        <p class="text-[14.5px] leading-relaxed text-black/70">风险提醒救了我. 上周一条推送让我减了半仓, 第二天那板块跌了 6%. 以前这种坑我必踩</p>
-        <footer class="mt-4 text-[12.5px] text-black/65">- 小陈, 刚入市 2 年</footer>
-      </blockquote>
-      <blockquote class="flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--background))] p-6">
-        <p class="text-[14.5px] leading-relaxed text-black/70">每天 22 点的复盘像上课. 三个月后, 我终于能说出自己为什么买, 而不是因为别人说会涨</p>
-        <footer class="mt-4 text-[12.5px] text-black/65">- 王姐, 全职妈妈兼职炒股</footer>
-      </blockquote>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 深度文章 ============ -->
-<section id="articles" class="bg-[#f3f0ea]">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-    <div class="reveal flex flex-wrap items-end justify-between gap-6">
-      <div>
-        <p class="text-[12.5px] tracking-[0.3em] text-[hsl(var(--primary))] font-semibold">深度文章</p>
-        <h2 class="mt-4 text-3xl md:text-[44px] font-bold leading-tight">免费的, 才是最难的<br>每一篇都值得读两遍</h2>
-      </div>
-      <a href="articles.html" class="inline-flex items-center gap-2 rounded-full border border-black/15 px-6 py-3 text-[14px] font-semibold cursor-pointer hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] transition-colors duration-200">
-        全部 420+ 篇
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-    </div>
-    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      <a href="article-stoploss.html" class="reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden">
-        <span class="card-line"></span>
-        <span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[11.5px] font-semibold text-[hsl(var(--primary))]">风控必修</span>
-        <h3 class="mt-4 text-[16.5px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">止损线, 到底应该画在哪</h3>
-        <p class="mt-3 flex-1 text-[13px] leading-relaxed text-black/70">一条被 98% 的人画错的线, 决定你是亏损有限还是套牢无期</p>
-        <div class="mt-5 flex items-center justify-between text-[12px] text-black/65">
-          <span>10 分钟深度阅读</span>
-          <span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-      <a href="article-shortline.html" class="reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden">
-        <span class="card-line"></span>
-        <span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[11.5px] font-semibold text-[hsl(var(--primary))]">短线体系</span>
-        <h3 class="mt-4 text-[16.5px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">做短线, 先想清楚这三个问题</h3>
-        <p class="mt-3 flex-1 text-[13px] leading-relaxed text-black/70">周期 位置 仓位, 想清楚再动手, 胜率自然上来</p>
-        <div class="mt-5 flex items-center justify-between text-[12px] text-black/65">
-          <span>8 分钟深度阅读</span>
-          <span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-      <a href="article-divergence.html" class="reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden">
-        <span class="card-line"></span>
-        <span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[11.5px] font-semibold text-[hsl(var(--primary))]">信号识别</span>
-        <h3 class="mt-4 text-[16.5px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">顶背离与底背离, 一次讲透</h3>
-        <p class="mt-3 flex-1 text-[13px] leading-relaxed text-black/70">同样的背离, 为什么有人赚钱有人套牢, 差别在确认信号</p>
-        <div class="mt-5 flex items-center justify-between text-[12px] text-black/65">
-          <span>12 分钟深度阅读</span>
-          <span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-      <a href="article-timeshare.html" class="reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden">
-        <span class="card-line"></span>
-        <span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[11.5px] font-semibold text-[hsl(var(--primary))]">分时实战</span>
-        <h3 class="mt-4 text-[16.5px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">分时图, 主力每天的情绪地图</h3>
-        <p class="mt-3 flex-1 text-[13px] leading-relaxed text-black/70">把分时图读成多空双方当天的博弈现场</p>
-        <div class="mt-5 flex items-center justify-between text-[12px] text-black/65">
-          <span>9 分钟深度阅读</span>
-          <span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 下载 CTA ============ -->
-<section id="download" class="relative overflow-hidden bg-[#161210] text-white">
-  <div class="absolute inset-0 opacity-70" style="background: radial-gradient(900px 460px at 50% 120%, rgba(212,97,68,.28), transparent 60%);" aria-hidden="true"></div>
-  <div class="hero-grid absolute inset-0" aria-hidden="true"></div>
-  <div class="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
-    <p class="reveal text-[12.5px] tracking-[0.3em] text-[#e8967c] font-semibold">现在下载</p>
-    <h2 class="reveal mt-5 text-3xl md:text-[46px] font-bold leading-tight text-balance">在下次亏损之前<br>先装好你的工具</h2>
-    <p class="reveal mt-6 mx-auto max-w-xl text-[15.5px] leading-relaxed text-white/65">这不是一个需要犹豫的决定: 免费下载, 10 秒安装, 不喜欢随时删除. 而它可能帮你少亏一次, 多留一笔本金</p>
-    <!-- 价值对比 -->
-    <div class="reveal mt-9 mx-auto grid max-w-lg grid-cols-3 gap-3">
-      <div class="glass rounded-2xl px-4 py-5">
-        <p class="text-[12px] text-white/65">一顿外卖</p>
-        <p class="mt-1 text-xl font-bold text-white/95">30 元</p>
-      </div>
-      <div class="glass rounded-2xl px-4 py-5">
-        <p class="text-[12px] text-white/65">一年学费</p>
-        <p class="mt-1 text-xl font-bold text-white/95">数千元</p>
-      </div>
-      <div class="glass rounded-2xl px-4 py-5 border-[#e8754f]/40 bg-[hsl(15_63%_45%/0.18)]">
-        <p class="text-[12px] text-[#f0a184]">这套体系</p>
-        <p class="mt-1 text-xl font-bold text-[#f0a184]">0 元</p>
-      </div>
-    </div>
-    <div class="reveal mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" class="js-download btn-primary cta-sheen inline-flex items-center gap-2.5 rounded-full px-9 py-4 text-[15.5px] font-semibold text-white cursor-pointer relative overflow-hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
-        安卓免费下载
-      </a>
-      <a href="https://apps.apple.com/cn/app/id6789065192" class="js-download btn-ghost inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-medium text-white/90 cursor-pointer">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
-        iPhone 前往 App Store
-      </a>
-    </div>
-    <p class="reveal mt-5 text-[12px] text-white/55">安卓包约 172MB · 微信内请点击右上角「在浏览器打开」· 已帮助 50000+ 位散户</p>
-  </div>
-</section>
-
-<!-- ============ 关于 ============ -->
+<!-- ============ 关于我 ============ -->
 <section id="about" class="bg-[hsl(var(--background))]">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-    <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+    <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
       <div class="reveal relative mx-auto w-full max-w-sm">
         <div class="absolute -inset-3 rounded-[36px] bg-gradient-to-br from-[hsl(15_63%_45%/0.12)] to-transparent blur-2xl" aria-hidden="true"></div>
         <div class="relative overflow-hidden rounded-3xl border border-[hsl(var(--border))] bg-white p-8 text-center shadow-xl shadow-black/6">
           <div class="mx-auto grid h-24 w-24 place-items-center rounded-3xl bg-gradient-to-br from-[hsl(15_70%_55%)] to-[hsl(15_63%_38%)] text-4xl font-black text-white shadow-lg shadow-[hsl(15_63%_45%/0.4)]">知</div>
           <h3 class="mt-5 text-xl font-bold">林知远</h3>
-          <p class="mt-1 text-[13px] text-black/65">知远财经主理人</p>
-          <p class="mt-4 text-[13.5px] leading-relaxed text-black/60">2008 年入市, 2015 年大亏后推倒重来, 2016 年起全职研究交易体系, 至今 10 年</p>
-          <div class="mt-6 flex justify-center gap-2">
+          <p class="mt-1 text-[13px] text-black/65">顶级 A 股短线操盘手 · 知远财经主理人</p>
+          <p class="mt-4 text-[13.5px] leading-relaxed text-black/60">2008 年入市, 2015 年大亏后推倒重来, 2016 年起全职交易至今 12 年</p>
+          <div class="mt-6 flex flex-wrap justify-center gap-2">
             <span class="rounded-full bg-black/5 px-3.5 py-1.5 text-[12px] font-medium text-black/65">趋势交易</span>
             <span class="rounded-full bg-black/5 px-3.5 py-1.5 text-[12px] font-medium text-black/65">风控优先</span>
             <span class="rounded-full bg-black/5 px-3.5 py-1.5 text-[12px] font-medium text-black/65">复盘写作</span>
+          </div>
+          <div class="mt-6 grid grid-cols-3 gap-2 border-t border-[hsl(var(--border))] pt-5">
+            <div><p class="text-lg font-bold text-[hsl(var(--primary))]">12 年</p><p class="text-[11.5px] text-black/65">全职交易</p></div>
+            <div><p class="text-lg font-bold text-[hsl(var(--primary))]">420+</p><p class="text-[11.5px] text-black/65">公开复盘</p></div>
+            <div><p class="text-lg font-bold text-[hsl(var(--primary))]">4 件</p><p class="text-[11.5px] text-black/65">体系作品</p></div>
           </div>
         </div>
       </div>
@@ -577,16 +402,80 @@
         <p class="text-[12.5px] tracking-[0.3em] text-[hsl(var(--primary))] font-semibold">关于我</p>
         <h2 class="mt-4 text-3xl md:text-[40px] font-bold leading-tight">亏过 7 位数的人,<br>才有资格谈风控</h2>
         <div class="mt-6 space-y-5 text-[15.5px] leading-relaxed text-black/65">
-          <p>2015 年, 我凭运气赚的钱, 全部凭实力亏了回去, 还搭上本金. 那一年我明白一件事: <strong class="text-black/85">没有体系的人, 在 A 股只是过路财神</strong></p>
+          <p>2015 年, 我凭运气赚的钱, 全部凭实力亏了回去, 还搭上本金. 那一年我明白: <strong class="text-black/85">没有体系的人, 在 A 股只是过路财神</strong></p>
           <p>之后我做了两件事: 把过去三年的每一笔交易翻出来复盘, 把能活下来的规律写成规则. 2016 年起, 我不再预测, 只做计划, 只讲风控</p>
-          <p>现在, 我把这套体系拆成每天能读懂的复盘文章, 免费公开. 因为我深信: <strong class="text-black/85">交易这件事, 教会一个是一个</strong></p>
+          <p>现在, 我把这套体系拆成每天能读懂的复盘, 公开在知远财经 App 里. <strong class="text-black/85">每一笔进出场, 都经得起回看</strong></p>
         </div>
-        <a href="articles.html" class="reveal mt-8 inline-flex items-center gap-2 rounded-full bg-[hsl(var(--primary))] px-7 py-3.5 text-[14.5px] font-semibold text-white shadow-lg shadow-[hsl(15_63%_45%/0.3)] cursor-pointer hover:brightness-110 transition-all duration-200">
-          从我的第一篇文章开始读
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
+        <!-- 时间线 -->
+        <h3 class="mt-9 text-[14px] font-bold tracking-wide text-black/75">成长时间线</h3>
+        <ol class="timeline mt-5 space-y-5">
+          <li class="timeline-item">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <p class="text-[13px] font-semibold">2008 <span class="ml-2 text-black/55 font-normal">初入市, 凭感觉与消息交易</span></p>
+          </li>
+          <li class="timeline-item">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <p class="text-[13px] font-semibold">2015 <span class="ml-2 text-black/55 font-normal">牛市满仓加杠杆, 亏掉 7 位数, 推倒重来</span></p>
+          </li>
+          <li class="timeline-item">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <p class="text-[13px] font-semibold">2016 <span class="ml-2 text-black/55 font-normal">全职交易, 三年逐笔复盘, 体系成型</span></p>
+          </li>
+          <li class="timeline-item">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <p class="text-[13px] font-semibold">2020 <span class="ml-2 text-black/55 font-normal">三次逃顶验证体系, 开始每日公开复盘</span></p>
+          </li>
+          <li class="timeline-item">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <p class="text-[13px] font-semibold">2025 <span class="ml-2 text-black/55 font-normal">420+ 篇复盘, 四件体系作品, 全部留痕可查</span></p>
+          </li>
+        </ol>
+        <p class="mt-8 border-l-4 border-[hsl(var(--primary))] bg-white rounded-r-xl p-5 text-[14.5px] leading-relaxed text-black/70 shadow-sm">我的原则: <strong class="text-black/85">我从不推荐股票, 我只展示系统</strong>. 你看到的每一笔交易, 都是体系在说话, 而不是情绪</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ 联系 CTA ============ -->
+<section id="contact" class="relative overflow-hidden bg-[#161210] text-white">
+  <div class="absolute inset-0 opacity-70" style="background: radial-gradient(900px 460px at 50% 120%, rgba(212,97,68,.28), transparent 60%);" aria-hidden="true"></div>
+  <div class="hero-grid absolute inset-0" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
+    <p class="reveal text-[12.5px] tracking-[0.3em] text-[#e8967c] font-semibold">联系我</p>
+    <h2 class="reveal mt-5 text-3xl md:text-[46px] font-bold leading-tight text-balance">下周, 我们可以聊聊<br>今天, 不用做任何决定</h2>
+    <p class="reveal mt-6 mx-auto max-w-xl text-[15.5px] leading-relaxed text-white/65">先下载 App, 免费看一周复盘. 觉得这套体系值得聊, 留下你的邮箱, 我每周日会亲自回复一封. 没有压力, 没有推销, 只有复盘</p>
+    <!-- 价值对比 -->
+    <div class="reveal mt-9 mx-auto grid max-w-lg grid-cols-3 gap-3">
+      <div class="glass rounded-2xl px-4 py-5">
+        <p class="text-[12px] text-white/65">一顿外卖</p>
+        <p class="mt-1 text-xl font-bold text-white/95">30 元</p>
+      </div>
+      <div class="glass rounded-2xl px-4 py-5">
+        <p class="text-[12px] text-white/65">一年课程</p>
+        <p class="mt-1 text-xl font-bold text-white/95">数千元</p>
+      </div>
+      <div class="glass rounded-2xl px-4 py-5 border-[#e8754f]/40 bg-[hsl(15_63%_45%/0.18)]">
+        <p class="text-[12px] text-[#f0a184]">看一周复盘</p>
+        <p class="mt-1 text-xl font-bold text-[#f0a184]">0 元</p>
+      </div>
+    </div>
+    <div class="reveal mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" class="js-download btn-primary cta-sheen inline-flex items-center gap-2.5 rounded-full px-9 py-4 text-[15.5px] font-semibold text-white cursor-pointer relative overflow-hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
+        先下载 App 看一周
+      </a>
+      <a href="#contact-form" class="btn-ghost inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-medium text-white/90 cursor-pointer">
+        或留下邮箱
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <form id="contact-form" class="reveal mt-9 mx-auto flex max-w-md flex-col sm:flex-row gap-3" onsubmit="return contactMe(event)">
+      <label for="email" class="sr-only">邮箱地址</label>
+      <input id="email" type="email" required placeholder="输入邮箱, 周日见" class="flex-1 rounded-full border border-white/15 bg-white/8 px-6 py-4 text-[14.5px] text-white placeholder:text-white/60 outline-none focus:border-[#e8754f] focus:ring-2 focus:ring-[#e8754f]/40 transition-colors duration-200">
+      <button type="submit" id="ct-btn" class="btn-primary rounded-full px-8 py-4 text-[15px] font-semibold text-white cursor-pointer whitespace-nowrap">周日见</button>
+    </form>
+    <p id="ct-msg" class="mt-4 text-[13px] text-white/65 min-h-5" role="status" aria-live="polite"></p>
+    <p class="reveal mt-5 text-[12px] text-white/55">回复不超过 24 小时 · 安卓包约 172MB · 不荐股 不喊单 不收费</p>
   </div>
 </section>
 </main>
@@ -600,15 +489,15 @@
         <span class="grid h-8 w-8 place-items-center rounded-lg bg-[hsl(var(--primary))] text-white text-xs font-bold">知</span>
         <div>
           <p class="text-[14px] font-semibold">知远财经 · 林知远</p>
-          <p class="text-[12px] text-black/65">把波动变成复利</p>
+          <p class="text-[12px] text-black/65">把每一笔交易, 做成一件作品</p>
         </div>
       </div>
-      <nav class="flex flex-wrap justify-center gap-6 text-[13px] font-medium text-black/70" aria-label="页脚导航">
-        <a href="#method" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">交易体系</a>
+      <nav class="flex flex-wrap justify-center gap-6 text-[13px] font-medium text-black/65" aria-label="页脚导航">
+        <a href="#work" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">代表作品</a>
         <a href="#results" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">实战战绩</a>
-        <a href="#articles" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">深度文章</a>
+        <a href="#about" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">关于我</a>
         <a href="articles.html" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">全部文章</a>
-        <a href="#download" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">下载</a>
+        <a href="#contact" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">联系</a>
       </nav>
     </div>
     <div class="mt-10 border-t border-[hsl(var(--border))] pt-6">
@@ -709,7 +598,7 @@
         inner.appendChild(s);
         delay += 36;
       });
-      delay += 260; // 行间停顿
+      delay += 260;
     });
   }
 
@@ -726,7 +615,7 @@
     hero.addEventListener('mouseleave', function () { glow.style.opacity = '0'; });
   }
 
-  /* ---- 移动菜单(键盘可达) ---- */
+  /* ---- 移动菜单 ---- */
   var menuBtn = document.getElementById('menu-btn');
   var menu = document.getElementById('mobile-menu');
   var lastFocus = null;
@@ -766,7 +655,7 @@
     var ua = navigator.userAgent;
     if (/MicroMessenger/i.test(ua)) return 'wechat';
     if (/iPhone|iPad|iPod/i.test(ua)) return 'ios';
-    if (/MacIntel/i.test(ua) && navigator.maxTouchPoints > 1) return 'ios'; // iPadOS
+    if (/MacIntel/i.test(ua) && navigator.maxTouchPoints > 1) return 'ios';
     if (/Android/i.test(ua)) return 'android';
     return 'desktop';
   }
@@ -790,6 +679,30 @@
       toast('请在手机上打开本页面下载 App', 3400);
     });
   });
+
+  /* ---- 联系表单 ---- */
+  window.contactMe = function (e) {
+    e.preventDefault();
+    var input = document.getElementById('email');
+    var btn = document.getElementById('ct-btn');
+    var msg = document.getElementById('ct-msg');
+    if (!input.value) return false;
+    btn.classList.add('opacity-60', 'pointer-events-none');
+    btn.textContent = '发送中';
+    setTimeout(function () {
+      btn.classList.remove('opacity-60', 'pointer-events-none');
+      btn.textContent = '已收到';
+      msg.textContent = '已收到! 周日 22:00 前, 你会收到我的第一封复盘. 不用回复, 先看内容';
+      msg.classList.add('text-emerald-300');
+      input.value = '';
+      setTimeout(function () {
+        btn.textContent = '周日见';
+        msg.textContent = '';
+        msg.classList.remove('text-emerald-300');
+      }, 7000);
+    }, 800);
+    return false;
+  };
 })();
 </script>
 </body>
