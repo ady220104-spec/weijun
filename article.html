@@ -5,11 +5,11 @@
  <meta name="apple-itunes-app" content="app-id=6789065192" />
  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%23d97757%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2752%27 text-anchor=%27middle%27 fill=%27%23faf9f7%27 font-family=%27sans-serif%27 font-weight=%27bold%27%3E%E7%9F%A5%3C/text%3E%3C/svg%3E" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-均线系统 5 日 10 日 20 日线的短线实战用法 | 知远财经
+<title>均线系统 5 日 10 日 20 日线的短线实战用法 | 知远财经</title>
 <meta name="description" content="三条均线 看懂趋势 位置与买卖信号的切换 用可复用的均线规则 把短线进场离场量化成能对照验证的信号 而不是凭感觉追涨杀跌" />
 
 <!-- Tailwind (本地, 中国用户可秒开) -->
-<script src="tailwind.js"></script>
+
 <script src="tailwind.js"></script>
 <script>
  tailwind.config = {
@@ -57,7 +57,7 @@
  --foreground: 30 18% 12%;
  --card: 38 20% 95%;
  --card-foreground: 30 18% 12%;
- --primary: 15 63% 60%;
+ --primary: 15 63% 45%;
  --primary-foreground: 0 0% 100%;
  --secondary: 38 18% 90%;
  --secondary-foreground: 30 18% 12%;
@@ -70,7 +70,7 @@
  --success: 150 38% 38%;
  --border: 38 18% 88%;
  --input: 38 16% 85%;
- --ring: 15 63% 60%;
+ --ring: 15 63% 45%;
  --radius: 0.5rem;
  --radius-sm: 0.3125rem;
  }
@@ -284,12 +284,12 @@
  </div>
  </nav>
  <div id="mobile-menu" class="hidden md:hidden border-t border-border px-4 py-3">
- <div class="flex flex-col gap-1 text-muted-foreground">
+ <nav aria-label="移动菜单">
  <a href="index.html#about" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">关于我</a>
  <a href="index.html#focus" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">专注领域</a>
  <a href="index.html#articles" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">最新文章</a>
- <a href="#download" class="mobile-link js-download rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">下载 App</a>
- </div>
+ <a href="#download" class="mobile-link js-download rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors md:hidden">下载 App</a>
+ </nav></div>
  </div>
  </div>
  </div>
@@ -566,15 +566,30 @@
  const btn = document.getElementById('menu-btn');
  const menu = document.getElementById('mobile-menu');
  if (!btn || !menu) return;
+ function closeMenu(restoreFocus) {
+ menu.classList.add('hidden');
+ btn.setAttribute('aria-expanded', 'false');
+ if (restoreFocus) btn.focus();
+ }
  btn.addEventListener('click', function () {
  const open = menu.classList.toggle('hidden') === false;
  btn.setAttribute('aria-expanded', String(open));
+ // 打开时焦点移入菜单 方便键盘用户直接导航
+ if (open) {
+ const first = menu.querySelector('a');
+ if (first) first.focus();
+ }
  });
  menu.querySelectorAll('.mobile-link').forEach(function (a) {
  a.addEventListener('click', function () {
- menu.classList.add('hidden');
- btn.setAttribute('aria-expanded', 'false');
+ closeMenu(false);
  });
+ });
+ // Esc 关闭菜单并归还焦点到按钮
+ document.addEventListener('keydown', function (e) {
+ if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+ closeMenu(true);
+ }
  });
  })();
 

@@ -9,7 +9,7 @@
 <meta name="description" content="短线买卖点可以压成一句话 买在分歧 卖在一致 讲成分歧与一致的盘面特征 和一套五步操作框架" />
 
 <!-- Tailwind (本地, 中国用户可秒开) -->
-<script src="tailwind.js"></script>
+
 <script src="tailwind.js"></script>
 <script>
  tailwind.config = {
@@ -57,7 +57,7 @@
  --foreground: 30 18% 12%;
  --card: 38 20% 95%;
  --card-foreground: 30 18% 12%;
- --primary: 15 63% 60%;
+ --primary: 15 63% 45%;
  --primary-foreground: 0 0% 100%;
  --secondary: 38 18% 90%;
  --secondary-foreground: 30 18% 12%;
@@ -70,7 +70,7 @@
  --success: 150 38% 38%;
  --border: 38 18% 88%;
  --input: 38 16% 85%;
- --ring: 15 63% 60%;
+ --ring: 15 63% 45%;
  --radius: 0.5rem;
  --radius-sm: 0.3125rem;
  }
@@ -284,12 +284,12 @@
  </div>
  </nav>
  <div id="mobile-menu" class="hidden md:hidden border-t border-border px-4 py-3">
- <div class="flex flex-col gap-1 text-muted-foreground">
+ <nav aria-label="移动菜单">
  <a href="index.html#about" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">关于我</a>
  <a href="index.html#focus" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">专注领域</a>
  <a href="index.html#articles" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">最新文章</a>
- <a href="#download" class="mobile-link js-download rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">下载 App</a>
- </div>
+ <a href="#download" class="mobile-link js-download rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors md:hidden">下载 App</a>
+ </nav></div>
  </div>
  </div>
  </div>
@@ -549,15 +549,30 @@
  const btn = document.getElementById('menu-btn');
  const menu = document.getElementById('mobile-menu');
  if (!btn || !menu) return;
+ function closeMenu(restoreFocus) {
+ menu.classList.add('hidden');
+ btn.setAttribute('aria-expanded', 'false');
+ if (restoreFocus) btn.focus();
+ }
  btn.addEventListener('click', function () {
  const open = menu.classList.toggle('hidden') === false;
  btn.setAttribute('aria-expanded', String(open));
+ // 打开时焦点移入菜单 方便键盘用户直接导航
+ if (open) {
+ const first = menu.querySelector('a');
+ if (first) first.focus();
+ }
  });
  menu.querySelectorAll('.mobile-link').forEach(function (a) {
  a.addEventListener('click', function () {
- menu.classList.add('hidden');
- btn.setAttribute('aria-expanded', 'false');
+ closeMenu(false);
  });
+ });
+ // Esc 关闭菜单并归还焦点到按钮
+ document.addEventListener('keydown', function (e) {
+ if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+ closeMenu(true);
+ }
  });
  })();
 
