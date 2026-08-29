@@ -37,13 +37,37 @@
   }
   /* 玻璃卡(暗色) */
   .glass { background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.09); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+  /* 首屏入场(非滚动触发) */
+  .reveal-inline { opacity: 0; animation: fade-up .7s cubic-bezier(.22,.61,.36,1) forwards; }
+  @keyframes fade-up { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+  /* 标题逐字显现 */
+  .word-char { display: inline-block; opacity: 0; transform: translateY(18px); animation: word-in .5s cubic-bezier(.22,.61,.36,1) forwards; }
+  @keyframes word-in { to { opacity: 1; transform: none; } }
+  /* K 线背景漂移 */
+  .kline { animation: kline-drift 24s ease-in-out infinite alternate; }
+  @keyframes kline-drift { from { transform: translateY(-14px); } to { transform: translateY(16px); } }
+  /* 滚动指示器 */
+  .animate-bounce-down { animation: bounce-down 1.8s ease-in-out infinite; }
+  @keyframes bounce-down { 0%, 100% { transform: translateY(0); opacity: .65; } 50% { transform: translateY(6px); opacity: 1; } }
+  /* CTA 光带扫过 */
+  .cta-sheen::after {
+    content: ""; position: absolute; top: 0; left: -60%; width: 42%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent);
+    transform: skewX(-20deg); animation: sheen 3.4s ease-in-out infinite;
+  }
+  @keyframes sheen { 0%, 55% { left: -60%; } 100% { left: 135%; } }
   /* 主按钮 */
   .btn-primary {
     background: linear-gradient(135deg, hsl(15 72% 52%), hsl(15 63% 40%));
     box-shadow: 0 10px 32px -8px rgba(200,75,45,.55), inset 0 1px 0 rgba(255,255,255,.22);
     transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    animation: breathe 3.2s ease-in-out infinite;
   }
-  .btn-primary:hover { filter: brightness(1.07); box-shadow: 0 16px 44px -10px rgba(200,75,45,.7), inset 0 1px 0 rgba(255,255,255,.25); transform: translateY(-2px); }
+  @keyframes breathe {
+    0%, 100% { box-shadow: 0 10px 32px -8px rgba(200,75,45,.55), inset 0 1px 0 rgba(255,255,255,.22); }
+    50% { box-shadow: 0 14px 48px -6px rgba(200,75,45,.85), inset 0 1px 0 rgba(255,255,255,.26); }
+  }
+  .btn-primary:hover { filter: brightness(1.07); animation-play-state: paused; box-shadow: 0 16px 44px -10px rgba(200,75,45,.7), inset 0 1px 0 rgba(255,255,255,.25); transform: translateY(-2px); }
   .btn-primary:active { transform: translateY(0); }
   .btn-primary:focus-visible, .btn-ghost:focus-visible, a:focus-visible, button:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 3px; }
   .btn-ghost { border: 1px solid rgba(255,255,255,.18); transition: border-color .2s ease, background .2s ease, transform .2s ease; }
@@ -68,7 +92,9 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     .reveal { opacity: 1; transform: none; }
-    .glow { display: none; }
+    .reveal-inline { opacity: 1 !important; transform: none !important; }
+    .word-char { opacity: 1 !important; transform: none !important; }
+    .glow, .cta-sheen::after, .scroll-hint { display: none; }
   }
 </style>
 </head>
@@ -116,34 +142,46 @@
 <section class="hero-bg noise relative overflow-hidden text-white">
   <div id="hero-glow" class="glow opacity-0" aria-hidden="true"></div>
   <div class="hero-grid absolute inset-0" aria-hidden="true"></div>
-  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-36 pb-20 md:pt-44 md:pb-28 text-center">
-    <p class="reveal inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[12.5px] tracking-widest text-white/80 backdrop-blur">
+  <!-- K 线漂移动态背景 -->
+  <svg class="kline absolute inset-x-0 top-[30%] h-[420px] w-full" viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="kl" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#e8754f" stop-opacity="0"/>
+        <stop offset="30%" stop-color="#e8754f" stop-opacity=".45"/>
+        <stop offset="65%" stop-color="#c24a2b" stop-opacity=".3"/>
+        <stop offset="100%" stop-color="#c24a2b" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <path d="M-80,300 C90,280 120,230 240,250 C360,270 400,180 520,200 C640,220 680,130 800,150 C920,170 960,90 1080,110 C1200,130 1300,70 1520,90" fill="none" stroke="url(#kl)" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-[100svh] flex flex-col justify-center pt-28 pb-40 md:pt-32 md:pb-44 text-center">
+    <p class="reveal-inline inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[12.5px] tracking-widest text-white/80 backdrop-blur" style="animation-delay:.05s">
       <span class="h-1.5 w-1.5 rounded-full bg-[hsl(15_72%_58%)] animate-pulse" aria-hidden="true"></span>
       知远财经主理人 · 10 年 A 股实战
     </p>
-    <h1 class="reveal mt-8 text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-bold leading-[1.12] tracking-tight text-balance">
-      把 A 股的<span class="underline-accent">波动</span><br class="hidden sm:block">
-      变成你的<span class="text-transparent bg-clip-text bg-gradient-to-r from-[#f0a184] via-[#e8754f] to-[#c24a2b]">复利</span>
+    <h1 id="hero-title" class="mt-8 text-4xl sm:text-5xl md:text-[64px] lg:text-[76px] font-bold leading-[1.14] tracking-tight text-balance" aria-label="2015 年, 我凭运气亏掉 7 位数. 后来, 我用体系赚了回来">
+      <span class="word-line block"><span class="text-white">2015 年, 我凭运气亏掉 7 位数</span></span>
+      <span class="word-line block mt-2"><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#f6b497] via-[#e8754f] to-[#c24a2b]">后来, 我用体系赚了回来</span></span>
     </h1>
-    <p class="reveal mt-7 mx-auto max-w-2xl text-[16px] md:text-[17px] leading-relaxed text-white/70">
-      10 年只做一件事: 建立普通人看得懂 跟得上 用得上的 A 股实战体系
-      <span class="text-white/90 font-medium">体系化决策 纪律化执行 风控化生存</span>
-      每天一篇复盘, 免费订阅
+    <p class="reveal-inline mt-7 mx-auto max-w-2xl text-[16px] md:text-[17px] leading-relaxed text-white/70" style="animation-delay:.45s">
+      每天 22:00, 我把 10 年验证的 A 股体系, 写成一篇你看得懂的复盘
+      <span class="block mt-2 text-white/90 font-medium">体系化决策 纪律化执行 风控化生存</span>
+      免费订阅, 随时退订
     </p>
-    <div class="reveal mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="#join" class="btn-primary inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-[15px] font-semibold text-white cursor-pointer">
-        免费领取每日复盘
+    <div class="reveal-inline mt-10 flex flex-col sm:flex-row items-center justify-center gap-4" style="animation-delay:.95s">
+      <a href="#join" class="btn-primary cta-sheen inline-flex items-center gap-2.5 rounded-full px-9 py-4 text-[15.5px] font-semibold text-white cursor-pointer relative overflow-hidden">
+        免费领取今日复盘
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <a href="#results" class="btn-ghost inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-medium text-white/90 cursor-pointer">
-        查看实战战绩
+        先看战绩再决定
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>
       </a>
     </div>
-    <p class="reveal mt-6 text-[12.5px] text-white/60">免费内容 · 每天 22:00 更新 · 订阅即可退订</p>
+    <p class="reveal-inline mt-6 text-[12.5px] text-white/60" style="animation-delay:1.2s">免费内容 · 每天 22:00 更新 · 随时退订 · 不荐股不喊单</p>
 
     <!-- 数据条 -->
-    <dl class="reveal mt-16 grid grid-cols-2 md:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 backdrop-blur">
+    <dl class="reveal mt-14 grid grid-cols-2 md:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 backdrop-blur">
       <div class="bg-black/30 px-6 py-7">
         <dt class="text-[12.5px] tracking-widest text-white/55">实战年限</dt>
         <dd class="mt-2 text-3xl md:text-4xl font-bold"><span class="count-up" data-target="10" data-suffix="年">0</span></dd>
@@ -163,10 +201,15 @@
     </dl>
     <p class="mt-3 text-[11.5px] text-white/55">* 2018-2025 策略回测演示数据, 历史业绩不代表未来收益</p>
   </div>
+  <!-- 滚动指示器 -->
+  <a href="#proof" class="scroll-hint absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-white/60 hover:text-white/90 transition-colors duration-200 cursor-pointer" aria-label="向下滚动查看读者评价">
+    <span class="text-[11.5px] tracking-[0.25em]">向下滚动</span>
+    <svg class="h-5 w-5 animate-bounce-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+  </a>
 </section>
 
 <!-- ============ 社会证明 ============ -->
-<section class="border-b border-[hsl(var(--border))] bg-white/60" aria-label="读者评价">
+<section id="proof" class="border-b border-[hsl(var(--border))] bg-white/60" aria-label="读者评价">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
     <p class="reveal text-center text-[12.5px] tracking-[0.3em] text-black/65">被 12000+ 位读者信任</p>
     <div class="reveal mt-6 grid gap-6 md:grid-cols-3">
@@ -512,6 +555,28 @@
   } else {
     counters.forEach(function (el) {
       el.textContent = el.dataset.target + (el.dataset.suffix || '');
+    });
+  }
+
+  /* ---- 标题逐字显现 ---- */
+  var titleEl = document.getElementById('hero-title');
+  if (titleEl && !reduceMotion) {
+    var delay = 350;
+    titleEl.querySelectorAll('.word-line').forEach(function (line) {
+      var inner = line.querySelector('span');
+      var chars = Array.from(inner.textContent.trim());
+      inner.setAttribute('aria-hidden', 'true');
+      inner.textContent = '';
+      chars.forEach(function (ch) {
+        var s = document.createElement('span');
+        s.className = 'word-char';
+        s.setAttribute('aria-hidden', 'true');
+        s.textContent = ch;
+        s.style.animationDelay = delay + 'ms';
+        inner.appendChild(s);
+        delay += 36;
+      });
+      delay += 260; // 行间停顿
     });
   }
 
