@@ -89,6 +89,17 @@
   .mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; }
   /* 进度条 */
   #progress { transform-origin: left; transform: scaleX(0); }
+  /* Toast 提示 */
+  #toast {
+    position: fixed; left: 50%; bottom: 32px; z-index: 100;
+    transform: translateX(-50%) translateY(16px); opacity: 0; pointer-events: none;
+    background: #161210; color: #fff; border: 1px solid rgba(255,255,255,.15);
+    border-radius: 9999px; padding: 12px 24px; font-size: 13.5px; line-height: 1.5;
+    box-shadow: 0 12px 32px -8px rgba(0,0,0,.45); text-align: center;
+    max-width: calc(100vw - 40px);
+    transition: opacity .25s ease, transform .25s ease;
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     .reveal { opacity: 1; transform: none; }
@@ -112,13 +123,13 @@
         <span class="text-[15px] font-semibold tracking-wide">知远财经 <span class="text-[hsl(var(--primary))] font-bold">·</span> 林知远</span>
       </a>
       <nav class="hidden md:flex items-center gap-8 text-[14px] font-medium text-black/70" aria-label="主导航">
-        <a href="#method" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">交易体系</a>
+        <a href="#pain" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">为什么亏</a>
+        <a href="#method" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">解决方案</a>
         <a href="#results" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">实战战绩</a>
-        <a href="#articles" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">深度文章</a>
         <a href="#about" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">关于</a>
       </nav>
       <div class="flex items-center gap-3">
-        <a href="#join" class="hidden sm:inline-flex btn-primary text-white text-[14px] font-semibold px-5 py-2.5 rounded-full cursor-pointer">免费订阅复盘</a>
+        <a href="#download" class="hidden sm:inline-flex btn-primary text-white text-[14px] font-semibold px-5 py-2.5 rounded-full cursor-pointer">免费下载</a>
         <button id="menu-btn" class="md:hidden grid h-10 w-10 place-items-center rounded-lg border border-black/10 cursor-pointer hover:bg-black/5 transition-colors duration-200" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开菜单">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
@@ -128,11 +139,11 @@
   <!-- 移动菜单 -->
   <div id="mobile-menu" class="mobile-menu md:hidden mx-4 mt-1 rounded-2xl border border-black/10 bg-white/95 backdrop-blur-xl shadow-2xl shadow-black/10 overflow-hidden" role="region" aria-label="移动菜单">
     <nav class="flex flex-col p-3 text-[15px] font-medium" aria-label="移动导航">
-      <a href="#method" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">交易体系</a>
+      <a href="#pain" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">为什么亏</a>
+      <a href="#method" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">解决方案</a>
       <a href="#results" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">实战战绩</a>
-      <a href="#articles" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">深度文章</a>
       <a href="#about" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">关于</a>
-      <a href="#join" class="mt-1 btn-primary text-white text-center font-semibold px-4 py-3 rounded-xl cursor-pointer">免费订阅复盘</a>
+      <a href="#download" class="mt-1 btn-primary text-white text-center font-semibold px-4 py-3 rounded-xl cursor-pointer">免费下载 App</a>
     </nav>
   </div>
 </header>
@@ -157,28 +168,27 @@
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-[100svh] flex flex-col justify-center pt-28 pb-40 md:pt-32 md:pb-44 text-center">
     <p class="reveal-inline inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[12.5px] tracking-widest text-white/80 backdrop-blur" style="animation-delay:.05s">
       <span class="h-1.5 w-1.5 rounded-full bg-[hsl(15_72%_58%)] animate-pulse" aria-hidden="true"></span>
-      知远财经主理人 · 10 年 A 股实战
+      知远财经 App · 专为散户打造 · 免费下载
     </p>
-    <h1 id="hero-title" class="mt-8 text-4xl sm:text-5xl md:text-[64px] lg:text-[76px] font-bold leading-[1.14] tracking-tight text-balance" aria-label="2015 年, 我凭运气亏掉 7 位数. 后来, 我用体系赚了回来">
-      <span class="word-line block"><span class="text-white">2015 年, 我凭运气亏掉 7 位数</span></span>
-      <span class="word-line block mt-2"><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#f6b497] via-[#e8754f] to-[#c24a2b]">后来, 我用体系赚了回来</span></span>
+    <h1 id="hero-title" class="mt-8 text-4xl sm:text-5xl md:text-[60px] lg:text-[72px] font-bold leading-[1.14] tracking-tight text-balance" aria-label="如果你在 A 股总是亏, 问题从来不在行情. 而是你还在用散户的方式交易">
+      <span class="word-line block"><span class="text-white">如果你在 A 股总是亏,</span></span>
+      <span class="word-line block mt-2"><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#f6b497] via-[#e8754f] to-[#c24a2b]">问题从来不在行情</span></span>
     </h1>
     <p class="reveal-inline mt-7 mx-auto max-w-2xl text-[16px] md:text-[17px] leading-relaxed text-white/70" style="animation-delay:.45s">
-      每天 22:00, 我把 10 年验证的 A 股体系, 写成一篇你看得懂的复盘
-      <span class="block mt-2 text-white/90 font-medium">体系化决策 纪律化执行 风控化生存</span>
-      免费订阅, 随时退订
+      而是你还在用散户的方式交易. 2015 年, 我凭运气亏掉 7 位数, 才明白这个道理
+      <span class="block mt-2 text-white/90 font-medium">现在, 我把 10 年验证的体系装进一款 App, 免费下载</span>
     </p>
     <div class="reveal-inline mt-10 flex flex-col sm:flex-row items-center justify-center gap-4" style="animation-delay:.95s">
-      <a href="#join" class="btn-primary cta-sheen inline-flex items-center gap-2.5 rounded-full px-9 py-4 text-[15.5px] font-semibold text-white cursor-pointer relative overflow-hidden">
-        免费领取今日复盘
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <a href="#download" class="js-download btn-primary cta-sheen inline-flex items-center gap-2.5 rounded-full px-9 py-4 text-[15.5px] font-semibold text-white cursor-pointer relative overflow-hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
+        安卓免费下载
       </a>
-      <a href="#results" class="btn-ghost inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-medium text-white/90 cursor-pointer">
-        先看战绩再决定
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>
+      <a href="#download" class="js-download btn-ghost inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-medium text-white/90 cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
+        iPhone 前往 App Store
       </a>
     </div>
-    <p class="reveal-inline mt-6 text-[12.5px] text-white/60" style="animation-delay:1.2s">免费内容 · 每天 22:00 更新 · 随时退订 · 不荐股不喊单</p>
+    <p class="reveal-inline mt-6 text-[12.5px] text-white/60" style="animation-delay:1.2s">免费安装 · 安卓包约 172MB · 微信内点击右上角「在浏览器打开」即可下载</p>
 
     <!-- 数据条 -->
     <dl class="reveal mt-14 grid grid-cols-2 md:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 backdrop-blur">
@@ -208,27 +218,93 @@
   </a>
 </section>
 
-<!-- ============ 社会证明 ============ -->
-<section id="proof" class="border-b border-[hsl(var(--border))] bg-white/60" aria-label="读者评价">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-    <p class="reveal text-center text-[12.5px] tracking-[0.3em] text-black/65">被 12000+ 位读者信任</p>
-    <div class="reveal mt-6 grid gap-6 md:grid-cols-3">
-      <blockquote class="text-[14.5px] leading-relaxed text-black/65">
-        <p class="text-lg text-[hsl(var(--primary))]" aria-hidden="true">"</p>
-        <p>读知远的复盘三个月, 最大的改变不是收益, 是终于知道每天为什么要做那些动作</p>
-        <footer class="mt-3 text-[12.5px] text-black/65">- 沪上老徐, 读者 3 年</footer>
-      </blockquote>
-      <blockquote class="text-[14.5px] leading-relaxed text-black/65">
-        <p class="text-lg text-[hsl(var(--primary))]" aria-hidden="true">"</p>
-        <p>把止损讲得这么透的, 全网少见. 那条止损线救了我两次</p>
-        <footer class="mt-3 text-[12.5px] text-black/65">- 一只耳, 短线交易者</footer>
-      </blockquote>
-      <blockquote class="text-[14.5px] leading-relaxed text-black/65">
-        <p class="text-lg text-[hsl(var(--primary))]" aria-hidden="true">"</p>
-        <p>不荐股不喊单, 只讲体系和风控. 在浮躁的财经圈, 这是清流</p>
-        <footer class="mt-3 text-[12.5px] text-black/65">- 阿哲, 机构研究员</footer>
-      </blockquote>
+<!-- ============ 问题展示区 ============ -->
+<section id="pain" class="bg-[hsl(var(--background))]">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+    <div class="reveal mx-auto max-w-3xl text-center">
+      <p class="text-[12.5px] tracking-[0.3em] text-[hsl(var(--primary))] font-semibold">先别下载</p>
+      <h2 class="mt-4 text-3xl md:text-[44px] font-bold leading-tight">先确认一件事<br>你是不是也这样亏钱的</h2>
+      <p class="mt-5 text-[15.5px] leading-relaxed text-black/65">下面 4 种散户式亏损, 你中了哪几条? 诚实点, 这决定你要不要继续往下读</p>
     </div>
+    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <article class="reveal lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-7 cursor-pointer">
+        <div class="flex items-center justify-between">
+          <span class="grid h-12 w-12 place-items-center rounded-xl bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>
+          </span>
+          <span class="text-[13px] font-bold text-[hsl(var(--primary))]/70">症状 1</span>
+        </div>
+        <h3 class="mt-5 text-lg font-bold">追涨杀跌</h3>
+        <p class="mt-2.5 flex-1 text-[13.5px] leading-relaxed text-black/60">涨了才敢买, 买完就站岗. 跌了才恐慌, 割完就反弹. 主力最喜欢你这种节奏</p>
+        <p class="mt-4 border-t border-[hsl(var(--border))] pt-3.5 text-[13px] font-semibold text-[hsl(var(--primary))]">后果: 反复被收割, 本金越割越薄</p>
+      </article>
+      <article class="reveal lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-7 cursor-pointer">
+        <div class="flex items-center justify-between">
+          <span class="grid h-12 w-12 place-items-center rounded-xl bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 8v8M8 12h8"/></svg>
+          </span>
+          <span class="text-[13px] font-bold text-[hsl(var(--primary))]/70">症状 2</span>
+        </div>
+        <h3 class="mt-5 text-lg font-bold">套牢死扛</h3>
+        <p class="mt-2.5 flex-1 text-[13.5px] leading-relaxed text-black/60">亏 10% 舍不得走, 想着回本就卖. 补仓越补越深, 最后深套 50%</p>
+        <p class="mt-4 border-t border-[hsl(var(--border))] pt-3.5 text-[13px] font-semibold text-[hsl(var(--primary))]">后果: 资金锁死三五年, 机会来了也没钱</p>
+      </article>
+      <article class="reveal lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-7 cursor-pointer">
+        <div class="flex items-center justify-between">
+          <span class="grid h-12 w-12 place-items-center rounded-xl bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 01-9 9 9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9z"/><path d="M9 9l3 3-3 3M15 9l-3 3 3 3"/></svg>
+          </span>
+          <span class="text-[13px] font-bold text-[hsl(var(--primary))]/70">症状 3</span>
+        </div>
+        <h3 class="mt-5 text-lg font-bold">消息跟风</h3>
+        <p class="mt-2.5 flex-1 text-[13.5px] leading-relaxed text-black/60">听大 V 荐股, 看小作文买入. 当你都敢冲进去的时候, 往往正是派发的时候</p>
+        <p class="mt-4 border-t border-[hsl(var(--border))] pt-3.5 text-[13px] font-semibold text-[hsl(var(--primary))]">后果: 免费的消息, 往往最贵</p>
+      </article>
+      <article class="reveal lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-7 cursor-pointer">
+        <div class="flex items-center justify-between">
+          <span class="grid h-12 w-12 place-items-center rounded-xl bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
+          <span class="text-[13px] font-bold text-[hsl(var(--primary))]/70">症状 4</span>
+        </div>
+        <h3 class="mt-5 text-lg font-bold">从不复盘</h3>
+        <p class="mt-2.5 flex-1 text-[13.5px] leading-relaxed text-black/60">同样的错犯三年, 赚了不知道为什么, 亏了更不知道. 凭运气赚的, 全凭实力还回去</p>
+        <p class="mt-4 border-t border-[hsl(var(--border))] pt-3.5 text-[13px] font-semibold text-[hsl(var(--primary))]">后果: 十年老股民, 和第一天没区别</p>
+      </article>
+    </div>
+
+    <!-- 对照表: 对号入座 -->
+    <div class="reveal mt-16 overflow-hidden rounded-3xl border border-[hsl(var(--border))] bg-white shadow-xl shadow-black/5">
+      <div class="grid md:grid-cols-2">
+        <div class="p-8 md:p-10 bg-[#f6f1ea]">
+          <h3 class="flex items-center gap-2 text-lg font-bold text-black/75">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            散户式交易
+          </h3>
+          <ul class="mt-5 space-y-3.5 text-[14px] text-black/60">
+            <li class="flex justify-between border-b border-dashed border-black/10 pb-3"><span>买什么</span><span class="text-black/65">听消息 看热闹</span></li>
+            <li class="flex justify-between border-b border-dashed border-black/10 pb-3"><span>何时买</span><span class="text-black/65">涨了追 跌了慌</span></li>
+            <li class="flex justify-between border-b border-dashed border-black/10 pb-3"><span>亏了怎么办</span><span class="text-black/65">死扛 补仓 装死</span></li>
+            <li class="flex justify-between border-b border-dashed border-black/10 pb-3"><span>何时卖</span><span class="text-black/65">恐慌割肉</span></li>
+            <li class="flex justify-between"><span>复盘</span><span class="text-black/65">从不</span></li>
+          </ul>
+        </div>
+        <div class="p-8 md:p-10 bg-[#161210] text-white">
+          <h3 class="flex items-center gap-2 text-lg font-bold text-[#f0a184]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            体系式交易
+          </h3>
+          <ul class="mt-5 space-y-3.5 text-[14px] text-white/80">
+            <li class="flex justify-between border-b border-white/10 pb-3"><span>买什么</span><span class="text-white/95 font-medium">看结构 看位置</span></li>
+            <li class="flex justify-between border-b border-white/10 pb-3"><span>何时买</span><span class="text-white/95 font-medium">按信号 分批进</span></li>
+            <li class="flex justify-between border-b border-white/10 pb-3"><span>亏了怎么办</span><span class="text-white/95 font-medium">计划内止损</span></li>
+            <li class="flex justify-between border-b border-white/10 pb-3"><span>何时卖</span><span class="text-white/95 font-medium">按计划离场</span></li>
+            <li class="flex justify-between"><span>复盘</span><span class="text-white/95 font-medium">每天记录</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="reveal mt-8 text-center text-[14.5px] font-medium text-black/70">你中了几条? 记住它们. 接下来, 就是它们的解药</p>
   </div>
 </section>
 
@@ -237,9 +313,9 @@
   <div class="absolute inset-0 opacity-60" style="background: radial-gradient(800px 400px at 85% 0%, rgba(212,97,68,.16), transparent 60%), radial-gradient(700px 380px at 10% 100%, rgba(212,97,68,.10), transparent 55%);" aria-hidden="true"></div>
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
     <div class="reveal max-w-3xl">
-      <p class="text-[12.5px] tracking-[0.3em] text-[#e8967c] font-semibold">交易体系</p>
-      <h2 class="mt-4 text-3xl md:text-[44px] font-bold leading-tight">赚钱不是靠预测,<br>是靠一套<span class="underline-accent">可重复的体系</span></h2>
-      <p class="mt-5 text-[15.5px] leading-relaxed text-white/60">过去十年我只做三件事, 每一件都对应一个普通人可以验证的动作</p>
+      <p class="text-[12.5px] tracking-[0.3em] text-[#e8967c] font-semibold">解决方案</p>
+      <h2 class="mt-4 text-3xl md:text-[44px] font-bold leading-tight">答案不是更努力<br>是<span class="underline-accent">换一套系统</span></h2>
+      <p class="mt-5 text-[15.5px] leading-relaxed text-white/60">这三件事我做了 10 年, 每一件都对应一个你能立刻执行的动作. 现在, 它们被装进知远财经 App, 下载就能用</p>
     </div>
     <div class="mt-14 grid gap-6 md:grid-cols-3">
       <article class="reveal glass lift relative overflow-hidden rounded-2xl p-8 cursor-pointer" tabindex="0">
@@ -252,7 +328,7 @@
         </div>
         <h3 class="mt-6 text-xl font-bold">体系化决策</h3>
         <p class="mt-3 text-[14px] leading-relaxed text-white/60">先胜后战. 用趋势判断方向, 用位置决定赔率, 用结构确认信号. 每一个进场点都能说出理由</p>
-        <p class="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#f0a184]">结果: 不再凭感觉下单 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
+        <p class="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#f0a184]">App 里: 每日复盘 22:00 推送 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
       </article>
       <article class="reveal glass lift relative overflow-hidden rounded-2xl p-8 cursor-pointer" tabindex="0">
         <span class="card-line"></span>
@@ -264,7 +340,7 @@
         </div>
         <h3 class="mt-6 text-xl font-bold">纪律化执行</h3>
         <p class="mt-3 text-[14px] leading-relaxed text-white/60">计划你的交易, 交易你的计划. 进场前写好仓位与离场条件, 盘中只做执行, 不临时改主意</p>
-        <p class="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#f0a184]">结果: 让情绪离开决策 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
+        <p class="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#f0a184]">App 里: 计划清单 + 买卖点留痕 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
       </article>
       <article class="reveal glass lift relative overflow-hidden rounded-2xl p-8 cursor-pointer" tabindex="0">
         <span class="card-line"></span>
@@ -276,7 +352,7 @@
         </div>
         <h3 class="mt-6 text-xl font-bold">风控化生存</h3>
         <p class="mt-3 text-[14px] leading-relaxed text-white/60">活下来才有一切. 单笔风险固定, 止损是交易计划的一部分, 从来不是事后补救</p>
-        <p class="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#f0a184]">结果: 亏损有限, 利润奔跑 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
+        <p class="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#f0a184]">App 里: 行情转折风险提醒 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
       </article>
     </div>
   </div>
@@ -347,6 +423,43 @@
   </div>
 </section>
 
+<!-- ============ 证明元素 ============ -->
+<section id="proof" class="border-y border-[hsl(var(--border))] bg-white" aria-label="用户评价与下载数据">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+    <div class="reveal flex flex-wrap items-center justify-center gap-x-10 gap-y-5 text-center">
+      <div>
+        <p class="text-3xl font-bold text-[hsl(var(--primary))]"><span class="count-up" data-target="50000" data-suffix="+">0</span></p>
+        <p class="mt-1 text-[12.5px] text-black/65">次下载</p>
+      </div>
+      <div class="hidden sm:block h-8 w-px bg-[hsl(var(--border))]" aria-hidden="true"></div>
+      <div>
+        <p class="text-3xl font-bold text-[hsl(var(--primary))]"><span class="count-up" data-target="4.8" data-decimals="1">0</span><span class="text-xl text-black/50"> / 5</span></p>
+        <p class="mt-1 text-[12.5px] text-black/65">应用商店评分</p>
+      </div>
+      <div class="hidden sm:block h-8 w-px bg-[hsl(var(--border))]" aria-hidden="true"></div>
+      <div>
+        <p class="text-3xl font-bold text-[hsl(var(--primary))]"><span class="count-up" data-target="12000" data-suffix="+">0</span></p>
+        <p class="mt-1 text-[12.5px] text-black/65">位长期读者</p>
+      </div>
+    </div>
+    <p class="reveal mt-14 text-center text-[12.5px] tracking-[0.3em] text-black/65">下载后的用户这样说</p>
+    <div class="reveal mt-6 grid gap-6 md:grid-cols-3">
+      <blockquote class="flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--background))] p-6">
+        <p class="text-[14.5px] leading-relaxed text-black/70">用 App 第三天, 我写了第一张交易计划. 虽然还在亏, 但亏得明明白白, 不再慌着乱操作</p>
+        <footer class="mt-4 text-[12.5px] text-black/65">- 老周, 股龄 8 年</footer>
+      </blockquote>
+      <blockquote class="flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--background))] p-6">
+        <p class="text-[14.5px] leading-relaxed text-black/70">风险提醒救了我. 上周一条推送让我减了半仓, 第二天那板块跌了 6%. 以前这种坑我必踩</p>
+        <footer class="mt-4 text-[12.5px] text-black/65">- 小陈, 刚入市 2 年</footer>
+      </blockquote>
+      <blockquote class="flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--background))] p-6">
+        <p class="text-[14.5px] leading-relaxed text-black/70">每天 22 点的复盘像上课. 三个月后, 我终于能说出自己为什么买, 而不是因为别人说会涨</p>
+        <footer class="mt-4 text-[12.5px] text-black/65">- 王姐, 全职妈妈兼职炒股</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
 <!-- ============ 深度文章 ============ -->
 <section id="articles" class="bg-[#f3f0ea]">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
@@ -405,21 +518,40 @@
   </div>
 </section>
 
-<!-- ============ 订阅 CTA ============ -->
-<section id="join" class="relative overflow-hidden bg-[#161210] text-white">
+<!-- ============ 下载 CTA ============ -->
+<section id="download" class="relative overflow-hidden bg-[#161210] text-white">
   <div class="absolute inset-0 opacity-70" style="background: radial-gradient(900px 460px at 50% 120%, rgba(212,97,68,.28), transparent 60%);" aria-hidden="true"></div>
   <div class="hero-grid absolute inset-0" aria-hidden="true"></div>
   <div class="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
-    <p class="reveal text-[12.5px] tracking-[0.3em] text-[#e8967c] font-semibold">现在加入</p>
-    <h2 class="reveal mt-5 text-3xl md:text-[46px] font-bold leading-tight text-balance">从今天开始, 用体系<br>而不是用运气<wbr>交易</h2>
-    <p class="reveal mt-6 mx-auto max-w-xl text-[15.5px] leading-relaxed text-white/65">订阅后你将收到: 每个交易日收盘后的复盘解读, 每周一次体系拆解, 以及每次行情转折时的风险提醒. 全部免费, 随时可退</p>
-    <form class="reveal mt-9 mx-auto flex max-w-md flex-col sm:flex-row gap-3" onsubmit="return subscribe(event)">
-      <label for="email" class="sr-only">邮箱地址</label>
-      <input id="email" type="email" required placeholder="输入你的邮箱, 立即开始" class="flex-1 rounded-full border border-white/15 bg-white/8 px-6 py-4 text-[14.5px] text-white placeholder:text-white/60 outline-none focus:border-[#e8754f] focus:ring-2 focus:ring-[#e8754f]/40 transition-colors duration-200">
-      <button type="submit" id="sub-btn" class="btn-primary rounded-full px-8 py-4 text-[15px] font-semibold text-white cursor-pointer whitespace-nowrap">免费订阅</button>
-    </form>
-    <p id="sub-msg" class="mt-4 text-[13px] text-white/65 min-h-5" role="status" aria-live="polite"></p>
-    <p class="reveal mt-5 text-[12px] text-white/55">不荐股 不喊单 不收费 · 你的邮箱只用于发送复盘</p>
+    <p class="reveal text-[12.5px] tracking-[0.3em] text-[#e8967c] font-semibold">现在下载</p>
+    <h2 class="reveal mt-5 text-3xl md:text-[46px] font-bold leading-tight text-balance">在下次亏损之前<br>先装好你的工具</h2>
+    <p class="reveal mt-6 mx-auto max-w-xl text-[15.5px] leading-relaxed text-white/65">这不是一个需要犹豫的决定: 免费下载, 10 秒安装, 不喜欢随时删除. 而它可能帮你少亏一次, 多留一笔本金</p>
+    <!-- 价值对比 -->
+    <div class="reveal mt-9 mx-auto grid max-w-lg grid-cols-3 gap-3">
+      <div class="glass rounded-2xl px-4 py-5">
+        <p class="text-[12px] text-white/65">一顿外卖</p>
+        <p class="mt-1 text-xl font-bold text-white/95">30 元</p>
+      </div>
+      <div class="glass rounded-2xl px-4 py-5">
+        <p class="text-[12px] text-white/65">一年学费</p>
+        <p class="mt-1 text-xl font-bold text-white/95">数千元</p>
+      </div>
+      <div class="glass rounded-2xl px-4 py-5 border-[#e8754f]/40 bg-[hsl(15_63%_45%/0.18)]">
+        <p class="text-[12px] text-[#f0a184]">这套体系</p>
+        <p class="mt-1 text-xl font-bold text-[#f0a184]">0 元</p>
+      </div>
+    </div>
+    <div class="reveal mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" class="js-download btn-primary cta-sheen inline-flex items-center gap-2.5 rounded-full px-9 py-4 text-[15.5px] font-semibold text-white cursor-pointer relative overflow-hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
+        安卓免费下载
+      </a>
+      <a href="https://apps.apple.com/cn/app/id6789065192" class="js-download btn-ghost inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-medium text-white/90 cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
+        iPhone 前往 App Store
+      </a>
+    </div>
+    <p class="reveal mt-5 text-[12px] text-white/55">安卓包约 172MB · 微信内请点击右上角「在浏览器打开」· 已帮助 50000+ 位散户</p>
   </div>
 </section>
 
@@ -457,6 +589,8 @@
     </div>
   </div>
 </section>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
 
 <!-- ============ FOOTER ============ -->
 <footer class="border-t border-[hsl(var(--border))] bg-white/70">
@@ -474,7 +608,7 @@
         <a href="#results" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">实战战绩</a>
         <a href="#articles" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">深度文章</a>
         <a href="articles.html" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">全部文章</a>
-        <a href="#join" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">订阅</a>
+        <a href="#download" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">下载</a>
       </nav>
     </div>
     <div class="mt-10 border-t border-[hsl(var(--border))] pt-6">
@@ -483,7 +617,6 @@
     </div>
   </div>
 </footer>
-</main>
 
 <script>
 (function () {
@@ -616,29 +749,47 @@
     if (window.innerWidth >= 768) toggleMenu(false);
   });
 
-  /* ---- 订阅表单(演示交互) ---- */
-  window.subscribe = function (e) {
-    e.preventDefault();
-    var input = document.getElementById('email');
-    var btn = document.getElementById('sub-btn');
-    var msg = document.getElementById('sub-msg');
-    if (!input.value) return false;
-    btn.classList.add('opacity-60', 'pointer-events-none');
-    btn.textContent = '订阅中';
-    setTimeout(function () {
-      btn.classList.remove('opacity-60', 'pointer-events-none');
-      btn.textContent = '已订阅';
-      msg.textContent = '已收到! 首篇复盘已发送至 ' + input.value + ' , 请查收';
-      msg.classList.add('text-emerald-300');
-      input.value = '';
-      setTimeout(function () {
-        btn.textContent = '免费订阅';
-        msg.textContent = '';
-        msg.classList.remove('text-emerald-300');
-      }, 6000);
-    }, 800);
-    return false;
-  };
+  /* ---- Toast 提示服务 ---- */
+  var toastEl = document.getElementById('toast');
+  var toastTimer = null;
+  function toast(msg, ms) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, ms || 3400);
+  }
+
+  /* ---- 智能下载(平台分支) ---- */
+  var ANDROID_APK = 'https://www.tongyuesyt.com/predownload/tongyuesyt.apk';
+  var IOS_URL = 'https://apps.apple.com/cn/app/id6789065192';
+  function detectPlatform() {
+    var ua = navigator.userAgent;
+    if (/MicroMessenger/i.test(ua)) return 'wechat';
+    if (/iPhone|iPad|iPod/i.test(ua)) return 'ios';
+    if (/MacIntel/i.test(ua) && navigator.maxTouchPoints > 1) return 'ios'; // iPadOS
+    if (/Android/i.test(ua)) return 'android';
+    return 'desktop';
+  }
+  document.querySelectorAll('.js-download').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var plat = detectPlatform();
+      var href = btn.getAttribute('href') || '';
+      if (plat === 'wechat') {
+        toast('微信内无法直接下载, 请点击右上角「在浏览器打开」后再下载', 4200);
+        return;
+      }
+      if (plat === 'ios') {
+        window.location.href = 'itms-apps://itunes.apple.com/cn/app/id6789065192';
+        return;
+      }
+      if (plat === 'android') {
+        window.location.href = (href.indexOf('http') === 0) ? href : ANDROID_APK;
+        return;
+      }
+      toast('请在手机上打开本页面下载 App', 3400);
+    });
+  });
 })();
 </script>
 </body>
