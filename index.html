@@ -8,11 +8,11 @@
 <link rel="stylesheet" href="tailwind.css">
 <style>
   :root {
-    --background: 40 25% 98%;
-    --foreground: 30 18% 12%;
-    --primary: 15 63% 45%;
-    --ring: 15 63% 45%;
-    --border: 38 18% 88%;
+    --background: 0 0% 100%;
+    --foreground: 240 3% 12%;
+    --primary: 211 100% 40%;
+    --ring: 211 100% 40%;
+    --border: 240 12% 92%;
     --card: 0 0% 100%;
   }
   html { scrollbar-gutter: stable; }
@@ -20,16 +20,22 @@
   /* 暗色 hero 基底 */
   .hero-bg {
     background:
-      radial-gradient(1100px 500px at 78% -10%, rgba(212,97,68,.22), transparent 60%),
-      radial-gradient(900px 420px at 12% 8%, rgba(212,97,68,.10), transparent 55%),
-      radial-gradient(700px 700px at 50% 120%, rgba(212,97,68,.08), transparent 60%),
-      linear-gradient(180deg, #0d0b0a 0%, #141110 55%, #191512 100%);
+      radial-gradient(1100px 500px at 78% -10%, rgba(0,102,204,.08), transparent 60%),
+      radial-gradient(900px 420px at 12% 8%, rgba(0,102,204,.05), transparent 55%),
+      radial-gradient(700px 700px at 50% 120%, rgba(0,102,204,.04), transparent 60%),
+      linear-gradient(180deg, #ffffff 0%, #ffffff 55%, #f5f5f7 100%);
   }
   .hero-grid {
-    background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(17,17,17,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(17,17,17,.04) 1px, transparent 1px);
     background-size: 56px 56px;
     -webkit-mask-image: radial-gradient(900px 600px at 50% 0%, #000 30%, transparent 75%);
             mask-image: radial-gradient(900px 600px at 50% 0%, #000 30%, transparent 75%);
+  }
+  .hero-grid-dark {
+    background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(700px 400px at 50% 100%, #000 30%, transparent 78%);
+            mask-image: radial-gradient(700px 400px at 50% 100%, #000 30%, transparent 78%);
   }
   .noise::after {
     content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5; mix-blend-mode: overlay;
@@ -58,32 +64,34 @@
   @keyframes sheen { 0%, 55% { left: -60%; } 100% { left: 135%; } }
   /* 主按钮 */
   .btn-primary {
-    background: linear-gradient(135deg, hsl(15 72% 52%), hsl(15 63% 40%));
-    box-shadow: 0 10px 32px -8px rgba(200,75,45,.55), inset 0 1px 0 rgba(255,255,255,.22);
+    background: hsl(211 100% 40%);
+    box-shadow: 0 10px 32px -8px rgba(0,102,204,.4), inset 0 1px 0 rgba(255,255,255,.22);
     transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
     animation: breathe 3.2s ease-in-out infinite;
   }
   @keyframes breathe {
-    0%, 100% { box-shadow: 0 10px 32px -8px rgba(200,75,45,.55), inset 0 1px 0 rgba(255,255,255,.22); }
-    50% { box-shadow: 0 14px 48px -6px rgba(200,75,45,.85), inset 0 1px 0 rgba(255,255,255,.26); }
+    0%, 100% { box-shadow: 0 10px 32px -8px rgba(0,102,204,.4), inset 0 1px 0 rgba(255,255,255,.22); }
+    50% { box-shadow: 0 14px 48px -6px rgba(0,102,204,.6), inset 0 1px 0 rgba(255,255,255,.26); }
   }
-  .btn-primary:hover { filter: brightness(1.07); animation-play-state: paused; box-shadow: 0 16px 44px -10px rgba(200,75,45,.7), inset 0 1px 0 rgba(255,255,255,.25); transform: translateY(-2px); }
+  .btn-primary:hover { filter: brightness(1.1); animation-play-state: paused; box-shadow: 0 16px 44px -10px rgba(0,102,204,.55), inset 0 1px 0 rgba(255,255,255,.25); transform: translateY(-2px); }
   .btn-primary:active { transform: translateY(0); }
   .btn-primary:focus-visible, .btn-ghost:focus-visible, a:focus-visible, button:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 3px; }
-  .btn-ghost { border: 1px solid rgba(255,255,255,.18); transition: border-color .2s ease, background .2s ease, transform .2s ease; }
-  .btn-ghost:hover { border-color: rgba(255,255,255,.38); background: rgba(255,255,255,.06); transform: translateY(-2px); }
+  .btn-ghost { border: 1px solid rgba(29,29,31,.22); transition: border-color .2s ease, background .2s ease, transform .2s ease; }
+  .btn-ghost:hover { border-color: rgba(29,29,31,.5); background: rgba(29,29,31,.05); transform: translateY(-2px); }
+  .btn-ghost-dark { border: 1px solid rgba(255,255,255,.22); }
+  .btn-ghost-dark:hover { border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.06); transform: translateY(-2px); }
   /* 滚动显现 */
   .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); }
   .reveal.in { opacity: 1; transform: none; }
   /* 卡片 hover */
   .lift { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
-  .lift:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -20px rgba(20,15,10,.18); border-color: hsl(15 55% 78%); }
-  .card-line::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; border-radius: 9999px; background: linear-gradient(90deg, hsl(15 63% 45%), hsl(15 70% 60%)); opacity: 0; transition: opacity .3s ease; }
+  .lift:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -20px rgba(20,15,10,.18); border-color: hsl(211 100% 88%); }
+  .card-line::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; border-radius: 9999px; background: linear-gradient(90deg, hsl(211 100% 40%), hsl(211 100% 55%)); opacity: 0; transition: opacity .3s ease; }
   .lift:hover .card-line::before { opacity: 1; }
   /* hero 辉光跟随 */
-  .glow { position: absolute; width: 520px; height: 520px; border-radius: 9999px; background: radial-gradient(circle, rgba(212,97,68,.14), transparent 62%); pointer-events: none; transform: translate(-50%,-50%); transition: opacity .4s ease; }
+  .glow { position: absolute; width: 520px; height: 520px; border-radius: 9999px; background: radial-gradient(circle, rgba(0,102,204,.10), transparent 62%); pointer-events: none; transform: translate(-50%,-50%); transition: opacity .4s ease; }
   /* 数字下划线强调 */
-  .underline-accent { background-image: linear-gradient(120deg, hsl(15 63% 45%) 0%, hsl(15 70% 55%) 100%); background-repeat: no-repeat; background-size: 100% .18em; background-position: 0 88%; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .underline-accent { background-image: linear-gradient(120deg, hsl(211 100% 40%) 0%, hsl(211 100% 52%) 100%); background-repeat: no-repeat; background-size: 100% .18em; background-position: 0 88%; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
   /* 移动菜单 */
   .mobile-menu { transform: translateY(-8px); opacity: 0; pointer-events: none; transition: transform .22s ease, opacity .22s ease; }
   .mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; }
@@ -93,7 +101,7 @@
   #toast {
     position: fixed; left: 50%; bottom: 32px; z-index: 100;
     transform: translateX(-50%) translateY(16px); opacity: 0; pointer-events: none;
-    background: #161210; color: #fff; border: 1px solid rgba(255,255,255,.15);
+    background: #1d1d1f; color: #fff; border: 1px solid rgba(255,255,255,.15);
     border-radius: 9999px; padding: 12px 24px; font-size: 13.5px; line-height: 1.5;
     box-shadow: 0 12px 32px -8px rgba(0,0,0,.45); text-align: center;
     max-width: calc(100vw - 40px);
@@ -135,7 +143,7 @@
   <div id="nav-inner" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
       <a href="#top" class="flex items-center gap-2.5 cursor-pointer group" aria-label="潘伟君 回到顶部">
-        <span class="grid h-9 w-9 place-items-center rounded-xl bg-[hsl(var(--primary))] text-white text-sm font-bold shadow-lg shadow-[hsl(15_63%_45%/0.35)] transition-transform duration-300 group-hover:scale-105">潘</span>
+        <span class="grid h-9 w-9 place-items-center rounded-xl bg-[hsl(var(--primary))] text-white text-sm font-bold shadow-lg shadow-[hsl(211_100%_40%/0.3)] transition-transform duration-300 group-hover:scale-105">潘</span>
         <span class="text-[15px] font-semibold tracking-wide">潘伟君</span>
       </a>
       <nav class="hidden md:flex items-center gap-8 text-[14px] font-medium text-black/70" aria-label="主导航">
@@ -166,69 +174,69 @@
 
 <main id="top">
 <!-- ============ HERO ============ -->
-<section class="hero-bg noise relative overflow-hidden text-white">
+<section class="hero-bg relative overflow-hidden">
   <div id="hero-glow" class="glow opacity-0" aria-hidden="true"></div>
-  <div class="hero-grid absolute inset-0" aria-hidden="true"></div>
+  <div class="hero-grid-dark absolute inset-0" aria-hidden="true"></div>
   <!-- K 线漂移动态背景 -->
   <svg class="kline absolute inset-x-0 top-[30%] h-[420px] w-full" viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true">
     <defs>
       <linearGradient id="kl" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#e8754f" stop-opacity="0"/>
-        <stop offset="30%" stop-color="#e8754f" stop-opacity=".45"/>
-        <stop offset="65%" stop-color="#c24a2b" stop-opacity=".3"/>
-        <stop offset="100%" stop-color="#c24a2b" stop-opacity="0"/>
+        <stop offset="0%" stop-color="#5aa0ff" stop-opacity="0"/>
+        <stop offset="30%" stop-color="#0066cc" stop-opacity=".35"/>
+        <stop offset="65%" stop-color="#00449e" stop-opacity=".25"/>
+        <stop offset="100%" stop-color="#00449e" stop-opacity="0"/>
       </linearGradient>
     </defs>
     <path d="M-80,300 C90,280 120,230 240,250 C360,270 400,180 520,200 C640,220 680,130 800,150 C920,170 960,90 1080,110 C1200,130 1300,70 1520,90" fill="none" stroke="url(#kl)" stroke-width="2.5" stroke-linecap="round"/>
   </svg>
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-[100svh] flex flex-col justify-center pt-28 pb-40 md:pt-32 md:pb-44 text-center">
-    <p class="reveal-inline inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[12.5px] tracking-widest text-white/80 backdrop-blur" style="animation-delay:.05s">
-      <span class="h-1.5 w-1.5 rounded-full bg-[hsl(15_72%_58%)] animate-pulse" aria-hidden="true"></span>
+    <p class="reveal-inline inline-flex items-center gap-2 rounded-full border border-[hsl(var(--border))] bg-white/85 px-4 py-1.5 text-[12.5px] tracking-widest text-[hsl(var(--foreground))]/75 backdrop-blur" style="animation-delay:.05s">
+      <span class="h-1.5 w-1.5 rounded-full bg-[hsl(211_100%_40%)] animate-pulse" aria-hidden="true"></span>
       潘伟君 · A 股顶级短线操盘手 · 国内第一代操盘手
     </p>
     <h1 id="hero-title" class="mt-8 text-4xl sm:text-5xl md:text-[60px] lg:text-[72px] font-bold leading-[1.14] tracking-tight text-balance" aria-label="如果你在 A 股总是亏, 问题从来不在行情. 而是你还在用散户的方式交易">
-      <span class="word-line block"><span class="text-white">如果你在 A 股总是亏,</span></span>
-      <span class="word-line block mt-2"><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#f6b497] via-[#e8754f] to-[#c24a2b]">问题从来不在行情</span></span>
+      <span class="word-line block"><span class="text-[hsl(var(--foreground))]">如果你在 A 股总是亏,</span></span>
+      <span class="word-line block mt-2"><span class="text-[hsl(211_100%_40%)]">问题从来不在行情</span></span>
     </h1>
-    <p class="reveal-inline mt-7 mx-auto max-w-2xl text-[16px] md:text-[17px] leading-relaxed text-white/70" style="animation-delay:.45s">
+    <p class="reveal-inline mt-7 mx-auto max-w-2xl text-[16px] md:text-[17px] leading-relaxed text-black/55" style="animation-delay:.45s">
       而是你还在用散户的方式交易. 我 1993 年入市, 在机构操盘三十年, 见过太多这样的账户
-      <span class="block mt-2 text-white/90 font-medium">现在, 我每天在通跃 App 实战交流群分享盘前解析 实盘解析与复盘, 免费</span>
+      <span class="block mt-2 text-[hsl(var(--foreground))] font-medium">现在, 我每天在通跃 App 实战交流群分享盘前解析 实盘解析与复盘, 免费</span>
     </p>
     <div class="reveal-inline mt-10 flex flex-col sm:flex-row items-center justify-center gap-4" style="animation-delay:.95s">
       <a href="#download" class="js-download btn-primary cta-sheen inline-flex items-center gap-2.5 rounded-full px-9 py-4 text-[15.5px] font-semibold text-white cursor-pointer relative overflow-hidden">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
         安卓免费下载
       </a>
-      <a href="#download" class="js-download btn-ghost inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-medium text-white/90 cursor-pointer">
+      <a href="#download" class="js-download btn-ghost inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-medium text-[hsl(var(--foreground))] cursor-pointer">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
         iPhone 前往 App Store
       </a>
     </div>
-    <p class="reveal-inline mt-6 text-[12.5px] text-white/60" style="animation-delay:1.2s">免费安装 · 安卓包约 172MB · 微信内点击右上角「在浏览器打开」即可下载</p>
+    <p class="reveal-inline mt-6 text-[12.5px] text-black/50" style="animation-delay:1.2s">免费安装 · 安卓包约 172MB · 微信内点击右上角「在浏览器打开」即可下载</p>
 
     <!-- 数据条 -->
-    <dl class="reveal mt-14 grid grid-cols-2 md:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 backdrop-blur">
-      <div class="bg-black/30 px-6 py-7">
-        <dt class="text-[12.5px] tracking-widest text-white/55">实战年限</dt>
+    <dl class="reveal mt-14 grid grid-cols-2 md:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-[hsl(var(--border))] bg-white shadow-sm">
+      <div class="bg-white px-6 py-7">
+        <dt class="text-[12.5px] tracking-widest text-black/50">实战年限</dt>
         <dd class="mt-2 text-3xl md:text-4xl font-bold"><span class="count-up" data-target="33" data-suffix="年">0</span></dd>
       </div>
-      <div class="bg-black/30 px-6 py-7">
-        <dt class="text-[12.5px] tracking-widest text-white/55">深度复盘</dt>
+      <div class="bg-white px-6 py-7">
+        <dt class="text-[12.5px] tracking-widest text-black/50">深度复盘</dt>
         <dd class="mt-2 text-3xl md:text-4xl font-bold"><span class="count-up" data-target="420" data-suffix="+">0</span></dd>
       </div>
-      <div class="bg-black/30 px-6 py-7">
-        <dt class="text-[12.5px] tracking-widest text-white/55">策略年化<sup class="text-[10px] text-white/60">*</sup></dt>
-        <dd class="mt-2 text-3xl md:text-4xl font-bold text-[#f0a184]"><span class="count-up" data-target="18" data-suffix="%">0</span></dd>
+      <div class="bg-white px-6 py-7">
+        <dt class="text-[12.5px] tracking-widest text-black/50">策略年化<sup class="text-[10px] text-black/45">*</sup></dt>
+        <dd class="mt-2 text-3xl md:text-4xl font-bold text-[hsl(211_100%_40%)]"><span class="count-up" data-target="18" data-suffix="%">0</span></dd>
       </div>
-      <div class="bg-black/30 px-6 py-7">
-        <dt class="text-[12.5px] tracking-widest text-white/55">读者留存</dt>
+      <div class="bg-white px-6 py-7">
+        <dt class="text-[12.5px] tracking-widest text-black/50">读者留存</dt>
         <dd class="mt-2 text-3xl md:text-4xl font-bold"><span class="count-up" data-target="97" data-suffix="%">0</span></dd>
       </div>
     </dl>
-    <p class="mt-3 text-[11.5px] text-white/55">* 2018-2025 策略回测演示数据, 历史业绩不代表未来收益</p>
+    <p class="mt-3 text-[11.5px] text-black/50">* 2018-2025 策略回测演示数据, 历史业绩不代表未来收益</p>
   </div>
   <!-- 滚动指示器 -->
-  <a href="#proof" class="scroll-hint absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-white/60 hover:text-white/90 transition-colors duration-200 cursor-pointer" aria-label="向下滚动查看读者评价">
+  <a href="#proof" class="scroll-hint absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-black/50 hover:text-[hsl(var(--foreground))] transition-colors duration-200 cursor-pointer" aria-label="向下滚动查看读者评价">
     <span class="text-[11.5px] tracking-[0.25em]">向下滚动</span>
     <svg class="h-5 w-5 animate-bounce-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
   </a>
@@ -292,7 +300,7 @@
     <!-- 对照表: 对号入座 -->
     <div class="reveal mt-16 overflow-hidden rounded-3xl border border-[hsl(var(--border))] bg-white shadow-xl shadow-black/5">
       <div class="grid md:grid-cols-2">
-        <div class="p-8 md:p-10 bg-[#f6f1ea]">
+        <div class="p-8 md:p-10 bg-[#f5f5f7]">
           <h3 class="flex items-center gap-2 text-lg font-bold text-black/75">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
             散户式交易
@@ -305,8 +313,8 @@
             <li class="flex justify-between"><span>复盘</span><span class="text-black/65">从不</span></li>
           </ul>
         </div>
-        <div class="p-8 md:p-10 bg-[#161210] text-white">
-          <h3 class="flex items-center gap-2 text-lg font-bold text-[#f0a184]">
+        <div class="p-8 md:p-10 bg-[#1d1d1f] text-white">
+          <h3 class="flex items-center gap-2 text-lg font-bold text-[#8ab8ff]">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
             体系式交易
           </h3>
@@ -325,11 +333,11 @@
 </section>
 
 <!-- ============ 交易体系 ============ -->
-<section id="method" class="relative overflow-hidden bg-[#161210] text-white">
-  <div class="absolute inset-0 opacity-60" style="background: radial-gradient(800px 400px at 85% 0%, rgba(212,97,68,.16), transparent 60%), radial-gradient(700px 380px at 10% 100%, rgba(212,97,68,.10), transparent 55%);" aria-hidden="true"></div>
+<section id="method" class="relative overflow-hidden bg-[#1d1d1f] text-white">
+  <div class="absolute inset-0 opacity-60" style="background: radial-gradient(800px 400px at 85% 0%, rgba(0,102,204,.14), transparent 60%), radial-gradient(700px 380px at 10% 100%, rgba(0,102,204,.08), transparent 55%);" aria-hidden="true"></div>
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
     <div class="reveal max-w-3xl">
-      <p class="text-[12.5px] tracking-[0.3em] text-[#e8967c] font-semibold">解决方案</p>
+      <p class="text-[12.5px] tracking-[0.3em] text-[#8ab8ff] font-semibold">解决方案</p>
       <h2 class="mt-4 text-3xl md:text-[44px] font-bold leading-tight">答案不是更努力<br>是<span class="underline-accent">换一套系统</span></h2>
       <p class="mt-5 text-[15.5px] leading-relaxed text-white/60">这三件事我验证了三十年, 每一件都对应一个你能立刻执行的动作. 现在, 我每天在通跃 App 实战交流群里拆给你看</p>
     </div>
@@ -337,38 +345,38 @@
       <article class="reveal glass lift relative overflow-hidden rounded-2xl p-8 cursor-pointer" tabindex="0">
         <span class="card-line"></span>
         <div class="flex items-center justify-between">
-          <span class="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-[#e8754f] to-[#c24a2b] shadow-lg shadow-[#c24a2b/30]">
+          <span class="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-[#0066cc] to-[#00449e] shadow-lg shadow-[#00449e/30]">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-6"/></svg>
           </span>
           <span class="text-[40px] font-black text-white/8 leading-none">01</span>
         </div>
         <h3 class="mt-6 text-xl font-bold">体系化决策</h3>
         <p class="mt-3 text-[14px] leading-relaxed text-white/60">先胜后战. 用趋势判断方向, 用位置决定赔率, 用结构确认信号. 每一个进场点都能说出理由</p>
-        <p class="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#f0a184]">通跃 App: 每日复盘 22:00 推送 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
+        <p class="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#8ab8ff]">通跃 App: 每日复盘 22:00 推送 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
       </article>
       <article class="reveal glass lift relative overflow-hidden rounded-2xl p-8 cursor-pointer" tabindex="0">
         <span class="card-line"></span>
         <div class="flex items-center justify-between">
-          <span class="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-[#e8754f] to-[#c24a2b] shadow-lg shadow-[#c24a2b/30]">
+          <span class="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-[#0066cc] to-[#00449e] shadow-lg shadow-[#00449e/30]">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
           </span>
           <span class="text-[40px] font-black text-white/8 leading-none">02</span>
         </div>
         <h3 class="mt-6 text-xl font-bold">纪律化执行</h3>
         <p class="mt-3 text-[14px] leading-relaxed text-white/60">计划你的交易, 交易你的计划. 进场前写好仓位与离场条件, 盘中只做执行, 不临时改主意</p>
-        <p class="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#f0a184]">通跃 App: 计划清单 + 买卖点留痕 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
+        <p class="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#8ab8ff]">通跃 App: 计划清单 + 买卖点留痕 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
       </article>
       <article class="reveal glass lift relative overflow-hidden rounded-2xl p-8 cursor-pointer" tabindex="0">
         <span class="card-line"></span>
         <div class="flex items-center justify-between">
-          <span class="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-[#e8754f] to-[#c24a2b] shadow-lg shadow-[#c24a2b/30]">
+          <span class="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-[#0066cc] to-[#00449e] shadow-lg shadow-[#00449e/30]">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z"/><path d="M9.5 12l2 2 3.5-4"/></svg>
           </span>
           <span class="text-[40px] font-black text-white/8 leading-none">03</span>
         </div>
         <h3 class="mt-6 text-xl font-bold">风控化生存</h3>
         <p class="mt-3 text-[14px] leading-relaxed text-white/60">活下来才有一切. 单笔风险固定, 止损是交易计划的一部分, 从来不是事后补救</p>
-        <p class="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#f0a184]">通跃 App: 行情转折风险提醒 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
+        <p class="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#8ab8ff]">通跃 App: 行情转折风险提醒 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
       </article>
     </div>
   </div>
@@ -405,7 +413,7 @@
       </div>
       <!-- 净值曲线(装饰性示意) -->
       <div class="reveal relative">
-        <div class="absolute -inset-4 rounded-[32px] bg-gradient-to-br from-[hsl(15_63%_45%/0.08)] to-transparent blur-2xl" aria-hidden="true"></div>
+        <div class="absolute -inset-4 rounded-[32px] bg-gradient-to-br from-[hsl(211_100%_40%/0.08)] to-transparent blur-2xl" aria-hidden="true"></div>
         <div class="relative rounded-3xl border border-[hsl(var(--border))] bg-white p-6 sm:p-8 shadow-2xl shadow-black/8">
           <div class="flex items-center justify-between">
             <div>
@@ -420,17 +428,17 @@
           <svg viewBox="0 0 600 220" class="mt-6 w-full" role="img" aria-label="策略净值曲线示意, 8 年从 1.0 增长到 4.6">
             <defs>
               <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#d9563a" stop-opacity=".25"/>
-                <stop offset="100%" stop-color="#d9563a" stop-opacity="0"/>
+                <stop offset="0%" stop-color="#0066cc" stop-opacity=".25"/>
+                <stop offset="100%" stop-color="#0066cc" stop-opacity="0"/>
               </linearGradient>
               <linearGradient id="stroke" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#b03a1f"/>
-                <stop offset="100%" stop-color="#e8754f"/>
+                <stop offset="0%" stop-color="#00449e"/>
+                <stop offset="100%" stop-color="#0066cc"/>
               </linearGradient>
             </defs>
             <path d="M0,195 C40,188 60,180 90,170 C120,160 150,168 180,150 C210,132 240,140 270,118 C300,98 330,110 360,86 C390,66 420,78 450,52 C480,34 520,40 600,14 L600,220 L0,220 Z" fill="url(#area)"/>
             <path d="M0,195 C40,188 60,180 90,170 C120,160 150,168 180,150 C210,132 240,140 270,118 C300,98 330,110 360,86 C390,66 420,78 450,52 C480,34 520,40 600,14" fill="none" stroke="url(#stroke)" stroke-width="3.5" stroke-linecap="round"/>
-            <circle cx="600" cy="14" r="6" fill="#e8754f" stroke="white" stroke-width="2.5"/>
+            <circle cx="600" cy="14" r="6" fill="#0066cc" stroke="white" stroke-width="2.5"/>
           </svg>
           <div class="mt-3 flex justify-between text-[11.5px] text-black/65"><span>2018</span><span>2020</span><span>2022</span><span>2025</span></div>
         </div>
@@ -477,7 +485,7 @@
 </section>
 
 <!-- ============ 深度文章 ============ -->
-<section id="articles" class="bg-[#f3f0ea]">
+<section id="articles" class="bg-[#f5f5f7]">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
     <div class="reveal flex flex-wrap items-end justify-between gap-6">
       <div>
@@ -535,11 +543,11 @@
 </section>
 
 <!-- ============ 下载 CTA ============ -->
-<section id="download" class="relative overflow-hidden bg-[#161210] text-white">
-  <div class="absolute inset-0 opacity-70" style="background: radial-gradient(900px 460px at 50% 120%, rgba(212,97,68,.28), transparent 60%);" aria-hidden="true"></div>
-  <div class="hero-grid absolute inset-0" aria-hidden="true"></div>
+<section id="download" class="relative overflow-hidden bg-[#1d1d1f] text-white">
+  <div class="absolute inset-0 opacity-70" style="background: radial-gradient(900px 460px at 50% 120%, rgba(0,102,204,.20), transparent 60%);" aria-hidden="true"></div>
+  <div class="hero-grid-dark absolute inset-0" aria-hidden="true"></div>
   <div class="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
-    <p class="reveal text-[12.5px] tracking-[0.3em] text-[#e8967c] font-semibold">现在下载</p>
+    <p class="reveal text-[12.5px] tracking-[0.3em] text-[#8ab8ff] font-semibold">现在下载</p>
     <h2 class="reveal mt-5 text-3xl md:text-[46px] font-bold leading-tight text-balance">在下次亏损之前<br>先装好你的工具</h2>
     <p class="reveal mt-6 mx-auto max-w-xl text-[15.5px] leading-relaxed text-white/65">这不是一个需要犹豫的决定: 免费下载, 10 秒安装, 不喜欢随时删除. 而它可能帮你少亏一次, 多留一笔本金</p>
     <!-- 价值对比 -->
@@ -552,9 +560,9 @@
         <p class="text-[12px] text-white/65">一年学费</p>
         <p class="mt-1 text-xl font-bold text-white/95">数千元</p>
       </div>
-      <div class="glass rounded-2xl px-4 py-5 border-[#e8754f]/40 bg-[hsl(15_63%_45%/0.18)]">
-        <p class="text-[12px] text-[#f0a184]">这套体系</p>
-        <p class="mt-1 text-xl font-bold text-[#f0a184]">0 元</p>
+      <div class="glass rounded-2xl px-4 py-5 border-[#8ab8ff]/40 bg-[hsl(211_100%_40%/0.18)]">
+        <p class="text-[12px] text-[#8ab8ff]">这套体系</p>
+        <p class="mt-1 text-xl font-bold text-[#8ab8ff]">0 元</p>
       </div>
     </div>
     <div class="reveal mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -562,7 +570,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
         安卓免费下载
       </a>
-      <a href="https://apps.apple.com/cn/app/id6789065192" class="js-download btn-ghost inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-medium text-white/90 cursor-pointer">
+      <a href="https://apps.apple.com/cn/app/id6789065192" class="js-download btn-ghost btn-ghost-dark inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-medium text-white/90 cursor-pointer">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
         iPhone 前往 App Store
       </a>
@@ -576,9 +584,9 @@
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
     <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
       <div class="reveal relative mx-auto w-full max-w-sm">
-        <div class="absolute -inset-3 rounded-[36px] bg-gradient-to-br from-[hsl(15_63%_45%/0.12)] to-transparent blur-2xl" aria-hidden="true"></div>
+        <div class="absolute -inset-3 rounded-[36px] bg-gradient-to-br from-[hsl(211_100%_40%/0.10)] to-transparent blur-2xl" aria-hidden="true"></div>
         <div class="relative overflow-hidden rounded-3xl border border-[hsl(var(--border))] bg-white p-8 text-center shadow-xl shadow-black/6">
-          <div class="mx-auto grid h-24 w-24 place-items-center rounded-3xl bg-gradient-to-br from-[hsl(15_70%_55%)] to-[hsl(15_63%_38%)] text-4xl font-black text-white shadow-lg shadow-[hsl(15_63%_45%/0.4)]">潘</div>
+          <div class="mx-auto grid h-24 w-24 place-items-center rounded-3xl bg-gradient-to-br from-[hsl(211_100%_50%)] to-[hsl(211_100%_36%)] text-4xl font-black text-white shadow-lg shadow-[hsl(211_100%_40%/0.4)]">潘</div>
           <h3 class="mt-5 text-xl font-bold">潘伟君</h3>
           <p class="mt-1 text-[13px] text-black/65">A 股顶级短线操盘手 · 细节分析理论创立者</p>
           <p class="mt-4 text-[13.5px] leading-relaxed text-black/60">复旦大学数学系毕业, 1993 年入市, 国内第一代操盘手, 长期担任机构独立操盘手, 具有大资金运作经验</p>
@@ -597,7 +605,7 @@
           <p>2003 年起, 我连续多年在《上海证券报》主持《操盘手札记》专栏(后更名《实战心得》), 出版《看盘细节》《盘面细节分析》《炒股——从内行到外行》等书, 现为多所高校客座教授</p>
           <p>现在, 我每天在通跃 App 实战交流群做盘前消息面解析, 结合竞价超短选股, 实盘解析与复盘, 还有晚间操盘系统技术课程. 因为我深信: <strong class="text-black/85">交易这件事, 教会一个是一个</strong></p>
         </div>
-        <a href="articles.html" class="reveal mt-8 inline-flex items-center gap-2 rounded-full bg-[hsl(var(--primary))] px-7 py-3.5 text-[14.5px] font-semibold text-white shadow-lg shadow-[hsl(15_63%_45%/0.3)] cursor-pointer hover:brightness-110 transition-all duration-200">
+        <a href="articles.html" class="reveal mt-8 inline-flex items-center gap-2 rounded-full bg-[hsl(var(--primary))] px-7 py-3.5 text-[14.5px] font-semibold text-white shadow-lg shadow-[hsl(211_100%_40%/0.3)] cursor-pointer hover:brightness-110 transition-all duration-200">
           从我的第一篇文章开始读
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
@@ -653,9 +661,9 @@
       var max = doc.scrollHeight - window.innerHeight;
       progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
       if (y > 24) {
-        navInner.classList.add('bg-[hsl(40_25%_98%/0.85)]', 'backdrop-blur-xl', 'shadow-sm', 'border-b', 'border-[hsl(38_18%_88%)]');
+        navInner.classList.add('bg-[hsl(0_0%_100%/0.85)]', 'backdrop-blur-xl', 'shadow-sm', 'border-b', 'border-[hsl(240_12%_92%)]');
       } else {
-        navInner.classList.remove('bg-[hsl(40_25%_98%/0.85)]', 'backdrop-blur-xl', 'shadow-sm', 'border-b', 'border-[hsl(38_18%_88%)]');
+        navInner.classList.remove('bg-[hsl(0_0%_100%/0.85)]', 'backdrop-blur-xl', 'shadow-sm', 'border-b', 'border-[hsl(240_12%_92%)]');
       }
       ticking = false;
     });
