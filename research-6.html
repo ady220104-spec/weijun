@@ -1,0 +1,410 @@
+﻿﻿<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8" /><meta name="apple-itunes-app" content="app-id=6789065192" /><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%230066cc%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2752%27 text-anchor=%27middle%27 fill=%27%23ffffff%27 font-family=%27sans-serif%27 font-weight=%27bold%27%3E%E6%BD%98%3C/text%3E%3C/svg%3E" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>2026 年四季度算电概念前瞻 · 算力与电力共振的第一波 | 潘伟君</title><meta name="description" content="算力扩张的尽头是电力 2026 年四季度算电概念核心逻辑与成分梳理 基于 2026-08-28 收盘真实数据" /><!-- Tailwind (本地, 中国用户可秒开) --><link rel="stylesheet" href="tailwind.css"><style>
+ /* ===================== Design Tokens ===================== */
+ :root {
+ color-scheme: light;
+ --background: 0 0% 100%;
+ --foreground: 240 3% 12%;
+ --card: 0 0% 100%;
+ --card-foreground: 240 3% 12%;
+ --primary: 211 100% 40%;
+ --primary-foreground: 0 0% 100%;
+ --secondary: 240 20% 97%;
+ --secondary-foreground: 240 3% 12%;
+ --muted: 240 20% 97%;
+ --muted-foreground: 240 2% 54%;
+ --accent: 240 20% 95%;
+ --accent-foreground: 240 3% 12%;
+ --destructive: 6 56% 50%;
+ --destructive-foreground: 0 0% 100%;
+ --success: 150 38% 38%;
+ --border: 240 12% 92%;
+ --input: 240 12% 92%;
+ --ring: 211 100% 40%;
+ --radius: 0.75rem;
+ --radius-sm: 0.5rem;
+ }
+
+ html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+ body {
+ background-color: hsl(var(--background));
+ color: hsl(var(--foreground));
+ -webkit-font-smoothing: antialiased;
+ text-rendering: optimizeLegibility;
+ }
+ .tnum { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+ :focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+
+ /* ===================== 背景层次 ===================== */
+ .mesh-bg {
+ position: fixed; inset: 0; z-index: -2; pointer-events: none;
+ background:
+ radial-gradient(1100px 600px at 15% -10%, rgba(216, 197, 170, 0.16) 0%, rgba(216, 197, 170, 0) 60%),
+ radial-gradient(900px 520px at 88% 2%, rgba(226, 178, 145, 0.10) 0%, rgba(226, 178, 145, 0) 55%),
+ radial-gradient(1000px 700px at 50% 116%, rgba(210, 195, 175, 0.12) 0%, rgba(210, 195, 175, 0) 60%);
+ }
+ .noise-bg {
+ position: fixed; inset: 0; z-index: -1; pointer-events: none;
+ opacity: 0.045;
+ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+ background-size: 160px 160px;
+ }
+
+ /* ===================== Card ===================== */
+ .card {
+ background: hsl(var(--card)); color: hsl(var(--card-foreground));
+ border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+ box-shadow: 0 1px 2px rgba(24, 24, 27, 0.03), 0 12px 32px -16px rgba(24, 24, 27, 0.08);
+ }
+
+ /* ===================== Button ===================== */
+ .btn {
+ display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+ height: 2.5rem; padding: 0 1rem; border-radius: var(--radius-sm);
+ font-size: .875rem; font-weight: 500; line-height: 1; white-space: nowrap;
+ border: 1px solid transparent; cursor: pointer; user-select: none;
+ transition: background-color .15s ease, color .15s ease, border-color .15s ease, opacity .15s ease, transform .1s ease;
+ }
+ .btn:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+ .btn:disabled { opacity: .5; pointer-events: none; }
+ .btn:active:not(:disabled) { transform: scale(.97); }
+ .btn svg { flex-shrink: 0; }
+
+ .btn-primary { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
+ .btn-primary:hover:not(:disabled) { background: hsl(var(--primary) / .9); }
+
+ .btn-secondary { background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); border-color: hsl(var(--border)); }
+ .btn-secondary:hover:not(:disabled) { background: hsl(var(--accent)); }
+
+ .btn-outline { background: transparent; color: hsl(var(--foreground)); border-color: hsl(var(--border)); }
+ .btn-outline:hover:not(:disabled) { background: hsl(var(--accent)); }
+
+ .btn-ghost { background: transparent; color: hsl(var(--foreground)); }
+ .btn-ghost:hover:not(:disabled) { background: hsl(var(--accent)); }
+
+ .btn-destructive { background: hsl(var(--destructive)); color: hsl(var(--destructive-foreground)); }
+ .btn-destructive:hover:not(:disabled) { background: hsl(var(--destructive) / .9); }
+
+ .btn-icon { padding: 0; width: 2.5rem; height: 2.5rem; }
+
+ /* 应用商店徽章 */
+ .store-badge {
+ display: inline-flex; align-items: center; gap: .625rem;
+ height: 3rem; padding: 0 1rem;
+ background: #1d1d1f; color: #fff; border-radius: var(--radius-sm);
+ border: 1px solid #1d1d1f; cursor: pointer; text-decoration: none;
+ transition: background-color .15s ease, opacity .15s ease, transform .1s ease;
+ }
+ .store-badge:hover { background: #000; }
+ .store-badge:active { transform: scale(.97); }
+
+ .spinner {
+ width: 1rem; height: 1rem; border-radius: 50%;
+ border: 2px solid currentColor; border-top-color: transparent;
+ animation: spin .6s linear infinite;
+ }
+ @keyframes spin { to { transform: rotate(360deg); } }
+ /* 按钮加载态（防连点 + spinner 反馈） */
+ .btn { position: relative; }
+ .btn-loading { pointer-events: none; opacity: .9; }
+ .btn-loading > * { visibility: hidden; }
+ .btn-loading::after {
+ content: ''; position: absolute; top: 50%; left: 50%;
+ width: 1rem; height: 1rem; margin: -.5rem 0 0 -.5rem;
+ border-radius: 50%;
+ border: 2px solid currentColor; border-top-color: transparent;
+ animation: spin .6s linear infinite;
+ }
+
+
+ /* ===================== Input ===================== */
+ .input {
+ height: 2.5rem; width: 100%; padding: 0 .75rem;
+ border-radius: var(--radius-sm); border: 1px solid hsl(var(--input));
+ background: hsl(var(--card)); color: hsl(var(--foreground));
+ font-size: .875rem; transition: border-color .15s ease, box-shadow .15s ease;
+ }
+ .input::placeholder { color: hsl(var(--muted-foreground) / .7); }
+ .input:focus { outline: none; border-color: hsl(var(--ring)); box-shadow: 0 0 0 3px hsl(var(--ring) / .15); }
+ .input:disabled { opacity: .5; cursor: not-allowed; }
+ .input[aria-invalid="true"] { border-color: hsl(var(--destructive)); }
+ .input[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px hsl(var(--destructive) / .15); }
+
+ /* ===================== Toast ===================== */
+ .toast-container {
+ position: fixed; bottom: 1rem; right: 1rem; z-index: 200;
+ display: flex; flex-direction: column; gap: .5rem; max-width: calc(100vw - 2rem);
+ }
+ .toast {
+ display: flex; align-items: flex-start; gap: .75rem;
+ background: hsl(var(--card)); border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+ padding: .875rem 1rem; box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.16); width: 22rem; max-width: 100%;
+ animation: toast-in .25s cubic-bezier(.22,.61,.36,1);
+ }
+ .toast.leaving { animation: toast-out .2s ease forwards; }
+ .toast-icon { display: grid; place-items: center; width: 1.25rem; height: 1.25rem; flex-shrink: 0; margin-top: .125rem; }
+ @keyframes toast-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+ @keyframes toast-out { to { opacity: 0; transform: translateY(10px); } }
+
+ /* ===================== 毛玻璃（局部） ===================== */
+ .glass {
+ background: rgba(250, 249, 247, 0.88);
+ backdrop-filter: blur(14px) saturate(120%);
+ -webkit-backdrop-filter: blur(14px) saturate(120%);
+ }
+
+ /* ===================== 正文排版 ===================== */
+ .prose p { color: hsl(var(--foreground) / .88); }
+ .prose a { color: hsl(var(--primary)); }
+ .prose a:hover { color: hsl(var(--foreground)); }
+
+ /* ===================== 入场动效 ===================== */
+ html.js .reveal { opacity: 0; }
+ html.js .reveal.in {
+ opacity: 1;
+ animation: reveal-in .4s cubic-bezier(.22,.61,.36,1) backwards;
+ animation-delay: var(--d, 0ms);
+ }
+ @keyframes reveal-in {
+ from { opacity: 0; transform: translateY(20px); }
+ to { opacity: 1; transform: translateY(0); }
+ }
+
+ /* ===== 编辑杂志 衬线标题 + 珊瑚引语 + 衬线品牌 + 暖色徽章 ===== */
+ h1, h2, h3 {
+ font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "STSong", "SimSun", serif;
+ letter-spacing: .01em !important;
+ line-height: 1.28 !important;
+ }
+ header nav > a:first-child { font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "STSong", "SimSun", serif; letter-spacing: .02em; }
+ p.text-primary { letter-spacing: .1em; }
+ blockquote { border-left-color: hsl(var(--primary) / 0.55) !important; }
+ .btn-primary:hover:not(:disabled) { background: #0077ed; }
+ .store-badge { background: #1d1d1f !important; border-color: #1d1d1f !important; }
+ .store-badge:hover { background: #000000 !important; }
+
+ /* ===================== 阅读进度条 + 回到顶部 ===================== */
+ #reading-progress {
+ position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+ height: 2px; background: hsl(var(--primary));
+ transform-origin: 0 0; transform: scaleX(0);
+ pointer-events: none;
+ }
+ #back-top {
+ position: fixed; bottom: 5rem; right: 1rem; z-index: 90;
+ box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.18);
+ }
+ @media (max-width: 640px) { #back-top { bottom: 4.5rem; right: .75rem; } }
+
+
+ @media (prefers-reduced-motion: reduce) {
+ html { scroll-behavior: auto; }
+ html.js .reveal { opacity: 1; animation: none; }
+ .btn:active { transform: none; }
+ .spinner { animation: none; } .btn-loading::after { animation: none !important; }
+ * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+ }
+
+/* 移动端触控目标优化: 核心交互 ≥44px (WCAG 2.5.5) */
+@media (max-width: 767px) {
+  header a:not(.btn):not(.hidden):not([class*="hidden"]),
+  footer nav a:not(.hidden):not([class*="hidden"]),
+  nav[aria-label="本页目录"] a,
+  #menu-btn, .tab {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  footer nav a:not(.hidden):not([class*="hidden"]) { padding: 0 .5rem; }
+  #menu-btn { width: 44px; height: 44px; }
+  .tab { height: 44px; }
+  #search-clear { width: 44px !important; height: 44px !important; }
+}</style><script>document.documentElement.classList.add('js');</script></head><body class="font-sans text-foreground antialiased"><div class="mesh-bg" aria-hidden="true"></div><div class="noise-bg" aria-hidden="true"></div><div id="reading-progress" aria-hidden="true"></div><a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-card focus:px-4 focus:py-2 focus:rounded-md">跳到主要内容</a><!-- ===================== 导航（毛玻璃） ===================== --><header class="fixed top-0 inset-x-0 z-50 border-b border-border bg-background/85 backdrop-blur-md"><div class="mx-auto max-w-6xl px-4 sm:px-6"><div><nav class="flex items-center justify-between h-16" aria-label="主导航"><a href="index.html" class="font-bold text-lg tracking-tight">潘伟君</a><div class="hidden md:flex items-center gap-7 text-[15px] text-muted-foreground"><a href="index.html#about" class="hover:text-foreground transition-colors duration-200">关于我</a><a href="index.html#method" class="hover:text-foreground transition-colors duration-200">专注领域</a><a href="index.html#articles" class="text-foreground font-medium transition-colors duration-200">最新文章</a></div><div class="flex items-center gap-3"><a href="#download" class="btn btn-primary js-download hidden sm:inline-flex">下载 App</a><button id="menu-btn" class="btn btn-ghost btn-icon md:hidden" aria-label="打开菜单" aria-expanded="false"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></nav><div id="mobile-menu" class="hidden md:hidden border-t border-border px-4 py-3"><nav aria-label="移动菜单"><a href="index.html#about" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">关于我</a><a href="index.html#method" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">专注领域</a><a href="index.html#articles" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">最新文章</a><a href="#download" class="mobile-link js-download rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors md:hidden">下载 App</a></nav></div></div></div></div></header><main id="main" class="pt-20 sm:pt-24"><header class="border-b border-border"><div class="mx-auto max-w-3xl px-4 sm:px-6 pt-10 pb-12 reveal"><a href="articles.html" class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>返回文章列表</a><p class="mt-8 text-sm font-medium text-primary">研究报告 · 算电概念</p><h1 class="mt-3 text-3xl sm:text-4xl lg:text-[2.75rem] font-black leading-[1.2] tracking-tight text-balance">算力扩张的尽头 是电力</h1><p class="mt-5 text-lg text-muted-foreground leading-[1.7]">2026 年四季度 算电概念前瞻 算力与电力共振的第一波</p><div class="mt-7 flex items-center gap-3 text-sm text-muted-foreground"><span class="font-medium text-foreground">潘伟君</span><span aria-hidden="true">·</span><span class="tnum">2026-09-02</span><span aria-hidden="true">·</span><span class="tnum">12 分钟阅读</span></div></div></header><article class="prose"><div class="mx-auto max-w-3xl px-4 sm:px-6 py-14"><div class="space-y-8 text-[17px] leading-[1.75]">
+<section class="reveal"><p>这篇研报讲一个逻辑:<span class="font-semibold text-foreground">算力的尽头是电力</span>。数据中心要用电 芯片要用电 散热要用电 算力越扩张 电力缺口越大。2026 年四季度 这条链上的公司 值得提前看。</p><p>所有数据取自 2026-08-28 收盘 真实行情 非模拟。本文只做产业逻辑与数据梳理 不构成买卖建议。</p></section>
+<section class="reveal"><h2 class="text-2xl font-bold">01 为什么是四季度</h2><p>四季度的特殊性在于<span class="font-semibold text-foreground">需求端的三重共振</span>:一是冬季用电高峰 全社会用电量环比上行;二是 AI 训练集群集中交付 数据中心负载率提升;三是年底是电力市场化交易的集中签约窗口 电价预期先行。</p><p>从盘面上看 2026 年市场结构已经给出信号:上证在 3950 附近高位震荡 科创50 年内涨超两成 但创业板 60 日跌逾 16% 板块分化剧烈。资金在高位横盘期 往往从拥挤方向流向有产业逻辑的补涨方向 算电是四季度产业逻辑最顺的方向之一。</p></section>
+<section class="reveal"><h2 class="text-2xl font-bold">02 算力侧 · 谁在数据中心链上</h2><p>算力侧看的是数据中心基础设施与算力运营。下面 6 只 按流通市值从小到大排列 数据为 2026-08-28 收盘:</p><div class="card overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b border-border text-left text-muted-foreground"><th class="px-3 py-3 font-medium whitespace-nowrap">代码</th><th class="px-3 py-3 font-medium">名称</th><th class="px-3 py-3 font-medium">现价</th><th class="px-3 py-3 font-medium">市值</th><th class="px-3 py-3 font-medium">PE</th><th class="px-3 py-3 font-medium">PB</th><th class="px-3 py-3 font-medium">60日</th><th class="px-3 py-3 font-medium">年内</th><th class="px-3 py-3 font-medium">题材归属</th></tr></thead><tbody><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">300052</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">中青宝</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">10.58</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">28亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-46.9</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">8.41</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-2.6%</td><td class="px-3 py-3 tnum text-muted-foreground">-15.8%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">东数西算</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">数据中心</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">算力概念</span></div></td></tr><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">002771</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">真视通</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">13.20</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">28亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-55.4</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">4.77</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-18.8%</td><td class="px-3 py-3 tnum text-muted-foreground">-12.8%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">数据中心</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">算力概念</span></div></td></tr><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">300603</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">立昂技术</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">7.90</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">37亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-37.5</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">2.95</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-12.4%</td><td class="px-3 py-3 tnum text-muted-foreground">-18.7%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">东数西算</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">数据中心</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">算力概念</span></div></td></tr><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">300231</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">银信科技</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">8.38</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">37亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">109.0</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">2.34</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-6.3%</td><td class="px-3 py-3 tnum text-muted-foreground">-19.3%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">数据中心</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">算力概念</span></div></td></tr><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">300608</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">思特奇</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">9.94</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">35亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-16.9</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">2.39</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-14.6%</td><td class="px-3 py-3 tnum text-muted-foreground">-10.2%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">数据中心</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">算力概念</span></div></td></tr><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">002313</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">日海智能</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">8.44</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">32亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">109.2</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">36.71</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-4.0%</td><td class="px-3 py-3 tnum text-muted-foreground">-17.2%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">央国企改革</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">数据中心</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">算力概念</span></div></td></tr></tbody></table></div><p class="mt-3 text-sm text-muted-foreground">筛选口径:算力/数据中心/东数西算概念成分 剔除 ST 市值 100 亿以内。</p><p>这些公司体量都不大 弹性足 但业绩兑现度差异大。算力运营类看的是在手订单与上架率 设备类看的是中标与交付节奏 买之前先把公司主营读一遍。</p></section>
+<section class="reveal"><h2 class="text-2xl font-bold">03 电力侧 · 绿电与电网设备</h2><p>电力侧看两个方向:一是<span class="font-semibold text-foreground">绿电运营商</span> 直接受益于数据中心绿电采购;二是<span class="font-semibold text-foreground">电网设备</span> 受益于电网投资与配网改造。下面 11 只同样为真实收盘数据:</p><div class="card overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b border-border text-left text-muted-foreground"><th class="px-3 py-3 font-medium whitespace-nowrap">代码</th><th class="px-3 py-3 font-medium">名称</th><th class="px-3 py-3 font-medium">现价</th><th class="px-3 py-3 font-medium">市值</th><th class="px-3 py-3 font-medium">PE</th><th class="px-3 py-3 font-medium">PB</th><th class="px-3 py-3 font-medium">60日</th><th class="px-3 py-3 font-medium">年内</th><th class="px-3 py-3 font-medium">题材归属</th></tr></thead><tbody><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">300040</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">九洲集团</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">5.78</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">37亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">79.6</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">1.43</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-25.2%</td><td class="px-3 py-3 tnum text-muted-foreground">-3.7%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">储能概念</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">数据中心</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">绿色电力</span></div></td></tr><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">000531</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">穗恒运Ａ</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">5.72</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">60亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">12.3</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">0.86</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-25.1%</td><td class="px-3 py-3 tnum text-muted-foreground">-10.1%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">储能概念</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">央国企改革</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">氢能源</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">绿色电力</span></div></td></tr><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">600310</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">广西能源</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">4.31</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">63亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">25.4</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">2.23</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-31.1%</td><td class="px-3 py-3 tnum text-muted-foreground">14.0%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">储能概念</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">央国企改革</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">绿色电力</span></div></td></tr><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">000993</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">闽东电力</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">9.92</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">45亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">77.2</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">1.80</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-31.2%</td><td class="px-3 py-3 tnum text-muted-foreground">-15.9%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">央国企改革</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">绿色电力</span></div></td></tr><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">600101</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">明星电力</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">7.90</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">43亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">40.8</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">1.40</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-24.2%</td><td class="px-3 py-3 tnum text-muted-foreground">-13.6%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">央国企改革</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">绿色电力</span></div></td></tr><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">000862</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">银星能源</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">5.29</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">49亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">22.2</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">1.10</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-26.9%</td><td class="px-3 py-3 tnum text-muted-foreground">-9.4%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">央国企改革</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">绿色电力</span></div></td></tr><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">600982</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">宁波能源</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">4.91</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">55亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">17.3</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">1.23</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-27.0%</td><td class="px-3 py-3 tnum text-muted-foreground">17.8%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">央国企改革</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">绿色电力</span></div></td></tr><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">002334</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">英威腾</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">6.72</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">55亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">209.6</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">1.80</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-29.0%</td><td class="px-3 py-3 tnum text-muted-foreground">-25.0%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">储能概念</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">数据中心</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">氢能源</span></div></td></tr><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">300444</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">双杰电气</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">9.26</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">75亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">15.9</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">3.66</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-32.3%</td><td class="px-3 py-3 tnum text-muted-foreground">-3.2%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">储能概念</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">数据中心</span></div></td></tr><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">002560</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">通达股份</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">6.13</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">45亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">86.3</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">1.68</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-29.5%</td><td class="px-3 py-3 tnum text-muted-foreground">-14.2%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">储能概念</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">特高压</span></div></td></tr><tr class="border-b border-border last:border-0"><td class="px-3 py-3 whitespace-nowrap font-medium text-foreground tnum">688597</td><td class="px-3 py-3 whitespace-nowrap font-semibold text-foreground">煜邦电力</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">6.51</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">22亿</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-24.7</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">2.88</td><td class="px-3 py-3 whitespace-nowrap tnum text-muted-foreground">-30.4%</td><td class="px-3 py-3 tnum text-muted-foreground">-20.7%</td><td class="px-3 py-3"><div class="flex flex-wrap gap-1 max-w-[260px]"><span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">储能概念</span> <span class="rounded-full border border-border px-2 py-0.5 text-[12px] text-muted-foreground whitespace-nowrap">特高压</span></div></td></tr></tbody></table></div><p class="mt-3 text-sm text-muted-foreground">筛选口径:绿色电力/储能/特高压概念成分 剔除 ST 市值 100 亿以内。</p><p>电力股的看点是<span class="font-semibold text-foreground">确定性</span>:电价的稳定性 + 绿电的配额需求 + 算力园的配套供电。这类票不会一天涨完 适合波段思路 按扶摇九天或趋势猎龙的信号分批介入。</p></section>
+<section class="reveal"><h2 class="text-2xl font-bold">04 算电共振 · 同一只票 两条逻辑</h2><p>真正的算电股 是<span class="font-semibold text-foreground">一只票同时踩在算力与电力两条链上</span>。比如做储能+数据中心配套的 或做电网设备+算力电源的。这类标的在产业逻辑上最顺:算力扩张 → 用电增长 → 配套电力设施 → 设备与运营商同步受益。</p><p>操作层面 四季度关注三个信号:一是冬季用电数据发布 环比上行确认;二是数据中心集群投运公告 上架率爬坡;三是电力交易签约 电价落实。三者任一兑现 都是板块催化。</p><div class="card p-5 sm:p-6 border-primary/25"><p class="font-semibold text-foreground">一句话总结</p><p class="mt-2 text-muted-foreground leading-[1.7]">算电概念的核心不是炒题材 是赌四季度用电数据。数据兑现前 是布局期;数据兑现后 是兑现期。别在数据落地后才追。</p></div></section>
+<section class="reveal"><div class="card p-6 sm:p-8 border-primary/25"><p class="text-sm font-medium text-primary">延伸阅读</p><h2 class="mt-2 text-2xl font-bold">把选股流程跑完整</h2><p class="mt-3 text-muted-foreground leading-[1.7]">这份名单怎么用 配合九套指标体系 从竞价选强到启动点定位 一套流程全跑通。</p><div class="mt-6 flex flex-wrap gap-3"><a href="indicators.html" class="btn btn-primary px-5 py-3 h-auto">指标武器库</a><a href="research-7.html" class="btn btn-outline px-5 py-3 h-auto">下一篇 · 重组预期名单</a><a href="#download" class="btn btn-outline px-5 py-3 h-auto js-download">下载通跃 App</a></div></div></section>
+</div></div></article><div class="border-t border-border"><div class="mx-auto max-w-3xl px-4 sm:px-6 py-10"><div class="grid sm:grid-cols-2 gap-6"><a href="research-5.html" class="group flex items-start gap-3"><svg class="w-4 h-4 mt-1 shrink-0 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg><span><span class="block text-sm text-muted-foreground">上一篇</span><span class="mt-1 block font-medium hover:text-primary transition-colors duration-200">研究 · 下一篇</span></span></a><a href="research-7.html" class="group flex items-start gap-3 sm:justify-end sm:text-right"><svg class="w-4 h-4 mt-1 shrink-0 text-muted-foreground sm:order-last" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg><span><span class="block text-sm text-muted-foreground">下一篇</span><span class="mt-1 block font-medium hover:text-primary transition-colors duration-200">概念重组预期名单</span></span></a></div></div></div></main><section id="download" class="mx-auto max-w-6xl px-4 sm:px-6 mt-20 sm:mt-28"><div class="card overflow-hidden reveal"><div class="px-6 sm:px-12 lg:px-20 py-14 sm:py-20"><div class="inline-flex items-center gap-2 w-fit mx-auto text-primary"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg><span class="text-sm font-medium tracking-[0.1em]">通跃 App</span></div><h2 class="mx-auto mt-5 max-w-2xl text-center text-3xl sm:text-4xl font-black tracking-tight leading-[1.15] text-balance">把买卖点讲透 再让你下单</h2><p class="mx-auto mt-4 max-w-xl text-center text-muted-foreground leading-[1.7]">每天盘前一份作战计划 盘中触线即时提醒 盘后逐笔复盘 先看懂 再执行 结果自然来</p><div class="mt-10 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-3"><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">01</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘前作战计划</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">今日关注标的与关键价位 开盘前送达 开盘不慌</p></div><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">02</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘中止损提醒</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">触线即提醒 管住手 不扛单 先学会亏得少</p></div><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">03</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘后逐笔复盘</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">每笔交易拆解逻辑 看懂了再下手 不再凭感觉</p></div></div><div class="mt-9 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[15px] text-foreground"><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>每日实盘思路</span><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>逐笔复盘讲解</span><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>加密群聊答疑</span></div><div class="mt-10 flex justify-center"><a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="btn btn-primary js-download px-8 py-3.5 h-auto text-base">立即下载 App<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a></div><p class="mt-4 text-center text-sm text-muted-foreground">自动识别苹果 / 安卓 一键直达 安卓包约 172MB 微信内打不开 请用系统浏览器打开</p><p class="mt-3 text-center text-xs text-muted-foreground">没反应<a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="underline decoration-border underline-offset-4 transition-colors duration-200 hover:text-primary">去 App Store</a><span aria-hidden="true">/</span><a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" target="_blank" rel="noopener" class="underline decoration-border underline-offset-4 transition-colors duration-200 hover:text-primary">APK 直链</a></p><div class="mt-5 flex flex-wrap items-center justify-center gap-3"><a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="store-badge" aria-label="苹果下载"><svg class="w-6 h-6" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span class="text-[15px] font-semibold">苹果下载</span></a><a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" target="_blank" rel="noopener" class="store-badge" aria-label="安卓下载"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.523 15.341a.987.987 0 0 1-.988-.988.987.987 0 0 1 .988-.988.987.987 0 0 1 .988.988.987.987 0 0 1-.988.988zm-11.046 0a.987.987 0 0 1-.988-.988.987.987 0 0 1 .988-.988.987.987 0 0 1 .988.988.987.987 0 0 1-.988.988zM17.173 7.644l1.696-2.938a.462.462 0 0 0-.168-.632.462.462 0 0 0-.632.168l-1.718 2.976A11.727 11.727 0 0 0 12 6.008a11.727 11.727 0 0 0-4.351.81L5.931 4.242a.462.462 0 0 0-.632-.168.462.462 0 0 0-.168.632l1.696 2.938C4.266 9.18 2.5 11.795 2.5 14.793c0 3.45 4.253 6.25 9.5 6.25s9.5-2.8 9.5-6.25c0-2.998-1.766-5.613-4.327-7.149zM12 19.565c-4.572 0-8.048-2.227-8.048-4.772 0-2.544 3.476-4.772 8.048-4.772s8.048 2.228 8.048 4.772c0 2.545-3.476 4.772-8.048 4.772z"/></svg><span class="text-[15px] font-semibold">安卓下载</span></a></div><p class="mt-4 text-center text-xs text-muted-foreground">免费下载 · 进群一起实战</p></div></div></section></main><!-- ===================== 页脚 ===================== --><footer class="border-t border-border"><div class="mx-auto max-w-6xl px-4 sm:px-6 py-8"><div class="flex flex-col sm:flex-row items-center justify-between gap-4"><a href="index.html" class="font-bold">潘伟君</a><nav class="flex flex-wrap items-center gap-6 text-sm text-muted-foreground" aria-label="页脚导航"><a href="index.html#about" class="hover:text-foreground transition-colors duration-200">关于我</a><a href="index.html#method" class="hover:text-foreground transition-colors duration-200">专注领域</a><a href="index.html#articles" class="hover:text-foreground transition-colors duration-200">最新文章</a><a href="#download" class="hover:text-foreground transition-colors duration-200">下载 App</a></nav><p class="text-sm text-muted-foreground">© 2026 潘伟君 · 保留所有权利</p></div><p class="mt-5 text-center text-xs text-muted-foreground">本网站内容仅供信息交流与学习 不构成任何投资建议 市场有风险 投资需谨慎</p></div></footer><button id="back-top" class="hidden btn btn-secondary w-11 h-11 p-0 rounded-full justify-center" aria-label="回到顶部"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button><!-- ===================== Toast 容器 ===================== --><div class="toast-container" id="toast-container" aria-live="polite"></div><script>
+ // ===== 移动端菜单 =====
+ (function () {
+ const btn = document.getElementById('menu-btn');
+ const menu = document.getElementById('mobile-menu');
+ if (!btn || !menu) return;
+ function closeMenu(restoreFocus) {
+ menu.classList.add('hidden');
+ btn.setAttribute('aria-expanded', 'false');
+ if (restoreFocus) btn.focus();
+ }
+ btn.addEventListener('click', function () {
+ const open = menu.classList.toggle('hidden') === false;
+ btn.setAttribute('aria-expanded', String(open));
+ // 打开时焦点移入菜单 方便键盘用户直接导航
+ if (open) {
+ const first = menu.querySelector('a');
+ if (first) first.focus();
+ }
+ });
+ menu.querySelectorAll('.mobile-link').forEach(function (a) {
+ a.addEventListener('click', function () {
+ closeMenu(false);
+ });
+ });
+ // Esc 关闭菜单并归还焦点到按钮
+ document.addEventListener('keydown', function (e) {
+ if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+ closeMenu(true);
+ }
+ });
+ })();
+
+ // ===== Toast 系统 =====
+ const Toast = (function () {
+ const container = document.getElementById('toast-container');
+ const icons = {
+ success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
+ error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>',
+ default: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>',
+ };
+ const colors = {
+ success: 'hsl(var(--success))',
+ error: 'hsl(var(--destructive))',
+ default: 'hsl(var(--primary))',
+ };
+ function show(message, type) {
+ type = type || 'default';
+ const el = document.createElement('div');
+ el.className = 'toast';
+ el.innerHTML =
+ '<span class="toast-icon" style="color:' + colors[type] + '">' + icons[type] + '</span>' +
+ '<div class="flex-1 text-sm leading-[1.6] pt-0.5">' + message + '</div>' +
+ '<button class="toast-close text-muted-foreground hover:text-foreground transition-colors" aria-label="关闭" style="background:none;border:none;cursor:pointer;margin-top:2px"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>';
+ container.appendChild(el);
+ const remove = function () {
+ el.classList.add('leaving');
+ setTimeout(function () { el.remove(); }, 200);
+ };
+ el.querySelector('.toast-close').addEventListener('click', remove);
+ setTimeout(remove, 4000);
+ }
+ return { show: show };
+ })();
+
+ // 下载按钮已改为直接跳转（App Store / 安卓 APK） 无需 JS 脚本
+
+ // ===== 入场动效 =====
+ (function () {
+ const revealEls = document.querySelectorAll('.reveal');
+ if (!('IntersectionObserver' in window)) {
+ revealEls.forEach(function (el) { el.classList.add('in'); });
+ return;
+ }
+ const io = new IntersectionObserver(function (entries) {
+ entries.forEach(function (e) {
+ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+ });
+ }, { threshold: 0, rootMargin: '0px 0px -10px 0px' });
+ revealEls.forEach(function (el) { io.observe(el); });
+ })();
+ // ===== 智能下载 自动识别平台 =====
+ // iOS 用 itms-apps 协议即时唤起 App Store 3 秒未唤起则回落 App Store 网页
+ // 安卓 直接下载 APK 安装包（国内安卓标准方式）
+ // 微信内 无法直接下载 提示用系统浏览器打开
+ // 桌面 无法安装 滚动到下载模块并提示在手机上打开
+ (function () {
+ var APPLE = 'https://apps.apple.com/cn/app/id6789065192';
+ var APPLE_APP = 'itms-apps://apps.apple.com/cn/app/id6789065192';
+ var APK = 'https://www.tongyuesyt.com/predownload/tongyuesyt.apk';
+ var ua = navigator.userAgent;
+ var isWechat = /MicroMessenger/i.test(ua);
+ var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+ var isAndroid = /Android/.test(ua);
+ var iosFallback = null;
+ // App Store 唤起后页面隐藏 清理回落定时器 避免来回跳
+ document.addEventListener('visibilitychange', function () {
+ if (iosFallback) { clearTimeout(iosFallback); iosFallback = null; }
+ });
+ function scrollToDownload() {
+ var d = document.getElementById('download');
+ if (d) d.scrollIntoView({ behavior: 'smooth', block: 'start' });
+ }
+ function lockBtn(el) {
+  el.classList.add('btn-loading');
+  el.setAttribute('disabled', 'disabled');
+  setTimeout(function () {
+   el.classList.remove('btn-loading');
+   el.removeAttribute('disabled');
+  }, 2500);
+ }
+ document.querySelectorAll('.js-download').forEach(function (el) {
+ el.addEventListener('click', function (e) {
+ e.preventDefault();
+ lockBtn(el);
+ if (isWechat) {
+ Toast.show('微信内无法下载 请点右上角「在浏览器打开」');
+ return;
+ }
+ if (isAndroid) {
+ window.location.href = APK;
+ Toast.show('已开始下载 约 172MB 建议 WiFi 下进行');
+ } else if (isIOS) {
+ Toast.show('即将前往 App Store');
+ iosFallback = setTimeout(function () {
+ if (!document.hidden) { window.location.href = APPLE; }
+ iosFallback = null;
+ }, 3000);
+ window.location.href = APPLE_APP;
+ } else {
+ Toast.show('请在手机上打开本页下载 App');
+ scrollToDownload();
+ }
+ });
+ });
+ })();
+
+ // ===== 阅读进度条 + 回到顶部 =====
+ (function () {
+ var bar = document.getElementById('reading-progress');
+ if (bar) {
+ var ticking = false;
+ var update = function () {
+ var max = document.documentElement.scrollHeight - window.innerHeight;
+ bar.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
+ ticking = false;
+ };
+ window.addEventListener('scroll', function () {
+ if (!ticking) { ticking = true; requestAnimationFrame(update); }
+ }, { passive: true });
+ window.addEventListener('resize', update, { passive: true });
+ update();
+ }
+ var topBtn = document.getElementById('back-top');
+ if (topBtn) {
+ var toggle = function () { topBtn.classList.toggle('hidden', window.scrollY < 600); };
+ window.addEventListener('scroll', toggle, { passive: true });
+ topBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+ toggle();
+ }
+ })();
+
+</script>  /* reveal 兜底: 快速滚动/锚点跳转/刷新恢复滚动位置时 IO 可能漏触发,
+     元素顶部一旦进入过视口即强制显示, 防止内容永久透明 */
+  (function () {
+    var els = document.querySelectorAll('.reveal:not(.in)');
+    function scan() {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (!el.classList.contains('in') && el.getBoundingClientRect().top < vh) {
+          el.classList.add('in');
+        }
+      }
+    }
+    window.addEventListener('scroll', scan, { passive: true });
+    window.addEventListener('resize', scan, { passive: true });
+    setTimeout(scan, 300);
+    setTimeout(scan, 1000);
+    scan();
+  })();
+
+</body></html>
