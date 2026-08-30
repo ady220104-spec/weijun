@@ -9,7 +9,21 @@
   }
   html { scrollbar-gutter: stable; }
   body { font-family: "PingFang SC","Microsoft YaHei","Source Han Sans SC",system-ui,-apple-system,sans-serif; }
-  /* 暗色 hero 基底 */
+  /* ===================== 背景层次 ===================== */
+.mesh-bg {
+  position: fixed; inset: 0; z-index: -2; pointer-events: none;
+  background:
+    radial-gradient(1100px 600px at 15% -10%, rgba(216, 197, 170, 0.16) 0%, rgba(216, 197, 170, 0) 60%),
+    radial-gradient(900px 520px at 88% 2%, rgba(226, 178, 145, 0.10) 0%, rgba(226, 178, 145, 0) 55%),
+    radial-gradient(1000px 700px at 50% 116%, rgba(210, 195, 175, 0.12) 0%, rgba(210, 195, 175, 0) 60%);
+  }
+.noise-bg {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  }
+/* 暗色 hero 基底 */
   .hero-bg {
     background:
       radial-gradient(1100px 500px at 78% -10%, rgba(0,102,204,.08), transparent 60%),
@@ -63,8 +77,8 @@
   .btn-ghost-dark { border: 1px solid rgba(255,255,255,.22); }
   .btn-ghost-dark:hover { border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.06); transform: translateY(-2px); }
   /* 滚动显现 */
-  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); }
-  .reveal.in { opacity: 1; transform: none; }
+  html.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); }
+  html.js .reveal.in { opacity: 1; transform: none; }
   /* 卡片 hover */
   .lift { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
   .lift:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -20px rgba(20,15,10,.18); border-color: hsl(211 100% 88%); }
@@ -92,7 +106,7 @@
   #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-    .reveal { opacity: 1; transform: none; }
+    html.js .reveal { opacity: 1; transform: none; }
     .reveal-inline { opacity: 1 !important; transform: none !important; }
     .word-char { opacity: 1 !important; transform: none !important; }
     .glow, .scroll-hint { display: none; }
@@ -113,7 +127,7 @@
     .tab { height: 44px; }
     #search-clear { width: 44px !important; height: 44px !important; }
   }
-</style></head><body class="bg-[hsl(var(--background))] text-[hsl(var(--foreground))] antialiased selection:bg-[hsl(var(--primary))] selection:text-white"><!-- ============ 导航 ============ --><header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"><div class="absolute top-0 left-0 right-0 h-[2px] bg-black/10"><div id="progress" class="h-full bg-[hsl(var(--primary))]"></div></div><div id="nav-inner" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><div class="flex h-16 items-center justify-between"><a href="#top" class="flex items-center gap-2.5 cursor-pointer group" aria-label="潘伟君 回到顶部"><span class="grid h-9 w-9 place-items-center rounded-xl bg-[hsl(var(--primary))] text-white text-sm font-bold shadow-lg shadow-[hsl(211_100%_40%/0.3)] transition-transform duration-300 group-hover:scale-105">潘</span><span class="text-[15px] font-semibold tracking-wide">潘伟君</span></a><nav class="hidden md:flex items-center gap-8 text-[14px] font-medium text-black/65" aria-label="主导航"><a href="#articles" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">文章</a><a href="#method" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">方法论</a><a href="#results" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">战绩</a><a href="#about" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">关于</a></nav><div class="flex items-center gap-3"><a href="#download" class="hidden sm:inline-flex btn-primary text-white text-[14px] font-semibold px-5 py-2.5 rounded-full cursor-pointer">下载 App</a><button id="menu-btn" class="md:hidden grid h-10 w-10 place-items-center rounded-lg border border-black/10 cursor-pointer hover:bg-black/5 transition-colors duration-200" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开菜单"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></div></div><!-- 移动菜单 --><div id="mobile-menu" class="mobile-menu md:hidden mx-4 mt-1 rounded-2xl border border-black/10 bg-white/95 backdrop-blur-xl shadow-2xl shadow-black/10 overflow-hidden" role="region" aria-label="移动菜单"><nav class="flex flex-col p-3 text-[15px] font-medium" aria-label="移动导航"><a href="#articles" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">文章</a><a href="#method" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">方法论</a><a href="#results" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">战绩</a><a href="#about" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">关于</a><a href="#download" class="mt-1 btn-primary text-white text-center font-semibold px-4 py-3 rounded-xl cursor-pointer">下载 App</a></nav></div></header><main id="top"><!-- ============ HERO ============ --><section class="hero-bg relative overflow-hidden"><div id="hero-glow" class="glow opacity-0" aria-hidden="true"></div><div class="hero-grid-dark absolute inset-0" aria-hidden="true"></div><!-- K 线漂移动态背景 --><svg class="kline absolute inset-x-0 top-[30%] h-[420px] w-full" viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true">
+</style><script>document.documentElement.classList.add('js');</script></head><body class="bg-[hsl(var(--background))] text-[hsl(var(--foreground))] antialiased selection:bg-[hsl(var(--primary))] selection:text-white"><div class="mesh-bg" aria-hidden="true"></div><div class="noise-bg" aria-hidden="true"></div><!-- ============ 导航 ============ --><header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"><div class="absolute top-0 left-0 right-0 h-[2px] bg-black/10"><div id="progress" class="h-full bg-[hsl(var(--primary))]"></div></div><div id="nav-inner" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><div class="flex h-16 items-center justify-between"><a href="#top" class="flex items-center gap-2.5 cursor-pointer group" aria-label="潘伟君 回到顶部"><span class="grid h-9 w-9 place-items-center rounded-xl bg-[hsl(var(--primary))] text-white text-sm font-bold shadow-lg shadow-[hsl(211_100%_40%/0.3)] transition-transform duration-300 group-hover:scale-105">潘</span><span class="text-[15px] font-semibold tracking-wide">潘伟君</span></a><nav class="hidden md:flex items-center gap-8 text-[14px] font-medium text-black/65" aria-label="主导航"><a href="#articles" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">文章</a><a href="#method" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">方法论</a><a href="#results" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">战绩</a><a href="#about" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">关于</a></nav><div class="flex items-center gap-3"><a href="#download" class="hidden sm:inline-flex btn-primary text-white text-[14px] font-semibold px-5 py-2.5 rounded-full cursor-pointer">下载 App</a><button id="menu-btn" class="md:hidden grid h-10 w-10 place-items-center rounded-lg border border-black/10 cursor-pointer hover:bg-black/5 transition-colors duration-200" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开菜单"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></div></div><!-- 移动菜单 --><div id="mobile-menu" class="mobile-menu md:hidden mx-4 mt-1 rounded-2xl border border-black/10 bg-white/95 backdrop-blur-xl shadow-2xl shadow-black/10 overflow-hidden" role="region" aria-label="移动菜单"><nav class="flex flex-col p-3 text-[15px] font-medium" aria-label="移动导航"><a href="#articles" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">文章</a><a href="#method" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">方法论</a><a href="#results" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">战绩</a><a href="#about" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">关于</a><a href="#download" class="mt-1 btn-primary text-white text-center font-semibold px-4 py-3 rounded-xl cursor-pointer">下载 App</a></nav></div></header><main id="top"><!-- ============ HERO ============ --><section class="hero-bg relative overflow-hidden"><div id="hero-glow" class="glow opacity-0" aria-hidden="true"></div><div class="hero-grid-dark absolute inset-0" aria-hidden="true"></div><!-- K 线漂移动态背景 --><svg class="kline absolute inset-x-0 top-[30%] h-[420px] w-full" viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true">
     <defs>
       <linearGradient id="kl" x1="0" y1="0" x2="1" y2="0">
         <stop offset="0%" stop-color="#5aa0ff" stop-opacity="0"/>
