@@ -90,9 +90,9 @@
   .btn-ghost { border: 1px solid rgba(29,29,31,.22); transition: border-color .2s ease, background .2s ease, transform .2s ease; }
   .btn-ghost:hover { border-color: rgba(29,29,31,.5); background: rgba(29,29,31,.05); }
   .btn-ghost:active { transform: scale(0.97); }
-  .btn-ghost-dark { border: 1px solid rgba(255,255,255,.22); transition: border-color .2s ease, background .2s ease, transform .2s ease; }
-  .btn-ghost-dark:hover { border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.06); }
-  .btn-ghost-dark:active { transform: scale(0.97); }
+  .btn-ghost.btn-ghost-dark { color: rgba(255,255,255,.92); border: 1px solid rgba(255,255,255,.22); transition: border-color .2s ease, background .2s ease, transform .2s ease; }
+  .btn-ghost.btn-ghost-dark:hover { border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.06); }
+  .btn-ghost.btn-ghost-dark:active { transform: scale(0.97); }
   /* 滚动显现 */
   html.js .reveal { opacity: 0; }
   html.js .reveal.in { opacity: 1; animation: reveal-in .4s ease-out backwards; animation-delay: var(--d, 0ms); }
@@ -700,7 +700,8 @@
     });
   });
 })();
-</script>  /* reveal 兜底: 快速滚动/锚点跳转/刷新恢复滚动位置时 IO 可能漏触发,
+</script><script>
+/* reveal 兜底: 快速滚动/锚点跳转/刷新恢复滚动位置时 IO 可能漏触发,
      元素顶部一旦进入过视口即强制显示, 防止内容永久透明 */
   (function () {
     var els = document.querySelectorAll('.reveal:not(.in)');
@@ -720,4 +721,4 @@
     scan();
   })();
 
-</body></html>
+</script></body></html>
