@@ -1,0 +1,488 @@
+﻿﻿<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8" /><meta name="apple-itunes-app" content="app-id=6789065192" /><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%230066cc%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2752%27 text-anchor=%27middle%27 fill=%27%23ffffff%27 font-family=%27sans-serif%27 font-weight=%27bold%27%3E%E6%BD%98%3C/text%3E%3C/svg%3E" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>从A股历史10倍股“基因密码”中，我挖出了2026年5月这9只潜力黑马 | 潘伟君</title><meta name="description" content="十倍股不是涨出来的 是符合基因之后被资金选出来的 九个特征逐条对照" /><!-- Tailwind (本地, 中国用户可秒开) --><link rel="stylesheet" href="tailwind.css"><style>
+ /* ===================== Design Tokens ===================== */
+ :root {
+ color-scheme: light;
+ --background: 0 0% 100%;
+ --foreground: 240 3% 12%;
+ --card: 0 0% 100%;
+ --card-foreground: 240 3% 12%;
+ --primary: 211 100% 40%;
+ --primary-foreground: 0 0% 100%;
+ --secondary: 240 20% 97%;
+ --secondary-foreground: 240 3% 12%;
+ --muted: 240 20% 97%;
+ --muted-foreground: 240 2% 54%;
+ --accent: 240 20% 95%;
+ --accent-foreground: 240 3% 12%;
+ --destructive: 6 56% 50%;
+ --destructive-foreground: 0 0% 100%;
+ --success: 150 38% 38%;
+ --border: 240 12% 92%;
+ --input: 240 12% 92%;
+ --ring: 211 100% 40%;
+ --radius: 0.75rem;
+ --radius-sm: 0.5rem;
+ }
+
+ html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+ body {
+ background-color: hsl(var(--background));
+ color: hsl(var(--foreground));
+ -webkit-font-smoothing: antialiased;
+ text-rendering: optimizeLegibility;
+ }
+ .tnum { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+ :focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+
+ /* ===================== 背景层次 ===================== */
+ .mesh-bg {
+ position: fixed; inset: 0; z-index: -2; pointer-events: none;
+ background:
+ radial-gradient(1100px 600px at 15% -10%, rgba(216, 197, 170, 0.16) 0%, rgba(216, 197, 170, 0) 60%),
+ radial-gradient(900px 520px at 88% 2%, rgba(226, 178, 145, 0.10) 0%, rgba(226, 178, 145, 0) 55%),
+ radial-gradient(1000px 700px at 50% 116%, rgba(210, 195, 175, 0.12) 0%, rgba(210, 195, 175, 0) 60%);
+ }
+ .noise-bg {
+ position: fixed; inset: 0; z-index: -1; pointer-events: none;
+ opacity: 0.045;
+ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+ background-size: 160px 160px;
+ }
+
+ /* ===================== Card ===================== */
+ .card {
+ background: hsl(var(--card)); color: hsl(var(--card-foreground));
+ border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+ box-shadow: 0 1px 2px rgba(24, 24, 27, 0.03), 0 12px 32px -16px rgba(24, 24, 27, 0.08);
+ }
+
+ /* ===================== Button ===================== */
+ .btn {
+ display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+ height: 2.5rem; padding: 0 1rem; border-radius: var(--radius-sm);
+ font-size: .875rem; font-weight: 500; line-height: 1; white-space: nowrap;
+ border: 1px solid transparent; cursor: pointer; user-select: none;
+ transition: background-color .15s ease, color .15s ease, border-color .15s ease, opacity .15s ease, transform .1s ease;
+ }
+ .btn:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+ .btn:disabled { opacity: .5; pointer-events: none; }
+ .btn:active:not(:disabled) { transform: scale(.97); }
+ .btn svg { flex-shrink: 0; }
+
+ .btn-primary { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
+ .btn-primary:hover:not(:disabled) { background: hsl(var(--primary) / .9); }
+
+ .btn-secondary { background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); border-color: hsl(var(--border)); }
+ .btn-secondary:hover:not(:disabled) { background: hsl(var(--accent)); }
+
+ .btn-outline { background: transparent; color: hsl(var(--foreground)); border-color: hsl(var(--border)); }
+ .btn-outline:hover:not(:disabled) { background: hsl(var(--accent)); }
+
+ .btn-ghost { background: transparent; color: hsl(var(--foreground)); }
+ .btn-ghost:hover:not(:disabled) { background: hsl(var(--accent)); }
+
+ .btn-destructive { background: hsl(var(--destructive)); color: hsl(var(--destructive-foreground)); }
+ .btn-destructive:hover:not(:disabled) { background: hsl(var(--destructive) / .9); }
+
+ .btn-icon { padding: 0; width: 2.5rem; height: 2.5rem; }
+
+ /* 应用商店徽章 */
+ .store-badge {
+ display: inline-flex; align-items: center; gap: .625rem;
+ height: 3rem; padding: 0 1rem;
+ background: #1d1d1f; color: #fff; border-radius: var(--radius-sm);
+ border: 1px solid #1d1d1f; cursor: pointer; text-decoration: none;
+ transition: background-color .15s ease, opacity .15s ease, transform .1s ease;
+ }
+ .store-badge:hover { background: #000; }
+ .store-badge:active { transform: scale(.97); }
+
+ .spinner {
+ width: 1rem; height: 1rem; border-radius: 50%;
+ border: 2px solid currentColor; border-top-color: transparent;
+ animation: spin .6s linear infinite;
+ }
+ @keyframes spin { to { transform: rotate(360deg); } }
+ /* 按钮加载态（防连点 + spinner 反馈） */
+ .btn { position: relative; }
+ .btn-loading { pointer-events: none; opacity: .9; }
+ .btn-loading > * { visibility: hidden; }
+ .btn-loading::after {
+ content: ''; position: absolute; top: 50%; left: 50%;
+ width: 1rem; height: 1rem; margin: -.5rem 0 0 -.5rem;
+ border-radius: 50%;
+ border: 2px solid currentColor; border-top-color: transparent;
+ animation: spin .6s linear infinite;
+ }
+
+
+ /* ===================== Input ===================== */
+ .input {
+ height: 2.5rem; width: 100%; padding: 0 .75rem;
+ border-radius: var(--radius-sm); border: 1px solid hsl(var(--input));
+ background: hsl(var(--card)); color: hsl(var(--foreground));
+ font-size: .875rem; transition: border-color .15s ease, box-shadow .15s ease;
+ }
+ .input::placeholder { color: hsl(var(--muted-foreground) / .7); }
+ .input:focus { outline: none; border-color: hsl(var(--ring)); box-shadow: 0 0 0 3px hsl(var(--ring) / .15); }
+ .input:disabled { opacity: .5; cursor: not-allowed; }
+ .input[aria-invalid="true"] { border-color: hsl(var(--destructive)); }
+ .input[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px hsl(var(--destructive) / .15); }
+
+ /* ===================== Toast ===================== */
+ .toast-container {
+ position: fixed; bottom: 1rem; right: 1rem; z-index: 200;
+ display: flex; flex-direction: column; gap: .5rem; max-width: calc(100vw - 2rem);
+ }
+ .toast {
+ display: flex; align-items: flex-start; gap: .75rem;
+ background: hsl(var(--card)); border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+ padding: .875rem 1rem; box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.16); width: 22rem; max-width: 100%;
+ animation: toast-in .25s cubic-bezier(.22,.61,.36,1);
+ }
+ .toast.leaving { animation: toast-out .2s ease forwards; }
+ .toast-icon { display: grid; place-items: center; width: 1.25rem; height: 1.25rem; flex-shrink: 0; margin-top: .125rem; }
+ @keyframes toast-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+ @keyframes toast-out { to { opacity: 0; transform: translateY(10px); } }
+
+ /* ===================== 毛玻璃（局部） ===================== */
+ .glass {
+ background: rgba(250, 249, 247, 0.88);
+ backdrop-filter: blur(14px) saturate(120%);
+ -webkit-backdrop-filter: blur(14px) saturate(120%);
+ }
+
+ /* ===================== 正文排版 ===================== */
+ .prose p { color: hsl(var(--foreground) / .88); }
+ .prose a { color: hsl(var(--primary)); }
+ .prose a:hover { color: hsl(var(--foreground)); }
+
+ /* ===================== 入场动效 ===================== */
+ html.js .reveal { opacity: 0; }
+ html.js .reveal.in {
+ opacity: 1;
+ animation: reveal-in .4s cubic-bezier(.22,.61,.36,1) backwards;
+ animation-delay: var(--d, 0ms);
+ }
+ @keyframes reveal-in {
+ from { opacity: 0; transform: translateY(20px); }
+ to { opacity: 1; transform: translateY(0); }
+ }
+
+ /* ===== 编辑杂志 衬线标题 + 珊瑚引语 + 衬线品牌 + 暖色徽章 ===== */
+ h1, h2, h3 {
+ font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "STSong", "SimSun", serif;
+ letter-spacing: .01em !important;
+ line-height: 1.28 !important;
+ }
+ header nav > a:first-child { font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "STSong", "SimSun", serif; letter-spacing: .02em; }
+ p.text-primary { letter-spacing: .1em; }
+ blockquote { border-left-color: hsl(var(--primary) / 0.55) !important; }
+ .btn-primary:hover:not(:disabled) { background: #0077ed; }
+ .store-badge { background: #1d1d1f !important; border-color: #1d1d1f !important; }
+ .store-badge:hover { background: #000000 !important; }
+
+ /* ===================== 阅读进度条 + 回到顶部 ===================== */
+ #reading-progress {
+ position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+ height: 2px; background: hsl(var(--primary));
+ transform-origin: 0 0; transform: scaleX(0);
+ pointer-events: none;
+ }
+ #back-top {
+ position: fixed; bottom: 5rem; right: 1rem; z-index: 90;
+ box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.18);
+ }
+ @media (max-width: 640px) { #back-top { bottom: 4.5rem; right: .75rem; } }
+
+
+ @media (prefers-reduced-motion: reduce) {
+ html { scroll-behavior: auto; }
+ html.js .reveal { opacity: 1; animation: none; }
+ .btn:active { transform: none; }
+ .spinner { animation: none; } .btn-loading::after { animation: none !important; }
+ * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+ }
+
+/* 移动端触控目标优化: 核心交互 ≥44px (WCAG 2.5.5) */
+@media (max-width: 767px) {
+  header a:not(.btn):not(.hidden):not([class*="hidden"]),
+  footer nav a:not(.hidden):not([class*="hidden"]),
+  nav[aria-label="本页目录"] a,
+  #menu-btn, .tab {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  footer nav a:not(.hidden):not([class*="hidden"]) { padding: 0 .5rem; }
+  #menu-btn { width: 44px; height: 44px; }
+  .tab { height: 44px; }
+  #search-clear { width: 44px !important; height: 44px !important; }
+}</style><script>document.documentElement.classList.add('js');</script></head><body class="font-sans text-foreground antialiased"><div class="mesh-bg" aria-hidden="true"></div><div class="noise-bg" aria-hidden="true"></div><div id="reading-progress" aria-hidden="true"></div><a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-card focus:px-4 focus:py-2 focus:rounded-md">跳到主要内容</a><!-- ===================== 导航（毛玻璃） ===================== --><header class="fixed top-0 inset-x-0 z-50 border-b border-border bg-background/85 backdrop-blur-md"><div class="mx-auto max-w-6xl px-4 sm:px-6"><div><nav class="flex items-center justify-between h-16" aria-label="主导航"><a href="index.html" class="font-bold text-lg tracking-tight">潘伟君</a><div class="hidden md:flex items-center gap-7 text-[15px] text-muted-foreground"><a href="index.html#about" class="hover:text-foreground transition-colors duration-200">关于我</a><a href="index.html#method" class="hover:text-foreground transition-colors duration-200">专注领域</a><a href="index.html#articles" class="text-foreground font-medium transition-colors duration-200">最新文章</a></div><div class="flex items-center gap-3"><a href="#download" class="btn btn-primary js-download hidden sm:inline-flex">下载 App</a><button id="menu-btn" class="btn btn-ghost btn-icon md:hidden" aria-label="打开菜单" aria-expanded="false"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></nav><div id="mobile-menu" class="hidden md:hidden border-t border-border px-4 py-3"><nav aria-label="移动菜单"><a href="index.html#about" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">关于我</a><a href="index.html#method" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">专注领域</a><a href="index.html#articles" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">最新文章</a><a href="#download" class="mobile-link js-download rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors md:hidden">下载 App</a></nav></div></div></div></div></header><main id="main" class="pt-20 sm:pt-24"><header class="border-b border-border"><div class="mx-auto max-w-3xl px-4 sm:px-6 pt-10 pb-12 reveal"><a href="articles.html" class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>返回文章列表</a><p class="mt-8 text-sm font-medium text-primary">个股研报</p><h1 class="mt-3 text-3xl sm:text-4xl lg:text-[2.75rem] font-black leading-[1.2] tracking-tight text-balance">从A股历史10倍股“基因密码”中，我挖出了2026年5月这9只潜力黑马</h1><p class="mt-5 text-lg text-muted-foreground leading-[1.7]">十倍股不是涨出来的 是符合基因之后被资金选出来的 九个特征逐条对照</p><div class="mt-7 flex items-center gap-3 text-sm text-muted-foreground"><span class="font-medium text-foreground">潘伟君</span><span aria-hidden="true">·</span><span class="tnum">2026-05-12</span><span aria-hidden="true">·</span><span class="tnum">14 分钟阅读</span></div></div></header><article class="prose"><div class="mx-auto max-w-3xl px-4 sm:px-6 py-14"><div class="space-y-8 text-[17px] leading-[1.75]"><p>&gt; <strong>导语：2015</strong>年的中文在线一年暴涨17倍，2020年的英科医疗在疫情中翻了近10倍，2025年的上纬新材更是狂飙1820%……A股从来不缺神话，但神话背后，真的只是运气吗？</p>
+<p>我花了整整一周时间，复盘了2015年至2025年这十年间所有年度10倍股和56只5倍股的成长档案，发现了一个惊人的规律——<strong>这些超级牛股的诞生，几乎遵循着同一套基因密码</strong>。更关键的是，按照这套密码去筛选，2026年5月的A股市场中，正有一批股票正在悄悄对号入座……</p>
+<figure class="my-8"><img src="images/research/image-aeb5622738.jpg" alt="" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
+<p>01十年牛股图谱：那些翻10倍的股票，到底做对了什么？</p>
+<p>翻开A股的历史长卷，年度10倍股堪称凤毛麟角。据证券时报数据宝统计，2015年至2025年这整整11年里，以年度涨跌幅来统计，10倍股合计不足10只。但每一只的背后，都写满了一个时代的注脚。</p>
+<p><strong>2015年</strong>，中文在线以年涨17倍的惊人战绩横空出世。彼时正值移动互联网浪潮席卷，互联网+"概念如日中天，叠加新股属性带来的流通盘优势，以及高送转的催化，这只股票几乎集齐了当年所有热门标签。</p>
+<p><strong>2017年</strong>，寒锐钴业年涨12倍，核心逻辑是新能源汽车产业链的爆发带动锂电材料需求暴增。同样是新股，同样是赛道红利，历史总是惊人地相似。</p>
+<p><strong>2020年</strong>堪称牛股大年，一口气诞生了4只年度10倍股。万泰生物凭借HPV疫苗的核心技术屏障和新股光环翻倍；斯达半导踩中半导体国产替代的风口；英科医疗在疫情中成为最大受益者；阳光电源则依托光伏龙头的地位乘风破浪。这一年告诉我们一个道理：<strong>当行业景气度遇上时代大事件，牛股的诞生往往事半功倍。</strong></p>
+<p><strong>2024年，正丹股份凭借环保新材料和扎实的业绩支撑，走出了约10倍的行情，证明了纯粹靠概念炒作的时代已经过去，业绩支撑越来越成为牛股的"硬通货"。</strong></p>
+<p><strong>2025年</strong>，A股时隔4年再迎年度10倍股，上纬新材以1820%的涨幅居首，核心催化是智元机器人入主带来的具身智能概念；天普股份涨1645%，则要约收购成为关键推手。但值得注意的是，天普股份后来因股价异常波动被证监会立案调查——这给我们敲响了警钟：<strong>没有基本面支撑的暴涨，终究难以持久。</strong></p>
+<p>除了这些年度10倍股，A股还诞生过一批区间涨幅超10倍的妖股：暴风科技、特力A、东方通信、九安医疗……它们或靠并购重组，或靠概念炒作，或靠突发事件，在特定时间段内完成了惊人的涨幅。但仔细观察会发现，<strong>真正能够穿越周期、给投资者带来稳定回报的，还是那些有业绩、有技术、有行业逻辑支撑的品种。</strong></p>
+<figure class="my-8"><img src="images/research/image-6b8b964eae.jpg" alt="" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
+<p>02拆解牛股基因密码：十大共同特征曝光</p>
+<p>56只5倍股、近10只10倍股，它们之间到底有什么共性？我通过五大维度深度拆解，总结出了共同特征。</p>
+<p>新股属性堪称最强Buff。</p>
+<p>10倍股中，新股是当之无愧的主要特征。上市初期流通盘小、没有历史套牢盘、筹码干净，这些特点让新股天然具备暴涨的体质。2015年的中文在线、2017年的寒锐钴业、2020年的万泰生物和斯达半导，无一不是新股出身。</p>
+<p>但这里要泼一盆冷水——<strong>随着注册制全面铺开，新股稀缺性在下降，单纯靠新股标签已经不够了</strong>。2025年的上纬新材虽然也是科创板标的，但它的暴涨更多依托于智元机器人入主这一重大资本运作。未来的牛股，需要新股+"更多硬核逻辑。</p>
+<p>核心技术屏障则是牛股的护城河。</p>
+<p>万泰生物的HPV疫苗、斯达半导的IGBT芯片、阳光电源的光伏逆变器技术……这些牛股背后，都有难以复制的核心技术。在科技竞争日益激烈的今天，<strong>“卡脖子”技术的突破者，往往就是资本市场的宠儿</strong>。</p>
+<p>外部催化则是牛股的点火器。</p>
+<p>行业景气度高、资本收购利好、突发事件（如疫情）……这些外部因素就像火箭的助推器，能让一只原本普通的股票瞬间起飞。英科医疗受益于疫情，寒锐钴业受益于新能源浪潮，正丹股份受益于环保政策收紧——<strong>时势造英雄，在A股同样适用</strong>。</p>
+<figure class="my-8"><img src="images/research/image-fc66c16459.jpg" alt="" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
+<p>03从行业分布来看，TMT行业堪称牛股的主战场。</p>
+<p>10倍股和5倍股主要集中在TMT行业（电子、计算机、传媒），机械设备、基础化工也占有相当比例。这与中国经济转型升级的大方向高度吻合——<strong>科技自立自强、制造业升级、新材料突破，正是当前国家战略的主线</strong>。</p>
+<p>另外值得关注的是，低价、小市值、低位启动这三个特征，构成了散户的友好型投资标的。</p>
+<p>这三点放在一起分析，因为它们指向同一个投资逻辑：<strong>牛股启动前，往往都不起眼</strong>。</p>
+<p>数据显示，5倍股的平均收盘价普遍低于全部A股整体，2025年5倍股均价仅15.12元；超70%的十倍牛股A股市值低于50亿元；82只十倍牛股崛起前股价处于20元之下，其中17只不足5元。</p>
+<p>这意味着什么？<strong>大牛股往往不是从茅台、宁德时代这种明星股里诞生的，而是从那些被市场忽视的角落里悄然崛起的。</strong> 对于普通投资者来说，这既是机会，也是挑战——机会在于低价股参与门槛低，挑战在于如何从众多低价股中沙里淘金。</p>
+<figure class="my-8"><img src="images/research/image-799604fc5d.jpg" alt="" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
+<p>04民企为主、地域集中、盈利过硬这三个特征也高度一致。</p>
+<p>民营企业占比高达73.83%，浙江、江苏、广东、北京、上海合计贡献58只牛股，各年度盈利数量占比超90%，净利润同比增长数量占比超70%。这些数据说明：<strong>牛股偏爱市场化程度高的地区，偏爱机制灵活的民营企业，更偏爱那些真正赚钱、业绩持续增长的公司。</strong> 概念可以炒一时，但业绩才是牛股的压舱石。</p>
+<h2 class="text-2xl font-bold mt-12 mb-4">2026年5月：天时地利人和，低位补涨窗口开启</h2>
+<p>说完了历史，我们来看当下。为什么偏偏是2026年5月？</p>
+<p>从宏观环境来看，招商证券等多家机构近期纷纷发布策略报告，看好5月A股行情。据财联社报道，十大券商最新策略普遍认为，假期期间担忧的风险基本未发生，节后A股可能延续震荡偏强走势。华金证券更是明确指出：<strong>五月震荡偏强，中小盘成长占优。</strong></p>
+<p>从市场走势来看，4月A股主要股指全线收涨，创业板指涨超15%刷新十年新高，科创50指数大涨超25%，上证指数站稳4100点整数关口。一季报业绩验证期结束后，资金正在从高位抱团股转向低位补涨品种。</p>
+<p>从资金面和市场情绪来看，流动性充裕、政策态度积极、中小盘风格占优，这些市场特征与历史上牛股频出的环境高度相似。据证券时报此前推出的2026年26只潜力股报告，机构普遍看好顺周期股、AI科创股、低估红利股和内需消费股四大方向。</p>
+<p>更值得关注的是，<strong>AI科技产业链、新能源、上游周期资源</strong>正成为当前市场的三条主线。这与我们前面分析的牛股行业分布特征高度吻合——TMT（电子、计算机）+机械设备+基础化工，正是历史牛股最集中的领域。</p>
+<figure class="my-8"><img src="images/research/image-86fbf8bb75.jpg" alt="" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
+<p>05按图索骥：9只潜力股对号入座</p>
+<p>基于以上特征分析和当前市场环境，我筛选出了以下潜力股。它们或许不会都成为10倍股，但确实在多个维度上对号入座了牛股的基因密码。</p>
+<h2 class="text-2xl font-bold mt-12 mb-4">永利股份（300230）——基础化工出海先锋</h2>
+<h2 class="text-2xl font-bold mt-12 mb-4">牛股基因匹配度：★★★★☆</h2>
+<p>股价不到10元，PE低于18倍，属于典型的低价低估值品种。公司泰国、墨西哥工厂产能利用良好，在手订单充足，出海逻辑清晰。基础化工正是历史5倍股的重要来源行业之一，而海外产能布局则为其增添了独特的成长叙事。</p>
+<h2 class="text-2xl font-bold mt-12 mb-4">海伦哲（300201）——机械设备订单饱满型</h2>
+<h2 class="text-2xl font-bold mt-12 mb-4">牛股基因匹配度：★★★★☆</h2>
+<p>股价不到10元，加权ROE超5%，订单饱满。机械设备行业是历史牛股的常客，而ROE是衡量企业盈利能力的重要指标。在制造业升级的大背景下，有订单、有盈利、有估值优势的海伦哲，值得重点关注。</p>
+<h2 class="text-2xl font-bold mt-12 mb-4">大连重工（002204）——机械设备高成长预期</h2>
+<h2 class="text-2xl font-bold mt-12 mb-4">牛股基因匹配度：★★★★★</h2>
+<p>股价不到10元，净利润复合增速有望超30%，订单充足。高成长性+低价+订单支撑，这三个标签叠加在一起，几乎就是历史牛股的标准画像。如果业绩能够持续兑现，其估值修复空间值得期待。</p>
+<h2 class="text-2xl font-bold mt-12 mb-4">麦捷科技（300319）——电子行业估值洼地</h2>
+<h2 class="text-2xl font-bold mt-12 mb-4">牛股基因匹配度：★★★★☆</h2>
+<p>股价不到15元，PE不足行业一半，2025年涨幅不到10%。电子行业是TMT的核心组成部分，也是历史牛股最集中的领域。麦捷科技的低估值+低涨幅特征，意味着它可能是资金低位补涨的潜在目标。</p>
+<h2 class="text-2xl font-bold mt-12 mb-4">拓邦股份（002139）——电子行业均值回归</h2>
+<h2 class="text-2xl font-bold mt-12 mb-4">牛股基因匹配度：★★★★☆</h2>
+<p>股价不到15元，PE低于行业平均。与麦捷科技类似，拓邦股份也具备电子行业的赛道优势+估值偏低的双重特征。在AI硬件、智能家居等概念催化下，这类低估值电子股存在估值修复的机会。</p>
+<h2 class="text-2xl font-bold mt-12 mb-4">达意隆（002209）——机械设备高换手活跃型</h2>
+<h2 class="text-2xl font-bold mt-12 mb-4">牛股基因匹配度：★★★☆☆</h2>
+<p>日均换手率超6%，订单充足。高换手率意味着市场关注度高、资金参与活跃，这是牛股启动前常见的技术特征之一。叠加机械设备行业的赛道优势和订单支撑，达意隆具备成为黑马的潜质。</p>
+<h2 class="text-2xl font-bold mt-12 mb-4">津荣天宇（300988）——机械设备资金关注型</h2>
+<h2 class="text-2xl font-bold mt-12 mb-4">牛股基因匹配度：★★★☆☆</h2>
+<p>日均换手率超5%，属于资金关注度较高的品种。与达意隆类似，津荣天宇的高换手特征说明其已经进入了部分活跃资金的视野。如果后续有业绩或行业催化，股价弹性可能较大。</p>
+<h2 class="text-2xl font-bold mt-12 mb-4">通行宝（301339）——计算机/通信滞涨潜力型</h2>
+<h2 class="text-2xl font-bold mt-12 mb-4">牛股基因匹配度：★★★★☆</h2>
+<p>2025年涨幅不到10%，在手订单充足。计算机和通信行业是TMT的重要组成部分，而通行宝的低涨幅特征意味着其可能存在补涨空间。在数字经济、智慧交通等政策催化下，这类滞涨品种有望获得资金关注。</p>
+<h2 class="text-2xl font-bold mt-12 mb-4">银龙股份（603969）——机械设备高成长潜力型</h2>
+<p>#牛股特征#牛股基因匹配度：★★★★☆</p>
+<p>净利润复合增速有望超30%。与大连重工类似，银龙股份也具备高成长性+机械设备行业属性的双重优势。如果业绩能够持续高增长，其估值提升空间值得期待。</p>
+<p><strong>独立思考：历史会重演，但不会简单重复。</strong></p>
+<p>写到这里，我必须坦诚地说：<strong>历史规律只能作为参考，不能作为投资的唯一依据。</strong></p>
+<p>2026年的A股与2015年、2020年相比，已经有了很多不同。注册制全面实施后，新股的稀缺性在下降；机构投资者占比提升后，市场的有效性在增强；监管趋严后，纯概念炒作的空间在收窄。</p>
+<p>但与此同时，一些新的机会也在涌现。AI技术的快速迭代、新能源产业链的持续扩张、高端制造的国产替代……这些时代大趋势，正在孕育新的牛股土壤。</p>
+<p><strong>我的核心观点是：与其</strong>去猜哪只股票会成为下一个10倍股，不如去把握那些概率占优的投资机会。低价、小市值、低估值、高成长、有订单、有催化——当这些特征同时出现在一只股票身上时，即使它最终没有成为10倍股，其风险收益比也大概率是划算的。</p>
+<figure class="my-8"><img src="images/research/image-aeff845c9c.jpg" alt="" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
+<p>06风险提示：#牛股#很美，但风险不可忽视</p>
+<p>最后，我必须郑重地提醒每一位读者：</p>
+<p><strong>历史数据不代表未来表现。</strong> 2015-2025年的牛股特征分析，只能作为参考，不能作为投资的唯一依据。市场环境在变，监管政策在变，投资者结构也在变。</p>
+<p><strong>低价不等于低风险。</strong> 很多低价股之所以低价，恰恰是因为其基本面存在问题。本文筛选的标的仅供参考，不构成投资建议，投资者需要自行深入研究公司的基本面和行业前景。</p>
+<p><strong>高换手率可能意味着高风险。</strong> 达意隆、津荣天宇等股票日均换手率较高，虽然说明资金活跃，但也可能意味着股价波动较大，不适合风险承受能力较低的投资者。</p>
+<p><strong>外部催化具有不确定性。</strong> 行业景气度、政策变化、突发事件等外部因素，虽然可能推动股价上涨，但也可能产生反向作用。投资者需要对这些不确定性有充分认知。</p>
+<p>&gt; <strong>本文提及的所有个股，仅供研究分析之用，不构成任何投资建议。</strong> 股市有风险，投资需谨慎。请投资者根据自身的风险承受能力和投资目标，独立做出投资决策。</p>
+<p><strong>结语：A</strong>股十年牛股史，写满了时代的变迁和资本的逻辑。2026年5月，当市场风格转向中小盘、当资金寻找低位补涨、当一季报业绩验证结束——或许，新的牛股正在悄然孕育。但无论如何，请记住：</p>
+<p><strong>投资的第一原则是不要亏钱，第二原则是永远记住第一条。</strong></p>
+<p>愿每一位投资者，都能在理性中把握机会，在谨慎中收获成长。</p>
+<p>&gt; __本文部分图片来源于网络，版权归原作者所有，如有疑问请联系删除。__
+&gt; 
+&gt; __免责声明：本文内容仅供参考，不构成任何投资建议，投资者据此操作，风险自担。__</p><div class="card p-5 sm:p-6 mt-10"><p class="text-sm font-semibold text-foreground">免责声明</p><p class="mt-2 text-[14.5px] text-muted-foreground leading-[1.7]">本文仅为个人研究与观点分享,基于公开资料整理,不构成任何投资建议。文中涉及个股仅作研究示例,不代表推荐。股市有风险,入市需谨慎。</p></div></div></div></article><div class="border-t border-border"><div class="mx-auto max-w-3xl px-4 sm:px-6 py-10"><div class="grid sm:grid-cols-2 gap-6"><a href="research-3.html" class="group flex items-start gap-3"><svg class="w-4 h-4 mt-1 shrink-0 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg><span><span class="block text-sm text-muted-foreground">上一篇</span><span class="mt-1 block font-medium hover:text-primary transition-colors duration-200">AI应用商业化落地加速：2026细分赛道与龙头公司的黄金兑现期</span></span></a><a href="research-5.html" class="group flex items-start gap-3 sm:justify-end sm:text-right"><svg class="w-4 h-4 mt-1 shrink-0 text-muted-foreground sm:order-last" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg><span><span class="block text-sm text-muted-foreground">下一篇</span><span class="mt-1 block font-medium hover:text-primary transition-colors duration-200">全市场只剩17只！5元以下的真科技股，2026年5月还有机会吗？</span></span></a></div></div></div></main><section id="download" class="mx-auto max-w-6xl px-4 sm:px-6 mt-20 sm:mt-28"><div class="card overflow-hidden reveal"><div class="px-6 sm:px-12 lg:px-20 py-14 sm:py-20"><div class="inline-flex items-center gap-2 w-fit mx-auto text-primary"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg><span class="text-sm font-medium tracking-[0.1em]">通跃 App</span></div><h2 class="mx-auto mt-5 max-w-2xl text-center text-3xl sm:text-4xl font-black tracking-tight leading-[1.15] text-balance">把买卖点讲透 再让你下单</h2><p class="mx-auto mt-4 max-w-xl text-center text-muted-foreground leading-[1.7]">每天盘前一份作战计划 盘中触线即时提醒 盘后逐笔复盘 先看懂 再执行 结果自然来</p><div class="mt-10 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-3"><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">01</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘前作战计划</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">今日关注标的与关键价位 开盘前送达 开盘不慌</p></div><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">02</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘中止损提醒</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">触线即提醒 管住手 不扛单 先学会亏得少</p></div><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">03</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘后逐笔复盘</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">每笔交易拆解逻辑 看懂了再下手 不再凭感觉</p></div></div><div class="mt-9 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[15px] text-foreground"><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>每日实盘思路</span><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>逐笔复盘讲解</span><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>加密群聊答疑</span></div><div class="mt-10 flex justify-center"><a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="btn btn-primary js-download px-8 py-3.5 h-auto text-base">立即下载 App<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a></div><p class="mt-4 text-center text-sm text-muted-foreground">自动识别苹果 / 安卓 一键直达 安卓包约 172MB 微信内打不开 请用系统浏览器打开</p><p class="mt-3 text-center text-xs text-muted-foreground">没反应<a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="underline decoration-border underline-offset-4 transition-colors duration-200 hover:text-primary">去 App Store</a><span aria-hidden="true">/</span><a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" target="_blank" rel="noopener" class="underline decoration-border underline-offset-4 transition-colors duration-200 hover:text-primary">APK 直链</a></p><div class="mt-5 flex flex-wrap items-center justify-center gap-3"><a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="store-badge" aria-label="苹果下载"><svg class="w-6 h-6" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span class="text-[15px] font-semibold">苹果下载</span></a><a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" target="_blank" rel="noopener" class="store-badge" aria-label="安卓下载"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.523 15.341a.987.987 0 0 1-.988-.988.987.987 0 0 1 .988-.988.987.987 0 0 1 .988.988.987.987 0 0 1-.988.988zm-11.046 0a.987.987 0 0 1-.988-.988.987.987 0 0 1 .988-.988.987.987 0 0 1 .988.988.987.987 0 0 1-.988.988zM17.173 7.644l1.696-2.938a.462.462 0 0 0-.168-.632.462.462 0 0 0-.632.168l-1.718 2.976A11.727 11.727 0 0 0 12 6.008a11.727 11.727 0 0 0-4.351.81L5.931 4.242a.462.462 0 0 0-.632-.168.462.462 0 0 0-.168.632l1.696 2.938C4.266 9.18 2.5 11.795 2.5 14.793c0 3.45 4.253 6.25 9.5 6.25s9.5-2.8 9.5-6.25c0-2.998-1.766-5.613-4.327-7.149zM12 19.565c-4.572 0-8.048-2.227-8.048-4.772 0-2.544 3.476-4.772 8.048-4.772s8.048 2.228 8.048 4.772c0 2.545-3.476 4.772-8.048 4.772z"/></svg><span class="text-[15px] font-semibold">安卓下载</span></a></div><p class="mt-4 text-center text-xs text-muted-foreground">免费下载 · 进群一起实战</p></div></div></section></main><!-- ===================== 页脚 ===================== --><footer class="border-t border-border"><div class="mx-auto max-w-6xl px-4 sm:px-6 py-8"><div class="flex flex-col sm:flex-row items-center justify-between gap-4"><a href="index.html" class="font-bold">潘伟君</a><nav class="flex flex-wrap items-center gap-6 text-sm text-muted-foreground" aria-label="页脚导航"><a href="index.html#about" class="hover:text-foreground transition-colors duration-200">关于我</a><a href="index.html#method" class="hover:text-foreground transition-colors duration-200">专注领域</a><a href="index.html#articles" class="hover:text-foreground transition-colors duration-200">最新文章</a><a href="#download" class="hover:text-foreground transition-colors duration-200">下载 App</a></nav><p class="text-sm text-muted-foreground">© 2026 潘伟君 · 保留所有权利</p></div><p class="mt-5 text-center text-xs text-muted-foreground">本网站内容仅供信息交流与学习 不构成任何投资建议 市场有风险 投资需谨慎</p></div></footer><button id="back-top" class="hidden btn btn-secondary w-11 h-11 p-0 rounded-full justify-center" aria-label="回到顶部"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button><!-- ===================== Toast 容器 ===================== --><div class="toast-container" id="toast-container" aria-live="polite"></div><script>
+ // ===== 移动端菜单 =====
+ (function () {
+ const btn = document.getElementById('menu-btn');
+ const menu = document.getElementById('mobile-menu');
+ if (!btn || !menu) return;
+ function closeMenu(restoreFocus) {
+ menu.classList.add('hidden');
+ btn.setAttribute('aria-expanded', 'false');
+ if (restoreFocus) btn.focus();
+ }
+ btn.addEventListener('click', function () {
+ const open = menu.classList.toggle('hidden') === false;
+ btn.setAttribute('aria-expanded', String(open));
+ // 打开时焦点移入菜单 方便键盘用户直接导航
+ if (open) {
+ const first = menu.querySelector('a');
+ if (first) first.focus();
+ }
+ });
+ menu.querySelectorAll('.mobile-link').forEach(function (a) {
+ a.addEventListener('click', function () {
+ closeMenu(false);
+ });
+ });
+ // Esc 关闭菜单并归还焦点到按钮
+ document.addEventListener('keydown', function (e) {
+ if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+ closeMenu(true);
+ }
+ });
+ })();
+
+ // ===== Toast 系统 =====
+ const Toast = (function () {
+ const container = document.getElementById('toast-container');
+ const icons = {
+ success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
+ error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>',
+ default: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>',
+ };
+ const colors = {
+ success: 'hsl(var(--success))',
+ error: 'hsl(var(--destructive))',
+ default: 'hsl(var(--primary))',
+ };
+ function show(message, type) {
+ type = type || 'default';
+ const el = document.createElement('div');
+ el.className = 'toast';
+ el.innerHTML =
+ '<span class="toast-icon" style="color:' + colors[type] + '">' + icons[type] + '</span>' +
+ '<div class="flex-1 text-sm leading-[1.6] pt-0.5">' + message + '</div>' +
+ '<button class="toast-close text-muted-foreground hover:text-foreground transition-colors" aria-label="关闭" style="background:none;border:none;cursor:pointer;margin-top:2px"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>';
+ container.appendChild(el);
+ const remove = function () {
+ el.classList.add('leaving');
+ setTimeout(function () { el.remove(); }, 200);
+ };
+ el.querySelector('.toast-close').addEventListener('click', remove);
+ setTimeout(remove, 4000);
+ }
+ return { show: show };
+ })();
+
+ // 下载按钮已改为直接跳转（App Store / 安卓 APK） 无需 JS 脚本
+
+ // ===== 入场动效 =====
+ (function () {
+ const revealEls = document.querySelectorAll('.reveal');
+ if (!('IntersectionObserver' in window)) {
+ revealEls.forEach(function (el) { el.classList.add('in'); });
+ return;
+ }
+ const io = new IntersectionObserver(function (entries) {
+ entries.forEach(function (e) {
+ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+ });
+ }, { threshold: 0, rootMargin: '0px 0px -10px 0px' });
+ revealEls.forEach(function (el) { io.observe(el); });
+ })();
+ // ===== 智能下载 自动识别平台 =====
+ // iOS 用 itms-apps 协议即时唤起 App Store 3 秒未唤起则回落 App Store 网页
+ // 安卓 直接下载 APK 安装包（国内安卓标准方式）
+ // 微信内 无法直接下载 提示用系统浏览器打开
+ // 桌面 无法安装 滚动到下载模块并提示在手机上打开
+ (function () {
+ var APPLE = 'https://apps.apple.com/cn/app/id6789065192';
+ var APPLE_APP = 'itms-apps://apps.apple.com/cn/app/id6789065192';
+ var APK = 'https://www.tongyuesyt.com/predownload/tongyuesyt.apk';
+ var ua = navigator.userAgent;
+ var isWechat = /MicroMessenger/i.test(ua);
+ var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+ var isAndroid = /Android/.test(ua);
+ var iosFallback = null;
+ // App Store 唤起后页面隐藏 清理回落定时器 避免来回跳
+ document.addEventListener('visibilitychange', function () {
+ if (iosFallback) { clearTimeout(iosFallback); iosFallback = null; }
+ });
+ function scrollToDownload() {
+ var d = document.getElementById('download');
+ if (d) d.scrollIntoView({ behavior: 'smooth', block: 'start' });
+ }
+ function lockBtn(el) {
+  el.classList.add('btn-loading');
+  el.setAttribute('disabled', 'disabled');
+  setTimeout(function () {
+   el.classList.remove('btn-loading');
+   el.removeAttribute('disabled');
+  }, 2500);
+ }
+ document.querySelectorAll('.js-download').forEach(function (el) {
+ el.addEventListener('click', function (e) {
+ e.preventDefault();
+ lockBtn(el);
+ if (isWechat) {
+ Toast.show('微信内无法下载 请点右上角「在浏览器打开」');
+ return;
+ }
+ if (isAndroid) {
+ window.location.href = APK;
+ Toast.show('已开始下载 约 172MB 建议 WiFi 下进行');
+ } else if (isIOS) {
+ Toast.show('即将前往 App Store');
+ iosFallback = setTimeout(function () {
+ if (!document.hidden) { window.location.href = APPLE; }
+ iosFallback = null;
+ }, 3000);
+ window.location.href = APPLE_APP;
+ } else {
+ Toast.show('请在手机上打开本页下载 App');
+ scrollToDownload();
+ }
+ });
+ });
+ })();
+
+ // ===== 阅读进度条 + 回到顶部 =====
+ (function () {
+ var bar = document.getElementById('reading-progress');
+ if (bar) {
+ var ticking = false;
+ var update = function () {
+ var max = document.documentElement.scrollHeight - window.innerHeight;
+ bar.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
+ ticking = false;
+ };
+ window.addEventListener('scroll', function () {
+ if (!ticking) { ticking = true; requestAnimationFrame(update); }
+ }, { passive: true });
+ window.addEventListener('resize', update, { passive: true });
+ update();
+ }
+ var topBtn = document.getElementById('back-top');
+ if (topBtn) {
+ var toggle = function () { topBtn.classList.toggle('hidden', window.scrollY < 600); };
+ window.addEventListener('scroll', toggle, { passive: true });
+ topBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+ toggle();
+ }
+ })();
+
+</script>  /* reveal 兜底: 快速滚动/锚点跳转/刷新恢复滚动位置时 IO 可能漏触发,
+     元素顶部一旦进入过视口即强制显示, 防止内容永久透明 */
+  (function () {
+    var els = document.querySelectorAll('.reveal:not(.in)');
+    function scan() {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (!el.classList.contains('in') && el.getBoundingClientRect().top < vh) {
+          el.classList.add('in');
+        }
+      }
+    }
+    window.addEventListener('scroll', scan, { passive: true });
+    window.addEventListener('resize', scan, { passive: true });
+    setTimeout(scan, 300);
+    setTimeout(scan, 1000);
+    scan();
+  })();
+
+</body></html>

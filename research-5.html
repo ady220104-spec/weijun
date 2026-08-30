@@ -1,0 +1,492 @@
+﻿﻿<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8" /><meta name="apple-itunes-app" content="app-id=6789065192" /><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%230066cc%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2752%27 text-anchor=%27middle%27 fill=%27%23ffffff%27 font-family=%27sans-serif%27 font-weight=%27bold%27%3E%E6%BD%98%3C/text%3E%3C/svg%3E" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>全市场只剩17只！5元以下的真科技股，2026年5月还有机会吗？ | 潘伟君</title><meta name="description" content="低价不等于便宜 把5元以下还在真赛道里的票全部挖出来 逐个看质地" /><!-- Tailwind (本地, 中国用户可秒开) --><link rel="stylesheet" href="tailwind.css"><style>
+ /* ===================== Design Tokens ===================== */
+ :root {
+ color-scheme: light;
+ --background: 0 0% 100%;
+ --foreground: 240 3% 12%;
+ --card: 0 0% 100%;
+ --card-foreground: 240 3% 12%;
+ --primary: 211 100% 40%;
+ --primary-foreground: 0 0% 100%;
+ --secondary: 240 20% 97%;
+ --secondary-foreground: 240 3% 12%;
+ --muted: 240 20% 97%;
+ --muted-foreground: 240 2% 54%;
+ --accent: 240 20% 95%;
+ --accent-foreground: 240 3% 12%;
+ --destructive: 6 56% 50%;
+ --destructive-foreground: 0 0% 100%;
+ --success: 150 38% 38%;
+ --border: 240 12% 92%;
+ --input: 240 12% 92%;
+ --ring: 211 100% 40%;
+ --radius: 0.75rem;
+ --radius-sm: 0.5rem;
+ }
+
+ html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+ body {
+ background-color: hsl(var(--background));
+ color: hsl(var(--foreground));
+ -webkit-font-smoothing: antialiased;
+ text-rendering: optimizeLegibility;
+ }
+ .tnum { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+ :focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+
+ /* ===================== 背景层次 ===================== */
+ .mesh-bg {
+ position: fixed; inset: 0; z-index: -2; pointer-events: none;
+ background:
+ radial-gradient(1100px 600px at 15% -10%, rgba(216, 197, 170, 0.16) 0%, rgba(216, 197, 170, 0) 60%),
+ radial-gradient(900px 520px at 88% 2%, rgba(226, 178, 145, 0.10) 0%, rgba(226, 178, 145, 0) 55%),
+ radial-gradient(1000px 700px at 50% 116%, rgba(210, 195, 175, 0.12) 0%, rgba(210, 195, 175, 0) 60%);
+ }
+ .noise-bg {
+ position: fixed; inset: 0; z-index: -1; pointer-events: none;
+ opacity: 0.045;
+ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+ background-size: 160px 160px;
+ }
+
+ /* ===================== Card ===================== */
+ .card {
+ background: hsl(var(--card)); color: hsl(var(--card-foreground));
+ border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+ box-shadow: 0 1px 2px rgba(24, 24, 27, 0.03), 0 12px 32px -16px rgba(24, 24, 27, 0.08);
+ }
+
+ /* ===================== Button ===================== */
+ .btn {
+ display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+ height: 2.5rem; padding: 0 1rem; border-radius: var(--radius-sm);
+ font-size: .875rem; font-weight: 500; line-height: 1; white-space: nowrap;
+ border: 1px solid transparent; cursor: pointer; user-select: none;
+ transition: background-color .15s ease, color .15s ease, border-color .15s ease, opacity .15s ease, transform .1s ease;
+ }
+ .btn:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+ .btn:disabled { opacity: .5; pointer-events: none; }
+ .btn:active:not(:disabled) { transform: scale(.97); }
+ .btn svg { flex-shrink: 0; }
+
+ .btn-primary { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
+ .btn-primary:hover:not(:disabled) { background: hsl(var(--primary) / .9); }
+
+ .btn-secondary { background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); border-color: hsl(var(--border)); }
+ .btn-secondary:hover:not(:disabled) { background: hsl(var(--accent)); }
+
+ .btn-outline { background: transparent; color: hsl(var(--foreground)); border-color: hsl(var(--border)); }
+ .btn-outline:hover:not(:disabled) { background: hsl(var(--accent)); }
+
+ .btn-ghost { background: transparent; color: hsl(var(--foreground)); }
+ .btn-ghost:hover:not(:disabled) { background: hsl(var(--accent)); }
+
+ .btn-destructive { background: hsl(var(--destructive)); color: hsl(var(--destructive-foreground)); }
+ .btn-destructive:hover:not(:disabled) { background: hsl(var(--destructive) / .9); }
+
+ .btn-icon { padding: 0; width: 2.5rem; height: 2.5rem; }
+
+ /* 应用商店徽章 */
+ .store-badge {
+ display: inline-flex; align-items: center; gap: .625rem;
+ height: 3rem; padding: 0 1rem;
+ background: #1d1d1f; color: #fff; border-radius: var(--radius-sm);
+ border: 1px solid #1d1d1f; cursor: pointer; text-decoration: none;
+ transition: background-color .15s ease, opacity .15s ease, transform .1s ease;
+ }
+ .store-badge:hover { background: #000; }
+ .store-badge:active { transform: scale(.97); }
+
+ .spinner {
+ width: 1rem; height: 1rem; border-radius: 50%;
+ border: 2px solid currentColor; border-top-color: transparent;
+ animation: spin .6s linear infinite;
+ }
+ @keyframes spin { to { transform: rotate(360deg); } }
+ /* 按钮加载态（防连点 + spinner 反馈） */
+ .btn { position: relative; }
+ .btn-loading { pointer-events: none; opacity: .9; }
+ .btn-loading > * { visibility: hidden; }
+ .btn-loading::after {
+ content: ''; position: absolute; top: 50%; left: 50%;
+ width: 1rem; height: 1rem; margin: -.5rem 0 0 -.5rem;
+ border-radius: 50%;
+ border: 2px solid currentColor; border-top-color: transparent;
+ animation: spin .6s linear infinite;
+ }
+
+
+ /* ===================== Input ===================== */
+ .input {
+ height: 2.5rem; width: 100%; padding: 0 .75rem;
+ border-radius: var(--radius-sm); border: 1px solid hsl(var(--input));
+ background: hsl(var(--card)); color: hsl(var(--foreground));
+ font-size: .875rem; transition: border-color .15s ease, box-shadow .15s ease;
+ }
+ .input::placeholder { color: hsl(var(--muted-foreground) / .7); }
+ .input:focus { outline: none; border-color: hsl(var(--ring)); box-shadow: 0 0 0 3px hsl(var(--ring) / .15); }
+ .input:disabled { opacity: .5; cursor: not-allowed; }
+ .input[aria-invalid="true"] { border-color: hsl(var(--destructive)); }
+ .input[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px hsl(var(--destructive) / .15); }
+
+ /* ===================== Toast ===================== */
+ .toast-container {
+ position: fixed; bottom: 1rem; right: 1rem; z-index: 200;
+ display: flex; flex-direction: column; gap: .5rem; max-width: calc(100vw - 2rem);
+ }
+ .toast {
+ display: flex; align-items: flex-start; gap: .75rem;
+ background: hsl(var(--card)); border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+ padding: .875rem 1rem; box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.16); width: 22rem; max-width: 100%;
+ animation: toast-in .25s cubic-bezier(.22,.61,.36,1);
+ }
+ .toast.leaving { animation: toast-out .2s ease forwards; }
+ .toast-icon { display: grid; place-items: center; width: 1.25rem; height: 1.25rem; flex-shrink: 0; margin-top: .125rem; }
+ @keyframes toast-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+ @keyframes toast-out { to { opacity: 0; transform: translateY(10px); } }
+
+ /* ===================== 毛玻璃（局部） ===================== */
+ .glass {
+ background: rgba(250, 249, 247, 0.88);
+ backdrop-filter: blur(14px) saturate(120%);
+ -webkit-backdrop-filter: blur(14px) saturate(120%);
+ }
+
+ /* ===================== 正文排版 ===================== */
+ .prose p { color: hsl(var(--foreground) / .88); }
+ .prose a { color: hsl(var(--primary)); }
+ .prose a:hover { color: hsl(var(--foreground)); }
+
+ /* ===================== 入场动效 ===================== */
+ html.js .reveal { opacity: 0; }
+ html.js .reveal.in {
+ opacity: 1;
+ animation: reveal-in .4s cubic-bezier(.22,.61,.36,1) backwards;
+ animation-delay: var(--d, 0ms);
+ }
+ @keyframes reveal-in {
+ from { opacity: 0; transform: translateY(20px); }
+ to { opacity: 1; transform: translateY(0); }
+ }
+
+ /* ===== 编辑杂志 衬线标题 + 珊瑚引语 + 衬线品牌 + 暖色徽章 ===== */
+ h1, h2, h3 {
+ font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "STSong", "SimSun", serif;
+ letter-spacing: .01em !important;
+ line-height: 1.28 !important;
+ }
+ header nav > a:first-child { font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "STSong", "SimSun", serif; letter-spacing: .02em; }
+ p.text-primary { letter-spacing: .1em; }
+ blockquote { border-left-color: hsl(var(--primary) / 0.55) !important; }
+ .btn-primary:hover:not(:disabled) { background: #0077ed; }
+ .store-badge { background: #1d1d1f !important; border-color: #1d1d1f !important; }
+ .store-badge:hover { background: #000000 !important; }
+
+ /* ===================== 阅读进度条 + 回到顶部 ===================== */
+ #reading-progress {
+ position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+ height: 2px; background: hsl(var(--primary));
+ transform-origin: 0 0; transform: scaleX(0);
+ pointer-events: none;
+ }
+ #back-top {
+ position: fixed; bottom: 5rem; right: 1rem; z-index: 90;
+ box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.18);
+ }
+ @media (max-width: 640px) { #back-top { bottom: 4.5rem; right: .75rem; } }
+
+
+ @media (prefers-reduced-motion: reduce) {
+ html { scroll-behavior: auto; }
+ html.js .reveal { opacity: 1; animation: none; }
+ .btn:active { transform: none; }
+ .spinner { animation: none; } .btn-loading::after { animation: none !important; }
+ * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+ }
+
+/* 移动端触控目标优化: 核心交互 ≥44px (WCAG 2.5.5) */
+@media (max-width: 767px) {
+  header a:not(.btn):not(.hidden):not([class*="hidden"]),
+  footer nav a:not(.hidden):not([class*="hidden"]),
+  nav[aria-label="本页目录"] a,
+  #menu-btn, .tab {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  footer nav a:not(.hidden):not([class*="hidden"]) { padding: 0 .5rem; }
+  #menu-btn { width: 44px; height: 44px; }
+  .tab { height: 44px; }
+  #search-clear { width: 44px !important; height: 44px !important; }
+}</style><script>document.documentElement.classList.add('js');</script></head><body class="font-sans text-foreground antialiased"><div class="mesh-bg" aria-hidden="true"></div><div class="noise-bg" aria-hidden="true"></div><div id="reading-progress" aria-hidden="true"></div><a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-card focus:px-4 focus:py-2 focus:rounded-md">跳到主要内容</a><!-- ===================== 导航（毛玻璃） ===================== --><header class="fixed top-0 inset-x-0 z-50 border-b border-border bg-background/85 backdrop-blur-md"><div class="mx-auto max-w-6xl px-4 sm:px-6"><div><nav class="flex items-center justify-between h-16" aria-label="主导航"><a href="index.html" class="font-bold text-lg tracking-tight">潘伟君</a><div class="hidden md:flex items-center gap-7 text-[15px] text-muted-foreground"><a href="index.html#about" class="hover:text-foreground transition-colors duration-200">关于我</a><a href="index.html#method" class="hover:text-foreground transition-colors duration-200">专注领域</a><a href="index.html#articles" class="text-foreground font-medium transition-colors duration-200">最新文章</a></div><div class="flex items-center gap-3"><a href="#download" class="btn btn-primary js-download hidden sm:inline-flex">下载 App</a><button id="menu-btn" class="btn btn-ghost btn-icon md:hidden" aria-label="打开菜单" aria-expanded="false"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></nav><div id="mobile-menu" class="hidden md:hidden border-t border-border px-4 py-3"><nav aria-label="移动菜单"><a href="index.html#about" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">关于我</a><a href="index.html#method" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">专注领域</a><a href="index.html#articles" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">最新文章</a><a href="#download" class="mobile-link js-download rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors md:hidden">下载 App</a></nav></div></div></div></div></header><main id="main" class="pt-20 sm:pt-24"><header class="border-b border-border"><div class="mx-auto max-w-3xl px-4 sm:px-6 pt-10 pb-12 reveal"><a href="articles.html" class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>返回文章列表</a><p class="mt-8 text-sm font-medium text-primary">个股研报</p><h1 class="mt-3 text-3xl sm:text-4xl lg:text-[2.75rem] font-black leading-[1.2] tracking-tight text-balance">全市场只剩17只！5元以下的真科技股，2026年5月还有机会吗？</h1><p class="mt-5 text-lg text-muted-foreground leading-[1.7]">低价不等于便宜 把5元以下还在真赛道里的票全部挖出来 逐个看质地</p><div class="mt-7 flex items-center gap-3 text-sm text-muted-foreground"><span class="font-medium text-foreground">潘伟君</span><span aria-hidden="true">·</span><span class="tnum">2026-05-15</span><span aria-hidden="true">·</span><span class="tnum">14 分钟阅读</span></div></div></header><article class="prose"><div class="mx-auto max-w-3xl px-4 sm:px-6 py-14"><div class="space-y-8 text-[17px] leading-[1.75]"><p>中际旭创370元、寒武纪市值5000亿——你每次看到这些科技龙头，是不是都有一种"买得起就好了"的感觉？</p>
+<p>问题是，2026年的科技行情还没结束。高价龙头买不起，市场上还有没有能上车的位置？</p>
+<p>答案是有。全A股中，同时满足"股价低于5元、纯正科技属性、非ST"三个条件的标的，目前<strong>只剩17只左右</strong>。本文把这17只标的的赛道逻辑和基本面逐一梳理清楚。</p>
+<p>&gt; <strong>郑重说明：本文仅供行业逻辑研究，不构成任何投资建议。</strong></p>
+<p>012026年科技板块的宏观变局</p>
+<p>2026年，是十五五规划的开局之年。</p>
+<p>这一年与以往最大的不同在于——科技被确立为贯穿全年的最强主线，而且是国家战略层面的最强主线。</p>
+<p>3月发布的《十五五规划纲要》将半导体产业置于十大新产业新赛道榜首，集成电路、人工智能、具身智能、量子科技被明确为国家战略性布局的未来产业主攻方向。从补短板到筑高地，中国科技产业正在经历一次根本性的战略升维。</p>
+<p>回顾2025年，A股交出了一份亮眼的成绩单：沪指全年上涨18.41%，深证成指涨幅达29.87%，创业板指暴涨49.57%，科创50涨35.92%。科技股是这轮结构性牛市当之无愧的核心引擎——从年初DeepSeek引爆AI行情，到光模块、存储芯片轮番领涨，科技板块几乎承包了全年的市场焦点。</p>
+<p>但进入2026年，市场的底层逻辑正在发生变化。</p>
+<p>多家头部机构在年初策略报告中指出，2026年A股从估值驱动转向盈利驱动，慢牛取代快牛成为市场共识。科技板块随之进入龙头集中+基本面驱动的结构分化阶段。</p>
+<p>头部的光模块、算力芯片龙头股价持续创新高，但估值已处于历史高位区间；而大量中腰部科技股，尤其是一些具备核心技术但市值偏小的标的，仍处于被市场忽视的状态。</p>
+<p>高价科技股已充分定价。市场的下一个定价权，正在向低价、低估、真科技方向扩散。</p>
+<p>02科技板块政策红利全景</p>
+<p>要理解2026年科技板块的投资逻辑，首先必须读懂政策面的底层驱动。</p>
+<p>十五五规划建议明确提出，要在AI、半导体、量子计算、生物技术及航天技术等关键核心技术领域取得突破。2026年政府工作报告进一步将打造智能经济新形态列为年度重点工作，<strong>"人工智能+"连续第三年被写入政府工作报告</strong>。</p>
+<p>半导体方面，政策从补短板转向锻长板。</p>
+<p>AI算力产业链这边，高景气已经被业绩数据摆到桌面上了。</p>
+<p>2026年Q1，三星电子合并营收达133.87万亿韩元（约合6160亿元人民币），同比增长69.16%，<strong>营业利润同比暴增超过750%</strong>。国内AI链同样业绩井喷：台积电Q1净利润181亿美元，同比增长58.8%；<strong>中际旭创Q1营收194.96亿元，同比增长192%，净利润57亿元，同比大增262%</strong>。这些数字背后，是AI算力硬件需求的集中爆发。</p>
+<p>新兴赛道方面，十五五规划将量子科技、生物制造、氢能和核聚变能、脑机接口、具身智能、第六代移动通信六大领域列为未来产业主攻方向。广东省4月底发布的十五五规划纲要更明确提出支持规划建设商业航天产业园区。</p>
+<p>2025年新能源汽车年产量已超过1600万辆，工业机器人产量增长28%，集成电路产量增长10.9%——这些是科技产业向上的底盘数据。</p>
+<figure class="my-8"><img src="images/research/image-8e21c50447.jpg" alt="" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
+<p>03行业周期逻辑：科技板块从低迷到价值回归</p>
+<p>政策面的天时之外，产业周期才是决定科技股走向的根本力量。</p>
+<p>2022-2024年，科技制造产业链经历了长达2~3年的去库存周期（产能过剩导致产品价格暴跌、企业利润大面积承压的阶段）。以面板行业为代表，LCD面板价格一度跌破现金成本，龙头企业的毛利率被压至历史低位。</p>
+<p>但周期的残酷之处在于，它同时也在淘汰落后产能、提升行业集中度。</p>
+<p>到2026年，多个细分领域已确认或正在确认周期拐点。</p>
+<p><strong>面板行业</strong>率先发出筑底信号。经历2025年的深度调整后，全球LCD产能出清基本收官。京东方2025年报显示，营收同比小幅上涨3.1%至2045.9亿元，面板价格在2025年下半年企稳。进入2026年，体育赛事等终端需求催化下，TV面板价格出现上行信号。</p>
+<p>更值得关注的是OLED赛道——Omdia预计<strong>2026年OLED平板面板出货量将同比增长39%达到1500万片</strong>，京东方第8.6代AMOLED生产线计划于2026年下半年正式量产。</p>
+<p><strong>半导体封测和存储芯片</strong>这块，正处于新一轮景气上行周期的加速阶段。AI服务器对HBM（高带宽存储）和高速DRAM的需求爆发式增长，导致DDR4和DDR5等消费级内存供应紧张。</p>
+<p>德勤数据显示，<strong>存储芯片价格在2025年9月至11月上涨约4倍</strong>，2026年上半年价格预计进一步上涨。封测（芯片封装与测试）龙头通富微电等企业产能利用率持续提升，先进封装成为新的业绩增长极。</p>
+<p><strong>消费电子</strong>方面，AI手机、AI PC、智能穿戴正在推动新一轮换机周期。<strong>工业自动化和智能制造</strong>受益于制造业升级与政策双轮驱动——十五五规划明确提出加快制造业数字化转型。<strong>新材料和电子材料</strong>领域，铜基新材料、轻量化材料受益于新能源和电子产业扩张，市场空间持续扩大。</p>
+<p>2026年Q1国内半导体设备企业营收利润普遍大增，国产替代进程显著加速，一家典型的设备企业订单增速超过50%，验证了设备环节的景气度。</p>
+<p>04低价科技股的稀缺性逻辑</p>
+<p>经过2025年科技股的结构性暴涨后，大量正宗科技股已经涨到了散户够不着的价位。</p>
+<p>中际旭创股价在370元以上、寒武纪市值突破5000亿、一批光模块和算力龙头股价早已站上百元大关。高价科技股的上车门槛对普通投资者越来越不友好。</p>
+<p>与此同时，在市场的另一极，有一批科技股因为各种原因——或处于周期底部、或遭遇短期业绩阵痛、或市值偏小被主流资金忽视——股价长期徘徊在个位数区间。</p>
+<p>根据2026年4月的最新数据统计，全A股市场中，同时满足股价低于5元、具备纯正科技属性、剔除ST风险警示三个条件的标的，<strong>仅剩17只左右</strong>。这是极其稀缺的物种。</p>
+<p>低价不等于劣质。仔细审视这17只标的可以发现，它们有三个共同特征：</p>
+<p>一是大多处于细分赛道的周期底部或业务转型关键期，基本面正在边际改善而非恶化；</p>
+<p>二是主营业务聚焦在OLED面板、半导体封测、工业自动化、AIoT、5G通信、新能源材料等国家战略扶持方向；</p>
+<p>三是股价在2-5元区间，兼具一定的弹性空间和相对的安全边际。</p>
+<p>需要特别指出的是，<strong>低于2元的仙股需要严格排除</strong>——这类标的往往存在严重的经营困境或财务隐患，风险收益比极不对称。真正值得研究的，是2-5元区间中那些主业清晰、赛道正确、拐点可期的标的。</p>
+<figure class="my-8"><img src="images/research/image-b69980c107.jpg" alt="" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
+<p>05细分赛道深度分析与标的梳理</p>
+<p>以下按赛道分类，对截至2026年4月股价低于5元的正宗科技股进行梳理。<strong>需郑重说明：以下仅为行业逻辑梳理与基本面分析，不构成任何投资建议。</strong></p>
+<p>面板/显示赛道：周期底部+国产替代红利</p>
+<p>面板行业是典型的强周期行业，而2026年正站在周期反转的关键节点。</p>
+<p><strong>和辉光电（688538，约2.28元）</strong> 是国内最早实现AMOLED量产的厂商之一，拥有第4.5代和第6代两条AMOLED生产线，刚性AMOLED产能位居中国第一、全球第二。2025年公司业绩虽仍亏损（预计净利润约-19.69亿元），但亏损幅度同比收窄约5.49亿元。更关键的是，公司已于2026年3月通过港交所聆讯，拟实现A+H上市，这个时间节点本身就是一个信号。随着国产OLED产能持续扩张和面板价格回暖，价值修复空间不小。</p>
+<p><strong>合力泰（002217，约2.68元）</strong> 主营触控显示模组和消费电子精密结构件，处于典型的行业底部反转逻辑中。</p>
+<p><strong>冠捷科技（000727，约2.72元）</strong> 是全球显示器制造龙头，产能规模位居世界前列，受益于AI PC换机周期，估值修复空间较大。</p>
+<p><strong>星星科技（300256，约3.51元）</strong> 聚焦盖板玻璃、VR/AR结构件及消费电子外观件，业务与消费电子和元宇宙赛道高度相关。</p>
+<p>半导体/芯片赛道：存储产业链高景气传导</p>
+<p><strong>盈新发展（000609，约2.86元）</strong> 聚焦存储芯片和半导体封测（芯片封装与测试）。AI驱动下，存储芯片价格自2025年下半年以来持续走高，DRAM与NAND闪存涨幅显著，公司作为存储产业链上的重要一环，有望持续受益于行业景气度的提升。</p>
+<p>AI/智能制造赛道：双主线驱动</p>
+<p><strong>东方智造（002175，约2.57元）</strong> 主营智能数控系统和工业自动化设备，处于工业母机+智能制造双主线赛道。2025年公司经历了业务调整和业绩阵痛，但2026年Q1营收已出现企稳增长信号。数控系统是工业母机的大脑，在制造业数字化升级的大趋势下战略价值毋庸置疑。</p>
+<p><strong>达实智能（002421，约2.87元）</strong> 聚焦AIoT（人工智能物联网）、数据中心和智慧城市解决方案，直接受益于算力基建和数字中国战略。随着各地数据中心建设加速推进，公司在建筑智能化和节能领域的业务具有持续增长动力。</p>
+<p>5G/通信赛道：从5G到5G-A/6G的演进红利</p>
+<p><strong>春兴精工（002547，约3.44元）</strong> 主营5G射频器件和精密结构件。随着全球5G网络覆盖深化和5G-A/6G技术演进启动，射频前端和基站结构件的需求将持续增长。</p>
+<p>新能源/新材料赛道：产业扩张下的材料受益链</p>
+<p><strong>鑫科材料（600255，约3.65元）</strong> 是国内铜基新材料龙头，产品广泛应用于电子元器件、连接器和半导体引线框架。电子产业的扩张周期直接拉动了铜基新材料的需求，在这一细分赛道竞争壁垒较强。</p>
+<p><strong>中利集团（002309，约3.98元）</strong> 业务覆盖光伏组件、储能系统和特种线缆。光伏行业在经历2024-2025年产能出清后，行业集中度持续提升，龙头企业盈利修复值得关注。</p>
+<p><strong>曙光股份（600303，约3.04元）</strong> 聚焦新能源汽车零部件和氢能源产业链，十五五规划将氢能列为未来产业主攻方向之一，多地氢能产业政策正在加速落地。</p>
+<p><strong>康欣新材（600076，约3.51元）</strong> 主营轻量化新材料，受益于新能源汽车和航空航天的减重需求。</p>
+<p>AI应用/消费科技赛道</p>
+<p><strong>汤姆猫（300459，约4.13元）</strong> 在AI应用加速落地的2026年，凭借会说话的汤姆猫IP和AI交互技术，是A股AI应用端少有的纯正标的。</p>
+<p>精密制造赛道：消费电子与汽车电子的交叉受益</p>
+<p><strong>胜利精密（002426，约3.76元）</strong> 主营消费电子结构件和精密模具，随着AI手机、AI PC换机周期启动，结构件供应商有望迎来量价齐升。</p>
+<p><strong>山子高科（600927，约4.05元）</strong> 聚焦汽车智能装备和电控底盘，受益于智能网联汽车渗透率持续提升。</p>
+<figure class="my-8"><img src="images/research/image-9bca11afc0.jpg" alt="" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
+<p>06风险提示与投资框架</p>
+<p>低价科技股绝不等于无风险。</p>
+<p>这类标的之所以低价，往往有其内在原因——或处于亏损状态、或负债水平较高、或业务处于转型阵痛期。投资低价科技股，需要建立清晰的分析框架和严格的风险纪律。</p>
+<p>审视标的时，有几个维度绕不开。</p>
+<p><strong>营收增速是否转正。</strong> 营收是利润之母。如果一家公司的营收持续萎缩，再低的价格也谈不上价值。反之，营收企稳回升是基本面改善的最早信号。</p>
+<p><strong>毛利率是否触底反弹。</strong> 对于周期底部的公司，毛利率的边际改善往往先于净利润转正，这是最早能捕捉到的信号。</p>
+<p><strong>研发投入占比。</strong> 真正有科技含量的公司，即使在业绩低谷期也会保持相当的研发强度，这是区分真科技与伪科技的关键标尺。</p>
+<p><strong>行业景气周期位置。</strong> 低价科技股最大的投资逻辑是周期反转，因此需要结合行业库存水平、产品价格趋势、下游需求变化等综合判断。</p>
+<p>仓位管理上，低价科技股波动性通常大于蓝筹股，更适合采用底仓+波段操作的策略，不宜重仓单票。止损纪律上，<strong>对于股价长期低于2元且基本面无改善迹象的标的应坚决排除</strong>，这类标的往往存在退市或其他重大风险。</p>
+<p>&gt; <strong>再次强调：本文仅作行业逻辑梳理与基本面分析，不构成任何投资建议。</strong> 股市有风险，投资需谨慎。每个人的风险承受能力、持仓周期和投资目标各不相同，请基于自身情况做出独立判断。</p>
+<h2 class="text-2xl font-bold mt-12 mb-4">2026年5月—布局窗口正在打开</h2>
+<p>5月，是A股传统的Sell in May窗口期。但这个魔咒在2026年或许并不适用。</p>
+<p>回顾今年以来的走势，科创50指数3月曾创下年内新低，跌幅达10%以上，市场一度弥漫着对科技股的悲观情绪。但进入4月，伴随Q1业绩的密集披露，AI算力硬件方向集体爆发，<strong>科创50指数强势反弹，4月累计涨幅超过25%</strong>。市场用真金白银再次确认了科技主线的地位。</p>
+<p>5月的市场面临两个核心变量：一是年报和一季报的收尾影响正在消退，业绩雷的风险大幅降低；二是经过4月下旬的整固调整，部分错杀或尚未被充分定价的标的，正在形成新的布局窗口。</p>
+<p>在十五五科技强国的大背景下，科技板块的投资机会不是结束，而是刚刚进入新的阶段。当高价龙头已充分反映预期，市场的下一轮定价权，大概率会向那些被忽视的、处于价值洼地的低价正宗科技股转移。</p>
+<p>真正的机会，往往不会主动找上门来。</p>
+<p>你觉得这17只里，哪个赛道的机会最大？评论区聊一聊。#A股市场动向分析#</p>
+<p>&gt; _本文部分图片来源于网络，版权归原作者所有，如有疑问请联系删除。_
+&gt; 
+&gt; _风险提示：本文内容仅供行业研究与逻辑探讨，所述标的仅作案例分析之用，不构成任何形式的投资建议，投资有风险，入市需谨慎。_</p><div class="card p-5 sm:p-6 mt-10"><p class="text-sm font-semibold text-foreground">免责声明</p><p class="mt-2 text-[14.5px] text-muted-foreground leading-[1.7]">本文仅为个人研究与观点分享,基于公开资料整理,不构成任何投资建议。文中涉及个股仅作研究示例,不代表推荐。股市有风险,入市需谨慎。</p></div></div></div></article><div class="border-t border-border"><div class="mx-auto max-w-3xl px-4 sm:px-6 py-10"><div class="grid sm:grid-cols-2 gap-6"><a href="research-4.html" class="group flex items-start gap-3"><svg class="w-4 h-4 mt-1 shrink-0 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg><span><span class="block text-sm text-muted-foreground">上一篇</span><span class="mt-1 block font-medium hover:text-primary transition-colors duration-200">从A股历史10倍股“基因密码”中，我挖出了2026年5月这9只潜力黑马</span></span></a><a href="articles.html" class="group flex items-start gap-3 sm:justify-end sm:text-right"><svg class="w-4 h-4 mt-1 shrink-0 text-muted-foreground sm:order-last" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg><span><span class="block text-sm text-muted-foreground"></span><span class="mt-1 block font-medium hover:text-primary transition-colors duration-200">返回文章列表</span></span></a></div></div></div></main><section id="download" class="mx-auto max-w-6xl px-4 sm:px-6 mt-20 sm:mt-28"><div class="card overflow-hidden reveal"><div class="px-6 sm:px-12 lg:px-20 py-14 sm:py-20"><div class="inline-flex items-center gap-2 w-fit mx-auto text-primary"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg><span class="text-sm font-medium tracking-[0.1em]">通跃 App</span></div><h2 class="mx-auto mt-5 max-w-2xl text-center text-3xl sm:text-4xl font-black tracking-tight leading-[1.15] text-balance">把买卖点讲透 再让你下单</h2><p class="mx-auto mt-4 max-w-xl text-center text-muted-foreground leading-[1.7]">每天盘前一份作战计划 盘中触线即时提醒 盘后逐笔复盘 先看懂 再执行 结果自然来</p><div class="mt-10 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-3"><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">01</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘前作战计划</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">今日关注标的与关键价位 开盘前送达 开盘不慌</p></div><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">02</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘中止损提醒</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">触线即提醒 管住手 不扛单 先学会亏得少</p></div><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">03</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘后逐笔复盘</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">每笔交易拆解逻辑 看懂了再下手 不再凭感觉</p></div></div><div class="mt-9 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[15px] text-foreground"><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>每日实盘思路</span><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>逐笔复盘讲解</span><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>加密群聊答疑</span></div><div class="mt-10 flex justify-center"><a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="btn btn-primary js-download px-8 py-3.5 h-auto text-base">立即下载 App<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a></div><p class="mt-4 text-center text-sm text-muted-foreground">自动识别苹果 / 安卓 一键直达 安卓包约 172MB 微信内打不开 请用系统浏览器打开</p><p class="mt-3 text-center text-xs text-muted-foreground">没反应<a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="underline decoration-border underline-offset-4 transition-colors duration-200 hover:text-primary">去 App Store</a><span aria-hidden="true">/</span><a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" target="_blank" rel="noopener" class="underline decoration-border underline-offset-4 transition-colors duration-200 hover:text-primary">APK 直链</a></p><div class="mt-5 flex flex-wrap items-center justify-center gap-3"><a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="store-badge" aria-label="苹果下载"><svg class="w-6 h-6" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span class="text-[15px] font-semibold">苹果下载</span></a><a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" target="_blank" rel="noopener" class="store-badge" aria-label="安卓下载"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.523 15.341a.987.987 0 0 1-.988-.988.987.987 0 0 1 .988-.988.987.987 0 0 1 .988.988.987.987 0 0 1-.988.988zm-11.046 0a.987.987 0 0 1-.988-.988.987.987 0 0 1 .988-.988.987.987 0 0 1 .988.988.987.987 0 0 1-.988.988zM17.173 7.644l1.696-2.938a.462.462 0 0 0-.168-.632.462.462 0 0 0-.632.168l-1.718 2.976A11.727 11.727 0 0 0 12 6.008a11.727 11.727 0 0 0-4.351.81L5.931 4.242a.462.462 0 0 0-.632-.168.462.462 0 0 0-.168.632l1.696 2.938C4.266 9.18 2.5 11.795 2.5 14.793c0 3.45 4.253 6.25 9.5 6.25s9.5-2.8 9.5-6.25c0-2.998-1.766-5.613-4.327-7.149zM12 19.565c-4.572 0-8.048-2.227-8.048-4.772 0-2.544 3.476-4.772 8.048-4.772s8.048 2.228 8.048 4.772c0 2.545-3.476 4.772-8.048 4.772z"/></svg><span class="text-[15px] font-semibold">安卓下载</span></a></div><p class="mt-4 text-center text-xs text-muted-foreground">免费下载 · 进群一起实战</p></div></div></section></main><!-- ===================== 页脚 ===================== --><footer class="border-t border-border"><div class="mx-auto max-w-6xl px-4 sm:px-6 py-8"><div class="flex flex-col sm:flex-row items-center justify-between gap-4"><a href="index.html" class="font-bold">潘伟君</a><nav class="flex flex-wrap items-center gap-6 text-sm text-muted-foreground" aria-label="页脚导航"><a href="index.html#about" class="hover:text-foreground transition-colors duration-200">关于我</a><a href="index.html#method" class="hover:text-foreground transition-colors duration-200">专注领域</a><a href="index.html#articles" class="hover:text-foreground transition-colors duration-200">最新文章</a><a href="#download" class="hover:text-foreground transition-colors duration-200">下载 App</a></nav><p class="text-sm text-muted-foreground">© 2026 潘伟君 · 保留所有权利</p></div><p class="mt-5 text-center text-xs text-muted-foreground">本网站内容仅供信息交流与学习 不构成任何投资建议 市场有风险 投资需谨慎</p></div></footer><button id="back-top" class="hidden btn btn-secondary w-11 h-11 p-0 rounded-full justify-center" aria-label="回到顶部"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button><!-- ===================== Toast 容器 ===================== --><div class="toast-container" id="toast-container" aria-live="polite"></div><script>
+ // ===== 移动端菜单 =====
+ (function () {
+ const btn = document.getElementById('menu-btn');
+ const menu = document.getElementById('mobile-menu');
+ if (!btn || !menu) return;
+ function closeMenu(restoreFocus) {
+ menu.classList.add('hidden');
+ btn.setAttribute('aria-expanded', 'false');
+ if (restoreFocus) btn.focus();
+ }
+ btn.addEventListener('click', function () {
+ const open = menu.classList.toggle('hidden') === false;
+ btn.setAttribute('aria-expanded', String(open));
+ // 打开时焦点移入菜单 方便键盘用户直接导航
+ if (open) {
+ const first = menu.querySelector('a');
+ if (first) first.focus();
+ }
+ });
+ menu.querySelectorAll('.mobile-link').forEach(function (a) {
+ a.addEventListener('click', function () {
+ closeMenu(false);
+ });
+ });
+ // Esc 关闭菜单并归还焦点到按钮
+ document.addEventListener('keydown', function (e) {
+ if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+ closeMenu(true);
+ }
+ });
+ })();
+
+ // ===== Toast 系统 =====
+ const Toast = (function () {
+ const container = document.getElementById('toast-container');
+ const icons = {
+ success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
+ error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>',
+ default: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>',
+ };
+ const colors = {
+ success: 'hsl(var(--success))',
+ error: 'hsl(var(--destructive))',
+ default: 'hsl(var(--primary))',
+ };
+ function show(message, type) {
+ type = type || 'default';
+ const el = document.createElement('div');
+ el.className = 'toast';
+ el.innerHTML =
+ '<span class="toast-icon" style="color:' + colors[type] + '">' + icons[type] + '</span>' +
+ '<div class="flex-1 text-sm leading-[1.6] pt-0.5">' + message + '</div>' +
+ '<button class="toast-close text-muted-foreground hover:text-foreground transition-colors" aria-label="关闭" style="background:none;border:none;cursor:pointer;margin-top:2px"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>';
+ container.appendChild(el);
+ const remove = function () {
+ el.classList.add('leaving');
+ setTimeout(function () { el.remove(); }, 200);
+ };
+ el.querySelector('.toast-close').addEventListener('click', remove);
+ setTimeout(remove, 4000);
+ }
+ return { show: show };
+ })();
+
+ // 下载按钮已改为直接跳转（App Store / 安卓 APK） 无需 JS 脚本
+
+ // ===== 入场动效 =====
+ (function () {
+ const revealEls = document.querySelectorAll('.reveal');
+ if (!('IntersectionObserver' in window)) {
+ revealEls.forEach(function (el) { el.classList.add('in'); });
+ return;
+ }
+ const io = new IntersectionObserver(function (entries) {
+ entries.forEach(function (e) {
+ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+ });
+ }, { threshold: 0, rootMargin: '0px 0px -10px 0px' });
+ revealEls.forEach(function (el) { io.observe(el); });
+ })();
+ // ===== 智能下载 自动识别平台 =====
+ // iOS 用 itms-apps 协议即时唤起 App Store 3 秒未唤起则回落 App Store 网页
+ // 安卓 直接下载 APK 安装包（国内安卓标准方式）
+ // 微信内 无法直接下载 提示用系统浏览器打开
+ // 桌面 无法安装 滚动到下载模块并提示在手机上打开
+ (function () {
+ var APPLE = 'https://apps.apple.com/cn/app/id6789065192';
+ var APPLE_APP = 'itms-apps://apps.apple.com/cn/app/id6789065192';
+ var APK = 'https://www.tongyuesyt.com/predownload/tongyuesyt.apk';
+ var ua = navigator.userAgent;
+ var isWechat = /MicroMessenger/i.test(ua);
+ var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+ var isAndroid = /Android/.test(ua);
+ var iosFallback = null;
+ // App Store 唤起后页面隐藏 清理回落定时器 避免来回跳
+ document.addEventListener('visibilitychange', function () {
+ if (iosFallback) { clearTimeout(iosFallback); iosFallback = null; }
+ });
+ function scrollToDownload() {
+ var d = document.getElementById('download');
+ if (d) d.scrollIntoView({ behavior: 'smooth', block: 'start' });
+ }
+ function lockBtn(el) {
+  el.classList.add('btn-loading');
+  el.setAttribute('disabled', 'disabled');
+  setTimeout(function () {
+   el.classList.remove('btn-loading');
+   el.removeAttribute('disabled');
+  }, 2500);
+ }
+ document.querySelectorAll('.js-download').forEach(function (el) {
+ el.addEventListener('click', function (e) {
+ e.preventDefault();
+ lockBtn(el);
+ if (isWechat) {
+ Toast.show('微信内无法下载 请点右上角「在浏览器打开」');
+ return;
+ }
+ if (isAndroid) {
+ window.location.href = APK;
+ Toast.show('已开始下载 约 172MB 建议 WiFi 下进行');
+ } else if (isIOS) {
+ Toast.show('即将前往 App Store');
+ iosFallback = setTimeout(function () {
+ if (!document.hidden) { window.location.href = APPLE; }
+ iosFallback = null;
+ }, 3000);
+ window.location.href = APPLE_APP;
+ } else {
+ Toast.show('请在手机上打开本页下载 App');
+ scrollToDownload();
+ }
+ });
+ });
+ })();
+
+ // ===== 阅读进度条 + 回到顶部 =====
+ (function () {
+ var bar = document.getElementById('reading-progress');
+ if (bar) {
+ var ticking = false;
+ var update = function () {
+ var max = document.documentElement.scrollHeight - window.innerHeight;
+ bar.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
+ ticking = false;
+ };
+ window.addEventListener('scroll', function () {
+ if (!ticking) { ticking = true; requestAnimationFrame(update); }
+ }, { passive: true });
+ window.addEventListener('resize', update, { passive: true });
+ update();
+ }
+ var topBtn = document.getElementById('back-top');
+ if (topBtn) {
+ var toggle = function () { topBtn.classList.toggle('hidden', window.scrollY < 600); };
+ window.addEventListener('scroll', toggle, { passive: true });
+ topBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+ toggle();
+ }
+ })();
+
+</script>  /* reveal 兜底: 快速滚动/锚点跳转/刷新恢复滚动位置时 IO 可能漏触发,
+     元素顶部一旦进入过视口即强制显示, 防止内容永久透明 */
+  (function () {
+    var els = document.querySelectorAll('.reveal:not(.in)');
+    function scan() {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (!el.classList.contains('in') && el.getBoundingClientRect().top < vh) {
+          el.classList.add('in');
+        }
+      }
+    }
+    window.addEventListener('scroll', scan, { passive: true });
+    window.addEventListener('resize', scan, { passive: true });
+    setTimeout(scan, 300);
+    setTimeout(scan, 1000);
+    scan();
+  })();
+
+</body></html>

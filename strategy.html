@@ -1,0 +1,439 @@
+﻿﻿<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8" /><meta name="apple-itunes-app" content="app-id=6789065192" /><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%230066cc%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2752%27 text-anchor=%27middle%27 fill=%27%23ffffff%27 font-family=%27sans-serif%27 font-weight=%27bold%27%3E%E6%BD%98%3C/text%3E%3C/svg%3E" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>扶摇九天 · 短线五层看盘体系 | 潘伟君</title><meta name="description" content="扶摇九天短线战法体系 五层看盘 个股体检 五条关键线 K线翻译器 大盘天气 进攻信号与选股器 一套能落地的短线看盘顺序" /><!-- Tailwind (本地, 中国用户可秒开) --><link rel="stylesheet" href="tailwind.css"><style>
+ /* ===================== Design Tokens ===================== */
+ :root {
+ color-scheme: light;
+ --background: 0 0% 100%;
+ --foreground: 240 3% 12%;
+ --card: 0 0% 100%;
+ --card-foreground: 240 3% 12%;
+ --primary: 211 100% 40%;
+ --primary-foreground: 0 0% 100%;
+ --secondary: 240 20% 97%;
+ --secondary-foreground: 240 3% 12%;
+ --muted: 240 20% 97%;
+ --muted-foreground: 240 2% 54%;
+ --accent: 240 20% 95%;
+ --accent-foreground: 240 3% 12%;
+ --destructive: 6 56% 50%;
+ --destructive-foreground: 0 0% 100%;
+ --success: 150 38% 38%;
+ --border: 240 12% 92%;
+ --input: 240 12% 92%;
+ --ring: 211 100% 40%;
+ --radius: 0.75rem;
+ --radius-sm: 0.5rem;
+ }
+
+ html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+ body {
+ background-color: hsl(var(--background));
+ color: hsl(var(--foreground));
+ -webkit-font-smoothing: antialiased;
+ text-rendering: optimizeLegibility;
+ }
+ .tnum { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+ :focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+
+ /* ===================== 背景层次 ===================== */
+ .mesh-bg {
+ position: fixed; inset: 0; z-index: -2; pointer-events: none;
+ background:
+ radial-gradient(1100px 600px at 15% -10%, rgba(216, 197, 170, 0.16) 0%, rgba(216, 197, 170, 0) 60%),
+ radial-gradient(900px 520px at 88% 2%, rgba(226, 178, 145, 0.10) 0%, rgba(226, 178, 145, 0) 55%),
+ radial-gradient(1000px 700px at 50% 116%, rgba(210, 195, 175, 0.12) 0%, rgba(210, 195, 175, 0) 60%);
+ }
+ .noise-bg {
+ position: fixed; inset: 0; z-index: -1; pointer-events: none;
+ opacity: 0.045;
+ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+ background-size: 160px 160px;
+ }
+
+ /* ===================== Card ===================== */
+ .card {
+ background: hsl(var(--card)); color: hsl(var(--card-foreground));
+ border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+ box-shadow: 0 1px 2px rgba(24, 24, 27, 0.03), 0 12px 32px -16px rgba(24, 24, 27, 0.08);
+ }
+
+ /* ===================== Button ===================== */
+ .btn {
+ display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+ height: 2.5rem; padding: 0 1rem; border-radius: var(--radius-sm);
+ font-size: .875rem; font-weight: 500; line-height: 1; white-space: nowrap;
+ border: 1px solid transparent; cursor: pointer; user-select: none;
+ transition: background-color .15s ease, color .15s ease, border-color .15s ease, opacity .15s ease, transform .1s ease;
+ }
+ .btn:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+ .btn:disabled { opacity: .5; pointer-events: none; }
+ .btn:active:not(:disabled) { transform: scale(.97); }
+ .btn svg { flex-shrink: 0; }
+
+ .btn-primary { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
+ .btn-primary:hover:not(:disabled) { background: hsl(var(--primary) / .9); }
+
+ .btn-secondary { background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); border-color: hsl(var(--border)); }
+ .btn-secondary:hover:not(:disabled) { background: hsl(var(--accent)); }
+
+ .btn-outline { background: transparent; color: hsl(var(--foreground)); border-color: hsl(var(--border)); }
+ .btn-outline:hover:not(:disabled) { background: hsl(var(--accent)); }
+
+ .btn-ghost { background: transparent; color: hsl(var(--foreground)); }
+ .btn-ghost:hover:not(:disabled) { background: hsl(var(--accent)); }
+
+ .btn-destructive { background: hsl(var(--destructive)); color: hsl(var(--destructive-foreground)); }
+ .btn-destructive:hover:not(:disabled) { background: hsl(var(--destructive) / .9); }
+
+ .btn-icon { padding: 0; width: 2.5rem; height: 2.5rem; }
+
+ /* 应用商店徽章 */
+ .store-badge {
+ display: inline-flex; align-items: center; gap: .625rem;
+ height: 3rem; padding: 0 1rem;
+ background: #1d1d1f; color: #fff; border-radius: var(--radius-sm);
+ border: 1px solid #1d1d1f; cursor: pointer; text-decoration: none;
+ transition: background-color .15s ease, opacity .15s ease, transform .1s ease;
+ }
+ .store-badge:hover { background: #000; }
+ .store-badge:active { transform: scale(.97); }
+
+ .spinner {
+ width: 1rem; height: 1rem; border-radius: 50%;
+ border: 2px solid currentColor; border-top-color: transparent;
+ animation: spin .6s linear infinite;
+ }
+ @keyframes spin { to { transform: rotate(360deg); } }
+ /* 按钮加载态（防连点 + spinner 反馈） */
+ .btn { position: relative; }
+ .btn-loading { pointer-events: none; opacity: .9; }
+ .btn-loading > * { visibility: hidden; }
+ .btn-loading::after {
+ content: ''; position: absolute; top: 50%; left: 50%;
+ width: 1rem; height: 1rem; margin: -.5rem 0 0 -.5rem;
+ border-radius: 50%;
+ border: 2px solid currentColor; border-top-color: transparent;
+ animation: spin .6s linear infinite;
+ }
+
+
+ /* ===================== Input ===================== */
+ .input {
+ height: 2.5rem; width: 100%; padding: 0 .75rem;
+ border-radius: var(--radius-sm); border: 1px solid hsl(var(--input));
+ background: hsl(var(--card)); color: hsl(var(--foreground));
+ font-size: .875rem; transition: border-color .15s ease, box-shadow .15s ease;
+ }
+ .input::placeholder { color: hsl(var(--muted-foreground) / .7); }
+ .input:focus { outline: none; border-color: hsl(var(--ring)); box-shadow: 0 0 0 3px hsl(var(--ring) / .15); }
+ .input:disabled { opacity: .5; cursor: not-allowed; }
+ .input[aria-invalid="true"] { border-color: hsl(var(--destructive)); }
+ .input[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px hsl(var(--destructive) / .15); }
+
+ /* ===================== Toast ===================== */
+ .toast-container {
+ position: fixed; bottom: 1rem; right: 1rem; z-index: 200;
+ display: flex; flex-direction: column; gap: .5rem; max-width: calc(100vw - 2rem);
+ }
+ .toast {
+ display: flex; align-items: flex-start; gap: .75rem;
+ background: hsl(var(--card)); border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+ padding: .875rem 1rem; box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.16); width: 22rem; max-width: 100%;
+ animation: toast-in .25s cubic-bezier(.22,.61,.36,1);
+ }
+ .toast.leaving { animation: toast-out .2s ease forwards; }
+ .toast-icon { display: grid; place-items: center; width: 1.25rem; height: 1.25rem; flex-shrink: 0; margin-top: .125rem; }
+ @keyframes toast-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+ @keyframes toast-out { to { opacity: 0; transform: translateY(10px); } }
+
+ /* ===================== 毛玻璃（局部） ===================== */
+ .glass {
+ background: rgba(250, 249, 247, 0.88);
+ backdrop-filter: blur(14px) saturate(120%);
+ -webkit-backdrop-filter: blur(14px) saturate(120%);
+ }
+
+ /* ===================== 正文排版 ===================== */
+ .prose p { color: hsl(var(--foreground) / .88); }
+ .prose a { color: hsl(var(--primary)); }
+ .prose a:hover { color: hsl(var(--foreground)); }
+
+ /* ===================== 入场动效 ===================== */
+ html.js .reveal { opacity: 0; }
+ html.js .reveal.in {
+ opacity: 1;
+ animation: reveal-in .4s cubic-bezier(.22,.61,.36,1) backwards;
+ animation-delay: var(--d, 0ms);
+ }
+ @keyframes reveal-in {
+ from { opacity: 0; transform: translateY(20px); }
+ to { opacity: 1; transform: translateY(0); }
+ }
+
+ /* ===== 编辑杂志 衬线标题 + 珊瑚引语 + 衬线品牌 + 暖色徽章 ===== */
+ h1, h2, h3 {
+ font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "STSong", "SimSun", serif;
+ letter-spacing: .01em !important;
+ line-height: 1.28 !important;
+ }
+ header nav > a:first-child { font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "STSong", "SimSun", serif; letter-spacing: .02em; }
+ p.text-primary { letter-spacing: .1em; }
+ blockquote { border-left-color: hsl(var(--primary) / 0.55) !important; }
+ .btn-primary:hover:not(:disabled) { background: #0077ed; }
+ .store-badge { background: #1d1d1f !important; border-color: #1d1d1f !important; }
+ .store-badge:hover { background: #000000 !important; }
+
+ /* ===================== 阅读进度条 + 回到顶部 ===================== */
+ #reading-progress {
+ position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+ height: 2px; background: hsl(var(--primary));
+ transform-origin: 0 0; transform: scaleX(0);
+ pointer-events: none;
+ }
+ #back-top {
+ position: fixed; bottom: 5rem; right: 1rem; z-index: 90;
+ box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.18);
+ }
+ @media (max-width: 640px) { #back-top { bottom: 4.5rem; right: .75rem; } }
+
+
+ @media (prefers-reduced-motion: reduce) {
+ html { scroll-behavior: auto; }
+ html.js .reveal { opacity: 1; animation: none; }
+ .btn:active { transform: none; }
+ .spinner { animation: none; } .btn-loading::after { animation: none !important; }
+ * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+ }
+
+/* 移动端触控目标优化: 核心交互 ≥44px (WCAG 2.5.5) */
+@media (max-width: 767px) {
+  header a:not(.btn):not(.hidden):not([class*="hidden"]),
+  footer nav a:not(.hidden):not([class*="hidden"]),
+  nav[aria-label="本页目录"] a,
+  #menu-btn, .tab {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  footer nav a:not(.hidden):not([class*="hidden"]) { padding: 0 .5rem; }
+  #menu-btn { width: 44px; height: 44px; }
+  .tab { height: 44px; }
+  #search-clear { width: 44px !important; height: 44px !important; }
+}</style><script>document.documentElement.classList.add('js');</script></head><body class="font-sans text-foreground antialiased"><div class="mesh-bg" aria-hidden="true"></div><div class="noise-bg" aria-hidden="true"></div><div id="reading-progress" aria-hidden="true"></div><a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-card focus:px-4 focus:py-2 focus:rounded-md">跳到主要内容</a><!-- ===================== 导航（毛玻璃） ===================== --><header class="fixed top-0 inset-x-0 z-50 border-b border-border bg-background/85 backdrop-blur-md"><div class="mx-auto max-w-6xl px-4 sm:px-6"><div><nav class="flex items-center justify-between h-16" aria-label="主导航"><a href="index.html" class="font-bold text-lg tracking-tight">潘伟君</a><div class="hidden md:flex items-center gap-7 text-[15px] text-muted-foreground"><a href="index.html#about" class="hover:text-foreground transition-colors duration-200">关于我</a><a href="index.html#method" class="hover:text-foreground transition-colors duration-200">专注领域</a><a href="index.html#articles" class="text-foreground font-medium transition-colors duration-200">最新文章</a></div><div class="flex items-center gap-3"><a href="#download" class="btn btn-primary js-download hidden sm:inline-flex">下载 App</a><button id="menu-btn" class="btn btn-ghost btn-icon md:hidden" aria-label="打开菜单" aria-expanded="false"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></nav><div id="mobile-menu" class="hidden md:hidden border-t border-border px-4 py-3"><nav aria-label="移动菜单"><a href="index.html#about" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">关于我</a><a href="index.html#method" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">专注领域</a><a href="index.html#articles" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">最新文章</a><a href="#download" class="mobile-link js-download rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors md:hidden">下载 App</a></nav></div></div></div></div></header><main id="main" class="pt-20 sm:pt-24"><!-- ===================== 文章头 ===================== --><header class="border-b border-border"><div class="mx-auto max-w-3xl px-4 sm:px-6 pt-10 pb-12 reveal"><a href="articles.html" class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>返回文章列表</a><p class="mt-8 text-sm font-medium text-primary">战法体系</p><h1 class="mt-3 text-3xl sm:text-4xl lg:text-[2.75rem] font-black leading-[1.2] tracking-tight text-balance">扶摇九天 · 短线五层看盘体系</h1><p class="mt-5 text-lg text-muted-foreground leading-[1.7]">一层体检 二层定线 三层看K线真相 四层看大盘天气 五层等进攻信号 把看盘从东看一眼西看一眼 变成一套有顺序的决策链</p><div class="mt-7 flex items-center gap-3 text-sm text-muted-foreground"><span class="font-medium text-foreground">潘伟君</span><span aria-hidden="true">·</span><span class="tnum">2026-09-01</span><span aria-hidden="true">·</span><span class="tnum">15 分钟阅读</span></div></div></header><!-- ===================== 正文 ===================== --><article class="prose"><div class="mx-auto max-w-3xl px-4 sm:px-6 py-14"><div class="space-y-8 text-[17px] leading-[1.75]"><!-- 引言 --><section class="reveal"><p>做了十年短线的人 和刚开户三天的人 差别不在懂多少指标 而在<span class="font-semibold text-foreground">看盘的顺序</span>。新人打开软件 先看哪只票涨得好 老手先看天气 再看位置 最后才谈买卖。</p><p>扶摇九天把看盘固定成<span class="font-semibold text-foreground">五层</span>:个股体检 → 五条关键线 → K线真相 → 大盘天气 → 进攻信号。每一层回答一个问题,一层不过 不进下一层。这套顺序写出来就是一套战法 落到盘面上就是一套纪律。</p><p>下面把这五层逐层拆开 每一层都讲清三个东西:<span class="font-medium text-foreground">看什么、怎么判、错了怎么办</span>。</p></section><!-- 五层总览图 --><section class="reveal"><div class="card overflow-hidden"><div class="p-5 sm:p-6"><p class="text-sm font-semibold text-foreground">五层看盘总览</p><p class="mt-1 text-sm text-muted-foreground">自下而上 层层过关</p></div><svg viewBox="0 0 640 300" class="w-full h-auto" role="img" aria-label="五层看盘体系阶梯图"><rect width="640" height="300" fill="hsl(240 20% 97%)"/><g font-family="system-ui,sans-serif">
+<rect x="40" y="216" width="560" height="46" rx="10" fill="#ffffff" stroke="hsl(240 12% 92%)"/>
+<text x="62" y="246" font-size="15" fill="hsl(211 100% 40%)" font-weight="600">第 1 层</text>
+<text x="130" y="246" font-size="15" fill="hsl(240 3% 12%)" font-weight="600">个股体检</text>
+<text x="262" y="246" font-size="13" fill="hsl(240 2% 54%)">概念 · 趋势 · 位置 · 量能</text>
+<rect x="40" y="160" width="560" height="46" rx="10" fill="#ffffff" stroke="hsl(240 12% 92%)"/>
+<text x="62" y="190" font-size="15" fill="hsl(211 100% 40%)" font-weight="600">第 2 层</text>
+<text x="130" y="190" font-size="15" fill="hsl(240 3% 12%)" font-weight="600">五条关键线</text>
+<text x="262" y="190" font-size="13" fill="hsl(240 2% 54%)">前锋 · 结界 · 边关 · 开战 · 扶摇直上</text>
+<rect x="40" y="104" width="560" height="46" rx="10" fill="#ffffff" stroke="hsl(240 12% 92%)"/>
+<text x="62" y="134" font-size="15" fill="hsl(211 100% 40%)" font-weight="600">第 3 层</text>
+<text x="130" y="134" font-size="15" fill="hsl(240 3% 12%)" font-weight="600">K线真相</text>
+<text x="262" y="134" font-size="13" fill="hsl(240 2% 54%)">K线翻译器 · 假阴真阳 / 假阳真阴</text>
+<rect x="40" y="48" width="560" height="46" rx="10" fill="#ffffff" stroke="hsl(240 12% 92%)"/>
+<text x="62" y="78" font-size="15" fill="hsl(211 100% 40%)" font-weight="600">第 4 层</text>
+<text x="130" y="78" font-size="15" fill="hsl(240 3% 12%)" font-weight="600">大盘天气</text>
+<text x="262" y="78" font-size="13" fill="hsl(240 2% 54%)">晴 / 阴 / 雨 · 决定仓位上限</text>
+<rect x="40" y="12" width="560" height="26" rx="13" fill="#0066cc"/>
+<text x="62" y="30" font-size="13" fill="#ffffff" font-weight="600">第 5 层</text>
+<text x="130" y="30" font-size="13" fill="#ffffff" font-weight="600">进攻信号 + 选股器</text>
+<text x="330" y="30" font-size="12" fill="rgba(255,255,255,.85)">三层全过 才允许出手</text>
+</g></svg></div></section><!-- 第一层 体检 --><section class="reveal"><h2 class="text-2xl font-bold">第 1 层 · 个股体检:先搞清楚在跟谁打交道</h2><p>选一只票之前 先花五分钟做个体检。体检四项 每一项都是硬条件 不是参考意见。</p><div class="card p-5 sm:p-6 space-y-4"><div class="flex gap-3"><span class="shrink-0 grid place-items-center w-8 h-8 rounded-lg bg-[hsl(var(--primary))] text-white text-sm font-bold">1</span><div><p class="font-semibold text-foreground">概念</p><p class="mt-1 text-[15px] text-muted-foreground leading-[1.7]">属于什么板块?题材在不在风口?概念是资金的入场券,题材冷 再好的图形也没人抬轿。</p></div></div><div class="flex gap-3"><span class="shrink-0 grid place-items-center w-8 h-8 rounded-lg bg-[hsl(var(--primary))] text-white text-sm font-bold">2</span><div><p class="font-semibold text-foreground">趋势</p><p class="mt-1 text-[15px] text-muted-foreground leading-[1.7]">均线是不是多头排列?五日均线在十日线上 十日线在二十日线上,才谈得上顺势。</p></div></div><div class="flex gap-3"><span class="shrink-0 grid place-items-center w-8 h-8 rounded-lg bg-[hsl(var(--primary))] text-white text-sm font-bold">3</span><div><p class="font-semibold text-foreground">位置</p><p class="mt-1 text-[15px] text-muted-foreground leading-[1.7]">处在底部、拉升还是高位?只做底部启动和拉升途中,高位放量的票 赚的是最后一棒。</p></div></div><div class="flex gap-3"><span class="shrink-0 grid place-items-center w-8 h-8 rounded-lg bg-[hsl(var(--primary))] text-white text-sm font-bold">4</span><div><p class="font-semibold text-foreground">量能</p><p class="mt-1 text-[15px] text-muted-foreground leading-[1.7]">是放量突破还是缩量阴跌?量是资金投票的结果,放量突破才有资格进入下一层。</p></div></div></div><p>体检四项 有一项不合格 直接淘汰,不需要再看第二层。淘汰不是错过 是省下亏钱的机会。</p></section><!-- 第二层 五条关键线 --><section class="reveal"><h2 class="text-2xl font-bold">第 2 层 · 五条关键线:给战场划出边界</h2><p>五条线 从短到长 各管一段。它们不是指标 是战场上的五道标记:谁在进攻、哪里是结界、哪里不能丢、哪条线上一触即发。</p><div class="card overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b border-border text-left text-muted-foreground"><th class="px-4 py-3 font-medium">线</th><th class="px-4 py-3 font-medium">算法</th><th class="px-4 py-3 font-medium">角色</th><th class="px-4 py-3 font-medium">用法</th></tr></thead><tbody class="text-[14.5px]">
+<tr class="border-b border-border"><td class="px-4 py-3 font-semibold text-foreground whitespace-nowrap">前锋</td><td class="px-4 py-3 tnum text-muted-foreground whitespace-nowrap">MA(C,5)</td><td class="px-4 py-3 text-muted-foreground">短线攻击线</td><td class="px-4 py-3 leading-[1.6]">股价站上五日线 短线才有人气;跌破五日线 先减仓</td></tr>
+<tr class="border-b border-border"><td class="px-4 py-3 font-semibold text-foreground whitespace-nowrap">结界</td><td class="px-4 py-3 tnum text-muted-foreground whitespace-nowrap">近 30 日高/低点</td><td class="px-4 py-3 text-muted-foreground">战场边界</td><td class="px-4 py-3 leading-[1.6]">放量突破三十日高点=破结界 打开空间;跌回三十日低点=失守</td></tr>
+<tr class="border-b border-border"><td class="px-4 py-3 font-semibold text-foreground whitespace-nowrap">边关</td><td class="px-4 py-3 tnum text-muted-foreground whitespace-nowrap">MA(C,60)</td><td class="px-4 py-3 text-muted-foreground">牛熊分界</td><td class="px-4 py-3 leading-[1.6]">六十日线上=中期多头 可持股;线下=空头 不做中线</td></tr>
+<tr class="border-b border-border"><td class="px-4 py-3 font-semibold text-foreground whitespace-nowrap">开战</td><td class="px-4 py-3 tnum text-muted-foreground whitespace-nowrap">BBI=(MA3+MA6+MA12+MA24)/4</td><td class="px-4 py-3 text-muted-foreground">开战信号</td><td class="px-4 py-3 leading-[1.6]">股价上穿 BBI=开战 可进场;回踩不破 可加仓</td></tr>
+<tr><td class="px-4 py-3 font-semibold text-foreground whitespace-nowrap">扶摇直上</td><td class="px-4 py-3 tnum text-muted-foreground whitespace-nowrap">DKX × 1.1</td><td class="px-4 py-3 text-muted-foreground">牛股启动线</td><td class="px-4 py-3 leading-[1.6]">强势股沿此线爬升 破线离场;回踩不破 是最后上车点</td></tr>
+</tbody></table></div><p>五条线组合使用:底部形态成立 + 股价上穿开战线 + 放量突破结界 = 进场;跌破边关(六十日线)= 无条件离场。线的意义不在单条 在组合给出的位置判断。</p></section><!-- 第三层 K线真相 --><section class="reveal"><h2 class="text-2xl font-bold">第 3 层 · K线真相:阴阳会骗人 涨跌不会</h2><p>K线只有两种颜色,但颜色不代表真实涨跌。<span class="font-semibold text-foreground">K线翻译器</span>就是把阴阳线翻译成真实的方向 再决定动作。</p><div class="grid sm:grid-cols-2 gap-5"><div class="card p-5 sm:p-6"><div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#c73e3e]"></span><p class="font-semibold text-foreground">假阴真阳</p></div><p class="mt-2 text-[15px] text-muted-foreground leading-[1.7]">高开低走 收了一根阴线 但收盘价仍高于昨日收盘。阴线是假的 方向是真的涨。</p><p class="mt-2 text-[14.5px] font-medium text-foreground">动作:别被阴线吓跑 持股不动</p></div><div class="card p-5 sm:p-6"><div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#1e9e5a]"></span><p class="font-semibold text-foreground">假阳真阴</p></div><p class="mt-2 text-[15px] text-muted-foreground leading-[1.7]">低开高走 收了一根阳线 但收盘价仍低于昨日收盘。阳线是假的 方向是真的跌。</p><p class="mt-2 text-[14.5px] font-medium text-foreground">动作:别被阳线迷惑 逢高减仓</p></div></div><p>判断方法只有一个:拿收盘价和昨收比 而不是看红绿。收高即涨 收低即跌。这一条 能把一半的误判挡在门外。</p></section><!-- 第四层 大盘天气 --><section class="reveal"><h2 class="text-2xl font-bold">第 4 层 · 大盘天气:先看天气 再决定带多少仓位出门</h2><p>个股再强 也拧不过大盘。天气决定仓位上限 个股决定选谁 两者分属两层 不能混。</p><div class="card overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b border-border text-left text-muted-foreground"><th class="px-4 py-3 font-medium">天气</th><th class="px-4 py-3 font-medium">盘面特征</th><th class="px-4 py-3 font-medium">仓位上限</th><th class="px-4 py-3 font-medium">动作</th></tr></thead><tbody class="text-[14.5px]">
+<tr class="border-b border-border"><td class="px-4 py-3 font-semibold text-foreground">晴</td><td class="px-4 py-3 text-muted-foreground">指数站上五日线 量能温和放大</td><td class="px-4 py-3 tnum">6 - 8 成</td><td class="px-4 py-3 text-muted-foreground">放开做 三层全过的个股优先</td></tr>
+<tr class="border-b border-border"><td class="px-4 py-3 font-semibold text-foreground">阴</td><td class="px-4 py-3 text-muted-foreground">指数在五日线附近反复拉锯</td><td class="px-4 py-3 tnum">3 - 5 成</td><td class="px-4 py-3 text-muted-foreground">只做最强的 快进快出</td></tr>
+<tr><td class="px-4 py-3 font-semibold text-foreground">雨</td><td class="px-4 py-3 text-muted-foreground">指数跌破五日线 量能萎缩或恐慌</td><td class="px-4 py-3 tnum">0 - 2 成</td><td class="px-4 py-3 text-muted-foreground">空仓等信号 不逆势接飞刀</td></tr>
+</tbody></table></div><p>天气判断每天开盘前做一次 写下来。晴做多 阴减半 雨空仓 先于个股判断 永远不变。</p></section><!-- 第五层 进攻信号与选股器 --><section class="reveal"><h2 class="text-2xl font-bold">第 5 层 · 进攻信号与选股器:把规则写进公式</h2><p>前四层解决"能不能做" 第五层解决"做谁、什么时候下手"。进攻信号三条件 缺一不可:</p><div class="card p-5 sm:p-6 space-y-3"><p class="flex items-start gap-3 text-[15px] leading-[1.7]"><span class="shrink-0 mt-1 w-5 h-5 grid place-items-center rounded-full bg-[hsl(var(--primary))] text-white text-xs font-bold">1</span><span><span class="font-semibold text-foreground">底部放量突破</span> — 脱离底部区间 首次放量 突破三十日结界</span></p><p class="flex items-start gap-3 text-[15px] leading-[1.7]"><span class="shrink-0 mt-1 w-5 h-5 grid place-items-center rounded-full bg-[hsl(var(--primary))] text-white text-xs font-bold">2</span><span><span class="font-semibold text-foreground">开战信号金叉</span> — 股价上穿 BBI 且五日线上穿 BBI</span></p><p class="flex items-start gap-3 text-[15px] leading-[1.7]"><span class="shrink-0 mt-1 w-5 h-5 grid place-items-center rounded-full bg-[hsl(var(--primary))] text-white text-xs font-bold">3</span><span><span class="font-semibold text-foreground">大盘天气晴</span> — 指数站上五日线 允许进攻</span></p></div><p>手工选股 一天只能翻几十只。把条件写成通达信选股公式 一屏就能扫出全部候选 再人工过一遍体检 效率完全不同。选股器不是自动交易 是把"标准"固化 让机器帮你做第一道筛。</p><div class="card p-5 sm:p-6"><p class="text-sm font-semibold text-foreground">选股器公式骨架(示例)</p><pre class="mt-3 overflow-x-auto rounded-lg bg-[#1d1d1f] text-[#9be08c] text-[13px] leading-[1.7] p-4"><code>BBI:=(MA(C,3)+MA(C,6)+MA(C,12)+MA(C,24))/4;
+开战:CROSS(C,BBI);
+放量:VOL&gt;MA(VOL,5)*1.8;
+突破:HHV(H,30)=H AND C&gt;REF(HHV(H,30),1);
+天气:INDEXC&gt;MA(INDEXC,5);
+选股:开战 AND 放量 AND 突破 AND 天气;</code></pre></div><p>把这段骨架按自己的止损线、仓位规则改一改 就是一套专属选股器。看不懂公式没关系 重点是理解背后的条件逻辑 条件就是你自己的纪律。</p></section><!-- 潜龙出海副图 --><section class="reveal"><h2 class="text-2xl font-bold">潜龙出海 · 副图动能与筹码</h2><p>五层看盘解决买卖点 潜龙出海副图解决另一件事:<span class="font-semibold text-foreground">这只票的动能和筹码 够不够支撑它游起来</span>。作为五层的辅助工具 叠加使用。</p><div class="card p-5 sm:p-6 space-y-4"><div class="flex gap-3"><span class="shrink-0 grid place-items-center w-8 h-8 rounded-lg bg-[#1e9e5a] text-white text-sm font-bold">动</span><div><p class="font-semibold text-foreground">动能</p><p class="mt-1 text-[15px] text-muted-foreground leading-[1.7]">量能的强弱与持续性 红柱转强=资金进场 绿柱持续=资金撤退。动能弱 图形再好都是纸面富贵。</p></div></div><div class="flex gap-3"><span class="shrink-0 grid place-items-center w-8 h-8 rounded-lg bg-[#1e9e5a] text-white text-sm font-bold">筹</span><div><p class="font-semibold text-foreground">筹码</p><p class="mt-1 text-[15px] text-muted-foreground leading-[1.7]">获利盘与套牢盘的分布 低位筹码密集=底部换手充分 上方套牢少 拉升阻力小。</p></div></div></div><p>用法一句话:动能转强 + 筹码低位密集 = 潜龙出水,配合五层中的进攻信号使用。副图不单独做决策 只做确认。</p></section><!-- 道法术器总结 --><section class="reveal"><h2 class="text-2xl font-bold">道法术器:把体系收进一个框架</h2><p>五层看盘 可以压缩成四个字:道法术器。道是方向 法是纪律 术是技术 器是工具。四个层次 缺一层 体系就缺一角。</p><div class="grid sm:grid-cols-2 gap-5"><div class="card p-5 sm:p-6"><p class="text-4xl font-black text-[hsl(var(--primary))]">道</p><p class="mt-2 font-semibold text-foreground">大盘天气</p><p class="mt-1 text-[15px] text-muted-foreground leading-[1.7]">先判断能不能做 天气决定仓位上限 道不正 术越精亏得越快</p></div><div class="card p-5 sm:p-6"><p class="text-4xl font-black text-[hsl(var(--primary))]">法</p><p class="mt-2 font-semibold text-foreground">五条关键线 + 仓位纪律</p><p class="mt-1 text-[15px] text-muted-foreground leading-[1.7]">线的位置划出战场边界 仓位规则锁住单笔风险 法是执行的标准</p></div><div class="card p-5 sm:p-6"><p class="text-4xl font-black text-[hsl(var(--primary))]">术</p><p class="mt-2 font-semibold text-foreground">K线翻译器</p><p class="mt-1 text-[15px] text-muted-foreground leading-[1.7]">读懂阴阳背后的真实涨跌 术是眼力 决定你能不能看懂盘面</p></div><div class="card p-5 sm:p-6"><p class="text-4xl font-black text-[hsl(var(--primary))]">器</p><p class="mt-2 font-semibold text-foreground">选股器 + 潜龙出海</p><p class="mt-1 text-[15px] text-muted-foreground leading-[1.7]">把规则固化成工具 让机器做第一道筛 器是效率 决定你能覆盖多大盘面</p></div></div></section><!-- 实战检查清单 --><section class="reveal"><h2 class="text-2xl font-bold">出手前 · 五步自检清单</h2><p>把五层翻译成五个问题 每次下单前逐条过 有一条答不上来 就不做。这不是保守 是体系。</p><div class="card p-5 sm:p-6 space-y-3"><p class="flex items-start gap-3 text-[15px] leading-[1.7]"><span class="shrink-0 mt-1 w-5 h-5 grid place-items-center rounded-full bg-[hsl(var(--primary))] text-white text-xs font-bold">1</span><span>体检四项全过?概念、趋势、位置、量能 有没有硬伤?</span></p><p class="flex items-start gap-3 text-[15px] leading-[1.7]"><span class="shrink-0 mt-1 w-5 h-5 grid place-items-center rounded-full bg-[hsl(var(--primary))] text-white text-xs font-bold">2</span><span>现在站在哪两条线之间?上方是结界还是边关?</span></p><p class="flex items-start gap-3 text-[15px] leading-[1.7]"><span class="shrink-0 mt-1 w-5 h-5 grid place-items-center rounded-full bg-[hsl(var(--primary))] text-white text-xs font-bold">3</span><span>今天的K线是真涨还是假涨?收盘价和昨收比过没有?</span></p><p class="flex items-start gap-3 text-[15px] leading-[1.7]"><span class="shrink-0 mt-1 w-5 h-5 grid place-items-center rounded-full bg-[hsl(var(--primary))] text-white text-xs font-bold">4</span><span>大盘今天是晴是阴是雨?我该带几成仓位出门?</span></p><p class="flex items-start gap-3 text-[15px] leading-[1.7]"><span class="shrink-0 mt-1 w-5 h-5 grid place-items-center rounded-full bg-[hsl(var(--primary))] text-white text-xs font-bold">5</span><span>进攻三条件(放量突破 / 开战金叉 / 天气晴)全齐了吗?止损位写在哪?</span></p></div><p>五个问题 一分钟 写下来再下单。写不出来的单子 大概率是冲动单 冲动单就是给市场交学费。</p></section><!-- 结尾 CTA --><section class="reveal"><div class="card p-6 sm:p-8 border-primary/25"><p class="text-sm font-medium text-primary">战法不是看看就会的</p><h2 class="mt-2 text-2xl font-bold">每天盘前 用五层体系走一遍</h2><p class="mt-3 text-muted-foreground leading-[1.7]">扶摇九天主图 + 潜龙出海副图 已随通跃 App 附赠 盘前盘后都有实战讲解 把体系练成肌肉记忆。</p><div class="mt-6 flex flex-wrap gap-3"><a href="#download" class="btn btn-primary js-download px-5 py-3 h-auto">下载通跃 App</a><a href="articles.html" class="btn btn-outline px-5 py-3 h-auto">返回文章列表</a></div></div></section></div></div></article><!-- ===================== 上下一篇 ===================== --><div class="border-t border-border"><div class="mx-auto max-w-3xl px-4 sm:px-6 py-10"><div class="grid sm:grid-cols-2 gap-6"><a href="article-stockpick.html" class="group flex items-start gap-3"><svg class="w-4 h-4 mt-1 shrink-0 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg><span><span class="block text-sm text-muted-foreground">上一篇</span><span class="mt-1 block font-medium hover:text-primary transition-colors duration-200">短线选股三板斧 题材 量能 位置 三关过完再下手</span></span></a><a href="article-indicator.html" class="group flex items-start gap-3 sm:justify-end sm:text-right"><svg class="w-4 h-4 mt-1 shrink-0 text-muted-foreground sm:order-last" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg><span><span class="block text-sm text-muted-foreground">下一篇</span><span class="mt-1 block font-medium hover:text-primary transition-colors duration-200">指标选股器 把选股条件写进公式 一屏扫出符合战法的票</span></span></a></div></div></div></main><section id="download" class="mx-auto max-w-6xl px-4 sm:px-6 mt-20 sm:mt-28"><div class="card overflow-hidden reveal"><div class="px-6 sm:px-12 lg:px-20 py-14 sm:py-20"><div class="inline-flex items-center gap-2 w-fit mx-auto text-primary"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg><span class="text-sm font-medium tracking-[0.1em]">通跃 App</span></div><h2 class="mx-auto mt-5 max-w-2xl text-center text-3xl sm:text-4xl font-black tracking-tight leading-[1.15] text-balance">把买卖点讲透 再让你下单</h2><p class="mx-auto mt-4 max-w-xl text-center text-muted-foreground leading-[1.7]">每天盘前一份作战计划 盘中触线即时提醒 盘后逐笔复盘 先看懂 再执行 结果自然来</p><div class="mt-10 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-3"><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">01</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘前作战计划</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">今日关注标的与关键价位 开盘前送达 开盘不慌</p></div><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">02</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘中止损提醒</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">触线即提醒 管住手 不扛单 先学会亏得少</p></div><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">03</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘后逐笔复盘</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">每笔交易拆解逻辑 看懂了再下手 不再凭感觉</p></div></div><div class="mt-9 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[15px] text-foreground"><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>每日实盘思路</span><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>逐笔复盘讲解</span><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>加密群聊答疑</span></div><div class="mt-10 flex justify-center"><a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="btn btn-primary js-download px-8 py-3.5 h-auto text-base">立即下载 App<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a></div><p class="mt-4 text-center text-sm text-muted-foreground">自动识别苹果 / 安卓 一键直达 安卓包约 172MB 微信内打不开 请用系统浏览器打开</p><p class="mt-3 text-center text-xs text-muted-foreground">没反应<a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="underline decoration-border underline-offset-4 transition-colors duration-200 hover:text-primary">去 App Store</a><span aria-hidden="true">/</span><a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" target="_blank" rel="noopener" class="underline decoration-border underline-offset-4 transition-colors duration-200 hover:text-primary">APK 直链</a></p><div class="mt-5 flex flex-wrap items-center justify-center gap-3"><a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="store-badge" aria-label="苹果下载"><svg class="w-6 h-6" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span class="text-[15px] font-semibold">苹果下载</span></a><a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" target="_blank" rel="noopener" class="store-badge" aria-label="安卓下载"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.523 15.341a.987.987 0 0 1-.988-.988.987.987 0 0 1 .988-.988.987.987 0 0 1 .988.988.987.987 0 0 1-.988.988zm-11.046 0a.987.987 0 0 1-.988-.988.987.987 0 0 1 .988-.988.987.987 0 0 1 .988.988.987.987 0 0 1-.988.988zM17.173 7.644l1.696-2.938a.462.462 0 0 0-.168-.632.462.462 0 0 0-.632.168l-1.718 2.976A11.727 11.727 0 0 0 12 6.008a11.727 11.727 0 0 0-4.351.81L5.931 4.242a.462.462 0 0 0-.632-.168.462.462 0 0 0-.168.632l1.696 2.938C4.266 9.18 2.5 11.795 2.5 14.793c0 3.45 4.253 6.25 9.5 6.25s9.5-2.8 9.5-6.25c0-2.998-1.766-5.613-4.327-7.149zM12 19.565c-4.572 0-8.048-2.227-8.048-4.772 0-2.544 3.476-4.772 8.048-4.772s8.048 2.228 8.048 4.772c0 2.545-3.476 4.772-8.048 4.772z"/></svg><span class="text-[15px] font-semibold">安卓下载</span></a></div><p class="mt-4 text-center text-xs text-muted-foreground">免费下载 · 进群一起实战</p></div></div></section></main><!-- ===================== 页脚 ===================== --><footer class="border-t border-border"><div class="mx-auto max-w-6xl px-4 sm:px-6 py-8"><div class="flex flex-col sm:flex-row items-center justify-between gap-4"><a href="index.html" class="font-bold">潘伟君</a><nav class="flex flex-wrap items-center gap-6 text-sm text-muted-foreground" aria-label="页脚导航"><a href="index.html#about" class="hover:text-foreground transition-colors duration-200">关于我</a><a href="index.html#method" class="hover:text-foreground transition-colors duration-200">专注领域</a><a href="index.html#articles" class="hover:text-foreground transition-colors duration-200">最新文章</a><a href="#download" class="hover:text-foreground transition-colors duration-200">下载 App</a></nav><p class="text-sm text-muted-foreground">© 2026 潘伟君 · 保留所有权利</p></div><p class="mt-5 text-center text-xs text-muted-foreground">本网站内容仅供信息交流与学习 不构成任何投资建议 市场有风险 投资需谨慎</p></div></footer><button id="back-top" class="hidden btn btn-secondary w-11 h-11 p-0 rounded-full justify-center" aria-label="回到顶部"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button><!-- ===================== Toast 容器 ===================== --><div class="toast-container" id="toast-container" aria-live="polite"></div><script>
+ // ===== 移动端菜单 =====
+ (function () {
+ const btn = document.getElementById('menu-btn');
+ const menu = document.getElementById('mobile-menu');
+ if (!btn || !menu) return;
+ function closeMenu(restoreFocus) {
+ menu.classList.add('hidden');
+ btn.setAttribute('aria-expanded', 'false');
+ if (restoreFocus) btn.focus();
+ }
+ btn.addEventListener('click', function () {
+ const open = menu.classList.toggle('hidden') === false;
+ btn.setAttribute('aria-expanded', String(open));
+ // 打开时焦点移入菜单 方便键盘用户直接导航
+ if (open) {
+ const first = menu.querySelector('a');
+ if (first) first.focus();
+ }
+ });
+ menu.querySelectorAll('.mobile-link').forEach(function (a) {
+ a.addEventListener('click', function () {
+ closeMenu(false);
+ });
+ });
+ // Esc 关闭菜单并归还焦点到按钮
+ document.addEventListener('keydown', function (e) {
+ if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+ closeMenu(true);
+ }
+ });
+ })();
+
+ // ===== Toast 系统 =====
+ const Toast = (function () {
+ const container = document.getElementById('toast-container');
+ const icons = {
+ success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
+ error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>',
+ default: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>',
+ };
+ const colors = {
+ success: 'hsl(var(--success))',
+ error: 'hsl(var(--destructive))',
+ default: 'hsl(var(--primary))',
+ };
+ function show(message, type) {
+ type = type || 'default';
+ const el = document.createElement('div');
+ el.className = 'toast';
+ el.innerHTML =
+ '<span class="toast-icon" style="color:' + colors[type] + '">' + icons[type] + '</span>' +
+ '<div class="flex-1 text-sm leading-[1.6] pt-0.5">' + message + '</div>' +
+ '<button class="toast-close text-muted-foreground hover:text-foreground transition-colors" aria-label="关闭" style="background:none;border:none;cursor:pointer;margin-top:2px"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>';
+ container.appendChild(el);
+ const remove = function () {
+ el.classList.add('leaving');
+ setTimeout(function () { el.remove(); }, 200);
+ };
+ el.querySelector('.toast-close').addEventListener('click', remove);
+ setTimeout(remove, 4000);
+ }
+ return { show: show };
+ })();
+
+ // 下载按钮已改为直接跳转（App Store / 安卓 APK） 无需 JS 脚本
+
+ // ===== 入场动效 =====
+ (function () {
+ const revealEls = document.querySelectorAll('.reveal');
+ if (!('IntersectionObserver' in window)) {
+ revealEls.forEach(function (el) { el.classList.add('in'); });
+ return;
+ }
+ const io = new IntersectionObserver(function (entries) {
+ entries.forEach(function (e) {
+ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+ });
+ }, { threshold: 0, rootMargin: '0px 0px -10px 0px' });
+ revealEls.forEach(function (el) { io.observe(el); });
+ })();
+ // ===== 智能下载 自动识别平台 =====
+ // iOS 用 itms-apps 协议即时唤起 App Store 3 秒未唤起则回落 App Store 网页
+ // 安卓 直接下载 APK 安装包（国内安卓标准方式）
+ // 微信内 无法直接下载 提示用系统浏览器打开
+ // 桌面 无法安装 滚动到下载模块并提示在手机上打开
+ (function () {
+ var APPLE = 'https://apps.apple.com/cn/app/id6789065192';
+ var APPLE_APP = 'itms-apps://apps.apple.com/cn/app/id6789065192';
+ var APK = 'https://www.tongyuesyt.com/predownload/tongyuesyt.apk';
+ var ua = navigator.userAgent;
+ var isWechat = /MicroMessenger/i.test(ua);
+ var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+ var isAndroid = /Android/.test(ua);
+ var iosFallback = null;
+ // App Store 唤起后页面隐藏 清理回落定时器 避免来回跳
+ document.addEventListener('visibilitychange', function () {
+ if (iosFallback) { clearTimeout(iosFallback); iosFallback = null; }
+ });
+ function scrollToDownload() {
+ var d = document.getElementById('download');
+ if (d) d.scrollIntoView({ behavior: 'smooth', block: 'start' });
+ }
+ function lockBtn(el) {
+  el.classList.add('btn-loading');
+  el.setAttribute('disabled', 'disabled');
+  setTimeout(function () {
+   el.classList.remove('btn-loading');
+   el.removeAttribute('disabled');
+  }, 2500);
+ }
+ document.querySelectorAll('.js-download').forEach(function (el) {
+ el.addEventListener('click', function (e) {
+ e.preventDefault();
+ lockBtn(el);
+ if (isWechat) {
+ Toast.show('微信内无法下载 请点右上角「在浏览器打开」');
+ return;
+ }
+ if (isAndroid) {
+ window.location.href = APK;
+ Toast.show('已开始下载 约 172MB 建议 WiFi 下进行');
+ } else if (isIOS) {
+ Toast.show('即将前往 App Store');
+ iosFallback = setTimeout(function () {
+ if (!document.hidden) { window.location.href = APPLE; }
+ iosFallback = null;
+ }, 3000);
+ window.location.href = APPLE_APP;
+ } else {
+ Toast.show('请在手机上打开本页下载 App');
+ scrollToDownload();
+ }
+ });
+ });
+ })();
+
+ // ===== 阅读进度条 + 回到顶部 =====
+ (function () {
+ var bar = document.getElementById('reading-progress');
+ if (bar) {
+ var ticking = false;
+ var update = function () {
+ var max = document.documentElement.scrollHeight - window.innerHeight;
+ bar.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
+ ticking = false;
+ };
+ window.addEventListener('scroll', function () {
+ if (!ticking) { ticking = true; requestAnimationFrame(update); }
+ }, { passive: true });
+ window.addEventListener('resize', update, { passive: true });
+ update();
+ }
+ var topBtn = document.getElementById('back-top');
+ if (topBtn) {
+ var toggle = function () { topBtn.classList.toggle('hidden', window.scrollY < 600); };
+ window.addEventListener('scroll', toggle, { passive: true });
+ topBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+ toggle();
+ }
+ })();
+
+</script>  /* reveal 兜底: 快速滚动/锚点跳转/刷新恢复滚动位置时 IO 可能漏触发,
+     元素顶部一旦进入过视口即强制显示, 防止内容永久透明 */
+  (function () {
+    var els = document.querySelectorAll('.reveal:not(.in)');
+    function scan() {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (!el.classList.contains('in') && el.getBoundingClientRect().top < vh) {
+          el.classList.add('in');
+        }
+      }
+    }
+    window.addEventListener('scroll', scan, { passive: true });
+    window.addEventListener('resize', scan, { passive: true });
+    setTimeout(scan, 300);
+    setTimeout(scan, 1000);
+    scan();
+  })();
+
+</body></html>
