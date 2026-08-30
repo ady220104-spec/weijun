@@ -333,7 +333,7 @@
  entries.forEach(function (e) {
  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
  });
- }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+ }, { threshold: 0, rootMargin: '0px 0px -10px 0px' });
  revealEls.forEach(function (el) { io.observe(el); });
  })();
  // ===== 智能下载 自动识别平台 =====
@@ -417,4 +417,24 @@
  }
  })();
 
-</script></body></html>
+</script>  /* reveal 兜底: 快速滚动/锚点跳转/刷新恢复滚动位置时 IO 可能漏触发,
+     元素顶部一旦进入过视口即强制显示, 防止内容永久透明 */
+  (function () {
+    var els = document.querySelectorAll('.reveal:not(.in)');
+    function scan() {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (!el.classList.contains('in') && el.getBoundingClientRect().top < vh) {
+          el.classList.add('in');
+        }
+      }
+    }
+    window.addEventListener('scroll', scan, { passive: true });
+    window.addEventListener('resize', scan, { passive: true });
+    setTimeout(scan, 300);
+    setTimeout(scan, 1000);
+    scan();
+  })();
+
+</body></html>
