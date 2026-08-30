@@ -52,7 +52,7 @@
   /* 暗色区块强调文字(主色提亮变体, 替代游离裸色值) */
   .accent-light { color: hsl(211 100% 78%); }
   /* 首屏入场(非滚动触发) */
-  .reveal-inline { opacity: 0; animation: fade-up .7s cubic-bezier(.22,.61,.36,1) forwards; }
+  .reveal-inline { opacity: 0; animation: fade-up .4s ease-out forwards; }
   @keyframes fade-up { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
   /* 标题逐字显现 */
   .word-char { display: inline-block; opacity: 0; transform: translateY(18px); animation: word-in .5s cubic-bezier(.22,.61,.36,1) forwards; }
@@ -66,21 +66,24 @@
   .btn-primary {
     background: hsl(211 100% 40%);
     box-shadow: inset 0 1px 0 rgba(255,255,255,.22);
-    transition: background .2s ease, box-shadow .2s ease, filter .2s ease;
+    transition: background .2s ease, box-shadow .2s ease, filter .2s ease, transform .2s ease;
   }
   .btn-primary:hover { filter: brightness(1.08); box-shadow: inset 0 1px 0 rgba(255,255,255,.25); }
-  .btn-primary:active { filter: brightness(0.96); }
+  .btn-primary:active { filter: brightness(0.96); transform: scale(0.97); }
   .btn-primary:focus-visible, .btn-ghost:focus-visible, a:focus-visible, button:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 3px; }
-  .btn-ghost { border: 1px solid rgba(29,29,31,.22); transition: border-color .2s ease, background .2s ease; }
+  .btn-ghost { border: 1px solid rgba(29,29,31,.22); transition: border-color .2s ease, background .2s ease, transform .2s ease; }
   .btn-ghost:hover { border-color: rgba(29,29,31,.5); background: rgba(29,29,31,.05); }
-  .btn-ghost-dark { border: 1px solid rgba(255,255,255,.22); }
+  .btn-ghost:active { transform: scale(0.97); }
+  .btn-ghost-dark { border: 1px solid rgba(255,255,255,.22); transition: border-color .2s ease, background .2s ease, transform .2s ease; }
   .btn-ghost-dark:hover { border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.06); }
+  .btn-ghost-dark:active { transform: scale(0.97); }
   /* 滚动显现 */
-  html.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); }
-  html.js .reveal.in { opacity: 1; transform: none; }
+  html.js .reveal { opacity: 0; }
+  html.js .reveal.in { opacity: 1; animation: reveal-in .4s ease-out backwards; animation-delay: var(--d, 0ms); }
+  @keyframes reveal-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   /* 卡片 hover */
-  .lift { transition: box-shadow .25s ease, border-color .25s ease; }
-  .lift:hover { box-shadow: 0 8px 24px -16px rgba(20,15,10,.10); border-color: hsl(211 100% 88%); }
+  .lift { transition: transform .25s ease-out, box-shadow .25s ease-out, border-color .25s ease; }
+  .lift:hover { transform: translateY(-4px); box-shadow: 0 12px 32px -16px rgba(20,15,10,.16); border-color: hsl(211 100% 88%); }
   .card-line::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; border-radius: 9999px; background: linear-gradient(90deg, hsl(211 100% 40%), hsl(211 100% 55%)); opacity: 0; transition: opacity .3s ease; }
   .lift:hover .card-line::before { opacity: 1; }
   /* hero 辉光跟随 */
@@ -105,7 +108,7 @@
   #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-    html.js .reveal { opacity: 1; transform: none; }
+    html.js .reveal { opacity: 1; transform: none; animation: none !important; }
     .reveal-inline { opacity: 1 !important; transform: none !important; }
     .word-char { opacity: 1 !important; transform: none !important; }
     .glow, .scroll-hint { display: none; }
@@ -204,7 +207,13 @@
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        if (e.isIntersecting) {
+          var grp = e.target.closest('a, article, section') || e.target;
+          var els = grp.querySelectorAll('.reveal');
+          els.forEach(function (el, i) { el.style.setProperty('--d', (i * 100) + 'ms'); });
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(function (el) { io.observe(el); });
