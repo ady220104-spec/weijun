@@ -24,7 +24,7 @@
  ];
 
  function heroCard(a) {
- return '<article class="card card-hover p-7 sm:p-8 flex flex-col sm:col-span-2 lg:col-span-2 lg:row-span-2">' +
+ return '<article class="archive-featured">' +
  '<div class="flex items-center gap-3 text-sm">' +
  '<span class="font-medium text-primary">' + a.tag + '</span>' +
  '<span class="text-muted-foreground tnum">' + a.date + '</span>' +
@@ -38,7 +38,7 @@
  '</article>';
  }
  function smallCard(a) {
- return '<article class="card card-hover p-6 flex flex-col">' +
+ return '<article class="archive-entry">' +
  '<div class="flex items-center gap-3 text-sm">' +
  '<span class="font-medium text-primary">' + a.tag + '</span>' +
  '<span class="text-muted-foreground tnum">' + a.date + '</span>' +
@@ -68,9 +68,6 @@
  ? list.map(smallCard).join('')
  : heroCard(list[0]) + list.slice(1).map(smallCard).join('');
  grid.innerHTML = html;
-  grid.classList.remove('grid-fade');
-  void grid.offsetWidth;
-  grid.classList.add('grid-fade');
  }
 
  // ===== Tabs + 搜索筛选 =====

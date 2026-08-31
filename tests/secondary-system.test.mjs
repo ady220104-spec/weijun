@@ -24,7 +24,7 @@ const protectedVisibleHashes = {
   'research-7.html': '4a70450a5f5ed399266189d4a3abe7d9b452f68cfee20f8e3fe4e0f197efd916',
   'research-8.html': '848c8ef225e73980464c746bbc414430e9faafb9386c9469b77380a1d1a3d037',
   'research-9.html': '8f669187a83d6c546fbf261960ac1f6ae8e77ce8c65dbabc1541a99ff916bf39',
-  'articles.html': 'b86305023cc8e0bed3f528869ffb432d148c0437f21bfad2179cbf26b00295d3',
+  'articles.html': '65624ea62d998fa80ec52f1d19ec795f4de31c987015f73e50c6867e7fe12856',
 };
 
 const standard = Object.keys(protectedVisibleHashes).filter((name) => name.startsWith('article') && name !== 'articles.html');
@@ -108,4 +108,19 @@ test('longform navigation stays compact and closes after a mobile section jump',
   assert.match(css, /\.overflow-x-auto > table \{[\s\S]*?min-width: 44rem;/);
   assert.match(runtime, /if \(!desktopToc\.matches\) details\.open = false/);
   assert.match(runtime, /desktopToc\.addEventListener\('change', syncTocMode\)/);
+});
+
+test('article archive uses the dedicated layout while preserving all article records', () => {
+  const archive = read('articles.html');
+  const data = read('articles-list.js');
+  assert.match(archive, /class="archive-hero"/);
+  assert.match(archive, /id="article-library"/);
+  assert.doesNotMatch(archive, /id="about"|id="focus"/);
+  assert.equal((data.match(/\{ tag:/g) ?? []).length, 20);
+  for (const route of ['strategy.html', 'indicators.html', 'article-divergence.html', 'research-1.html', 'research-9.html']) {
+    assert.ok(data.includes("url: '" + route + "'"), route);
+  }
+  assert.match(data, /class="archive-featured"/);
+  assert.match(data, /class="archive-entry"/);
+  assert.doesNotMatch(data, /grid\.classList\.add\('grid-fade'\)/);
 });
