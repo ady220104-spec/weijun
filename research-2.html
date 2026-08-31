@@ -1,224 +1,4 @@
-﻿﻿<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8" /><meta name="apple-itunes-app" content="app-id=6789065192" /><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%23CC785C%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2752%27 text-anchor=%27middle%27 fill=%27%23ffffff%27 font-family=%27sans-serif%27 font-weight=%27bold%27%3E%E6%BD%98%3C/text%3E%3C/svg%3E" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>2026年A股，吃透这6大硬核赛道就够了 | 潘伟君</title><meta name="description" content="光模块万亿龙头 机器人量产元年 一文拆解超级牛股的选股密码" /><!-- Tailwind (本地, 中国用户可秒开) --><link rel="stylesheet" href="tailwind.css"><style>
- /* ===================== Design Tokens ===================== */
- :root {
- color-scheme: light;
- --background: 42 29% 97%;
- --foreground: 40 3% 15%;
- --card: 0 0% 100%;
- --card-foreground: 40 3% 15%;
- --primary: 12 49% 58%;
- --primary-foreground: 0 0% 100%;
- --secondary: 42 25% 95%;
- --secondary-foreground: 40 3% 22%;
- --muted: 42 25% 95%;
- --muted-foreground: 40 3% 45%;
- --accent: 12 55% 94%;
- --accent-foreground: 12 45% 40%;
- --destructive: 6 56% 50%;
- --destructive-foreground: 0 0% 100%;
- --success: 150 38% 38%;
- --border: 45 7% 89%;
- --input: 45 7% 89%;
- --ring: 12 49% 58%;
- --radius: 0.75rem;
- --radius-sm: 0.5rem;
- }
-
- html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
- body {
- background-color: hsl(var(--background));
- color: hsl(var(--foreground));
- -webkit-font-smoothing: antialiased;
- text-rendering: optimizeLegibility;
- }
- .tnum { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
- :focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
-
- /* ===================== 背景层次 ===================== */
- .mesh-bg {
- position: fixed; inset: 0; z-index: -2; pointer-events: none;
- background:
- radial-gradient(1100px 600px at 15% -10%, rgba(216, 197, 170, 0.16) 0%, rgba(216, 197, 170, 0) 60%),
- radial-gradient(900px 520px at 88% 2%, rgba(226, 178, 145, 0.10) 0%, rgba(226, 178, 145, 0) 55%),
- radial-gradient(1000px 700px at 50% 116%, rgba(210, 195, 175, 0.12) 0%, rgba(210, 195, 175, 0) 60%);
- }
- .noise-bg {
- position: fixed; inset: 0; z-index: -1; pointer-events: none;
- opacity: 0.045;
- background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
- background-size: 160px 160px;
- }
-
- /* ===================== Card ===================== */
- .card {
- background: hsl(var(--card)); color: hsl(var(--card-foreground));
- border: 1px solid hsl(var(--border)); border-radius: var(--radius);
- box-shadow: 0 1px 2px rgba(24, 24, 27, 0.03), 0 12px 32px -16px rgba(24, 24, 27, 0.08);
- }
-
- /* ===================== Button ===================== */
- .btn {
- display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
- height: 2.5rem; padding: 0 1rem; border-radius: var(--radius-sm);
- font-size: .875rem; font-weight: 500; line-height: 1; white-space: nowrap;
- border: 1px solid transparent; cursor: pointer; user-select: none;
- transition: background-color .15s ease, color .15s ease, border-color .15s ease, opacity .15s ease, transform .1s ease;
- }
- .btn:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
- .btn:disabled { opacity: .5; pointer-events: none; }
- .btn:active:not(:disabled) { transform: scale(.97); }
- .btn svg { flex-shrink: 0; }
-
- .btn-primary { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
- .btn-primary:hover:not(:disabled) { background: hsl(var(--primary) / .9); }
-
- .btn-secondary { background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); border-color: hsl(var(--border)); }
- .btn-secondary:hover:not(:disabled) { background: hsl(var(--accent)); }
-
- .btn-outline { background: transparent; color: hsl(var(--foreground)); border-color: hsl(var(--border)); }
- .btn-outline:hover:not(:disabled) { background: hsl(var(--accent)); }
-
- .btn-ghost { background: transparent; color: hsl(var(--foreground)); }
- .btn-ghost:hover:not(:disabled) { background: hsl(var(--accent)); }
-
- .btn-destructive { background: hsl(var(--destructive)); color: hsl(var(--destructive-foreground)); }
- .btn-destructive:hover:not(:disabled) { background: hsl(var(--destructive) / .9); }
-
- .btn-icon { padding: 0; width: 2.5rem; height: 2.5rem; }
-
- /* 应用商店徽章 */
- .store-badge {
- display: inline-flex; align-items: center; gap: .625rem;
- height: 3rem; padding: 0 1rem;
- background: #1d1d1f; color: #fff; border-radius: var(--radius-sm);
- border: 1px solid #1d1d1f; cursor: pointer; text-decoration: none;
- transition: background-color .15s ease, opacity .15s ease, transform .1s ease;
- }
- .store-badge:hover { background: #000; }
- .store-badge:active { transform: scale(.97); }
-
- .spinner {
- width: 1rem; height: 1rem; border-radius: 50%;
- border: 2px solid currentColor; border-top-color: transparent;
- animation: spin .6s linear infinite;
- }
- @keyframes spin { to { transform: rotate(360deg); } }
- /* 按钮加载态（防连点 + spinner 反馈） */
- .btn { position: relative; }
- .btn-loading { pointer-events: none; opacity: .9; }
- .btn-loading > * { visibility: hidden; }
- .btn-loading::after {
- content: ''; position: absolute; top: 50%; left: 50%;
- width: 1rem; height: 1rem; margin: -.5rem 0 0 -.5rem;
- border-radius: 50%;
- border: 2px solid currentColor; border-top-color: transparent;
- animation: spin .6s linear infinite;
- }
-
-
- /* ===================== Input ===================== */
- .input {
- height: 2.5rem; width: 100%; padding: 0 .75rem;
- border-radius: var(--radius-sm); border: 1px solid hsl(var(--input));
- background: hsl(var(--card)); color: hsl(var(--foreground));
- font-size: .875rem; transition: border-color .15s ease, box-shadow .15s ease;
- }
- .input::placeholder { color: hsl(var(--muted-foreground) / .7); }
- .input:focus { outline: none; border-color: hsl(var(--ring)); box-shadow: 0 0 0 3px hsl(var(--ring) / .15); }
- .input:disabled { opacity: .5; cursor: not-allowed; }
- .input[aria-invalid="true"] { border-color: hsl(var(--destructive)); }
- .input[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px hsl(var(--destructive) / .15); }
-
- /* ===================== Toast ===================== */
- .toast-container {
- position: fixed; bottom: 1rem; right: 1rem; z-index: 200;
- display: flex; flex-direction: column; gap: .5rem; max-width: calc(100vw - 2rem);
- }
- .toast {
- display: flex; align-items: flex-start; gap: .75rem;
- background: hsl(var(--card)); border: 1px solid hsl(var(--border)); border-radius: var(--radius);
- padding: .875rem 1rem; box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.16); width: 22rem; max-width: 100%;
- animation: toast-in .25s cubic-bezier(.22,.61,.36,1);
- }
- .toast.leaving { animation: toast-out .2s ease forwards; }
- .toast-icon { display: grid; place-items: center; width: 1.25rem; height: 1.25rem; flex-shrink: 0; margin-top: .125rem; }
- @keyframes toast-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
- @keyframes toast-out { to { opacity: 0; transform: translateY(10px); } }
-
- /* ===================== 毛玻璃（局部） ===================== */
- .glass {
- background: rgba(250, 249, 247, 0.88);
- backdrop-filter: blur(14px) saturate(120%);
- -webkit-backdrop-filter: blur(14px) saturate(120%);
- }
-
- /* ===================== 正文排版 ===================== */
- .prose p { color: hsl(var(--foreground) / .88); }
- .prose a { color: hsl(var(--primary)); }
- .prose a:hover { color: hsl(var(--foreground)); }
-
- /* ===================== 入场动效 ===================== */
- html.js .reveal { opacity: 0; }
- html.js .reveal.in {
- opacity: 1;
- animation: reveal-in .4s cubic-bezier(.22,.61,.36,1) backwards;
- animation-delay: var(--d, 0ms);
- }
- @keyframes reveal-in {
- from { opacity: 0; transform: translateY(20px); }
- to { opacity: 1; transform: translateY(0); }
- }
-
- /* ===== 编辑杂志 衬线标题 + 珊瑚引语 + 衬线品牌 + 暖色徽章 ===== */
- h1, h2, h3 {
- font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "STSong", "SimSun", serif;
- letter-spacing: .01em !important;
- line-height: 1.28 !important;
- }
- header nav > a:first-child { font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "STSong", "SimSun", serif; letter-spacing: .02em; }
- p.text-primary { letter-spacing: .1em; }
- blockquote { border-left-color: hsl(var(--primary) / 0.55) !important; }
- .btn-primary:hover:not(:disabled) { background: #B0603F; }
- .store-badge { background: #1d1d1f !important; border-color: #1d1d1f !important; }
- .store-badge:hover { background: #000000 !important; }
-
- /* ===================== 阅读进度条 + 回到顶部 ===================== */
- #reading-progress {
- position: fixed; top: 0; left: 0; right: 0; z-index: 90;
- height: 2px; background: hsl(var(--primary));
- transform-origin: 0 0; transform: scaleX(0);
- pointer-events: none;
- }
- #back-top {
- position: fixed; bottom: 5rem; right: 1rem; z-index: 90;
- box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.18);
- }
- @media (max-width: 640px) { #back-top { bottom: 4.5rem; right: .75rem; } }
-
-
- @media (prefers-reduced-motion: reduce) {
- html { scroll-behavior: auto; }
- html.js .reveal { opacity: 1; animation: none; }
- .btn:active { transform: none; }
- .spinner { animation: none; } .btn-loading::after { animation: none !important; }
- * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
- }
-
-/* 移动端触控目标优化: 核心交互 ≥44px (WCAG 2.5.5) */
-@media (max-width: 767px) {
-  header a:not(.btn):not(.hidden):not([class*="hidden"]),
-  footer nav a:not(.hidden):not([class*="hidden"]),
-  nav[aria-label="本页目录"] a,
-  #menu-btn, .tab {
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-  }
-  footer nav a:not(.hidden):not([class*="hidden"]) { padding: 0 .5rem; }
-  #menu-btn { width: 44px; height: 44px; }
-  .tab { height: 44px; }
-  #search-clear { width: 44px !important; height: 44px !important; }
-}</style><script>document.documentElement.classList.add('js');</script></head><body class="font-sans text-foreground antialiased"><div class="mesh-bg" aria-hidden="true"></div><div class="noise-bg" aria-hidden="true"></div><div id="reading-progress" aria-hidden="true"></div><a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-card focus:px-4 focus:py-2 focus:rounded-md">跳到主要内容</a><!-- ===================== 导航（毛玻璃） ===================== --><header class="fixed top-0 inset-x-0 z-50 border-b border-border bg-background/85 backdrop-blur-md"><div class="mx-auto max-w-6xl px-4 sm:px-6"><div><nav class="flex items-center justify-between h-16" aria-label="主导航"><a href="index.html" class="font-bold text-lg tracking-tight">潘伟君</a><div class="hidden md:flex items-center gap-7 text-[15px] text-muted-foreground"><a href="index.html#about" class="hover:text-foreground transition-colors duration-200">关于我</a><a href="index.html#method" class="hover:text-foreground transition-colors duration-200">专注领域</a><a href="index.html#articles" class="text-foreground font-medium transition-colors duration-200">最新文章</a></div><div class="flex items-center gap-3"><a href="#download" class="btn btn-primary js-download hidden sm:inline-flex">下载 App</a><button id="menu-btn" class="btn btn-ghost btn-icon md:hidden" aria-label="打开菜单" aria-expanded="false"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></nav><div id="mobile-menu" class="hidden md:hidden border-t border-border px-4 py-3"><nav aria-label="移动菜单"><a href="index.html#about" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">关于我</a><a href="index.html#method" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">专注领域</a><a href="index.html#articles" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">最新文章</a><a href="#download" class="mobile-link js-download rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors md:hidden">下载 App</a></nav></div></div></div></div></header><main id="main" class="pt-20 sm:pt-24"><header class="border-b border-border"><div class="mx-auto max-w-3xl px-4 sm:px-6 pt-10 pb-12 reveal"><a href="articles.html" class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>返回文章列表</a><p class="mt-8 text-sm font-medium text-primary">个股研报</p><h1 class="mt-3 text-3xl sm:text-4xl lg:text-[2.75rem] font-black leading-[1.2] tracking-tight text-balance">2026年A股，吃透这6大硬核赛道就够了</h1><p class="mt-5 text-lg text-muted-foreground leading-[1.7]">光模块万亿龙头 机器人量产元年 一文拆解超级牛股的选股密码</p><div class="mt-7 flex items-center gap-3 text-sm text-muted-foreground"><span class="font-medium text-foreground">潘伟君</span><span aria-hidden="true">·</span><span class="tnum">2026-05-06</span><span aria-hidden="true">·</span><span class="tnum">21 分钟阅读</span></div></div></header><article class="prose"><div class="mx-auto max-w-3xl px-4 sm:px-6 py-14"><div class="space-y-8 text-[17px] leading-[1.75]"><p>541只翻倍股。上纬新材暴涨18倍。中际旭创市值突破万亿。</p>
+﻿﻿<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8" /><meta name="apple-itunes-app" content="app-id=6789065192" /><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%23CC785C%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2752%27 text-anchor=%27middle%27 fill=%27%23ffffff%27 font-family=%27sans-serif%27 font-weight=%27bold%27%3E%E6%BD%98%3C/text%3E%3C/svg%3E" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>2026年A股，吃透这6大硬核赛道就够了 | 潘伟君</title><meta name="description" content="光模块万亿龙头 机器人量产元年 一文拆解超级牛股的选股密码" /><!-- Tailwind (本地, 中国用户可秒开) --><link rel="stylesheet" href="tailwind.css"><link rel="stylesheet" href="site-system.css"><script>document.documentElement.classList.add('js');</script></head><body data-secondary-template="longform" class="font-sans text-foreground antialiased"><div class="mesh-bg" aria-hidden="true"></div><div class="noise-bg" aria-hidden="true"></div><div id="reading-progress" aria-hidden="true"></div><a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-card focus:px-4 focus:py-2 focus:rounded-md">跳到主要内容</a><!-- ===================== 导航（毛玻璃） ===================== --><header class="fixed top-0 inset-x-0 z-50 border-b border-border bg-background/85 backdrop-blur-md"><div class="mx-auto max-w-6xl px-4 sm:px-6"><div><nav class="flex items-center justify-between h-16" aria-label="主导航"><a href="index.html" class="font-bold text-lg tracking-tight">潘伟君</a><div class="hidden md:flex items-center gap-7 text-[15px] text-muted-foreground"><a href="index.html#about" class="hover:text-foreground transition-colors duration-200">关于我</a><a href="index.html#method" class="hover:text-foreground transition-colors duration-200">专注领域</a><a href="index.html#articles" class="text-foreground font-medium transition-colors duration-200">最新文章</a></div><div class="flex items-center gap-3"><a href="#download" class="btn btn-primary js-download hidden sm:inline-flex">下载 App</a><button id="menu-btn" class="btn btn-ghost btn-icon md:hidden" aria-label="打开菜单" aria-expanded="false"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></nav><div id="mobile-menu" class="hidden md:hidden border-t border-border px-4 py-3"><nav aria-label="移动菜单"><a href="index.html#about" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">关于我</a><a href="index.html#method" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">专注领域</a><a href="index.html#articles" class="mobile-link rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors">最新文章</a><a href="#download" class="mobile-link js-download rounded-md px-3 py-2.5 hover:bg-accent hover:text-foreground transition-colors md:hidden">下载 App</a></nav></div></div></div></div></header><main id="main" class="pt-20 sm:pt-24"><header class="border-b border-border"><div class="mx-auto max-w-3xl px-4 sm:px-6 pt-10 pb-12 reveal"><a href="articles.html" class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>返回文章列表</a><p class="mt-8 text-sm font-medium text-primary">个股研报</p><h1 class="mt-3 text-3xl sm:text-4xl lg:text-[2.75rem] font-black leading-[1.2] tracking-tight text-balance">2026年A股，吃透这6大硬核赛道就够了</h1><p class="mt-5 text-lg text-muted-foreground leading-[1.7]">光模块万亿龙头 机器人量产元年 一文拆解超级牛股的选股密码</p><div class="mt-7 flex items-center gap-3 text-sm text-muted-foreground"><span class="font-medium text-foreground">潘伟君</span><span aria-hidden="true">·</span><span class="tnum">2026-05-06</span><span aria-hidden="true">·</span><span class="tnum">21 分钟阅读</span></div></div></header><article class="prose"><div class="mx-auto max-w-3xl px-4 sm:px-6 py-14"><div class="space-y-8 text-[17px] leading-[1.75]"><p>541只翻倍股。上纬新材暴涨18倍。中际旭创市值突破万亿。</p>
 <p>这是2025年A股交出的成绩单。</p>
 <p>但问你一个扎心的问题：你抓住了几只？</p>
 <p>同一个AI赛道，别人赚10倍，你只赚30%？差的不是运气，是方法</p>
@@ -235,7 +15,7 @@
 <p>市值一度突破万亿大关，成为A股AI算力第一标杆。新易盛、天孚通信等光模块同行同步高速增长，整个板块进入了业绩兑现的黄金期。</p>
 <p>但万亿市值也逼着所有人面对一个灵魂拷问：<strong>龙头还能涨多少？</strong></p>
 <p>一个散户拿50万进场，买龙头也就几百股，翻一倍也才赚几十万——但如果你找到下一个还没被盯上的细分方向，故事就完全不一样了。</p>
-<figure class="my-8"><img src="images/research/image-3296d940c1.jpg" alt="" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
+<figure class="my-8"><img width="1080" height="513" src="images/research/image-3296d940c1.jpg" alt="配图：2026年A股，吃透这6大硬核赛道就够了 | 潘伟君" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
 <p>北向资金持续加仓光模块龙头，AI算力ETF累计净值涨幅超过120%。但机构持仓在经历了2025年的集中抱团后，2026年正在发生微妙的分化——<strong>资金开始从光模块向外围延伸</strong></p>
 <p>东山精密就是一个典型案例。这家PCB龙头受益于AI算力需求爆发带动的光模块及AI PCB业务放量，2026年Q1营收净利润双增长，净利润同比增143%，股价年内涨幅已超120%。</p>
 <p>力源信息同样亮眼：Q1净利同比增长241%，环比激增756%，其AI业务（服务器、光模块配套）正在成为新的增长极。</p>
@@ -256,7 +36,7 @@
 <p>但热闹归热闹，冷静下来你得想一个问题：<strong>产量翻倍，跟公司赚钱，是两码事。</strong></p>
 <p>瑞银最新报告说得很直白——人形机器人仍在早期阶段，电动车时刻尚未到来。有行业媒体更是用一个扎心的标题概括：2026，人形机器人只赢了面子。</p>
 <p>量产不等于盈利，万台交付不等于商业闭环。这一点，追热点的散户最容易忽视。</p>
-<figure class="my-8"><img src="images/research/image-83a5a5e3dc.jpg" alt="" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
+<figure class="my-8"><img width="750" height="428" src="images/research/image-83a5a5e3dc.jpg" alt="配图：算力调度与AI电力配套" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
 <p>核心环节筛选其实很清晰：</p>
 <p><strong>减速器与伺服电机</strong>：谐波减速器、行星滚柱丝杠是机器人关节的核心零部件，国内绿的谐波、双环传动等已进入量产阶段。信质集团2025年净利润增长超500%，正是受益于电机需求的爆发。</p>
 <p><strong>传感器</strong>：六维力传感器是人形机器人实现精细操作的关键，坤维科技已完成B+轮融资，领跑这一细分赛道。</p>
@@ -269,7 +49,7 @@
 <p>政策端，大基金三期重点转向光刻机和EDA等关键短板领域。产业端，科创板129家集成电路公司合计营收达3718亿元，同比增长25.4%。</p>
 <p><strong>中国在28-65nm成熟制程的全球产能占比已提升至33%</strong>，国产替代从能不能用进入了好不好用的新阶段。</p>
 <p>全球半导体市场7920亿美元的巨大蛋糕中，国产份额提升的每一个百分点，都对应着数百亿的增量市场。</p>
-<figure class="my-8"><img src="images/research/image-713a938e62.png" alt="" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
+<figure class="my-8"><img width="896" height="897" src="images/research/image-713a938e62.png" alt="配图：整机厂商" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
 <p>关键细分方向就这几个：</p>
 <p>✅ <strong>EDA工具</strong>：华大九天等国产EDA厂商在模拟芯片设计领域已具备替代能力，但数字全流程仍在攻坚。大基金三期的重点支持方向注定了这个赛道有政策底。</p>
 <p><strong>先进封装</strong>：长电科技、通富微电、华天科技三大封测龙头正在加速布局Chiplet技术。AI芯片对先进封装的需求爆发，带来了第二增长曲线。</p>
@@ -288,7 +68,7 @@
 <p><strong>火箭发射</strong>：星际荣耀、蓝箭航天（未上市）等民营火箭公司是产业链的"咽喉"，但A股纯正标的较少。</p>
 <p><strong>地面终端与运营</strong>：这是最容易被忽视的环节。手机直连卫星、车载卫星通信等应用场景正在打开，信科移动、海格通信等地面设备厂商的业绩弹性可能超出预期。</p>
 <h3 class="text-lg font-bold mt-8 mb-3">上游材料和电子元器件</h3>
-<figure class="my-8"><img src="images/research/image-b36588667d.jpg" alt="" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
+<figure class="my-8"><img width="700" height="466" src="images/research/image-b36588667d.jpg" alt="配图：上游材料和电子元器件" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
 <p>中信证券有句话值得反复琢磨：<strong>低轨通信卫星链是商业航天里，最先有订单、有业绩的方向。</strong></p>
 <p>不是所有挂航天两个字的股票都能买——但卫星互联网的订单，是真金白银在落地。</p>
 <h2 class="text-2xl font-bold mt-12 mb-4">【划重点：盯紧这两个时间窗口】</h2>
@@ -301,7 +81,7 @@
 <p>2026年4月，国务院国资委召开中央企业低空经济产业发展专题推进会，国资委主任张玉卓亲自出席，要求央企强化统筹推动。十部门也联合发布了低空经济专项支持政策。</p>
 <p>沃飞长空已启动科创板IPO辅导，完成近10亿元融资，冲刺eVTOL第一股，其AE200机型预计2026-2027年完成适航取证并实现商业化落地。</p>
 <p><strong>扫码飞时代正在到来。</strong>正如当年网约车从灰色地带到合法化的跃迁，低空经济正经历从一事一议到标准化运营的关键转折。</p>
-<figure class="my-8"><img src="images/research/image-bf69213be7.jpg" alt="" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
+<figure class="my-8"><img width="1080" height="720" src="images/research/image-bf69213be7.jpg" alt="配图：【划重点：盯紧这两个时间窗口】" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
 <p>产业链拆解：</p>
 <h3 class="text-lg font-bold mt-8 mb-3">飞行器制造（eVTOL）</h3>
 <p><strong>空管系统与基础设施</strong>：莱斯信息、川大智胜等空管系统供应商的确定性更高——不管哪家eVTOL飞起来，都需要空管。</p>
@@ -316,7 +96,7 @@
 <p>但2026年，情况确实不一样了。</p>
 <p>国轩高科首条全固态中试线已于2025年贯通，卫蓝新能源启动创业板上市辅导，当升科技与辉能科技达成五年固态电池战略合作。行业共识已将<strong>半固态电池的量产时间锚定在2026-2027年</strong>，全固态电池则可能在2028年前后。</p>
 <p>高工锂电年会传递出的信号是：<strong>动力电池和消费电子将成为固态电池率先落地的两大场景。</strong></p>
-<figure class="my-8"><img src="images/research/image-855e2e4c97.jpg" alt="" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
+<figure class="my-8"><img width="1242" height="640" src="images/research/image-855e2e4c97.jpg" alt="配图：【划重点：2026年最大催化剂是这个】" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
 <p>核心环节：</p>
 <p><strong>电解质材料</strong>：硫化物、氧化物、聚合物三条技术路线并行，上海洗霸的硫化锂项目正在推进，天赐材料、新宙邦等电解液龙头也在布局固态电解质。</p>
 <h3 class="text-lg font-bold mt-8 mb-3">正极/负极材料</h3>
@@ -378,7 +158,7 @@
 <p>如果三个信号都出现了，配合前面说的六大赛道逻辑——<strong>这个票值得你多看一眼。</strong></p>
 <p>对照上面三条，翻翻你的自选股，有没有躺着这样一只睡狮？欢迎在评论区说说你自查的结果，老股民帮你一起看看。</p>
 <p>一表看清六大硬核赛道：当前阶段、核心催化剂、预期差等方向全汇总</p>
-<figure class="my-8"><img src="images/research/image-4e742e41bf.jpg" alt="" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
+<figure class="my-8"><img width="1129" height="399" src="images/research/image-4e742e41bf.jpg" alt="配图：北向资金或机构在偷偷吃货" loading="lazy" class="mx-auto rounded-xl border border-border shadow-sm max-w-full h-auto"></figure>
 <p>说了一堆机会，最后必须泼几盆冷水——这五个风险，每一个都可能让你亏大钱</p>
 <p>赚钱的方法讲完了，亏钱的坑也得给你标清楚。以下五条，建议截图保存：</p>
 <p><strong>涨多了就是最大的利空。</strong> 光模块万亿龙头固然好，但高位接盘的痛，过来人都懂。市盈率远超历史平均水平，一旦北美那几个科技巨头的资本开支不及预期，股价跌起来不讲道理。<strong>记住一句话：树不会涨到天上去。</strong></p>
@@ -396,187 +176,4 @@
 <p>&gt; __本文仅代表个人研究观点，不构成任何投资建议。市场有风险，投资需谨慎。__
 &gt; 
 &gt; 本文部分图片来源于网络，版权归原作者所有，如有疑问请联系删除。</p>
-<p>#A股 #硬核科技 #19只超跌低价潜力股出炉# #AI算力 #人形机器人 #半导体 #商业航天 #固态电池</p><div class="card p-5 sm:p-6 mt-10"><p class="text-sm font-semibold text-foreground">免责声明</p><p class="mt-2 text-[14.5px] text-muted-foreground leading-[1.7]">本文仅为个人研究与观点分享,基于公开资料整理,不构成任何投资建议。文中涉及个股仅作研究示例,不代表推荐。股市有风险,入市需谨慎。</p></div></div></div></article><div class="border-t border-border"><div class="mx-auto max-w-3xl px-4 sm:px-6 py-10"><div class="grid sm:grid-cols-2 gap-6"><a href="research-1.html" class="group flex items-start gap-3"><svg class="w-4 h-4 mt-1 shrink-0 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg><span><span class="block text-sm text-muted-foreground">上一篇</span><span class="mt-1 block font-medium hover:text-primary transition-colors duration-200">2026年5月A股潜力牛股预测：从4月底信号看未来趋势</span></span></a><a href="research-3.html" class="group flex items-start gap-3 sm:justify-end sm:text-right"><svg class="w-4 h-4 mt-1 shrink-0 text-muted-foreground sm:order-last" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg><span><span class="block text-sm text-muted-foreground">下一篇</span><span class="mt-1 block font-medium hover:text-primary transition-colors duration-200">AI应用商业化落地加速：2026细分赛道与龙头公司的黄金兑现期</span></span></a></div></div></div></main><section id="download" class="mx-auto max-w-6xl px-4 sm:px-6 mt-20 sm:mt-28"><div class="card overflow-hidden reveal"><div class="px-6 sm:px-12 lg:px-20 py-14 sm:py-20"><div class="inline-flex items-center gap-2 w-fit mx-auto text-primary"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg><span class="text-sm font-medium tracking-[0.1em]">通跃 App</span></div><h2 class="mx-auto mt-5 max-w-2xl text-center text-3xl sm:text-4xl font-black tracking-tight leading-[1.15] text-balance">把买卖点讲透 再让你下单</h2><p class="mx-auto mt-4 max-w-xl text-center text-muted-foreground leading-[1.7]">每天盘前一份作战计划 盘中触线即时提醒 盘后逐笔复盘 先看懂 再执行 结果自然来</p><div class="mt-10 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-3"><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">01</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘前作战计划</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">今日关注标的与关键价位 开盘前送达 开盘不慌</p></div><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">02</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘中止损提醒</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">触线即提醒 管住手 不扛单 先学会亏得少</p></div><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">03</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘后逐笔复盘</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">每笔交易拆解逻辑 看懂了再下手 不再凭感觉</p></div></div><div class="mt-9 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[15px] text-foreground"><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>每日实盘思路</span><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>逐笔复盘讲解</span><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>加密群聊答疑</span></div><div class="mt-10 flex justify-center"><a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="btn btn-primary js-download px-8 py-3.5 h-auto text-base">立即下载 App<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a></div><p class="mt-4 text-center text-sm text-muted-foreground">自动识别苹果 / 安卓 一键直达 安卓包约 172MB 微信内打不开 请用系统浏览器打开</p><p class="mt-3 text-center text-xs text-muted-foreground">没反应<a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="underline decoration-border underline-offset-4 transition-colors duration-200 hover:text-primary">去 App Store</a><span aria-hidden="true">/</span><a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" target="_blank" rel="noopener" class="underline decoration-border underline-offset-4 transition-colors duration-200 hover:text-primary">APK 直链</a></p><div class="mt-5 flex flex-wrap items-center justify-center gap-3"><a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="store-badge" aria-label="苹果下载"><svg class="w-6 h-6" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span class="text-[15px] font-semibold">苹果下载</span></a><a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" target="_blank" rel="noopener" class="store-badge" aria-label="安卓下载"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.523 15.341a.987.987 0 0 1-.988-.988.987.987 0 0 1 .988-.988.987.987 0 0 1 .988.988.987.987 0 0 1-.988.988zm-11.046 0a.987.987 0 0 1-.988-.988.987.987 0 0 1 .988-.988.987.987 0 0 1 .988.988.987.987 0 0 1-.988.988zM17.173 7.644l1.696-2.938a.462.462 0 0 0-.168-.632.462.462 0 0 0-.632.168l-1.718 2.976A11.727 11.727 0 0 0 12 6.008a11.727 11.727 0 0 0-4.351.81L5.931 4.242a.462.462 0 0 0-.632-.168.462.462 0 0 0-.168.632l1.696 2.938C4.266 9.18 2.5 11.795 2.5 14.793c0 3.45 4.253 6.25 9.5 6.25s9.5-2.8 9.5-6.25c0-2.998-1.766-5.613-4.327-7.149zM12 19.565c-4.572 0-8.048-2.227-8.048-4.772 0-2.544 3.476-4.772 8.048-4.772s8.048 2.228 8.048 4.772c0 2.545-3.476 4.772-8.048 4.772z"/></svg><span class="text-[15px] font-semibold">安卓下载</span></a></div><p class="mt-4 text-center text-xs text-muted-foreground">免费下载 · 进群一起实战</p></div></div></section></main><!-- ===================== 页脚 ===================== --><footer class="border-t border-border"><div class="mx-auto max-w-6xl px-4 sm:px-6 py-8"><div class="flex flex-col sm:flex-row items-center justify-between gap-4"><a href="index.html" class="font-bold">潘伟君</a><nav class="flex flex-wrap items-center gap-6 text-sm text-muted-foreground" aria-label="页脚导航"><a href="index.html#about" class="hover:text-foreground transition-colors duration-200">关于我</a><a href="index.html#method" class="hover:text-foreground transition-colors duration-200">专注领域</a><a href="index.html#articles" class="hover:text-foreground transition-colors duration-200">最新文章</a><a href="#download" class="hover:text-foreground transition-colors duration-200">下载 App</a></nav><p class="text-sm text-muted-foreground">© 2026 潘伟君 · 保留所有权利</p></div><p class="mt-5 text-center text-xs text-muted-foreground">本网站内容仅供信息交流与学习 不构成任何投资建议 市场有风险 投资需谨慎</p></div></footer><button id="back-top" class="hidden btn btn-secondary w-11 h-11 p-0 rounded-full justify-center" aria-label="回到顶部"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button><!-- ===================== Toast 容器 ===================== --><div class="toast-container" id="toast-container" aria-live="polite"></div><script>
- // ===== 移动端菜单 =====
- (function () {
- const btn = document.getElementById('menu-btn');
- const menu = document.getElementById('mobile-menu');
- if (!btn || !menu) return;
- function closeMenu(restoreFocus) {
- menu.classList.add('hidden');
- btn.setAttribute('aria-expanded', 'false');
- if (restoreFocus) btn.focus();
- }
- btn.addEventListener('click', function () {
- const open = menu.classList.toggle('hidden') === false;
- btn.setAttribute('aria-expanded', String(open));
- // 打开时焦点移入菜单 方便键盘用户直接导航
- if (open) {
- const first = menu.querySelector('a');
- if (first) first.focus();
- }
- });
- menu.querySelectorAll('.mobile-link').forEach(function (a) {
- a.addEventListener('click', function () {
- closeMenu(false);
- });
- });
- // Esc 关闭菜单并归还焦点到按钮
- document.addEventListener('keydown', function (e) {
- if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
- closeMenu(true);
- }
- });
- })();
-
- // ===== Toast 系统 =====
- const Toast = (function () {
- const container = document.getElementById('toast-container');
- const icons = {
- success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
- error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>',
- default: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>',
- };
- const colors = {
- success: 'hsl(var(--success))',
- error: 'hsl(var(--destructive))',
- default: 'hsl(var(--primary))',
- };
- function show(message, type) {
- type = type || 'default';
- const el = document.createElement('div');
- el.className = 'toast';
- el.innerHTML =
- '<span class="toast-icon" style="color:' + colors[type] + '">' + icons[type] + '</span>' +
- '<div class="flex-1 text-sm leading-[1.6] pt-0.5">' + message + '</div>' +
- '<button class="toast-close text-muted-foreground hover:text-foreground transition-colors" aria-label="关闭" style="background:none;border:none;cursor:pointer;margin-top:2px"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>';
- container.appendChild(el);
- const remove = function () {
- el.classList.add('leaving');
- setTimeout(function () { el.remove(); }, 200);
- };
- el.querySelector('.toast-close').addEventListener('click', remove);
- setTimeout(remove, 4000);
- }
- return { show: show };
- })();
-
- // 下载按钮已改为直接跳转（App Store / 安卓 APK） 无需 JS 脚本
-
- // ===== 入场动效 =====
- (function () {
- const revealEls = document.querySelectorAll('.reveal');
- if (!('IntersectionObserver' in window)) {
- revealEls.forEach(function (el) { el.classList.add('in'); });
- return;
- }
- const io = new IntersectionObserver(function (entries) {
- entries.forEach(function (e) {
- if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
- });
- }, { threshold: 0, rootMargin: '0px 0px -10px 0px' });
- revealEls.forEach(function (el) { io.observe(el); });
- })();
- // ===== 智能下载 自动识别平台 =====
- // iOS 用 itms-apps 协议即时唤起 App Store 3 秒未唤起则回落 App Store 网页
- // 安卓 直接下载 APK 安装包（国内安卓标准方式）
- // 微信内 无法直接下载 提示用系统浏览器打开
- // 桌面 无法安装 滚动到下载模块并提示在手机上打开
- (function () {
- var APPLE = 'https://apps.apple.com/cn/app/id6789065192';
- var APPLE_APP = 'itms-apps://apps.apple.com/cn/app/id6789065192';
- var APK = 'https://www.tongyuesyt.com/predownload/tongyuesyt.apk';
- var ua = navigator.userAgent;
- var isWechat = /MicroMessenger/i.test(ua);
- var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
- var isAndroid = /Android/.test(ua);
- var iosFallback = null;
- // App Store 唤起后页面隐藏 清理回落定时器 避免来回跳
- document.addEventListener('visibilitychange', function () {
- if (iosFallback) { clearTimeout(iosFallback); iosFallback = null; }
- });
- function scrollToDownload() {
- var d = document.getElementById('download');
- if (d) d.scrollIntoView({ behavior: 'smooth', block: 'start' });
- }
- function lockBtn(el) {
-  el.classList.add('btn-loading');
-  el.setAttribute('disabled', 'disabled');
-  setTimeout(function () {
-   el.classList.remove('btn-loading');
-   el.removeAttribute('disabled');
-  }, 2500);
- }
- document.querySelectorAll('.js-download').forEach(function (el) {
- el.addEventListener('click', function (e) {
- e.preventDefault();
- lockBtn(el);
- if (isWechat) {
- Toast.show('微信内无法下载 请点右上角「在浏览器打开」');
- return;
- }
- if (isAndroid) {
- window.location.href = APK;
- Toast.show('已开始下载 约 172MB 建议 WiFi 下进行');
- } else if (isIOS) {
- Toast.show('即将前往 App Store');
- iosFallback = setTimeout(function () {
- if (!document.hidden) { window.location.href = APPLE; }
- iosFallback = null;
- }, 3000);
- window.location.href = APPLE_APP;
- } else {
- Toast.show('请在手机上打开本页下载 App');
- scrollToDownload();
- }
- });
- });
- })();
-
- // ===== 阅读进度条 + 回到顶部 =====
- (function () {
- var bar = document.getElementById('reading-progress');
- if (bar) {
- var ticking = false;
- var update = function () {
- var max = document.documentElement.scrollHeight - window.innerHeight;
- bar.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
- ticking = false;
- };
- window.addEventListener('scroll', function () {
- if (!ticking) { ticking = true; requestAnimationFrame(update); }
- }, { passive: true });
- window.addEventListener('resize', update, { passive: true });
- update();
- }
- var topBtn = document.getElementById('back-top');
- if (topBtn) {
- var toggle = function () { topBtn.classList.toggle('hidden', window.scrollY < 600); };
- window.addEventListener('scroll', toggle, { passive: true });
- topBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
- toggle();
- }
- })();
-
-</script><script>
-/* reveal 兜底: 快速滚动/锚点跳转/刷新恢复滚动位置时 IO 可能漏触发,
-     元素顶部一旦进入过视口即强制显示, 防止内容永久透明 */
-  (function () {
-    var els = document.querySelectorAll('.reveal:not(.in)');
-    function scan() {
-      var vh = window.innerHeight || document.documentElement.clientHeight;
-      for (var i = 0; i < els.length; i++) {
-        var el = els[i];
-        if (!el.classList.contains('in') && el.getBoundingClientRect().top < vh) {
-          el.classList.add('in');
-        }
-      }
-    }
-    window.addEventListener('scroll', scan, { passive: true });
-    window.addEventListener('resize', scan, { passive: true });
-    setTimeout(scan, 300);
-    setTimeout(scan, 1000);
-    scan();
-  })();
-
-</script></body></html>
+<p>#A股 #硬核科技 #19只超跌低价潜力股出炉# #AI算力 #人形机器人 #半导体 #商业航天 #固态电池</p><div class="card p-5 sm:p-6 mt-10"><p class="text-sm font-semibold text-foreground">免责声明</p><p class="mt-2 text-[14.5px] text-muted-foreground leading-[1.7]">本文仅为个人研究与观点分享,基于公开资料整理,不构成任何投资建议。文中涉及个股仅作研究示例,不代表推荐。股市有风险,入市需谨慎。</p></div></div></div></article><div class="border-t border-border"><div class="mx-auto max-w-3xl px-4 sm:px-6 py-10"><div class="grid sm:grid-cols-2 gap-6"><a href="research-1.html" class="group flex items-start gap-3"><svg class="w-4 h-4 mt-1 shrink-0 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg><span><span class="block text-sm text-muted-foreground">上一篇</span><span class="mt-1 block font-medium hover:text-primary transition-colors duration-200">2026年5月A股潜力牛股预测：从4月底信号看未来趋势</span></span></a><a href="research-3.html" class="group flex items-start gap-3 sm:justify-end sm:text-right"><svg class="w-4 h-4 mt-1 shrink-0 text-muted-foreground sm:order-last" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg><span><span class="block text-sm text-muted-foreground">下一篇</span><span class="mt-1 block font-medium hover:text-primary transition-colors duration-200">AI应用商业化落地加速：2026细分赛道与龙头公司的黄金兑现期</span></span></a></div></div></div></main><section id="download" class="mx-auto max-w-6xl px-4 sm:px-6 mt-20 sm:mt-28"><div class="card overflow-hidden reveal"><div class="px-6 sm:px-12 lg:px-20 py-14 sm:py-20"><div class="inline-flex items-center gap-2 w-fit mx-auto text-primary"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg><span class="text-sm font-medium tracking-[0.1em]">通跃 App</span></div><h2 class="mx-auto mt-5 max-w-2xl text-center text-3xl sm:text-4xl font-black tracking-tight leading-[1.15] text-balance">把买卖点讲透 再让你下单</h2><p class="mx-auto mt-4 max-w-xl text-center text-muted-foreground leading-[1.7]">每天盘前一份作战计划 盘中触线即时提醒 盘后逐笔复盘 先看懂 再执行 结果自然来</p><div class="mt-10 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-3"><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">01</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘前作战计划</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">今日关注标的与关键价位 开盘前送达 开盘不慌</p></div><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">02</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘中止损提醒</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">触线即提醒 管住手 不扛单 先学会亏得少</p></div><div class="bg-background/70 p-6 sm:p-7"><p class="font-mono text-xs tracking-[0.2em] text-primary tnum">03</p><p class="mt-3 text-[15px] font-semibold tracking-wide">盘后逐笔复盘</p><p class="mt-2.5 text-sm text-muted-foreground leading-[1.6]">每笔交易拆解逻辑 看懂了再下手 不再凭感觉</p></div></div><div class="mt-9 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[15px] text-foreground"><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>每日实盘思路</span><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>逐笔复盘讲解</span><span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true"></span>加密群聊答疑</span></div><div class="mt-10 flex justify-center"><a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="btn btn-primary js-download px-8 py-3.5 h-auto text-base">立即下载 App<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a></div><p class="mt-4 text-center text-sm text-muted-foreground">自动识别苹果 / 安卓 一键直达 安卓包约 172MB 微信内打不开 请用系统浏览器打开</p><p class="mt-3 text-center text-xs text-muted-foreground">没反应<a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="underline decoration-border underline-offset-4 transition-colors duration-200 hover:text-primary">去 App Store</a><span aria-hidden="true">/</span><a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" target="_blank" rel="noopener" class="underline decoration-border underline-offset-4 transition-colors duration-200 hover:text-primary">APK 直链</a></p><div class="mt-5 flex flex-wrap items-center justify-center gap-3"><a href="https://apps.apple.com/cn/app/id6789065192" target="_blank" rel="noopener" class="store-badge" aria-label="苹果下载"><svg class="w-6 h-6" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span class="text-[15px] font-semibold">苹果下载</span></a><a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" target="_blank" rel="noopener" class="store-badge" aria-label="安卓下载"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.523 15.341a.987.987 0 0 1-.988-.988.987.987 0 0 1 .988-.988.987.987 0 0 1 .988.988.987.987 0 0 1-.988.988zm-11.046 0a.987.987 0 0 1-.988-.988.987.987 0 0 1 .988-.988.987.987 0 0 1 .988.988.987.987 0 0 1-.988.988zM17.173 7.644l1.696-2.938a.462.462 0 0 0-.168-.632.462.462 0 0 0-.632.168l-1.718 2.976A11.727 11.727 0 0 0 12 6.008a11.727 11.727 0 0 0-4.351.81L5.931 4.242a.462.462 0 0 0-.632-.168.462.462 0 0 0-.168.632l1.696 2.938C4.266 9.18 2.5 11.795 2.5 14.793c0 3.45 4.253 6.25 9.5 6.25s9.5-2.8 9.5-6.25c0-2.998-1.766-5.613-4.327-7.149zM12 19.565c-4.572 0-8.048-2.227-8.048-4.772 0-2.544 3.476-4.772 8.048-4.772s8.048 2.228 8.048 4.772c0 2.545-3.476 4.772-8.048 4.772z"/></svg><span class="text-[15px] font-semibold">安卓下载</span></a></div><p class="mt-4 text-center text-xs text-muted-foreground">免费下载 · 进群一起实战</p></div></div></section></main><!-- ===================== 页脚 ===================== --><footer class="border-t border-border"><div class="mx-auto max-w-6xl px-4 sm:px-6 py-8"><div class="flex flex-col sm:flex-row items-center justify-between gap-4"><a href="index.html" class="font-bold">潘伟君</a><nav class="flex flex-wrap items-center gap-6 text-sm text-muted-foreground" aria-label="页脚导航"><a href="index.html#about" class="hover:text-foreground transition-colors duration-200">关于我</a><a href="index.html#method" class="hover:text-foreground transition-colors duration-200">专注领域</a><a href="index.html#articles" class="hover:text-foreground transition-colors duration-200">最新文章</a><a href="#download" class="hover:text-foreground transition-colors duration-200">下载 App</a></nav><p class="text-sm text-muted-foreground">© 2026 潘伟君 · 保留所有权利</p></div><p class="mt-5 text-center text-xs text-muted-foreground">本网站内容仅供信息交流与学习 不构成任何投资建议 市场有风险 投资需谨慎</p></div></footer><button id="back-top" class="hidden btn btn-secondary w-11 h-11 p-0 rounded-full justify-center" aria-label="回到顶部"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button><!-- ===================== Toast 容器 ===================== --><div class="toast-container" id="toast-container" aria-live="polite"></div><script src="site-system.js"></script></body></html>

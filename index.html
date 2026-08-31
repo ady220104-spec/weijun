@@ -1,27 +1,5 @@
-﻿﻿<!DOCTYPE html><html lang="zh-CN" class="scroll-smooth"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>潘伟君 - A 股顶级短线操盘手 | 细节分析理论创立者</title><meta name="description" content="潘伟君 A 股顶级短线操盘手 复旦数学系出身 1993 年入市 国内第一代操盘手 细节分析理论创立者 专注短线盘口语言与主力坐庄技术研究 每天在通跃 App 实战交流群分享盘前解析 实盘解析与复盘"><link rel="stylesheet" href="tailwind.css"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%23CC785C%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2752%27 text-anchor=%27middle%27 fill=%27%23ffffff%27 font-family=%27sans-serif%27 font-weight=%27bold%27%3E%E6%BD%98%3C/text%3E%3C/svg%3E" /><style>
-  :root {
-    --background: 42 29% 97%;
-    --foreground: 40 3% 15%;
-    --card: 0 0% 100%;
-    --card-foreground: 40 3% 15%;
-    --primary: 12 49% 58%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 42 25% 95%;
-    --secondary-foreground: 40 3% 22%;
-    --muted: 42 25% 95%;
-    --muted-foreground: 40 3% 45%;
-    --accent: 12 55% 94%;
-    --accent-foreground: 12 45% 40%;
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 45 7% 89%;
-    --input: 45 7% 89%;
-    --ring: 12 49% 58%;
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-  }
-  html { scrollbar-gutter: stable; }
+﻿﻿<!DOCTYPE html><html lang="zh-CN" class="scroll-smooth"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>潘伟君 - A 股顶级短线操盘手 | 细节分析理论创立者</title><meta name="description" content="潘伟君 A 股顶级短线操盘手 复旦数学系出身 1993 年入市 国内第一代操盘手 细节分析理论创立者 专注短线盘口语言与主力坐庄技术研究 每天在通跃 App 实战交流群分享盘前解析 实盘解析与复盘"><link rel="stylesheet" href="tailwind.css"><link rel="stylesheet" href="site-system.css"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%23CC785C%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2752%27 text-anchor=%27middle%27 fill=%27%23ffffff%27 font-family=%27sans-serif%27 font-weight=%27bold%27%3E%E6%BD%98%3C/text%3E%3C/svg%3E" /><style>
+html { scrollbar-gutter: stable; }
   body { font-family: "PingFang SC","Microsoft YaHei","Source Han Sans SC",system-ui,-apple-system,sans-serif; }
   h1, h2, h3, .font-serif, blockquote { font-family: "Songti SC","Noto Serif CJK SC","Source Han Serif SC","STSong","SimSun",Georgia,serif; }
 
@@ -68,177 +46,95 @@
   /* 暗色区块强调文字(主色提亮变体, 替代游离裸色值) */
   .accent-light { color: hsl(12 60% 74%); }
   /* 首屏入场(非滚动触发) */
-  .reveal-inline { opacity: 0; animation: fade-up .4s ease-out forwards; }
-  @keyframes fade-up { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
-  /* 标题逐字显现 */
-  .word-char { display: inline-block; opacity: 0; transform: translateY(18px); animation: word-in .5s cubic-bezier(.22,.61,.36,1) forwards; }
-  @keyframes word-in { to { opacity: 1; transform: none; } }
+  .reveal-inline, .word-line {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(3px);
+    animation: hero-in var(--duration-reveal) var(--ease-out) forwards;
+  }
+  .word-line:first-child { animation-delay: 100ms; }
+  .word-line + .word-line { animation-delay: 140ms; }
+  @keyframes hero-in { to { opacity: 1; transform: translateY(0); filter: blur(0); } }
   /* K 线背景(静态) */
   .kline { transform: none; }
   /* 滚动指示器 */
-  .animate-bounce-down { animation: bounce-down 1.8s ease-in-out infinite; }
-  @keyframes bounce-down { 0%, 100% { transform: translateY(0); opacity: .65; } 50% { transform: translateY(6px); opacity: 1; } }
+  .animate-bounce-down { opacity: .65; }
   /* 主按钮 */
   .btn-primary {
-    background: hsl(12 49% 58%);
+    background: hsl(var(--primary));
     box-shadow: inset 0 1px 0 rgba(255,255,255,.22);
-    transition: background .2s ease, box-shadow .2s ease, filter .2s ease, transform .2s ease;
+    transition: background var(--duration-press) ease, box-shadow var(--duration-press) ease, filter var(--duration-press) ease, transform var(--duration-press) var(--ease-out);
   }
-  .btn-primary:hover { filter: brightness(1.08); box-shadow: inset 0 1px 0 rgba(255,255,255,.25); }
   .btn-primary:active { filter: brightness(0.96); transform: scale(0.97); }
   .btn-primary:focus-visible, .btn-ghost:focus-visible, a:focus-visible, button:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 3px; }
-  .btn-ghost { border: 1px solid rgba(29,29,31,.22); transition: border-color .2s ease, background .2s ease, transform .2s ease; }
-  .btn-ghost:hover { border-color: rgba(29,29,31,.5); background: rgba(29,29,31,.05); }
+  .btn-ghost { border: 1px solid rgba(29,29,31,.22); transition: border-color var(--duration-press) ease, background var(--duration-press) ease, transform var(--duration-press) var(--ease-out); }
   .btn-ghost:active { transform: scale(0.97); }
-  .btn-ghost.btn-ghost-dark { color: rgba(255,255,255,.92); border: 1px solid rgba(255,255,255,.22); transition: border-color .2s ease, background .2s ease, transform .2s ease; }
-  .btn-ghost.btn-ghost-dark:hover { border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.06); }
+  .btn-ghost.btn-ghost-dark { color: rgba(255,255,255,.92); border: 1px solid rgba(255,255,255,.22); transition: border-color var(--duration-press) ease, background var(--duration-press) ease, transform var(--duration-press) var(--ease-out); }
   .btn-ghost.btn-ghost-dark:active { transform: scale(0.97); }
   /* 滚动显现 */
   html.js .reveal { opacity: 0; }
-  html.js .reveal.in { opacity: 1; animation: reveal-in .4s ease-out backwards; animation-delay: var(--d, 0ms); }
-  @keyframes reveal-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  html.js .reveal.in { opacity: 1; animation: reveal-in var(--duration-reveal) var(--ease-out) backwards; animation-delay: var(--d, 0ms); }
+  @keyframes reveal-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
   /* 卡片 hover */
-  .lift { transition: transform .25s ease-out, box-shadow .25s ease-out, border-color .25s ease; }
-  .lift:hover { transform: translateY(-4px); box-shadow: 0 12px 32px -16px rgba(20,15,10,.16); border-color: hsl(12 50% 84%); }
-  .card-line::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; border-radius: 9999px; background: linear-gradient(90deg, hsl(12 49% 58%), hsl(12 55% 66%)); opacity: 0; transition: opacity .3s ease; }
-  .lift:hover .card-line::before { opacity: 1; }
-  /* hero 辉光跟随 */
-  .glow { position: absolute; width: 520px; height: 520px; border-radius: 9999px; background: radial-gradient(circle, rgba(204, 120, 92,.10), transparent 62%); pointer-events: none; transform: translate(-50%,-50%); transition: opacity .4s ease; }
+  .lift { transition: transform var(--duration-press) var(--ease-out), box-shadow var(--duration-press) ease, border-color var(--duration-press) ease; }
+  .card-line::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; border-radius: 9999px; background: linear-gradient(90deg, hsl(12 49% 58%), hsl(12 55% 66%)); opacity: 0; transition: opacity var(--duration-press) ease; }
+  .card-arrow { transition: transform var(--duration-press) var(--ease-out); }
+  .article-card.filter-settled { animation: none !important; }
   /* 数字下划线强调 */
   .underline-accent { background-image: linear-gradient(120deg, hsl(12 49% 58%) 0%, hsl(12 52% 64%) 100%); background-repeat: no-repeat; background-size: 100% .18em; background-position: 0 88%; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
   /* 移动菜单 */
-  .mobile-menu { transform: translateY(-8px); opacity: 0; pointer-events: none; transition: transform .22s ease, opacity .22s ease; }
-  .mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; }
+  .mobile-menu { transform-origin: top right; transform: translateY(-6px) scale(.97); opacity: 0; pointer-events: none; transition: transform var(--duration-quick) var(--ease-out), opacity var(--duration-quick) var(--ease-out); will-change: transform, opacity; }
+  .mobile-menu.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; transition-duration: var(--duration-fast); }
+  .mobile-menu.no-motion { transition: none !important; }
+  #nav-inner { transition: background-color var(--duration-fast) ease, border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease; }
+  .about-cta { transition: filter var(--duration-press) ease, transform var(--duration-press) var(--ease-out); }
+  .person-portrait {
+    position: relative;
+    height: 360px;
+    margin: -32px -32px 0;
+    overflow: hidden;
+    background: #e9dfcf;
+    isolation: isolate;
+  }
+  .person-portrait::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 28%;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,.84));
+  }
+  .person-portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 22%;
+  }
   /* 进度条 */
   #progress { transform-origin: left; transform: scaleX(0); }
   /* Toast 提示 */
   #toast {
     position: fixed; left: 50%; bottom: 32px; z-index: 100;
-    transform: translateX(-50%) translateY(16px); opacity: 0; pointer-events: none;
+    transform: translateX(-50%) translateY(16px) scale(.97); opacity: 0; filter: blur(2px); pointer-events: none;
     background: #1d1d1f; color: #fff; border: 1px solid rgba(255,255,255,.15);
     border-radius: 9999px; padding: 12px 24px; font-size: 13.5px; line-height: 1.5;
     box-shadow: 0 12px 32px -8px rgba(0,0,0,.45); text-align: center;
     max-width: calc(100vw - 40px);
-    transition: opacity .25s ease, transform .25s ease;
+    transition: opacity var(--duration-quick) var(--ease-out), transform var(--duration-quick) var(--ease-out), filter var(--duration-quick) var(--ease-out);
+    will-change: transform, opacity, filter;
   }
-  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); filter: blur(0); transition-duration: var(--duration-enter); }
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-    html.js .reveal { opacity: 1; transform: none; animation: none !important; }
-    .reveal-inline { opacity: 1 !important; transform: none !important; }
-    .word-char { opacity: 1 !important; transform: none !important; }
-    .glow, .scroll-hint { display: none; }
+    html { scroll-behavior: auto !important; }
+    html.js .reveal, .reveal-inline, .word-line { opacity: 1 !important; transform: none !important; filter: none !important; animation: none !important; }
+    .mobile-menu, .dialog, #toast { transform: none !important; filter: none !important; transition: opacity 120ms linear !important; }
+    #toast { transform: translateX(-50%) !important; }
+    .scroll-hint { display: none; }
   }
 
 
-  /* ===================== 组件系统 ===================== */
-  /* Button 基类 + 变体 */
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-    font-weight: 600; font-size: 14px; line-height: 1; white-space: nowrap;
-    border-radius: 9999px; border: none; cursor: pointer; user-select: none;
-    text-decoration: none; transition: filter .2s ease, background .2s ease,
-      border-color .2s ease, box-shadow .2s ease, transform .2s ease, opacity .2s ease;
-  }
-  .btn:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
-  .btn:disabled, .btn[aria-disabled="true"] { opacity: .5; cursor: not-allowed; pointer-events: none; }
-  .btn-sm { height: 34px; padding: 0 16px; font-size: 13px; }
-  .btn-md { height: 42px; padding: 0 22px; font-size: 14px; }
-  .btn-lg { height: 50px; padding: 0 30px; font-size: 15px; }
-  .btn-primary { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); box-shadow: inset 0 1px 0 rgba(255,255,255,.22); }
-  .btn-primary:hover { filter: brightness(1.08); }
-  .btn-primary:active { filter: brightness(.96); transform: scale(.97); }
-  .btn-secondary { background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); border: 1px solid hsl(var(--border)); }
-  .btn-secondary:hover { background: hsl(42 22% 90%); }
-  .btn-secondary:active { transform: scale(.97); }
-  .btn-ghost { background: transparent; color: hsl(var(--foreground)); border: 1px solid rgba(29,29,31,.22); }
-  .btn-ghost:hover { border-color: rgba(29,29,31,.5); background: rgba(29,29,31,.05); }
-  .btn-ghost:active { transform: scale(.97); }
-  .btn-destructive { background: hsl(var(--destructive)); color: hsl(var(--destructive-foreground)); }
-  .btn-destructive:hover { filter: brightness(1.08); }
-  .btn-destructive:active { transform: scale(.97); }
-  .btn-outline { background: #fff; color: hsl(var(--foreground)); border: 1px solid hsl(var(--border)); }
-  .btn-outline:hover { border-color: hsl(var(--primary)); color: hsl(var(--primary)); }
-  .btn-outline:active { transform: scale(.97); }
-  /* 按钮 loading */
-  .btn .btn-spinner { display: none; width: 15px; height: 15px; border: 2px solid currentColor; border-top-color: transparent; border-radius: 9999px; animation: spin .7s linear infinite; }
-  .btn.is-loading { pointer-events: none; opacity: .8; }
-  .btn.is-loading .btn-spinner { display: inline-block; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  /* Input */
-  .field { display: block; }
-  .field-label { display: block; font-size: 13px; font-weight: 600; color: hsl(var(--foreground)); margin-bottom: 6px; }
-  .input {
-    width: 100%; height: 44px; border-radius: var(--radius-md); border: 1px solid hsl(var(--input));
-    background: #fff; padding: 0 14px; font-size: 14.5px; color: hsl(var(--foreground));
-    transition: border-color .2s ease, box-shadow .2s ease;
-  }
-  .input::placeholder { color: hsl(var(--muted-foreground)); }
-  .input:focus { outline: none; border-color: hsl(var(--ring)); box-shadow: 0 0 0 3px hsl(12 49% 58% / .13); }
-  .input:disabled { background: hsl(var(--muted)); cursor: not-allowed; }
-  .input-error { border-color: hsl(var(--destructive)); box-shadow: 0 0 0 3px hsl(0 72% 51% / .10); }
-  .field-error { display: none; font-size: 12.5px; color: hsl(var(--destructive)); margin-top: 6px; }
-  .field.is-invalid .field-error { display: block; }
-  .field.is-invalid .input { border-color: hsl(var(--destructive)); box-shadow: 0 0 0 3px hsl(0 72% 51% / .10); }
-  /* Dialog / Modal */
-  .dialog {
-    border: none; border-radius: var(--radius-lg); padding: 0; background: #fff;
-    box-shadow: 0 24px 64px -24px rgba(20,15,10,.28);
-    width: min(440px, calc(100vw - 32px)); overflow: hidden;
-  }
-  .dialog::backdrop { background: rgba(20,15,10,.38); backdrop-filter: blur(4px); }
-  .dialog[open] { animation: dialog-in .28s ease-out; }
-  @keyframes dialog-in { from { opacity: 0; transform: translateY(16px) scale(.97); } to { opacity: 1; transform: none; } }
-  .dialog-close {
-    display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9999px;
-    border: none; background: hsl(var(--muted)); color: hsl(var(--muted-foreground)); cursor: pointer;
-    transition: background .2s ease, color .2s ease;
-  }
-  .dialog-close:hover { background: hsl(var(--border)); color: hsl(var(--foreground)); }
-  /* Tabs */
-  .tabs { display: flex; flex-wrap: wrap; gap: 6px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-  .tabs::-webkit-scrollbar { display: none; }
-  .tab {
-    flex: none; height: 38px; padding: 0 16px; border-radius: 9999px; border: 1px solid transparent;
-    font-size: 13.5px; font-weight: 600; color: hsl(var(--muted-foreground)); background: transparent;
-    cursor: pointer; white-space: nowrap; transition: all .2s ease;
-  }
-  .tab:hover { background: hsl(var(--secondary)); color: hsl(var(--foreground)); }
-  .tab[aria-selected="true"] { background: #fff; color: hsl(var(--primary)); border-color: hsl(var(--border)); box-shadow: 0 1px 3px rgba(20,15,10,.07); }
-  /* Toast 类型 */
-  #toast.success { background: #0d7a4f; }
-  #toast.error { background: #c92a2a; }
-  /* Empty State */
-  .empty-state { text-align: center; padding: 56px 24px; border: 1px dashed hsl(var(--border)); border-radius: var(--radius-lg); background: #fff; }
-  .empty-state .empty-icon { display: grid; place-items: center; width: 52px; height: 52px; margin: 0 auto 14px; border-radius: 9999px; background: hsl(var(--muted)); color: hsl(var(--muted-foreground)); }
-  .empty-state h3 { font-size: 16px; font-weight: 700; }
-  .empty-state p { margin-top: 6px; font-size: 13.5px; color: hsl(var(--muted-foreground)); }
-  /* Loading Skeleton */
-  .skeleton { border-radius: var(--radius-md); background: linear-gradient(90deg, hsl(var(--muted)) 25%, hsl(42 22% 92%) 37%, hsl(var(--muted)) 63%); background-size: 400% 100%; animation: skeleton-load 1.4s ease infinite; }
-  @keyframes skeleton-load { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
-  /* Error State */
-  .error-state { text-align: center; padding: 48px 24px; border: 1px solid hsl(var(--border)); border-radius: var(--radius-lg); background: #fff; }
-  .error-state .error-icon { display: grid; place-items: center; width: 52px; height: 52px; margin: 0 auto 14px; border-radius: 9999px; background: hsl(0 72% 51% / .08); color: hsl(var(--destructive)); }
-  .error-state h3 { font-size: 16px; font-weight: 700; }
-  .error-state p { margin-top: 6px; font-size: 13.5px; color: hsl(var(--muted-foreground)); }
-  /* 文章卡分类标签 */
-  .cat-tag { display: inline-flex; width: fit-content; border-radius: 9999px; background: hsl(var(--primary) / .10); padding: 3px 12px; font-size: 12px; font-weight: 600; color: hsl(var(--primary)); }
-  /* 移动端触控目标优化: 核心交互 ≥44px (WCAG 2.5.5) */
-  @media (max-width: 767px) {
-    header a:not(.btn):not(.hidden):not([class*="hidden"]),
-    footer nav a:not(.hidden):not([class*="hidden"]),
-    nav[aria-label="本页目录"] a,
-    #menu-btn, .tab {
-      min-height: 44px;
-      display: inline-flex;
-      align-items: center;
-    }
-    footer nav a:not(.hidden):not([class*="hidden"]) { padding: 0 .5rem; }
-    #menu-btn { width: 44px; height: 44px; }
-    .tab { height: 44px; }
-    #search-clear { width: 44px !important; height: 44px !important; }
-  }
-</style><script>document.documentElement.classList.add('js');</script></head><body class="bg-[hsl(var(--background))] text-[hsl(var(--foreground))] antialiased selection:bg-[hsl(var(--primary))] selection:text-white"><div class="mesh-bg" aria-hidden="true"></div><div class="noise-bg" aria-hidden="true"></div><!-- ============ 导航 ============ --><header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"><div class="absolute top-0 left-0 right-0 h-[2px] bg-black/10"><div id="progress" class="h-full bg-[hsl(var(--primary))]"></div></div><div id="nav-inner" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><div class="flex h-16 items-center justify-between"><a href="#top" class="flex items-center gap-2.5 cursor-pointer group" aria-label="潘伟君 回到顶部"><span class="grid h-9 w-9 place-items-center rounded-xl bg-[hsl(var(--primary))] text-white text-sm font-bold transition-transform duration-300 ">潘</span><span class="text-[15px] font-semibold tracking-wide">潘伟君</span></a><nav class="hidden md:flex items-center gap-8 text-[14px] font-medium text-black/65" aria-label="主导航"><a href="#articles" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">文章</a><a href="#method" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">方法论</a><a href="#results" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">战绩</a><a href="#about" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">关于</a></nav><div class="flex items-center gap-3"><button id="subscribe-btn" class="hidden sm:inline-flex btn-secondary text-[14px] font-semibold px-5 py-2.5 rounded-full cursor-pointer" aria-haspopup="dialog">订阅复盘</button><a href="#download" class="hidden sm:inline-flex btn-primary text-white text-[14px] font-semibold px-5 py-2.5 rounded-full cursor-pointer">下载 App</a><button id="menu-btn" class="md:hidden grid h-10 w-10 place-items-center rounded-lg border border-black/10 cursor-pointer hover:bg-black/5 transition-colors duration-200" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开菜单"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></div></div><!-- 移动菜单 --><div id="mobile-menu" class="mobile-menu md:hidden mx-4 mt-1 rounded-2xl border border-black/10 bg-white/95 backdrop-blur-xl shadow-2xl shadow-black/10 overflow-hidden" role="region" aria-label="移动菜单"><nav class="flex flex-col p-3 text-[15px] font-medium" aria-label="移动导航"><a href="#articles" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">文章</a><a href="#method" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">方法论</a><a href="#results" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">战绩</a><a href="#about" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">关于</a><button id="subscribe-btn-mobile" class="mt-1 btn-secondary text-center font-semibold px-4 py-3 rounded-xl cursor-pointer" aria-haspopup="dialog">订阅复盘</button><a href="#download" class="mt-1 btn-primary text-white text-center font-semibold px-4 py-3 rounded-xl cursor-pointer">下载 App</a></nav></div></header><main id="top"><!-- ============ HERO ============ --><section class="hero-bg relative overflow-hidden"><div id="hero-glow" class="glow opacity-0" aria-hidden="true"></div><div class="hero-grid-dark absolute inset-0" aria-hidden="true"></div><!-- K 线漂移动态背景 --><svg class="kline absolute inset-x-0 top-[30%] h-[420px] w-full" viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true">
+  </style><script>document.documentElement.classList.add('js');</script></head><body class="bg-[hsl(var(--background))] text-[hsl(var(--foreground))] antialiased selection:bg-[hsl(var(--primary))] selection:text-white"><div class="mesh-bg" aria-hidden="true"></div><div class="noise-bg" aria-hidden="true"></div><!-- ============ 导航 ============ --><header id="nav" class="fixed top-0 left-0 right-0 z-50"><div class="absolute top-0 left-0 right-0 h-[2px] bg-black/10"><div id="progress" class="h-full bg-[hsl(var(--primary))]"></div></div><div id="nav-inner" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><div class="flex h-16 items-center justify-between"><a href="#top" class="flex items-center gap-2.5 cursor-pointer group" aria-label="潘伟君 回到顶部"><span class="grid h-9 w-9 place-items-center rounded-xl bg-[hsl(var(--primary))] text-white text-sm font-bold transition-transform duration-300 ">潘</span><span class="text-[15px] font-semibold tracking-wide">潘伟君</span></a><nav class="hidden md:flex items-center gap-8 text-[14px] font-medium text-black/65" aria-label="主导航"><a href="#articles" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">文章</a><a href="#method" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">方法论</a><a href="#results" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">战绩</a><a href="#about" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">关于</a></nav><div class="flex items-center gap-3"><button id="subscribe-btn" class="hidden sm:inline-flex btn-secondary text-[14px] font-semibold px-5 py-2.5 rounded-full cursor-pointer" aria-haspopup="dialog">订阅复盘</button><a href="#download" class="hidden sm:inline-flex btn-primary text-white text-[14px] font-semibold px-5 py-2.5 rounded-full cursor-pointer">下载 App</a><button id="menu-btn" class="md:hidden grid h-10 w-10 place-items-center rounded-lg border border-black/10 cursor-pointer hover:bg-black/5 transition-colors duration-200" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开菜单"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></div></div><!-- 移动菜单 --><div id="mobile-menu" class="mobile-menu md:hidden mx-4 mt-1 rounded-2xl border border-black/10 bg-white/95 backdrop-blur-xl shadow-2xl shadow-black/10 overflow-hidden" role="region" aria-label="移动菜单"><nav class="flex flex-col p-3 text-[15px] font-medium" aria-label="移动导航"><a href="#articles" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">文章</a><a href="#method" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">方法论</a><a href="#results" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">战绩</a><a href="#about" class="px-4 py-3 rounded-xl hover:bg-black/5 cursor-pointer transition-colors duration-200">关于</a><button id="subscribe-btn-mobile" class="mt-1 btn-secondary text-center font-semibold px-4 py-3 rounded-xl cursor-pointer" aria-haspopup="dialog">订阅复盘</button><a href="#download" class="mt-1 btn-primary text-white text-center font-semibold px-4 py-3 rounded-xl cursor-pointer">下载 App</a></nav></div></header><main id="top"><!-- ============ HERO ============ --><section class="hero-bg relative overflow-hidden"><div class="hero-grid-dark absolute inset-0" aria-hidden="true"></div><!-- K 线漂移动态背景 --><svg class="kline absolute inset-x-0 top-[30%] h-[420px] w-full" viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true">
     <defs>
       <linearGradient id="kl" x1="0" y1="0" x2="1" y2="0">
         <stop offset="0%" stop-color="#E8A98E" stop-opacity="0"/>
@@ -248,41 +144,7 @@
       </lineargradient>
     </defs>
     <path d="M-80,300 C90,280 120,230 240,250 C360,270 400,180 520,200 C640,220 680,130 800,150 C920,170 960,90 1080,110 C1200,130 1300,70 1520,90" fill="none" stroke="url(#kl)" stroke-width="2.5" stroke-linecap="round"/>
-  </svg><div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-[100svh] flex flex-col justify-center pt-28 pb-40 md:pt-32 md:pb-44 text-center"><p class="reveal-inline inline-flex items-center gap-2 rounded-full border border-[hsl(var(--border))] bg-white/85 px-4 py-1.5 text-[12.5px] tracking-widest text-[hsl(var(--foreground))]/75 backdrop-blur" style="animation-delay:.05s"><span class="h-1.5 w-1.5 rounded-full bg-[hsl(211_100%_40%)] animate-pulse" aria-hidden="true"></span>潘伟君 · 细节分析理论创立者</p><h1 id="hero-title" class="mt-8 text-4xl sm:text-5xl md:text-[60px] lg:text-[72px] font-bold leading-[1.14] tracking-tight text-balance" aria-label="短线交易的胜负 在下单之前就已经决定了"><span class="word-line block"><span class="text-[hsl(var(--foreground))]">短线交易的胜负</span></span><span class="word-line block mt-2"><span class="text-[hsl(211_100%_40%)]">在下单之前就已经决定了</span></span></h1><p class="reveal-inline mt-7 mx-auto max-w-2xl text-[16px] leading-relaxed text-black/65" style="animation-delay:.45s">你好 我是潘伟君 1993 年入市 国内第一代操盘手 擅长盘口语言与主力坐庄 三十年 我把同一套体系 讲成一篇篇能读懂的文章</p><div class="reveal-inline mt-10 flex flex-col sm:flex-row items-center justify-center gap-4" style="animation-delay:.95s"><a href="#articles" class="btn-primary inline-flex items-center gap-2.5 rounded-full px-9 py-4 text-[16px] font-semibold text-white cursor-pointer relative overflow-hidden"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>阅读我的文章</a><a href="#about" class="btn-ghost inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-medium text-[hsl(var(--foreground))] cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>我的故事</a></div><!-- 数据条 --><dl class="reveal mt-14 grid grid-cols-2 md:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-[hsl(var(--border))] bg-white shadow-sm"><div class="bg-white px-6 py-7"><dt class="text-[12.5px] tracking-widest text-black/55">实战年限</dt><dd class="mt-2 text-3xl md:text-4xl font-bold"><span class="count-up" data-target="33" data-suffix="年">0</span></dd></div><div class="bg-white px-6 py-7"><dt class="text-[12.5px] tracking-widest text-black/55">深度复盘</dt><dd class="mt-2 text-3xl md:text-4xl font-bold"><span class="count-up" data-target="420" data-suffix="+">0</span></dd></div><div class="bg-white px-6 py-7"><dt class="text-[12.5px] tracking-widest text-black/55">策略年化<sup class="text-[10px] text-black/55">*</sup></dt><dd class="mt-2 text-3xl md:text-4xl font-bold text-[hsl(211_100%_40%)]"><span class="count-up" data-target="18" data-suffix="%">0</span></dd></div><div class="bg-white px-6 py-7"><dt class="text-[12.5px] tracking-widest text-black/55">读者留存</dt><dd class="mt-2 text-3xl md:text-4xl font-bold"><span class="count-up" data-target="97" data-suffix="%">0</span></dd></div></dl><p class="mt-3 text-[12px] text-black/55">* 2018-2025 策略回测演示数据 历史业绩不代表未来收益</p></div><!-- 滚动指示器 --><a href="#about" class="scroll-hint absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-black/55 hover:text-[hsl(var(--foreground))] transition-colors duration-200 cursor-pointer" aria-label="向下滚动了解我的故事"><span class="text-[12px] tracking-[0.25em]">向下滚动</span><svg class="h-5 w-5 animate-bounce-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a></section><section id="about" class="bg-[hsl(var(--background))]"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28"><div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center"><div class="reveal relative mx-auto w-full max-w-sm"><div class="absolute -inset-3 rounded-[36px] bg-gradient-to-br from-[hsl(211_100%_40%/0.10)] to-transparent blur-2xl" aria-hidden="true"></div><div class="relative overflow-hidden rounded-2xl border border-[hsl(var(--border))] bg-white p-8 text-center shadow-sm shadow-black/6"><div class="mx-auto grid h-24 w-24 place-items-center rounded-3xl bg-gradient-to-br from-[hsl(211_100%_50%)] to-[hsl(211_100%_36%)] text-4xl font-black text-white">潘</div><h3 class="mt-5 text-xl font-bold">潘伟君</h3><p class="mt-1 text-[14px] text-black/65">A 股顶级短线操盘手 · 细节分析理论创立者</p><p class="mt-4 text-[14px] leading-relaxed text-black/65">复旦数学系毕业 1993 年入市 国内第一代操盘手 机构独立操盘手 大资金运作经验</p><div class="mt-6 flex justify-center gap-2"><span class="rounded-full bg-black/5 px-3.5 py-1.5 text-[12px] font-medium text-black/55">细节分析理论</span><span class="rounded-full bg-black/5 px-3.5 py-1.5 text-[12px] font-medium text-black/55">盘口语言</span><span class="rounded-full bg-black/5 px-3.5 py-1.5 text-[12px] font-medium text-black/55">主力坐庄</span></div></div></div><div class="reveal"><p class="text-[12.5px] tracking-[0.3em] text-[hsl(var(--primary))] font-semibold">关于我</p><h2 class="mt-4 text-3xl md:text-[40px] font-bold leading-tight">1993 年入市<br>国内第一代操盘手</h2><div class="mt-6 space-y-5 text-[16px] leading-relaxed text-black/65"><p>1993 年入市 曾任申能资产投资岗 长期任机构独立操盘手 机构资金进出 必须看得懂盘口语言 这就是我创立<strong class="text-black/90">细节分析理论</strong>的起点</p><p>2003 年起 在《上海证券报》主持《操盘手札记》专栏 后更名《实战心得》 出版《看盘细节》等书 现为多所高校客座教授</p><p>现在 每天在通跃 App 实战交流群 盘前消息面解析 竞价超短选股 实盘解析与复盘 晚间操盘系统技术课程 因为我深信<strong class="text-black/90">交易这件事 教会一个是一个</strong></p></div><a href="articles.html" class="reveal mt-8 inline-flex items-center gap-2 rounded-full bg-[hsl(var(--primary))] px-7 py-3.5 text-[15px] font-semibold text-white cursor-pointer hover:brightness-110 transition-all duration-200">从我的第一篇文章开始读<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div></div></section><section id="articles" class="bg-[#F5F3EC]"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28"><div class="reveal flex flex-wrap items-end justify-between gap-6"><div><p class="text-[12.5px] tracking-[0.3em] text-[hsl(var(--primary))] font-semibold">文章专栏</p><h2 class="mt-4 text-3xl md:text-[44px] font-bold leading-tight">三十年的复盘<br>每一篇都值得读两遍</h2></div><div class="mt-9 w-full min-w-0"><div class="flex min-w-0 flex-col gap-4 lg:flex-row lg:items-end lg:justify-between"><div class="tabs max-w-full min-w-0" role="tablist" aria-label="文章分类筛选"><button class="tab" role="tab" aria-selected="true" data-filter="all">全部</button><button class="tab" role="tab" aria-selected="false" data-filter="战法体系">战法体系</button><button class="tab" role="tab" aria-selected="false" data-filter="指标武器库">指标武器库</button><button class="tab" role="tab" aria-selected="false" data-filter="个股研报">个股研报</button><button class="tab" role="tab" aria-selected="false" data-filter="风控必修">风控必修</button><button class="tab" role="tab" aria-selected="false" data-filter="短线体系">短线体系</button><button class="tab" role="tab" aria-selected="false" data-filter="情绪博弈">情绪博弈</button><button class="tab" role="tab" aria-selected="false" data-filter="分时实战">分时实战</button></div><div class="relative min-w-0 w-full lg:w-72"><svg xmlns="http://www.w3.org/2000/svg" class="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-black/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input id="article-search" class="input max-w-full pl-10" type="search" placeholder="搜索文章标题或摘要…" aria-label="搜索文章" autocomplete="off"></div></div></div><a href="articles.html" class="inline-flex items-center gap-2 rounded-full border border-black/15 px-6 py-3 text-[14px] font-semibold cursor-pointer hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] transition-colors duration-200">全部 420+ 篇<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div><div id="articles-grid" class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"><a href="strategy.html" data-category="战法体系" class="article-card reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden"><span class="card-line"></span><span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[12px] font-semibold text-[hsl(var(--primary))]">战法体系</span><h3 class="mt-4 text-[17px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">扶摇九天 · 短线五层看盘体系</h3><p class="mt-3 flex-1 text-[14px] leading-relaxed text-black/65">一层体检 二层定线 三层看K线真相 四层看天气 五层等进攻信号 一套能落地的看盘顺序</p><div class="mt-5 flex items-center justify-between text-[12px] text-black/55"><span>15 分钟深度阅读</span><span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a href="indicators.html" data-category="指标武器库" class="article-card reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden"><span class="card-line"></span><span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[12px] font-semibold text-[hsl(var(--primary))]">指标武器库</span><h3 class="mt-4 text-[17px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">九套实战指标 · 管住从看盘到下单</h3><p class="mt-3 flex-1 text-[14px] leading-relaxed text-black/65">天罡竞价选强 趋势猎龙波段 潜龙出海擒妖 涨停回马枪二波 分时魔镜做T 超级版面复盘</p><div class="mt-5 flex items-center justify-between text-[12px] text-black/55"><span>20 分钟深度阅读</span><span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a href="research-4.html" data-category="个股研报" class="article-card reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden"><span class="card-line"></span><span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[12px] font-semibold text-[hsl(var(--primary))]">个股研报</span><h3 class="mt-4 text-[17px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">从A股历史10倍股基因密码中 挖出9只潜力黑马</h3><p class="mt-3 flex-1 text-[14px] leading-relaxed text-black/65">十倍股不是涨出来的 是符合基因之后被资金选出来的 九个特征逐条对照</p><div class="mt-5 flex items-center justify-between text-[12px] text-black/55"><span>14 分钟深度阅读</span><span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a href="article-stoploss.html" data-category="风控必修" class="article-card reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden"><span class="card-line"></span><span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[12px] font-semibold text-[hsl(var(--primary))]">风控必修</span><h3 class="mt-4 text-[17px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">止损线 到底应该画在哪</h3><p class="mt-3 flex-1 text-[14px] leading-relaxed text-black/65">一条被 98% 的人画错的线 决定你是亏损有限还是套牢无期</p><div class="mt-5 flex items-center justify-between text-[12px] text-black/55"><span>10 分钟深度阅读</span><span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a href="article-shortline.html" data-category="短线体系" class="article-card reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden"><span class="card-line"></span><span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[12px] font-semibold text-[hsl(var(--primary))]">短线体系</span><h3 class="mt-4 text-[17px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">做短线 先想清楚这三个问题</h3><p class="mt-3 flex-1 text-[14px] leading-relaxed text-black/65">周期 位置 仓位 想清楚再动手 胜率自然上来</p><div class="mt-5 flex items-center justify-between text-[12px] text-black/55"><span>8 分钟深度阅读</span><span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a href="article-divergence.html" data-category="情绪博弈" class="article-card reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden"><span class="card-line"></span><span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[12px] font-semibold text-[hsl(var(--primary))]">情绪博弈</span><h3 class="mt-4 text-[17px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">买在分歧 卖在一致</h3><p class="mt-3 flex-1 text-[14px] leading-relaxed text-black/65">买在没人敢买时 卖在人人想买时 拆开就是买卖点框架</p><div class="mt-5 flex items-center justify-between text-[12px] text-black/55"><span>10 分钟深度阅读</span><span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a href="article-timeshare.html" data-category="分时实战" class="article-card reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden"><span class="card-line"></span><span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[12px] font-semibold text-[hsl(var(--primary))]">分时实战</span><h3 class="mt-4 text-[17px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">分时图 主力每天的情绪地图</h3><p class="mt-3 flex-1 text-[14px] leading-relaxed text-black/65">把分时图读成多空双方当天的博弈现场</p><div class="mt-5 flex items-center justify-between text-[12px] text-black/55"><span>9 分钟深度阅读</span><span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a></div><div id="articles-more" class="mt-10 flex flex-col items-center gap-4"><button id="load-more-btn" class="btn btn-outline btn-md" aria-haspopup="false"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>加载更多文章</button><div id="articles-empty" class="empty-state hidden w-full"><div class="empty-icon"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><h3>没有找到相关文章</h3><p>换个关键词或分类再试试吧</p><button id="empty-reset" class="btn btn-secondary btn-sm mt-4">查看全部文章</button></div><div id="articles-error" class="error-state hidden w-full"><div class="error-icon"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div><h3>文章加载失败</h3><p>网络开小差了, 请重试</p><button id="articles-retry" class="btn btn-primary btn-sm mt-4">重新加载</button></div></div></div></div></section><section id="method" class="relative overflow-hidden bg-[#1d1d1f] text-white"><div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28"><div class="reveal max-w-3xl"><p class="text-[12.5px] tracking-[0.3em] accent-light font-semibold">我的体系</p><h2 class="mt-4 text-3xl md:text-[44px] font-bold leading-tight">答案不是更努力<br>是<span class="underline-accent">换一套系统</span></h2><p class="mt-5 text-[16px] leading-relaxed text-white/65">这三件事 我验证了三十年 每件都能立刻执行 现在 每天在通跃 App 拆给你看</p></div><div class="mt-14 grid gap-6 md:grid-cols-3"><article class="reveal glass lift relative overflow-hidden rounded-2xl p-8 cursor-pointer" tabindex="0"><span class="card-line"></span><div class="flex items-center justify-between"><span class="grid h-12 w-12 place-items-center rounded-xl bg-[hsl(var(--primary))]"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-6"/></svg></span><span class="text-[40px] font-black text-white/8 leading-none">01</span></div><h3 class="mt-6 text-xl font-bold">体系化决策</h3><p class="mt-3 text-[14px] leading-relaxed text-white/65">先胜后战 趋势定方向 位置定赔率 结构定信号 每个进场点 都得说得出理由</p><p class="mt-5 inline-flex items-center gap-1.5 text-[14px] font-semibold accent-light">通跃 App: 每日复盘 22:00 推送<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p></article><article class="reveal glass lift relative overflow-hidden rounded-2xl p-8 cursor-pointer" tabindex="0"><span class="card-line"></span><div class="flex items-center justify-between"><span class="grid h-12 w-12 place-items-center rounded-xl bg-[hsl(var(--primary))]"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span><span class="text-[40px] font-black text-white/8 leading-none">02</span></div><h3 class="mt-6 text-xl font-bold">纪律化执行</h3><p class="mt-3 text-[14px] leading-relaxed text-white/65">计划你的交易 交易你的计划 进场前定好仓位和离场 盘中只执行 不改主意</p><p class="mt-5 inline-flex items-center gap-1.5 text-[14px] font-semibold accent-light">通跃 App: 计划清单 + 买卖点留痕<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p></article><article class="reveal glass lift relative overflow-hidden rounded-2xl p-8 cursor-pointer" tabindex="0"><span class="card-line"></span><div class="flex items-center justify-between"><span class="grid h-12 w-12 place-items-center rounded-xl bg-[hsl(var(--primary))]"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z"/><path d="M9.5 12l2 2 3.5-4"/></svg></span><span class="text-[40px] font-black text-white/8 leading-none">03</span></div><h3 class="mt-6 text-xl font-bold">风控化生存</h3><p class="mt-3 text-[14px] leading-relaxed text-white/65">活下来才有一切 单笔风险固定 止损是计划一部分 不是事后补救</p><p class="mt-5 inline-flex items-center gap-1.5 text-[14px] font-semibold accent-light">通跃 App: 行情转折风险提醒<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p></article></div></div></section><section id="results" class="bg-[hsl(var(--background))]"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28"><div class="grid gap-12 lg:grid-cols-2 lg:items-center"><div><p class="reveal text-[12.5px] tracking-[0.3em] text-[hsl(var(--primary))] font-semibold">实战战绩</p><h2 class="reveal mt-4 text-3xl md:text-[44px] font-bold leading-tight">三十三年 我用同一套体系<br>穿越多轮牛熊</h2><p class="reveal mt-5 text-[16px] leading-relaxed text-black/65">这套体系不挑行情 亏损锁在固定范围 盈利交给趋势 以下为长期表现</p><ul class="reveal mt-8 space-y-5"><li class="flex gap-4 items-start"><span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]"><svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p class="text-[15px] text-black/65"><strong class="text-black/90">回撤可控</strong>历史最大回撤控制在 12% 以内 单笔止损固定 不扛单不摊平</p></li><li class="flex gap-4 items-start"><span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]"><svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p class="text-[15px] text-black/65"><strong class="text-black/90">胜率不是重点</strong>47% 的胜率也能稳定盈利 因为盈亏比 3:1 对一次抵三次错</p></li><li class="flex gap-4 items-start"><span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]"><svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p class="text-[15px] text-black/65"><strong class="text-black/90">普适可验证</strong>所有信号来自公开行情数据 复盘文章里每个进出场点都留痕可查</p></li></ul></div><!-- 净值曲线(装饰性示意) --><div class="reveal relative"><div class="absolute -inset-4 rounded-[32px] bg-gradient-to-br from-[hsl(211_100%_40%/0.08)] to-transparent blur-2xl" aria-hidden="true"></div><div class="relative rounded-2xl border border-[hsl(var(--border))] bg-white p-6 sm:p-8 shadow-sm shadow-black/8"><div class="flex items-center justify-between"><div><p class="text-[12.5px] text-black/55">策略净值 回测演示</p><p class="mt-1 text-3xl font-bold"><span class="count-up" data-target="4.6" data-decimals="1">0</span><span class="text-lg text-black/55">x</span></p></div><span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 text-[12.5px] font-semibold text-emerald-600"><svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>长期上行</span></div><svg viewBox="0 96 880 464" class="mt-6 w-full" role="img" aria-label="策略净值曲线 2018-2025 回测演示数据 从 1.0 增长到 4.6 倍 2022 年回撤约 12%">
-
-<rect width="880" height="560" fill="#ffffff"/>
-<line x1="14" y1="468.1" x2="796" y2="468.1" stroke="#f1f3f5" stroke-width="1"/>
-<text x="804" y="472.1" font-size="12" fill="#868e96" text-anchor="end">1.00x</text>
-<line x1="14" y1="376.3" x2="796" y2="376.3" stroke="#f1f3f5" stroke-width="1"/>
-<text x="804" y="380.3" font-size="12" fill="#868e96" text-anchor="end">2.00x</text>
-<line x1="14" y1="284.6" x2="796" y2="284.6" stroke="#f1f3f5" stroke-width="1"/>
-<text x="804" y="288.6" font-size="12" fill="#868e96" text-anchor="end">3.00x</text>
-<line x1="14" y1="192.8" x2="796" y2="192.8" stroke="#f1f3f5" stroke-width="1"/>
-<text x="804" y="196.8" font-size="12" fill="#868e96" text-anchor="end">4.00x</text>
-<line x1="14" y1="468.1" x2="796" y2="468.1" stroke="#adb5bd" stroke-width="1.2" stroke-dasharray="6,4"/>
-<text x="20" y="462.1" font-size="12" fill="#adb5bd">基准 1.0x</text>
-<rect x="432.8" y="96" width="146.1" height="412" fill="#e03131" opacity="0.06"/>
-<text x="440.8" y="295.9" font-size="12.5" font-weight="600" fill="#e03131">2022 回撤区间</text>
-<line x1="472.8" y1="242.3" x2="472.8" y2="291.9" stroke="#e03131" stroke-width="1" stroke-dasharray="3,3" opacity="0.7"/>
-<text x="476.8" y="271.1" font-size="11.5" fill="#e03131">回撤 约 -12%</text>
-<path d="M14.0,468.1 L26.6,457.1 L39.2,451.6 L51.8,459.9 L64.5,447.9 L77.1,436.0 L89.7,442.4 L102.3,430.5 L114.9,420.4 L127.5,410.3 L140.1,403.0 L152.7,414.9 L165.4,400.2 L178.0,389.2 L190.6,395.6 L203.2,380.9 L215.8,369.0 L228.4,357.1 L241.0,345.1 L253.6,358.9 L266.3,337.8 L278.9,325.9 L291.5,313.9 L304.1,329.5 L316.7,310.3 L329.3,298.3 L341.9,286.4 L354.5,273.5 L367.2,261.6 L379.8,249.7 L392.4,267.1 L405.0,256.1 L417.6,246.0 L430.2,258.9 L442.8,252.4 L455.5,273.5 L468.1,280.0 L480.7,268.0 L493.3,283.6 L505.9,276.3 L518.5,291.9 L531.1,280.0 L543.7,268.0 L556.4,255.2 L569.0,242.3 L581.6,231.3 L594.2,219.4 L606.8,207.5 L619.4,218.5 L632.0,203.8 L644.6,191.9 L657.3,179.0 L669.9,167.1 L682.5,181.8 L695.1,170.7 L707.7,158.8 L720.3,167.1 L732.9,155.1 L745.5,144.1 L758.2,150.6 L770.8,139.5 L783.4,146.0 L796.0,135.9 L796.0,508.0 L14.0,508.0 Z" fill="url(#nav-area)" opacity="0.85"/>
-<path d="M14.0,468.1 L26.6,457.1 L39.2,451.6 L51.8,459.9 L64.5,447.9 L77.1,436.0 L89.7,442.4 L102.3,430.5 L114.9,420.4 L127.5,410.3 L140.1,403.0 L152.7,414.9 L165.4,400.2 L178.0,389.2 L190.6,395.6 L203.2,380.9 L215.8,369.0 L228.4,357.1 L241.0,345.1 L253.6,358.9 L266.3,337.8 L278.9,325.9 L291.5,313.9 L304.1,329.5 L316.7,310.3 L329.3,298.3 L341.9,286.4 L354.5,273.5 L367.2,261.6 L379.8,249.7 L392.4,267.1 L405.0,256.1 L417.6,246.0 L430.2,258.9 L442.8,252.4 L455.5,273.5 L468.1,280.0 L480.7,268.0 L493.3,283.6 L505.9,276.3 L518.5,291.9 L531.1,280.0 L543.7,268.0 L556.4,255.2 L569.0,242.3 L581.6,231.3 L594.2,219.4 L606.8,207.5 L619.4,218.5 L632.0,203.8 L644.6,191.9 L657.3,179.0 L669.9,167.1 L682.5,181.8 L695.1,170.7 L707.7,158.8 L720.3,167.1 L732.9,155.1 L745.5,144.1 L758.2,150.6 L770.8,139.5 L783.4,146.0 L796.0,135.9" fill="none" stroke="url(#nav-stroke)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="796.0" cy="135.9" r="6" fill="#CC785C" stroke="#ffffff" stroke-width="2.5"/>
-<text x="780.0" y="157.9" font-size="14" font-weight="700" fill="#CC785C" paint-order="stroke" stroke="#ffffff" stroke-width="4" text-anchor="start">4.6x</text>
-<text x="14.0" y="534" font-size="12" fill="#868e96" text-anchor="start">2018</text>
-<text x="114.9" y="534" font-size="12" fill="#868e96" text-anchor="middle">2019</text>
-<text x="215.8" y="534" font-size="12" fill="#868e96" text-anchor="middle">2020</text>
-<text x="316.7" y="534" font-size="12" fill="#868e96" text-anchor="middle">2021</text>
-<text x="417.6" y="534" font-size="12" fill="#868e96" text-anchor="middle">2022</text>
-<text x="518.5" y="534" font-size="12" fill="#868e96" text-anchor="middle">2023</text>
-<text x="619.4" y="534" font-size="12" fill="#868e96" text-anchor="middle">2024</text>
-<text x="720.3" y="534" font-size="12" fill="#868e96" text-anchor="middle">2025</text>
-<line x1="26" y1="116" x2="46" y2="116" stroke="#CC785C" stroke-width="2.5"/>
-<text x="52" y="120" font-size="12" fill="#1d1d1f">策略净值</text>
-<line x1="144" y1="116" x2="164" y2="116" stroke="#adb5bd" stroke-width="1.5" stroke-dasharray="6,4"/>
-<text x="170" y="120" font-size="12" fill="#1d1d1f">基准</text>
-<defs><linearGradient id="nav-area" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#CC785C" stop-opacity=".22"/><stop offset="100%" stop-color="#CC785C" stop-opacity="0"/></linearGradient><linearGradient id="nav-stroke" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#A85A3C"/><stop offset="100%" stop-color="#CC785C"/></linearGradient></defs>
-</svg></div><div class="mt-6 rounded-2xl border border-[hsl(var(--border))] bg-white p-6 shadow-sm shadow-black/8"><div class="flex items-center justify-between"><p class="text-[15px] font-semibold text-black/90">实盘持仓收益</p><span class="inline-flex rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[12px] font-semibold text-[hsl(var(--primary))]">实战验证</span></div><img src="images/returns-2026.jpeg" alt="实盘持仓收益截图" loading="lazy" class="mt-4 w-full rounded-xl border border-[hsl(var(--border))] object-contain max-h-[360px]"></div></div></div></div></section><section id="download" class="relative overflow-hidden bg-[#1d1d1f] text-white"><div class="hero-grid-dark absolute inset-0" aria-hidden="true"></div><div class="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center"><p class="reveal text-[12.5px] tracking-[0.3em] accent-light font-semibold">通跃 App</p><h2 class="reveal mt-5 text-3xl md:text-[44px] font-bold leading-tight text-balance">我的盘前解析 实盘复盘<br>每天在这里</h2><p class="reveal mt-6 mx-auto max-w-xl text-[16px] leading-relaxed text-white/65">三十年的复盘习惯 搬到了 App 上 盘前解析 实盘复盘 体系课程 免费下载 不喜欢随时删</p><div class="reveal mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"><a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" class="js-download btn-primary inline-flex items-center gap-2.5 rounded-full px-9 py-4 text-[16px] font-semibold text-white cursor-pointer relative overflow-hidden"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>安卓免费下载</a><a href="https://apps.apple.com/cn/app/id6789065192" class="js-download btn-ghost btn-ghost-dark inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-medium text-white/90 cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>iPhone 前往 App Store</a></div><p class="reveal mt-5 text-[12px] text-white/50">安卓包约 172MB · 微信内请点击右上角「在浏览器打开」</p></div></section></main><dialog id="subscribe-dialog" class="dialog" aria-labelledby="subscribe-title" aria-describedby="subscribe-desc"><div class="p-7"><div class="flex items-start justify-between gap-4"><div><p class="text-[12.5px] tracking-[0.3em] text-[hsl(var(--primary))] font-semibold">每周复盘</p><h3 id="subscribe-title" class="mt-2 text-xl font-bold">订阅复盘早报</h3></div><button class="dialog-close" data-close-dialog aria-label="关闭"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><p id="subscribe-desc" class="mt-3 text-[14px] leading-relaxed text-black/65">每周日晚 22:00 前推送当周复盘与下周关注方向, 可随时退订。</p><form id="subscribe-form" class="mt-6" novalidate><div class="field" id="subscribe-field"><label class="field-label" for="subscribe-email">邮箱地址</label><input id="subscribe-email" class="input" type="email" placeholder="you@example.com" autocomplete="email" required><p class="field-error" id="subscribe-error" role="alert">请输入有效的邮箱地址</p></div><button type="submit" class="btn btn-primary btn-lg mt-5 w-full" id="subscribe-submit" aria-live="polite"><span class="btn-spinner" aria-hidden="true"></span><span class="btn-label">确认订阅</span></button><div class="mt-5 border-t border-[hsl(var(--border))] pt-4 text-center"><button type="button" class="btn btn-destructive btn-sm" id="unsubscribe-btn">退订复盘邮件</button></div><p class="mt-3 text-center text-[12px] text-black/55">订阅即表示同意接收邮件, 可随时取消</p></form></div></dialog><div id="toast" role="status" aria-live="polite"></div><!-- ============ FOOTER ============ --><footer class="border-t border-[hsl(var(--border))] bg-white/70"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12"><div class="flex flex-col md:flex-row items-center justify-between gap-6"><div class="flex items-center gap-2.5"><span class="grid h-8 w-8 place-items-center rounded-lg bg-[hsl(var(--primary))] text-white text-xs font-bold">潘</span><div><p class="text-[14px] font-semibold">潘伟君</p><p class="text-[12px] text-black/55">细节分析理论创立者</p></div></div><nav class="flex flex-wrap justify-center gap-6 text-[14px] font-medium text-black/65" aria-label="页脚导航"><a href="#method" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">交易体系</a><a href="#results" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">实战战绩</a><a href="#articles" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">深度文章</a><a href="articles.html" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">全部文章</a><a href="#download" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">下载</a></nav></div><div class="mt-10 border-t border-[hsl(var(--border))] pt-6"><p class="text-center text-[12px] leading-relaxed text-black/65">免责声明 本站内容仅用于交易体系与风控理念交流 不构成任何投资建议 市场有风险 入市需谨慎 历史业绩与回测不代表未来收益</p><p class="mt-3 text-center text-[12px] text-black/55">© 2026 潘伟君 保留所有权利</p></div></div></footer><script>
+  </svg><div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-[100svh] flex flex-col justify-center pt-28 pb-40 md:pt-32 md:pb-44 text-center"><p class="reveal-inline inline-flex items-center gap-2 rounded-full border border-[hsl(var(--border))] bg-white/85 px-4 py-1.5 text-[12.5px] tracking-widest text-[hsl(var(--foreground))]/75 backdrop-blur" style="animation-delay:.05s"><span class="h-1.5 w-1.5 rounded-full bg-[hsl(211_100%_40%)]" aria-hidden="true"></span>潘伟君 · 细节分析理论创立者</p><h1 id="hero-title" class="mt-8 text-4xl sm:text-5xl md:text-[60px] lg:text-[72px] font-bold leading-[1.14] tracking-tight text-balance" aria-label="短线交易的胜负 在下单之前就已经决定了"><span class="word-line block"><span class="text-[hsl(var(--foreground))]">短线交易的胜负</span></span><span class="word-line block mt-2"><span class="text-[hsl(211_100%_40%)]">在下单之前就已经决定了</span></span></h1><p class="reveal-inline mt-7 mx-auto max-w-2xl text-[16px] leading-relaxed text-black/65" style="animation-delay:.2s">你好 我是潘伟君 1993 年入市 国内第一代操盘手 擅长盘口语言与主力坐庄 三十年 我把同一套体系 讲成一篇篇能读懂的文章</p><div class="reveal-inline mt-10 flex flex-col sm:flex-row items-center justify-center gap-4" style="animation-delay:.28s"><a href="#articles" class="btn-primary inline-flex items-center gap-2.5 rounded-full px-9 py-4 text-[16px] font-semibold text-white cursor-pointer relative overflow-hidden"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>阅读我的文章</a><a href="#about" class="btn-ghost inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-medium text-[hsl(var(--foreground))] cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>我的故事</a></div><!-- 数据条 --><dl class="reveal mt-14 grid grid-cols-2 md:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-[hsl(var(--border))] bg-white shadow-sm"><div class="bg-white px-6 py-7"><dt class="text-[12.5px] tracking-widest text-black/55">实战年限</dt><dd class="mt-2 text-3xl md:text-4xl font-bold"><span class="count-up" data-target="33" data-suffix="年">0</span></dd></div><div class="bg-white px-6 py-7"><dt class="text-[12.5px] tracking-widest text-black/55">深度复盘</dt><dd class="mt-2 text-3xl md:text-4xl font-bold"><span class="count-up" data-target="420" data-suffix="+">0</span></dd></div><div class="bg-white px-6 py-7"><dt class="text-[12.5px] tracking-widest text-black/55">策略年化<sup class="text-[10px] text-black/55">*</sup></dt><dd class="mt-2 text-3xl md:text-4xl font-bold text-[hsl(211_100%_40%)]"><span class="count-up" data-target="18" data-suffix="%">0</span></dd></div><div class="bg-white px-6 py-7"><dt class="text-[12.5px] tracking-widest text-black/55">读者留存</dt><dd class="mt-2 text-3xl md:text-4xl font-bold"><span class="count-up" data-target="97" data-suffix="%">0</span></dd></div></dl><p class="mt-3 text-[12px] text-black/55">* 2018-2025 策略回测演示数据 历史业绩不代表未来收益</p></div><!-- 滚动指示器 --><a href="#about" class="scroll-hint absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-black/55 hover:text-[hsl(var(--foreground))] transition-colors duration-200 cursor-pointer" aria-label="向下滚动了解我的故事"><span class="text-[12px] tracking-[0.25em]">向下滚动</span><svg class="h-5 w-5 animate-bounce-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a></section><section id="about" class="bg-[hsl(var(--background))]"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28"><div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center"><div class="reveal relative mx-auto w-full max-w-sm"><div class="absolute -inset-3 rounded-[36px] bg-gradient-to-br from-[hsl(211_100%_40%/0.10)] to-transparent blur-2xl" aria-hidden="true"></div><div class="relative overflow-hidden rounded-2xl border border-[hsl(var(--border))] bg-white p-8 text-center shadow-sm shadow-black/6"><figure class="person-portrait"><img src="images/pan-weijun-portrait.png" alt="潘伟君着黑色西装的形象照" width="922" height="1152" loading="lazy" decoding="async"></figure><h3 class="mt-5 text-xl font-bold">潘伟君</h3><p class="mt-1 text-[14px] text-black/65">A 股顶级短线操盘手 · 细节分析理论创立者</p><p class="mt-4 text-[14px] leading-relaxed text-black/65">复旦数学系毕业 1993 年入市 国内第一代操盘手 机构独立操盘手 大资金运作经验</p><div class="mt-6 flex justify-center gap-2"><span class="rounded-full bg-black/5 px-3.5 py-1.5 text-[12px] font-medium text-black/55">细节分析理论</span><span class="rounded-full bg-black/5 px-3.5 py-1.5 text-[12px] font-medium text-black/55">盘口语言</span><span class="rounded-full bg-black/5 px-3.5 py-1.5 text-[12px] font-medium text-black/55">主力坐庄</span></div></div></div><div class="reveal"><p class="text-[12.5px] tracking-[0.3em] text-[hsl(var(--primary))] font-semibold">关于我</p><h2 class="mt-4 text-3xl md:text-[40px] font-bold leading-tight">1993 年入市<br>国内第一代操盘手</h2><div class="mt-6 space-y-5 text-[16px] leading-relaxed text-black/65"><p>1993 年入市 曾任申能资产投资岗 长期任机构独立操盘手 机构资金进出 必须看得懂盘口语言 这就是我创立<strong class="text-black/90">细节分析理论</strong>的起点</p><p>2003 年起 在《上海证券报》主持《操盘手札记》专栏 后更名《实战心得》 出版《看盘细节》等书 现为多所高校客座教授</p><p>现在 每天在通跃 App 实战交流群 盘前消息面解析 竞价超短选股 实盘解析与复盘 晚间操盘系统技术课程 因为我深信<strong class="text-black/90">交易这件事 教会一个是一个</strong></p></div><a href="articles.html" class="reveal mt-8 inline-flex items-center gap-2 rounded-full bg-[hsl(var(--primary))] px-7 py-3.5 text-[15px] font-semibold text-white cursor-pointer about-cta">从我的第一篇文章开始读<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div></div></section><section id="articles" class="bg-[#F5F3EC]"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28"><div class="reveal flex flex-wrap items-end justify-between gap-6"><div><p class="text-[12.5px] tracking-[0.3em] text-[hsl(var(--primary))] font-semibold">文章专栏</p><h2 class="mt-4 text-3xl md:text-[44px] font-bold leading-tight">三十年的复盘<br>每一篇都值得读两遍</h2></div><div class="mt-9 w-full min-w-0"><div class="flex min-w-0 flex-col gap-4 lg:flex-row lg:items-end lg:justify-between"><div class="tabs max-w-full min-w-0" role="tablist" aria-label="文章分类筛选"><button class="tab" role="tab" aria-selected="true" data-filter="all">全部</button><button class="tab" role="tab" aria-selected="false" data-filter="战法体系">战法体系</button><button class="tab" role="tab" aria-selected="false" data-filter="指标武器库">指标武器库</button><button class="tab" role="tab" aria-selected="false" data-filter="个股研报">个股研报</button><button class="tab" role="tab" aria-selected="false" data-filter="风控必修">风控必修</button><button class="tab" role="tab" aria-selected="false" data-filter="短线体系">短线体系</button><button class="tab" role="tab" aria-selected="false" data-filter="情绪博弈">情绪博弈</button><button class="tab" role="tab" aria-selected="false" data-filter="分时实战">分时实战</button></div><div class="relative min-w-0 w-full lg:w-72"><svg xmlns="http://www.w3.org/2000/svg" class="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-black/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input id="article-search" class="input max-w-full pl-10" type="search" placeholder="搜索文章标题或摘要…" aria-label="搜索文章" autocomplete="off"></div></div></div><a href="articles.html" class="inline-flex items-center gap-2 rounded-full border border-black/15 px-6 py-3 text-[14px] font-semibold cursor-pointer hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] transition-colors duration-200">全部 420+ 篇<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div><div id="articles-grid" class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"><a href="strategy.html" data-category="战法体系" class="article-card reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden"><span class="card-line"></span><span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[12px] font-semibold text-[hsl(var(--primary))]">战法体系</span><h3 class="mt-4 text-[17px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">扶摇九天 ·<br class="lead-title-break">短线五层看盘体系</h3><p class="mt-3 flex-1 text-[14px] leading-relaxed text-black/65">一层体检 二层定线 三层看K线真相 四层看天气 五层等进攻信号 一套能落地的看盘顺序</p><div class="mt-5 flex items-center justify-between text-[12px] text-black/55"><span>15 分钟深度阅读</span><span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a href="indicators.html" data-category="指标武器库" class="article-card reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden"><span class="card-line"></span><span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[12px] font-semibold text-[hsl(var(--primary))]">指标武器库</span><h3 class="mt-4 text-[17px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">九套实战指标 · 管住从看盘到下单</h3><p class="mt-3 flex-1 text-[14px] leading-relaxed text-black/65">天罡竞价选强 趋势猎龙波段 潜龙出海擒妖 涨停回马枪二波 分时魔镜做T 超级版面复盘</p><div class="mt-5 flex items-center justify-between text-[12px] text-black/55"><span>20 分钟深度阅读</span><span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a href="research-4.html" data-category="个股研报" class="article-card reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden"><span class="card-line"></span><span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[12px] font-semibold text-[hsl(var(--primary))]">个股研报</span><h3 class="mt-4 text-[17px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">从A股历史10倍股基因密码中 挖出9只潜力黑马</h3><p class="mt-3 flex-1 text-[14px] leading-relaxed text-black/65">十倍股不是涨出来的 是符合基因之后被资金选出来的 九个特征逐条对照</p><div class="mt-5 flex items-center justify-between text-[12px] text-black/55"><span>14 分钟深度阅读</span><span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a href="article-stoploss.html" data-category="风控必修" class="article-card reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden"><span class="card-line"></span><span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[12px] font-semibold text-[hsl(var(--primary))]">风控必修</span><h3 class="mt-4 text-[17px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">止损线 到底应该画在哪</h3><p class="mt-3 flex-1 text-[14px] leading-relaxed text-black/65">一条被 98% 的人画错的线 决定你是亏损有限还是套牢无期</p><div class="mt-5 flex items-center justify-between text-[12px] text-black/55"><span>10 分钟深度阅读</span><span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a href="article-shortline.html" data-category="短线体系" class="article-card reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden"><span class="card-line"></span><span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[12px] font-semibold text-[hsl(var(--primary))]">短线体系</span><h3 class="mt-4 text-[17px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">做短线 先想清楚这三个问题</h3><p class="mt-3 flex-1 text-[14px] leading-relaxed text-black/65">周期 位置 仓位 想清楚再动手 胜率自然上来</p><div class="mt-5 flex items-center justify-between text-[12px] text-black/55"><span>8 分钟深度阅读</span><span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a href="article-divergence.html" data-category="情绪博弈" class="article-card reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden"><span class="card-line"></span><span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[12px] font-semibold text-[hsl(var(--primary))]">情绪博弈</span><h3 class="mt-4 text-[17px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">买在分歧 卖在一致</h3><p class="mt-3 flex-1 text-[14px] leading-relaxed text-black/65">买在没人敢买时 卖在人人想买时 拆开就是买卖点框架</p><div class="mt-5 flex items-center justify-between text-[12px] text-black/55"><span>10 分钟深度阅读</span><span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a href="article-timeshare.html" data-category="分时实战" class="article-card reveal group lift relative flex flex-col rounded-2xl border border-[hsl(var(--border))] bg-white p-6 cursor-pointer overflow-hidden"><span class="card-line"></span><span class="inline-flex w-fit rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[12px] font-semibold text-[hsl(var(--primary))]">分时实战</span><h3 class="mt-4 text-[17px] font-bold leading-snug group-hover:text-[hsl(var(--primary))] transition-colors duration-200">分时图 主力每天的情绪地图</h3><p class="mt-3 flex-1 text-[14px] leading-relaxed text-black/65">把分时图读成多空双方当天的博弈现场</p><div class="mt-5 flex items-center justify-between text-[12px] text-black/55"><span>9 分钟深度阅读</span><span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a></div><div id="articles-more" class="mt-10 flex flex-col items-center gap-4"><button id="load-more-btn" class="btn btn-outline btn-md" aria-haspopup="false"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>加载更多文章</button><div id="articles-empty" class="empty-state hidden w-full"><div class="empty-icon"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><h3>没有找到相关文章</h3><p>换个关键词或分类再试试吧</p><button id="empty-reset" class="btn btn-secondary btn-sm mt-4">查看全部文章</button></div><div id="articles-error" class="error-state hidden w-full"><div class="error-icon"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div><h3>文章加载失败</h3><p>网络开小差了, 请重试</p><button id="articles-retry" class="btn btn-primary btn-sm mt-4">重新加载</button></div></div></div></div></section><section id="method" class="relative overflow-hidden bg-[#1d1d1f] text-white"><div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28"><div class="reveal max-w-3xl"><p class="text-[12.5px] tracking-[0.3em] accent-light font-semibold">我的体系</p><h2 class="mt-4 text-3xl md:text-[44px] font-bold leading-tight">答案不是更努力<br>是<span class="underline-accent">换一套系统</span></h2><p class="mt-5 text-[16px] leading-relaxed text-white/65">这三件事 我验证了三十年 每件都能立刻执行 现在 每天在通跃 App 拆给你看</p></div><div class="mt-14 grid gap-6 md:grid-cols-3"><article class="reveal glass lift relative overflow-hidden rounded-2xl p-8 cursor-pointer" tabindex="0"><span class="card-line"></span><div class="flex items-center justify-between"><span class="grid h-12 w-12 place-items-center rounded-xl bg-[hsl(var(--primary))]"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-6"/></svg></span><span class="text-[40px] font-black text-white/8 leading-none">01</span></div><h3 class="mt-6 text-xl font-bold">体系化决策</h3><p class="mt-3 text-[14px] leading-relaxed text-white/65">先胜后战 趋势定方向 位置定赔率 结构定信号 每个进场点 都得说得出理由</p><p class="mt-5 inline-flex items-center gap-1.5 text-[14px] font-semibold accent-light">通跃 App: 每日复盘 22:00 推送<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p></article><article class="reveal glass lift relative overflow-hidden rounded-2xl p-8 cursor-pointer" tabindex="0"><span class="card-line"></span><div class="flex items-center justify-between"><span class="grid h-12 w-12 place-items-center rounded-xl bg-[hsl(var(--primary))]"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span><span class="text-[40px] font-black text-white/8 leading-none">02</span></div><h3 class="mt-6 text-xl font-bold">纪律化执行</h3><p class="mt-3 text-[14px] leading-relaxed text-white/65">计划你的交易 交易你的计划 进场前定好仓位和离场 盘中只执行 不改主意</p><p class="mt-5 inline-flex items-center gap-1.5 text-[14px] font-semibold accent-light">通跃 App: 计划清单 + 买卖点留痕<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p></article><article class="reveal glass lift relative overflow-hidden rounded-2xl p-8 cursor-pointer" tabindex="0"><span class="card-line"></span><div class="flex items-center justify-between"><span class="grid h-12 w-12 place-items-center rounded-xl bg-[hsl(var(--primary))]"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z"/><path d="M9.5 12l2 2 3.5-4"/></svg></span><span class="text-[40px] font-black text-white/8 leading-none">03</span></div><h3 class="mt-6 text-xl font-bold">风控化生存</h3><p class="mt-3 text-[14px] leading-relaxed text-white/65">活下来才有一切 单笔风险固定 止损是计划一部分 不是事后补救</p><p class="mt-5 inline-flex items-center gap-1.5 text-[14px] font-semibold accent-light">通跃 App: 行情转折风险提醒<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p></article></div></div></section><section id="results" class="bg-[hsl(var(--background))]"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28"><div class="grid gap-12 lg:grid-cols-2 lg:items-center"><div><p class="reveal text-[12.5px] tracking-[0.3em] text-[hsl(var(--primary))] font-semibold">实战战绩</p><h2 class="reveal mt-4 text-3xl md:text-[44px] font-bold leading-tight">三十三年 我用同一套体系<br>穿越多轮牛熊</h2><p class="reveal mt-5 text-[16px] leading-relaxed text-black/65">这套体系不挑行情 亏损锁在固定范围 盈利交给趋势 以下为长期表现</p><ul class="reveal mt-8 space-y-5"><li class="flex gap-4 items-start"><span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]"><svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p class="text-[15px] text-black/65"><strong class="text-black/90">回撤可控</strong>历史最大回撤控制在 12% 以内 单笔止损固定 不扛单不摊平</p></li><li class="flex gap-4 items-start"><span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]"><svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p class="text-[15px] text-black/65"><strong class="text-black/90">胜率不是重点</strong>47% 的胜率也能稳定盈利 因为盈亏比 3:1 对一次抵三次错</p></li><li class="flex gap-4 items-start"><span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]"><svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p class="text-[15px] text-black/65"><strong class="text-black/90">普适可验证</strong>所有信号来自公开行情数据 复盘文章里每个进出场点都留痕可查</p></li></ul></div><div class="reveal"><div class="rounded-2xl border border-[hsl(var(--border))] bg-white p-4 sm:p-6 shadow-sm shadow-black/8"><div class="flex items-center justify-between"><p class="text-[15px] font-semibold text-black/90">实盘持仓收益</p><span class="inline-flex rounded-full bg-[hsl(var(--primary))]/10 px-3 py-1 text-[12px] font-semibold text-[hsl(var(--primary))]">实战验证</span></div><img src="images/returns-2026.jpeg" alt="实盘持仓收益截图" width="790" height="1280" loading="lazy" decoding="async" class="mt-4 block h-auto w-full rounded-xl border border-[hsl(var(--border))]"></div></div></div></div></section><section id="download" class="relative overflow-hidden bg-[#1d1d1f] text-white"><div class="hero-grid-dark absolute inset-0" aria-hidden="true"></div><div class="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center"><p class="reveal text-[12.5px] tracking-[0.3em] accent-light font-semibold">通跃 App</p><h2 class="reveal mt-5 text-3xl md:text-[44px] font-bold leading-tight text-balance">我的盘前解析 实盘复盘<br>每天在这里</h2><p class="reveal mt-6 mx-auto max-w-xl text-[16px] leading-relaxed text-white/65">三十年的复盘习惯 搬到了 App 上 盘前解析 实盘复盘 体系课程 免费下载 不喜欢随时删</p><div class="reveal mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"><a href="https://www.tongyuesyt.com/predownload/tongyuesyt.apk" class="js-download btn-primary inline-flex items-center gap-2.5 rounded-full px-9 py-4 text-[16px] font-semibold text-white cursor-pointer relative overflow-hidden"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>安卓免费下载</a><a href="https://apps.apple.com/cn/app/id6789065192" class="js-download btn-ghost btn-ghost-dark inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-medium text-white/90 cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>iPhone 前往 App Store</a></div><p class="reveal mt-5 text-[12px] text-white/50">安卓包约 172MB · 微信内请点击右上角「在浏览器打开」</p></div></section></main><dialog id="subscribe-dialog" class="dialog" aria-labelledby="subscribe-title" aria-describedby="subscribe-desc"><div class="p-7"><div class="flex items-start justify-between gap-4"><div><p class="text-[12.5px] tracking-[0.3em] text-[hsl(var(--primary))] font-semibold">每周复盘</p><h3 id="subscribe-title" class="mt-2 text-xl font-bold">订阅复盘早报</h3></div><button class="dialog-close" data-close-dialog aria-label="关闭"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><p id="subscribe-desc" class="mt-3 text-[14px] leading-relaxed text-black/65">每周日晚 22:00 前推送当周复盘与下周关注方向, 可随时退订。</p><form id="subscribe-form" class="mt-6" novalidate><div class="field" id="subscribe-field"><label class="field-label" for="subscribe-email">邮箱地址</label><input id="subscribe-email" class="input" type="email" placeholder="you@example.com" autocomplete="email" required><p class="field-error" id="subscribe-error" role="alert">请输入有效的邮箱地址</p></div><button type="submit" class="btn btn-primary btn-lg mt-5 w-full" id="subscribe-submit" aria-live="polite"><span class="btn-spinner" aria-hidden="true"></span><span class="btn-label">确认订阅</span></button><div class="mt-5 border-t border-[hsl(var(--border))] pt-4 text-center"><button type="button" class="btn btn-destructive btn-sm" id="unsubscribe-btn">退订复盘邮件</button></div><p class="mt-3 text-center text-[12px] text-black/55">订阅即表示同意接收邮件, 可随时取消</p></form></div></dialog><div id="toast" role="status" aria-live="polite"></div><!-- ============ FOOTER ============ --><footer class="border-t border-[hsl(var(--border))] bg-white/70"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12"><div class="flex flex-col md:flex-row items-center justify-between gap-6"><div class="flex items-center gap-2.5"><span class="grid h-8 w-8 place-items-center rounded-lg bg-[hsl(var(--primary))] text-white text-xs font-bold">潘</span><div><p class="text-[14px] font-semibold">潘伟君</p><p class="text-[12px] text-black/55">细节分析理论创立者</p></div></div><nav class="flex flex-wrap justify-center gap-6 text-[14px] font-medium text-black/65" aria-label="页脚导航"><a href="#method" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">交易体系</a><a href="#results" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">实战战绩</a><a href="#articles" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">深度文章</a><a href="articles.html" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">全部文章</a><a href="#download" class="cursor-pointer hover:text-[hsl(var(--primary))] transition-colors duration-200">下载</a></nav></div><div class="mt-10 border-t border-[hsl(var(--border))] pt-6"><p class="text-center text-[12px] leading-relaxed text-black/65">免责声明 本站内容仅用于交易体系与风控理念交流 不构成任何投资建议 市场有风险 入市需谨慎 历史业绩与回测不代表未来收益</p><p class="mt-3 text-center text-[12px] text-black/55">© 2026 潘伟君 保留所有权利</p></div></div></footer><script>
 (function () {
   'use strict';
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -313,29 +175,32 @@
 
   /* ---- 滚动显现 ---- */
   var reveals = document.querySelectorAll('.reveal');
+  var io = null;
+  function observeReveal(el) {
+    if (io) io.observe(el);
+    else el.classList.add('in');
+  }
   if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
+    io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) {
           var grp = e.target.closest('a, article, section') || e.target;
           var els = grp.querySelectorAll('.reveal');
-          els.forEach(function (el, i) { el.style.setProperty('--d', (i * 100) + 'ms'); });
+          els.forEach(function (el, i) { el.style.setProperty('--d', (i * 50) + 'ms'); });
           e.target.classList.add('in');
           io.unobserve(e.target);
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(function (el) { io.observe(el); });
-  } else {
-    reveals.forEach(function (el) { el.classList.add('in'); });
   }
+  reveals.forEach(observeReveal);
 
   /* ---- 数字滚动 ---- */
   function runCount(el) {
     var target = parseFloat(el.dataset.target);
     var decimals = parseInt(el.dataset.decimals || '0', 10);
     var suffix = el.dataset.suffix || '';
-    var dur = reduceMotion ? 0 : 1400;
+    var dur = reduceMotion ? 0 : 800;
     var start = null;
     function step(ts) {
       if (start === null) start = ts;
@@ -361,45 +226,19 @@
     });
   }
 
-  /* ---- 标题逐字显现 ---- */
-  var titleEl = document.getElementById('hero-title');
-  if (titleEl && !reduceMotion) {
-    var delay = 350;
-    titleEl.querySelectorAll('.word-line').forEach(function (line) {
-      var inner = line.querySelector('span');
-      var chars = Array.from(inner.textContent.trim());
-      inner.setAttribute('aria-hidden', 'true');
-      inner.textContent = '';
-      chars.forEach(function (ch) {
-        var s = document.createElement('span');
-        s.className = 'word-char';
-        s.setAttribute('aria-hidden', 'true');
-        s.textContent = ch;
-        s.style.animationDelay = delay + 'ms';
-        inner.appendChild(s);
-        delay += 36;
-      });
-      delay += 260; // 行间停顿
-    });
-  }
-
-  /* ---- hero 辉光跟随(桌面) ---- */
-  var hero = document.querySelector('.hero-bg');
-  var glow = document.getElementById('hero-glow');
-  if (hero && glow && !reduceMotion && window.matchMedia('(hover: hover)').matches) {
-    hero.addEventListener('mousemove', function (e) {
-      var r = hero.getBoundingClientRect();
-      glow.style.left = (e.clientX - r.left) + 'px';
-      glow.style.top = (e.clientY - r.top) + 'px';
-      glow.style.opacity = '1';
-    });
-    hero.addEventListener('mouseleave', function () { glow.style.opacity = '0'; });
-  }
-
   /* ---- 移动菜单(键盘可达) ---- */
   var menuBtn = document.getElementById('menu-btn');
   var menu = document.getElementById('mobile-menu');
   var lastFocus = null;
+  var pointerActivated = new WeakSet();
+  function trackPointer(el) {
+    el.addEventListener('pointerdown', function () { pointerActivated.add(el); });
+  }
+  function consumePointer(el) {
+    var result = pointerActivated.has(el);
+    pointerActivated.delete(el);
+    return result;
+  }
   function toggleMenu(force) {
     var open = force !== undefined ? force : !menu.classList.contains('open');
     menu.classList.toggle('open', open);
@@ -408,33 +247,69 @@
     if (open) { lastFocus = document.activeElement; document.querySelector('#mobile-menu a').focus(); }
     else if (lastFocus) lastFocus.focus();
   }
-  menuBtn.addEventListener('click', function () { toggleMenu(); });
+  function toggleMenuWithoutMotion(force) {
+    menu.classList.add('no-motion');
+    toggleMenu(force);
+    void menu.offsetWidth;
+    menu.classList.remove('no-motion');
+  }
+  trackPointer(menuBtn);
+  Array.prototype.slice.call(menu.querySelectorAll('a')).forEach(trackPointer);
+  menuBtn.addEventListener('click', function () {
+    if (consumePointer(menuBtn)) toggleMenu();
+    else toggleMenuWithoutMotion();
+  });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && menu.classList.contains('open')) { toggleMenu(false); }
+    if (e.key === 'Escape' && menu.classList.contains('open')) { toggleMenuWithoutMotion(false); }
   });
   menu.addEventListener('click', function (e) {
-    if (e.target.closest('a')) toggleMenu(false);
+    var link = e.target.closest('a');
+    if (link) {
+      if (consumePointer(link)) toggleMenu(false);
+      else toggleMenuWithoutMotion(false);
+    }
   });
   window.addEventListener('resize', function () {
-    if (window.innerWidth >= 768 && menu.classList.contains('open')) toggleMenu(false);
+    if (window.innerWidth >= 768 && menu.classList.contains('open')) toggleMenuWithoutMotion(false);
   });
 
   /* ---- Toast 提示服务 ---- */
   var toastEl = document.getElementById('toast');
   var toastTimer = null;
+  var toastStartedAt = 0;
+  var toastRemaining = 0;
+  function scheduleToast(ms) {
+    clearTimeout(toastTimer);
+    toastRemaining = ms;
+    if (document.hidden) return;
+    toastStartedAt = Date.now();
+    toastTimer = setTimeout(function () {
+      toastEl.className = '';
+      toastTimer = null;
+      toastRemaining = 0;
+    }, toastRemaining);
+  }
   function toast(msg, ms) {
     toastEl.textContent = msg;
     toastEl.className = 'show';
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { toastEl.className = ''; }, ms || 3400);
+    scheduleToast(ms || 3400);
   }
 
   function toastType(msg, type, ms) {
     toastEl.textContent = msg;
     toastEl.className = type === 'error' ? 'error show' : type === 'success' ? 'success show' : 'show';
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { toastEl.className = ''; }, ms || 3400);
+    scheduleToast(ms || 3400);
   }
+  document.addEventListener('visibilitychange', function () {
+    if (!toastEl.classList.contains('show')) return;
+    if (document.hidden) {
+      if (toastTimer) toastRemaining = Math.max(0, toastRemaining - (Date.now() - toastStartedAt));
+      clearTimeout(toastTimer);
+      toastTimer = null;
+    } else if (toastRemaining > 0) {
+      scheduleToast(toastRemaining);
+    }
+  });
 
 
   /* ===================== 产品交互 ===================== */
@@ -451,24 +326,56 @@
   var subField = $('#subscribe-field');
   var subBtn = $('#subscribe-submit');
   var subBtnLabel = subBtn ? subBtn.querySelector('.btn-label') : null;
+  var subCloseTimer = null;
 
-  function openSubscribe() {
+  function openSubscribe(immediate) {
     if (!subDialog || typeof subDialog.showModal !== 'function') return;
+    clearTimeout(subCloseTimer);
+    subDialog.classList.remove('is-closing', 'is-open', 'no-motion');
+    if (immediate || reduceMotion) subDialog.classList.add('no-motion');
     subDialog.showModal();
+    if (immediate || reduceMotion) {
+      subDialog.classList.add('is-open');
+      void subDialog.offsetWidth;
+      subDialog.classList.remove('no-motion');
+    } else {
+      requestAnimationFrame(function () { subDialog.classList.add('is-open'); });
+    }
     setTimeout(function () { if (subEmail) subEmail.focus(); }, 60);
   }
-  function closeSubscribe() {
-    if (subDialog && subDialog.open) subDialog.close();
+  function closeSubscribe(immediate) {
+    if (!subDialog || !subDialog.open) return;
+    clearTimeout(subCloseTimer);
+    if (immediate || reduceMotion) {
+      subDialog.classList.add('no-motion');
+      subDialog.classList.remove('is-open', 'is-closing');
+      subDialog.close();
+      void subDialog.offsetWidth;
+      subDialog.classList.remove('no-motion');
+      return;
+    }
+    subDialog.classList.remove('is-open');
+    subDialog.classList.add('is-closing');
+    subCloseTimer = setTimeout(function () {
+      subDialog.close();
+      subDialog.classList.remove('is-closing');
+    }, 150);
   }
   $$('#subscribe-btn, #subscribe-btn-mobile').forEach(function (b) {
-    b.addEventListener('click', function (e) { e.preventDefault(); openSubscribe(); });
+    trackPointer(b);
+    b.addEventListener('click', function (e) { e.preventDefault(); openSubscribe(!consumePointer(b)); });
   });
   $$('[data-close-dialog]').forEach(function (b) {
-    b.addEventListener('click', function () { closeSubscribe(); });
+    trackPointer(b);
+    b.addEventListener('click', function () { closeSubscribe(!consumePointer(b)); });
   });
   if (subDialog) {
     subDialog.addEventListener('click', function (e) {
-      if (e.target === subDialog) closeSubscribe();
+      if (e.target === subDialog) closeSubscribe(false);
+    });
+    subDialog.addEventListener('cancel', function (e) {
+      e.preventDefault();
+      closeSubscribe(true);
     });
   }
   function setSubLoading(on) {
@@ -479,8 +386,9 @@
   }
   var unsubBtn = $('#unsubscribe-btn');
   if (unsubBtn) {
+    trackPointer(unsubBtn);
     unsubBtn.addEventListener('click', function () {
-      closeSubscribe();
+      closeSubscribe(!consumePointer(unsubBtn));
       toastType('已为你退订, 不再接收复盘邮件', 'error');
     });
   }
@@ -499,7 +407,7 @@
       setSubLoading(true);
       setTimeout(function () {
         setSubLoading(false);
-        closeSubscribe();
+        closeSubscribe(false);
         subForm.reset();
         toastType('订阅成功, 每周复盘将准时送达', 'success');
       }, 900);
@@ -508,10 +416,6 @@
       subEmail.addEventListener('input', function () { subField.classList.remove('is-invalid'); });
     }
   }
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && subDialog && subDialog.open) { e.stopPropagation(); closeSubscribe(); }
-  });
-
   /* ---- 文章区: Tabs + 搜索 + 加载更多 ---- */
   var articlesGrid = $('#articles-grid');
   var articleSearch = $('#article-search');
@@ -545,7 +449,7 @@
       + '<p class="mt-3 flex-1 text-[14px] leading-relaxed text-black/65">' + item.desc + '</p>'
       + '<div class="mt-5 flex items-center justify-between text-[12px] text-black/55"><span>' + item.read + '</span>'
       + '<span class="inline-flex items-center gap-1 font-semibold text-[hsl(var(--primary))]">去读'
-      + '<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+      + '<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
       + '</span></div></a>';
   }
 
@@ -557,12 +461,16 @@
     return articleSearch ? (articleSearch.value || '').trim().toLowerCase() : '';
   }
 
-  function updateArticles() {
+  function updateArticles(instant) {
     if (!articlesGrid) return;
     var filter = currentFilter();
     var q = currentQuery();
     var visible = 0;
     $$('.article-card', articlesGrid).forEach(function (card) {
+      if (instant) {
+        card.classList.add('filter-settled');
+        card.classList.add('in');
+      }
       var cat = card.getAttribute('data-category') || '';
       var text = (card.textContent || '').toLowerCase();
       var okCat = filter === 'all' || cat === filter;
@@ -571,6 +479,13 @@
       card.style.display = show ? '' : 'none';
       if (show) visible++;
     });
+    var visibleCards = $$('.article-card', articlesGrid).filter(function (card) {
+      return card.style.display !== 'none';
+    });
+    $$('.article-card', articlesGrid).forEach(function (card) {
+      card.classList.remove('article-card--lead');
+    });
+    if (visibleCards[0]) visibleCards[0].classList.add('article-card--lead');
     var showEmpty = visible === 0;
     if (emptyBox) emptyBox.classList.toggle('hidden', !showEmpty);
     if (errorBox) errorBox.classList.toggle('hidden', true);
@@ -595,7 +510,7 @@
     tab.addEventListener('click', function () {
       $$('.tab').forEach(function (t) { t.setAttribute('aria-selected', 'false'); });
       tab.setAttribute('aria-selected', 'true');
-      updateArticles();
+      updateArticles(true);
     });
   });
 
@@ -603,7 +518,7 @@
   if (articleSearch) {
     articleSearch.addEventListener('input', function () {
       clearTimeout(searchTimer);
-      searchTimer = setTimeout(updateArticles, 180);
+      searchTimer = setTimeout(function () { updateArticles(true); }, 80);
     });
   }
 
@@ -613,36 +528,15 @@
     emptyReset.addEventListener('click', function () {
       if (articleSearch) articleSearch.value = '';
       $$('.tab').forEach(function (t) { t.setAttribute('aria-selected', t.getAttribute('data-filter') === 'all' ? 'true' : 'false'); });
-      updateArticles();
+      updateArticles(true);
     });
   }
 
   /* 加载更多 */
-  function renderSkeletons() {
-    if (!articlesGrid) return;
-    var sk = document.createElement('div');
-    sk.id = 'articles-skeleton';
-    sk.className = 'grid gap-6 sm:grid-cols-2 lg:grid-cols-4';
-    sk.innerHTML = Array(4).fill('<div class="skeleton h-[220px]"></div>').join('');
-    articlesGrid.after(sk);
-  }
-  function removeSkeletons() {
-    var sk = $('#articles-skeleton');
-    if (sk) sk.parentNode.removeChild(sk);
-  }
   if (moreBtn) {
     moreBtn.addEventListener('click', function () {
       if (MORE_LOADED >= MORE_POOL.length) { return; }
-      moreBtn.classList.add('is-loading');
-      moreBtn.disabled = true;
-      renderSkeletons();
-      setTimeout(function () {
-        moreBtn.classList.remove('is-loading');
-        moreBtn.disabled = false;
-        removeSkeletons();
-        /* 移除演示用随机失败模拟: 生产环境直接加载 */
-        loadMoreArticles();
-      }, 1000);
+      loadMoreArticles();
     });
   }
   function loadMoreArticles() {
@@ -654,7 +548,10 @@
     }
     var frag = document.createElement('div');
     frag.innerHTML = batch.map(cardHtml).join('');
-    Array.prototype.slice.call(frag.children).forEach(function (card) { articlesGrid.appendChild(card); });
+    Array.prototype.slice.call(frag.children).forEach(function (card) {
+      articlesGrid.appendChild(card);
+      observeReveal(card);
+    });
     MORE_LOADED += batch.length;
     bindCards();
     if (moreBtn) moreBtn.classList.remove('hidden');
@@ -668,6 +565,7 @@
 
   /* 初始化 */
   bindCards();
+  updateArticles();
   /* ---- 智能下载(平台分支) ---- */
   var ANDROID_APK = 'https://www.tongyuesyt.com/predownload/tongyuesyt.apk';
   var IOS_URL = 'https://apps.apple.com/cn/app/id6789065192';
