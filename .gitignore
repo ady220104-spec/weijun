@@ -6,3 +6,5 @@ scripts/
 
 
 .impeccable/
+/image-*.png
+/image-*.webp

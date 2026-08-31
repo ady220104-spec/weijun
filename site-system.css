@@ -1300,6 +1300,23 @@ body.claude-detail article.prose figcaption {
   text-align: center;
 }
 
+/* Real-screenshot cards — dark terminal frame embedded in the light reading page */
+body.claude-detail .shot-fig { margin: 2.25rem 0; }
+body.claude-detail .shot-card { border: 1px solid #2b2824; border-radius: 16px; overflow: hidden; background: #0f0e0b; box-shadow: 0 1px 2px rgba(32,31,28,.04), 0 22px 48px -30px rgba(32,31,28,.32); }
+body.claude-detail .shot-card .shot-bar { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; border-bottom: 1px solid #23201c; background: #17140f; }
+body.claude-detail .shot-card .shot-bar .l { display: flex; align-items: center; gap: 8px; font-size: 12.5px; letter-spacing: .02em; color: #c9c2b4; }
+body.claude-detail .shot-card .shot-bar .l .d { width: 7px; height: 7px; border-radius: 50%; background: #cc785c; flex: none; }
+body.claude-detail .shot-card .shot-bar .r { font-size: 12.5px; color: #8b8578; font-variant-numeric: tabular-nums; }
+body.claude-detail .shot-card img { display: block; width: 100%; height: auto; }
+body.claude-detail .shot-cap { margin-top: 16px; }
+body.claude-detail .shot-cap .sc-eb { margin: 0; font-size: 12.5px; font-weight: 650; letter-spacing: .14em; color: #b0603f; }
+body.claude-detail .shot-cap h4 { margin: 6px 0 0; font-size: 18px; font-weight: 600; color: #201f1c; font-family: "Pan Detail Serif", serif; }
+body.claude-detail .shot-cap .sc-rows { margin: 12px 0 0; display: flex; flex-direction: column; gap: 8px; }
+body.claude-detail .shot-cap .sc-row { display: flex; gap: 12px; align-items: baseline; font-size: 15px; line-height: 1.65; }
+body.claude-detail .shot-cap .sc-k { flex: none; width: 52px; font-weight: 600; color: #b0603f; }
+body.claude-detail .shot-cap .sc-v { color: #3f3d38; }
+body.claude-detail .shot-cap .sc-v b { color: #201f1c; font-weight: 600; }
+
 body.claude-detail article.prose .overflow-x-auto {
   border: 1px solid #dedbd3;
   border-radius: .85rem;
