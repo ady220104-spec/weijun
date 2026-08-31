@@ -186,6 +186,14 @@
 
 
 
+// ===== Inner pages are reading surfaces: content is visible without scroll choreography =====
+(function () {
+  if (!document.body.dataset.secondaryTemplate) return;
+  Array.prototype.slice.call(document.querySelectorAll('.reveal')).forEach(function (element) {
+    element.classList.add('in');
+  });
+})();
+
 // ===== Shared long-form TOC + current location =====
 (function () {
   if (document.body.dataset.secondaryTemplate !== 'longform') return;
@@ -198,7 +206,8 @@
   });
   var details = document.createElement('details');
   details.className = 'longform-toc';
-  if (window.matchMedia('(min-width: 1180px)').matches) details.open = true;
+  var desktopToc = window.matchMedia('(min-width: 1180px)');
+  details.open = desktopToc.matches;
   details.innerHTML = '<summary><span>本页目录</span><span class="longform-location">当前：' + headings[0].textContent.trim() + '</span></summary>'
     + '<nav aria-label="长文目录">' + headings.map(function (heading) {
       return '<a href="#' + heading.id + '">' + heading.textContent.trim() + '</a>';
@@ -206,6 +215,14 @@
   article.parentNode.insertBefore(details, article);
   var links = Array.prototype.slice.call(details.querySelectorAll('a'));
   var location = details.querySelector('.longform-location');
+  links.forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (!desktopToc.matches) details.open = false;
+    });
+  });
+  var syncTocMode = function (event) { details.open = event.matches; };
+  if (desktopToc.addEventListener) desktopToc.addEventListener('change', syncTocMode);
+  else if (desktopToc.addListener) desktopToc.addListener(syncTocMode);
   function select(id) {
     links.forEach(function (link) {
       var active = link.getAttribute('href') === '#' + id;

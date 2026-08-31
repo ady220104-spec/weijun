@@ -91,3 +91,21 @@ test('shared interaction CSS avoids transition-all and provides coarse-pointer t
   assert.match(css, /\.btn\.hidden\.sm\\:inline-flex \{ display: inline-flex; \}/);
   assert.match(css, /\.btn\.md\\:hidden \{ display: none !important; \}/);
 });
+
+test('inner-page reading content is visible without scroll choreography', () => {
+  const css = read('site-system.css');
+  const runtime = read('site-system.js');
+  assert.match(css, /html\.js body\[data-secondary-template\] \.reveal,[\s\S]*?opacity: 1;/);
+  assert.match(css, /body\[data-secondary-template\] article\.prose h2[\s\S]*?border-top:/);
+  assert.match(runtime, /Inner pages are reading surfaces:[\s\S]*?element\.classList\.add\('in'\)/);
+});
+
+test('longform navigation stays compact and closes after a mobile section jump', () => {
+  const css = read('site-system.css');
+  const runtime = read('site-system.js');
+  assert.match(css, /\.longform-toc \{[\s\S]*?position: sticky; top: 4rem;/);
+  assert.match(css, /@media \(min-width: 1180px\)[\s\S]*?position: fixed;/);
+  assert.match(css, /\.overflow-x-auto > table \{[\s\S]*?min-width: 44rem;/);
+  assert.match(runtime, /if \(!desktopToc\.matches\) details\.open = false/);
+  assert.match(runtime, /desktopToc\.addEventListener\('change', syncTocMode\)/);
+});
