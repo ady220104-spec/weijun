@@ -8,3 +8,8 @@ scripts/
 .impeccable/
 /image-*.png
 /image-*.webp
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+/*.gif
