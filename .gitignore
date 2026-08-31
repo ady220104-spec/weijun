@@ -4,3 +4,5 @@
 scripts/
 .playwright-cli/
 
+
+.impeccable/

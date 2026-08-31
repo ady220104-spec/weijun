@@ -194,6 +194,56 @@
   });
 })();
 
+// ===== Standard article TOC + current location =====
+(function () {
+  if (document.body.dataset.secondaryTemplate !== 'article') return;
+  var shell = document.querySelector('article.prose > .max-w-3xl');
+  if (!shell) return;
+  var content = Array.prototype.slice.call(shell.children).find(function (element) {
+    return element.classList.contains('space-y-8');
+  });
+  if (!content) return;
+  var toc = content.querySelector('nav[aria-label="本页目录"]');
+  if (!toc) return;
+  shell.classList.add('article-reading-grid');
+  toc.classList.add('article-toc');
+  shell.insertBefore(toc, content);
+
+  var links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var targets = links.map(function (link) {
+    return document.getElementById(decodeURIComponent(link.getAttribute('href').slice(1)));
+  }).filter(Boolean);
+  if (!targets.length) return;
+
+  function select(id) {
+    links.forEach(function (link) {
+      var active = decodeURIComponent(link.getAttribute('href').slice(1)) === id;
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  }
+
+  links.forEach(function (link) {
+    link.addEventListener('click', function () {
+      select(decodeURIComponent(link.getAttribute('href').slice(1)));
+    });
+  });
+  select(targets[0].id);
+  var syncArticleStart = function () {
+    if (window.scrollY < shell.offsetTop - Math.min(120, window.innerHeight * .15)) select(targets[0].id);
+  };
+  window.addEventListener('scroll', syncArticleStart, { passive: true });
+  syncArticleStart();
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.filter(function (entry) { return entry.isIntersecting; }).forEach(function (entry) {
+        select(entry.target.id);
+      });
+    }, { rootMargin: '-18% 0px -70% 0px', threshold: 0 });
+    targets.forEach(function (target) { observer.observe(target); });
+  }
+})();
+
 // ===== Shared long-form TOC + current location =====
 (function () {
   if (document.body.dataset.secondaryTemplate !== 'longform') return;
@@ -243,6 +293,19 @@
 
 // ===== Shared horizontal-table affordance =====
 (function () {
+  Array.prototype.slice.call(document.querySelectorAll('article.prose figure svg[width]')).forEach(function (graphic) {
+    var intrinsicWidth = Number(graphic.getAttribute('width'));
+    var wrap = graphic.parentElement;
+    if (!wrap || !Number.isFinite(intrinsicWidth) || intrinsicWidth < 640 || wrap.classList.contains('article-media-scroll')) return;
+    wrap.classList.add('article-media-scroll');
+    wrap.tabIndex = 0;
+    wrap.setAttribute('role', 'region');
+    wrap.setAttribute('aria-label', '可横向滚动的图表');
+    var hint = document.createElement('p');
+    hint.className = 'article-media-hint';
+    hint.textContent = '左右滑动查看完整图表';
+    wrap.insertAdjacentElement('afterend', hint);
+  });
   Array.prototype.slice.call(document.querySelectorAll('.overflow-x-auto')).forEach(function (wrap) {
     if (!wrap.querySelector('table') || wrap.nextElementSibling?.classList.contains('table-scroll-hint')) return;
     wrap.tabIndex = 0;
@@ -258,4 +321,77 @@
     code.setAttribute('role', 'region');
     code.setAttribute('aria-label', '可横向滚动的代码示例');
   });
+})();
+
+// ===== Claude-inspired detail-page structure =====
+(function () {
+  var template = document.body.dataset.secondaryTemplate;
+  if (template !== 'article' && template !== 'longform') return;
+
+  document.body.classList.add('claude-detail');
+
+  var hero = document.querySelector('main > header.border-b > .max-w-3xl');
+  if (hero && !hero.classList.contains('detail-hero')) {
+    var children = Array.prototype.slice.call(hero.children);
+    var title = hero.querySelector('h1');
+    var titleIndex = children.indexOf(title);
+    var category = children.slice(0, titleIndex).find(function (element) { return element.tagName === 'P'; });
+    var meta = children.slice(titleIndex + 1).find(function (element) { return element.tagName === 'DIV'; });
+    var primary = document.createElement('div');
+    var secondary = document.createElement('div');
+    primary.className = 'detail-hero-primary';
+    secondary.className = 'detail-hero-secondary';
+
+    if (title) {
+      var titleLength = title.textContent.trim().length;
+      if (titleLength > 28) title.classList.add('detail-title-long');
+      if (titleLength > 33) title.classList.add('detail-title-very-long');
+      if (!title.dataset.segmented) {
+        var titleText = title.textContent;
+        var segments = titleText.match(/\d{4}年\d{1,2}月|\d+倍股|\d+\s*(?:年|月|日|倍|元|只|分钟)|A股|K线|短线|长线|均线|分时图|看盘体系|选股器|基因密码|潜力黑马|[A-Za-z]+|\d+|[\u4e00-\u9fff]{2,4}|\s+|./g) || [titleText];
+        title.textContent = '';
+        segments.forEach(function (part) {
+          if (!/^\s+$/.test(part) && /[\p{L}\p{N}]/u.test(part)) {
+            var token = document.createElement('span');
+            token.className = 'detail-title-token';
+            token.textContent = part;
+            title.appendChild(token);
+          } else {
+            title.appendChild(document.createTextNode(part));
+          }
+        });
+        title.dataset.segmented = 'true';
+      }
+    }
+
+    children.slice(0, titleIndex).forEach(function (element) {
+      if (element !== category) primary.appendChild(element);
+    });
+    if (title) primary.appendChild(title);
+    children.slice(titleIndex + 1).forEach(function (element) { secondary.appendChild(element); });
+    if (meta) {
+      meta.classList.add('detail-meta');
+      if (category) {
+        category.classList.add('detail-category');
+        meta.insertBefore(category, meta.firstChild);
+      }
+    } else if (category) {
+      category.classList.add('detail-category');
+      secondary.insertBefore(category, secondary.firstChild);
+    }
+    hero.replaceChildren(primary, secondary);
+    hero.classList.add('detail-hero');
+  }
+
+  var article = document.querySelector('article.prose');
+  var copy = document.querySelector('article.prose > .max-w-3xl');
+  if (article) article.classList.add('detail-article');
+  if (copy) copy.classList.add('detail-copy');
+
+  var download = document.getElementById('download');
+  if (download) download.classList.add('detail-download');
+  var pagination = document.querySelector('main > .border-t.border-border');
+  if (pagination) pagination.classList.add('detail-pagination');
+  var footer = document.querySelector('body > footer');
+  if (footer) footer.classList.add('detail-footer');
 })();
